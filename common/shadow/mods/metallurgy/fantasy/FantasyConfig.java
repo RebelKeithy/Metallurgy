@@ -513,51 +513,51 @@ public class FantasyConfig  {
     	itemTartariteLegsID = config.getOrCreateIntProperty("Tartarite Legs", "Tartarite Ids", 28359).getInt(28359);
     	itemTartariteBootsID = config.getOrCreateIntProperty("Tartarite Boots", "Tartarite Ids", 28360).getInt(28360);
     	
-    	PrometheumVeinCount = config.getOrCreateIntProperty("Prometheum Vein Count", "Ore Generation", 8).getInt(8);
+    	PrometheumVeinCount = config.getOrCreateIntProperty("Prometheum Vein Count", "Ore Generation", 6).getInt(6);
     	PrometheumOreCount = config.getOrCreateIntProperty("Prometheum Ore Count", "Ore Generation", 10).getInt(10);
     	PrometheumOreHeight = config.getOrCreateIntProperty("Prometheum Vein Count", "Ore Height", 128).getInt(128);
     	
-    	DeepIronVeinCount = config.getOrCreateIntProperty("DeepIron Vein Count", "Ore Generation", 8).getInt(8);
-    	DeepIronOreCount = config.getOrCreateIntProperty("DeepIron Ore Count", "Ore Generation", 8).getInt(8);
+    	DeepIronVeinCount = config.getOrCreateIntProperty("DeepIron Vein Count", "Ore Generation", 5).getInt(5);
+    	DeepIronOreCount = config.getOrCreateIntProperty("DeepIron Ore Count", "Ore Generation", 4).getInt(4);
     	DeepIronOreHeight = config.getOrCreateIntProperty("DeepIron Vein Count", "Ore Height", 128).getInt(128);
     	
-    	InfuscoliumVeinCount = config.getOrCreateIntProperty("Infuscolium Vein Count", "Ore Generation", 8).getInt(8);
-    	InfuscoliumOreCount = config.getOrCreateIntProperty("Infuscolium Ore Count", "Ore Generation", 8).getInt(8);
+    	InfuscoliumVeinCount = config.getOrCreateIntProperty("Infuscolium Vein Count", "Ore Generation", 5).getInt(5);
+    	InfuscoliumOreCount = config.getOrCreateIntProperty("Infuscolium Ore Count", "Ore Generation", 3).getInt(3);
     	InfuscoliumOreHeight = config.getOrCreateIntProperty("Infuscolium Vein Count", "Ore Height", 128).getInt(128);
     	
-    	OureclaseVeinCount = config.getOrCreateIntProperty("Oureclase Vein Count", "Ore Generation", 7).getInt(7);
-    	OureclaseOreCount = config.getOrCreateIntProperty("Oureclase Ore Count", "Ore Generation", 8).getInt(8);
+    	OureclaseVeinCount = config.getOrCreateIntProperty("Oureclase Vein Count", "Ore Generation", 4).getInt(4);
+    	OureclaseOreCount = config.getOrCreateIntProperty("Oureclase Ore Count", "Ore Generation", 3).getInt(3);
     	OureclaseOreHeight = config.getOrCreateIntProperty("Oureclase Vein Count", "Ore Height", 128).getInt(128);
     	
-    	AredriteVeinCount = config.getOrCreateIntProperty("Aredrite Vein Count", "Ore Generation", 7).getInt(7);
-    	AredriteOreCount = config.getOrCreateIntProperty("Aredrite Ore Count", "Ore Generation", 8).getInt(8);
+    	AredriteVeinCount = config.getOrCreateIntProperty("Aredrite Vein Count", "Ore Generation", 4).getInt(4);
+    	AredriteOreCount = config.getOrCreateIntProperty("Aredrite Ore Count", "Ore Generation", 3).getInt(3);
     	AredriteOreHeight = config.getOrCreateIntProperty("Aredrite Vein Count", "Ore Height", 128).getInt(128);
     	
-    	AstralSilverVeinCount = config.getOrCreateIntProperty("AstralSilver Vein Count", "Ore Generation", 7).getInt(7);
-    	AstralSilverOreCount = config.getOrCreateIntProperty("AstralSilver Ore Count", "Ore Generation", 6).getInt(6);
+    	AstralSilverVeinCount = config.getOrCreateIntProperty("AstralSilver Vein Count", "Ore Generation", 3).getInt(3);
+    	AstralSilverOreCount = config.getOrCreateIntProperty("AstralSilver Ore Count", "Ore Generation", 3).getInt(3);
     	AstralSilverOreHeight = config.getOrCreateIntProperty("AstralSilver Vein Count", "Ore Height", 128).getInt(128);
     	
-    	CarmotVeinCount = config.getOrCreateIntProperty("Carmot Vein Count", "Ore Generation", 5).getInt(5);
-    	CarmotOreCount = config.getOrCreateIntProperty("Carmot Ore Count", "Ore Generation", 6).getInt(6);
+    	CarmotVeinCount = config.getOrCreateIntProperty("Carmot Vein Count", "Ore Generation", 3).getInt(3);
+    	CarmotOreCount = config.getOrCreateIntProperty("Carmot Ore Count", "Ore Generation", 2).getInt(2);
     	CarmotOreHeight = config.getOrCreateIntProperty("Carmot Vein Count", "Ore Height", 128).getInt(128);
     	
-    	MithrilVeinCount = config.getOrCreateIntProperty("Mithril Vein Count", "Ore Generation", 5).getInt(5);
-    	MithrilOreCount = config.getOrCreateIntProperty("Mithril Ore Count", "Ore Generation", 5).getInt(5);
+    	MithrilVeinCount = config.getOrCreateIntProperty("Mithril Vein Count", "Ore Generation", 3).getInt(3);
+    	MithrilOreCount = config.getOrCreateIntProperty("Mithril Ore Count", "Ore Generation", 3).getInt(3);
     	MithrilOreHeight = config.getOrCreateIntProperty("Mithril Vein Count", "Ore Height", 128).getInt(128);
     	
-    	RubraciumVeinCount = config.getOrCreateIntProperty("Rubracium Vein Count", "Ore Generation", 5).getInt(5);
-    	RubraciumOreCount = config.getOrCreateIntProperty("Rubracium Ore Count", "Ore Generation", 5).getInt(5);
+    	RubraciumVeinCount = config.getOrCreateIntProperty("Rubracium Vein Count", "Ore Generation", 2).getInt(2);
+    	RubraciumOreCount = config.getOrCreateIntProperty("Rubracium Ore Count", "Ore Generation", 3).getInt(3);
     	RubraciumOreHeight = config.getOrCreateIntProperty("Rubracium Vein Count", "Ore Height", 128).getInt(128);
     	
-    	OrichalcumVeinCount = config.getOrCreateIntProperty("Orichalcum Vein Count", "Ore Generation", 5).getInt(5);
-    	OrichalcumOreCount = config.getOrCreateIntProperty("Orichalcum Ore Count", "Ore Generation", 5).getInt(5);
+    	OrichalcumVeinCount = config.getOrCreateIntProperty("Orichalcum Vein Count", "Ore Generation", 2).getInt(2);
+    	OrichalcumOreCount = config.getOrCreateIntProperty("Orichalcum Ore Count", "Ore Generation", 4).getInt(4);
     	OrichalcumOreHeight = config.getOrCreateIntProperty("Orichalcum Vein Count", "Ore Height", 128).getInt(128);
     	
-    	AdamantineVeinCount = config.getOrCreateIntProperty("Adamantine Vein Count", "Ore Generation", 4).getInt(4);
+    	AdamantineVeinCount = config.getOrCreateIntProperty("Adamantine Vein Count", "Ore Generation", 1).getInt(1);
     	AdamantineOreCount = config.getOrCreateIntProperty("Adamantine Ore Count", "Ore Generation", 4).getInt(4);
     	AdamantineOreHeight = config.getOrCreateIntProperty("Adamantine Vein Count", "Ore Height", 128).getInt(128);
     	
-    	AtlarusVeinCount = config.getOrCreateIntProperty("Atlarus Vein Count", "Ore Generation", 3).getInt(3);
+    	AtlarusVeinCount = config.getOrCreateIntProperty("Atlarus Vein Count", "Ore Generation", 1).getInt(1);
     	AtlarusOreCount = config.getOrCreateIntProperty("Atlarus Ore Count", "Ore Generation", 3).getInt(3);
     	AtlarusOreHeight = config.getOrCreateIntProperty("Atlarus Vein Count", "Ore Height", 128).getInt(128);
     	
