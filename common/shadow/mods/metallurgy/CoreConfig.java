@@ -44,9 +44,9 @@ public class CoreConfig  {
 	
 	public static void init()
 	{
-		File file = new File(mod_MetallurgyCore.proxy.getMinecraftDir() + "/Metallurgy");
+		File file = new File(mod_MetallurgyCore.proxy.getMinecraftDir() + "/config/Metallurgy");
     	file.mkdir();
-    	File newFile = new File(mod_MetallurgyCore.proxy.getMinecraftDir() + "/Metallurgy/MetallurgyCore.cfg");
+    	File newFile = new File(mod_MetallurgyCore.proxy.getMinecraftDir() + "/config/Metallurgy/MetallurgyCore.cfg");
     	
         try
         {
