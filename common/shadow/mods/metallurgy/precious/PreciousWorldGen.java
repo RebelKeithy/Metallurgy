@@ -30,7 +30,7 @@ public class PreciousWorldGen implements IWorldGenerator
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(PreciousConfig.OreHeight[meta]);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenNetherMinable(mod_MetallurgyPrecious.PreciousMetalsVein.blockID, meta, PreciousConfig.OreCount[meta])).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new MetallurgyWorldGenMinable(mod_MetallurgyPrecious.PreciousMetalsVein.blockID, meta, PreciousConfig.OreCount[meta])).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 
