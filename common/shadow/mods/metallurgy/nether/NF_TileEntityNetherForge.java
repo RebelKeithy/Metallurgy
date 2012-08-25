@@ -49,6 +49,8 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
     public void addFuelBucket()
     {
     	fuel += 10;
+    	fuel = (fuel < maxFuel) ? fuel : maxFuel;
+    	sync();
     }
     
     public int getFuelScaled(int scale)
@@ -180,6 +182,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
         this.direction = par1NBTTagCompound.getShort("Direction");
         this.furnaceTimeBase = par1NBTTagCompound.getShort("TimeBase");
         this.maxFuel = par1NBTTagCompound.getShort("MaxFuel");
+        sync();
     }
 
     /**
@@ -212,11 +215,14 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
     
     public void sync()
     {
-		int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
-		worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 1, direction);
-		worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 2, furnaceTimeBase);
-		worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, fuel);
-		worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 4, maxFuel);
+    	if(worldObj != null)
+	    {
+			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 1, direction);
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 2, furnaceTimeBase);
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, fuel);
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 4, maxFuel);
+    	}
     }
 
     /**
@@ -383,6 +389,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
 
 	public int getScaledFuel(int i) {
 		// TODO Auto-generated method stub
-		return (int) (i * (fuel/((float)(maxFuel))));
+		int scaledFuel = MathHelper.ceiling_float_int(i * (fuel/((float)(maxFuel))));
+		return (scaledFuel >= i) ? i : scaledFuel;
 	}
 }

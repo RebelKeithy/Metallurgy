@@ -112,7 +112,7 @@ public class NF_BlockNetherForge extends BlockContainer
             if(par5 != dir)
             	return 9 + fuel + (type * 16);
             else if(metadata >= 8)
-            	return 5 + fuel + (type * 16);
+            	return 4 + fuel + (type * 16);
             else
             	return 0 + fuel + (type * 16);
         }
@@ -188,6 +188,8 @@ public class NF_BlockNetherForge extends BlockContainer
         	{
                 if(var6 instanceof NF_TileEntityNetherForge)
                 {
+                	if(((NF_TileEntityNetherForge)var6).fuel == ((NF_TileEntityNetherForge)var6).maxFuel)
+                		return false;
                 	par5EntityPlayer.inventory.setInventorySlotContents(currentSlot, new ItemStack(Item.bucketEmpty, 1));
                 	((NF_TileEntityNetherForge)var6).addFuelBucket();
                 	return true;
@@ -216,12 +218,12 @@ public class NF_BlockNetherForge extends BlockContainer
         //TileEntity var6 = par1World.getBlockTileEntity(par2, par3, par4);
         keepFurnaceInventory = true;
 
-        if (!par0 && metadata < 8)
+        if (par0 && metadata < 8)
         {
         	par1World.setBlockMetadata(par2, par3, par4, metadata + 8);
             //par1World.setBlockWithNotify(par2, par3, par4, mod_NetherForge.metalFurnace.blockID);
         }
-        else if(par0 && metadata >= 8)
+        else if(!par0 && metadata >= 8)
         {
         	par1World.setBlockMetadata(par2, par3, par4, metadata - 8);
             //par1World.setBlockWithNotify(par2, par3, par4, mod_NetherForge.metalFurnaceOn.blockID);
