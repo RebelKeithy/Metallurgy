@@ -112,7 +112,7 @@ public class OreNether {
 			}
 			 
 			//Bricks!
-			RecipeHelper.addBrickRecipes(mod_MetallurgyNether.NetherMetalsBrick.blockID, i, Bar[i]);
+			RecipeHelper.addBrickRecipes(mod_MetallurgyNether.NetherMetalsBrick.blockID, i, Bar[i], 0);
 			
 	        //Tools
 			RecipeHelper.addAxeRecipe(Axe[i], Bar[i]);

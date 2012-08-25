@@ -71,7 +71,7 @@ public class ClientProxy extends shadow.mods.metallurgy.nether.CommonProxy{
 		for(String name : NF_GuiNetherForge.names)
 			LanguageRegistry.instance().addStringLocalization("tile.NetherForge." + name + "Forge.name",  name + " Forge");
 		
-		LanguageRegistry.instance().addStringLocalization("container.netherforge", "Nether Forge");
+		LanguageRegistry.instance().addStringLocalization("container.netherforge", "Nether Smelter");
 	}
 	
 	@Override

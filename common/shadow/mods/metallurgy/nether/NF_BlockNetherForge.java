@@ -67,17 +67,16 @@ public class NF_BlockNetherForge extends BlockContainer
     public int getBlockTextureFromSideAndMetadata(int par1, int metadata)
     {
     	metadata = (metadata < 8) ? metadata : metadata - 8;
-    	metadata++;
         if (par1 == 1 || par1 == 0)
         {
-            return 2 + (metadata * 16);
+            return 14 + (metadata * 16);
         }
         else
         {
             //int var6 = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
             //int var6 = ((TileEntityMetalFurnace)(par1IBlockAccess.getBlockTileEntity(par2, par3, par4))).getDirection();
             if(par1 != 3)
-            	return 1 + (metadata * 16);
+            	return 9 + (metadata * 16);
             else
             	return 0 + (metadata * 16);
         }
@@ -94,19 +93,28 @@ public class NF_BlockNetherForge extends BlockContainer
     	int type = (metadata < 8) ? metadata : metadata - 8;
     	int	dir = (tileEntity instanceof NF_TileEntityNetherForge) ? ((NF_TileEntityNetherForge)tileEntity).getDirection() : 0;
     	int time = (tileEntity instanceof NF_TileEntityNetherForge) ? (((NF_TileEntityNetherForge)tileEntity).furnaceCookTime * 10) % 2 : 0;
+
+    	int	fuel = (tileEntity instanceof NF_TileEntityNetherForge) ? ((NF_TileEntityNetherForge)tileEntity).getScaledFuel(4) : 0;
     	//par5 = ((TileEntityMetalFurnace)(par1IBlockAccess.getBlockTileEntity(par2, par3, par4))).getDirection();
-        if (par5 == 1 || par5 == 0)
+        if (par5 == 1)
         {
-            return 2 + ((type + 1) * 16);
+            if(metadata >= 8)
+            	return 15 + (type * 16);
+            else 
+            	return 14 + (type * 16);
+        } 
+        else if(par5 == 0)
+        {
+        	return 15*16 + type;
         }
         else
         {
             if(par5 != dir)
-            	return 1 + ((type + 1) * 16);
+            	return 9 + fuel + (type * 16);
             else if(metadata >= 8)
-            	return 3 + ((type + 1) * 16) + time;
+            	return 5 + fuel + (type * 16);
             else
-            	return 0 + ((type + 1) * 16);
+            	return 0 + fuel + (type * 16);
         }
     }
 
@@ -202,6 +210,7 @@ public class NF_BlockNetherForge extends BlockContainer
      */
     public static void updateFurnaceBlockState(boolean par0, World par1World, int par2, int par3, int par4)
     {
+    	System.out.println("changing state");
     	//aSystem.out.println("updating furnace" + par0);
         int metadata = par1World.getBlockMetadata(par2, par3, par4);
         //TileEntity var6 = par1World.getBlockTileEntity(par2, par3, par4);

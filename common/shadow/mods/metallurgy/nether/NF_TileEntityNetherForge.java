@@ -207,6 +207,16 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
         }
 
         par1NBTTagCompound.setTag("Items", var2);
+        sync();
+    }
+    
+    public void sync()
+    {
+		int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
+		worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 1, direction);
+		worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 2, furnaceTimeBase);
+		worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, fuel);
+		worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 4, maxFuel);
     }
 
     /**
@@ -243,15 +253,11 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
     {
 		if ((++ticksSinceSync % 20) == 0) 
         {
-			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
-			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 1, direction);
-			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 2, furnaceTimeBase);
-			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, fuel);
-			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 4, maxFuel);
+			sync();
 		}
 		
         boolean var1 = this.furnaceBurnTime > 0;
-        boolean var2 = false;
+        boolean checkBurning = false;
         boolean prevIsBurning = isBurning;
 
         if(this.canSmelt() && this.fuel > 0)
@@ -264,7 +270,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
 				this.furnaceCookTime = 0;
 				--this.fuel;
 				this.smeltItem();
-				var2 = true;
+				checkBurning = true;
 			}
         }
         else
@@ -273,20 +279,18 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
             isBurning = false;
         }
         
+        
         if(prevIsBurning != isBurning)
         {
-        	var2 = true;
+        	checkBurning = true;
             NF_BlockNetherForge.updateFurnaceBlockState(this.isBurning, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
         }
 
-        if (var2)
+        if (checkBurning)
         {
             this.onInventoryChanged();
 			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
-			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 1, direction);
-			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 2, furnaceTimeBase);
-			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, fuel);
-			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 4, maxFuel);
+			sync();
         }
     }
 
@@ -347,7 +351,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
     @Override
 	public void receiveClientEvent(int i, int j) 
     {
-		if (i == 11) {
+		if (i == 1) {
 			direction = j;
 		} else if (i == 2) {
 			furnaceTimeBase = j;
@@ -375,5 +379,10 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
 	public int getType() {
 		int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 		return (meta < 8) ? meta : meta - 8;
+	}
+
+	public int getScaledFuel(int i) {
+		// TODO Auto-generated method stub
+		return (int) (i * (fuel/((float)(maxFuel))));
 	}
 }
