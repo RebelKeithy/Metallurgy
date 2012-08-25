@@ -49,10 +49,10 @@ public class AlloyBlackSteel
 			RecipeHelper.addShovelRecipe(blackSteelShovel, blackSteelBar);
 			RecipeHelper.addHoeRecipe(blackSteelHoe, blackSteelBar);
 			RecipeHelper.addSwordRecipe(blackSteelSword, blackSteelBar);
-			RecipeHelper.addHelmetRecipe(blackSteelPickaxe, blackSteelBar);
-			RecipeHelper.addPlateRecipe(blackSteelPickaxe, blackSteelBar);
-			RecipeHelper.addLegsRecipe(blackSteelPickaxe, blackSteelBar);
-			RecipeHelper.addBootsRecipe(blackSteelPickaxe, blackSteelBar);
+			RecipeHelper.addHelmetRecipe(blackSteelHelmet, blackSteelBar);
+			RecipeHelper.addPlateRecipe(blackSteelPlate, blackSteelBar);
+			RecipeHelper.addLegsRecipe(blackSteelLegs, blackSteelBar);
+			RecipeHelper.addBootsRecipe(blackSteelBoots, blackSteelBar);
 		    
 		    //Buckets/Shears
 			RecipeHelper.addBucketRecipe(blackSteelBar);

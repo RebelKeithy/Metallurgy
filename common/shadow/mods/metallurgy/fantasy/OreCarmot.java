@@ -48,10 +48,10 @@ public class OreCarmot
 			RecipeHelper.addShovelRecipe(carmotShovel, carmotBar);
 			RecipeHelper.addHoeRecipe(carmotHoe, carmotBar);
 			RecipeHelper.addSwordRecipe(carmotSword, carmotBar);
-			RecipeHelper.addHelmetRecipe(carmotPickaxe, carmotBar);
-			RecipeHelper.addPlateRecipe(carmotPickaxe, carmotBar);
-			RecipeHelper.addLegsRecipe(carmotPickaxe, carmotBar);
-			RecipeHelper.addBootsRecipe(carmotPickaxe, carmotBar);
+			RecipeHelper.addHelmetRecipe(carmotHelmet, carmotBar);
+			RecipeHelper.addPlateRecipe(carmotPlate, carmotBar);
+			RecipeHelper.addLegsRecipe(carmotLegs, carmotBar);
+			RecipeHelper.addBootsRecipe(carmotBoots, carmotBar);
 		    
 		    //Buckets/Shears
 			RecipeHelper.addBucketRecipe(carmotBar);

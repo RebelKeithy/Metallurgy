@@ -47,10 +47,10 @@ public class AlloyCelenegil
 			RecipeHelper.addShovelRecipe(celenegilShovel, celenegilBar);
 			RecipeHelper.addHoeRecipe(celenegilHoe, celenegilBar);
 			RecipeHelper.addSwordRecipe(celenegilSword, celenegilBar);
-			RecipeHelper.addHelmetRecipe(celenegilPickaxe, celenegilBar);
-			RecipeHelper.addPlateRecipe(celenegilPickaxe, celenegilBar);
-			RecipeHelper.addLegsRecipe(celenegilPickaxe, celenegilBar);
-			RecipeHelper.addBootsRecipe(celenegilPickaxe, celenegilBar);
+			RecipeHelper.addHelmetRecipe(celenegilHelmet, celenegilBar);
+			RecipeHelper.addPlateRecipe(celenegilPlate, celenegilBar);
+			RecipeHelper.addLegsRecipe(celenegilLegs, celenegilBar);
+			RecipeHelper.addBootsRecipe(celenegilBoots, celenegilBar);
 		    
 		    //Buckets/Shears
 			RecipeHelper.addBucketRecipe(celenegilBar);

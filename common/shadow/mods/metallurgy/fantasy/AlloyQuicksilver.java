@@ -47,10 +47,10 @@ public class AlloyQuicksilver
 			RecipeHelper.addShovelRecipe(quicksilverShovel, quicksilverBar);
 			RecipeHelper.addHoeRecipe(quicksilverHoe, quicksilverBar);
 			RecipeHelper.addSwordRecipe(quicksilverSword, quicksilverBar);
-			RecipeHelper.addHelmetRecipe(quicksilverPickaxe, quicksilverBar);
-			RecipeHelper.addPlateRecipe(quicksilverPickaxe, quicksilverBar);
-			RecipeHelper.addLegsRecipe(quicksilverPickaxe, quicksilverBar);
-			RecipeHelper.addBootsRecipe(quicksilverPickaxe, quicksilverBar);
+			RecipeHelper.addHelmetRecipe(quicksilverHelmet, quicksilverBar);
+			RecipeHelper.addPlateRecipe(quicksilverPlate, quicksilverBar);
+			RecipeHelper.addLegsRecipe(quicksilverLegs, quicksilverBar);
+			RecipeHelper.addBootsRecipe(quicksilverBoots, quicksilverBar);
 		    
 		    //Buckets/Shears
 			RecipeHelper.addBucketRecipe(quicksilverBar);

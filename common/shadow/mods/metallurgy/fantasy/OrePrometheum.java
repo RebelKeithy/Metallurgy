@@ -48,10 +48,10 @@ public class OrePrometheum
 			RecipeHelper.addShovelRecipe(prometheumShovel, prometheumBar);
 			RecipeHelper.addHoeRecipe(prometheumHoe, prometheumBar);
 			RecipeHelper.addSwordRecipe(prometheumSword, prometheumBar);
-			RecipeHelper.addHelmetRecipe(prometheumPickaxe, prometheumBar);
-			RecipeHelper.addPlateRecipe(prometheumPickaxe, prometheumBar);
-			RecipeHelper.addLegsRecipe(prometheumPickaxe, prometheumBar);
-			RecipeHelper.addBootsRecipe(prometheumPickaxe, prometheumBar);
+			RecipeHelper.addHelmetRecipe(prometheumHelmet, prometheumBar);
+			RecipeHelper.addPlateRecipe(prometheumPlate, prometheumBar);
+			RecipeHelper.addLegsRecipe(prometheumLegs, prometheumBar);
+			RecipeHelper.addBootsRecipe(prometheumBoots, prometheumBar);
 		    
 		    //Buckets/Shears
 			RecipeHelper.addBucketRecipe(prometheumBar);

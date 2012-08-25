@@ -46,10 +46,10 @@ public class AlloyTartarite
 			RecipeHelper.addShovelRecipe(tartariteShovel, tartariteBar);
 			RecipeHelper.addHoeRecipe(tartariteHoe, tartariteBar);
 			RecipeHelper.addSwordRecipe(tartariteSword, tartariteBar);
-			RecipeHelper.addHelmetRecipe(tartaritePickaxe, tartariteBar);
-			RecipeHelper.addPlateRecipe(tartaritePickaxe, tartariteBar);
-			RecipeHelper.addLegsRecipe(tartaritePickaxe, tartariteBar);
-			RecipeHelper.addBootsRecipe(tartaritePickaxe, tartariteBar);
+			RecipeHelper.addHelmetRecipe(tartariteHelmet, tartariteBar);
+			RecipeHelper.addPlateRecipe(tartaritePlate, tartariteBar);
+			RecipeHelper.addLegsRecipe(tartariteLegs, tartariteBar);
+			RecipeHelper.addBootsRecipe(tartariteBoots, tartariteBar);
 		    
 		    //Buckets/Shears
 			RecipeHelper.addBucketRecipe(tartariteBar);

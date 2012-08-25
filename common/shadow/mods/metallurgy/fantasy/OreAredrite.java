@@ -53,10 +53,10 @@ public class OreAredrite
 			RecipeHelper.addShovelRecipe(aredriteShovel, aredriteBar);
 			RecipeHelper.addHoeRecipe(aredriteHoe, aredriteBar);
 			RecipeHelper.addSwordRecipe(aredriteSword, aredriteBar);
-			RecipeHelper.addHelmetRecipe(aredritePickaxe, aredriteBar);
-			RecipeHelper.addPlateRecipe(aredritePickaxe, aredriteBar);
-			RecipeHelper.addLegsRecipe(aredritePickaxe, aredriteBar);
-			RecipeHelper.addBootsRecipe(aredritePickaxe, aredriteBar);
+			RecipeHelper.addHelmetRecipe(aredriteHelmet, aredriteBar);
+			RecipeHelper.addPlateRecipe(aredritePlate, aredriteBar);
+			RecipeHelper.addLegsRecipe(aredriteLegs, aredriteBar);
+			RecipeHelper.addBootsRecipe(aredriteBoots, aredriteBar);
 		    
 		    //Buckets/Shears
 			RecipeHelper.addBucketRecipe(aredriteBar);

@@ -49,10 +49,10 @@ public class OreAstralSilver
 			RecipeHelper.addShovelRecipe(astralSilverShovel, astralSilverBar);
 			RecipeHelper.addHoeRecipe(astralSilverHoe, astralSilverBar);
 			RecipeHelper.addSwordRecipe(astralSilverSword, astralSilverBar);
-			RecipeHelper.addHelmetRecipe(astralSilverPickaxe, astralSilverBar);
-			RecipeHelper.addPlateRecipe(astralSilverPickaxe, astralSilverBar);
-			RecipeHelper.addLegsRecipe(astralSilverPickaxe, astralSilverBar);
-			RecipeHelper.addBootsRecipe(astralSilverPickaxe, astralSilverBar);
+			RecipeHelper.addHelmetRecipe(astralSilverHelmet, astralSilverBar);
+			RecipeHelper.addPlateRecipe(astralSilverPlate, astralSilverBar);
+			RecipeHelper.addLegsRecipe(astralSilverLegs, astralSilverBar);
+			RecipeHelper.addBootsRecipe(astralSilverBoots, astralSilverBar);
 		    
 		    //Buckets/Shears
 			RecipeHelper.addBucketRecipe(astralSilverBar);

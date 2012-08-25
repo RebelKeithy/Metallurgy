@@ -48,10 +48,10 @@ public class OreOrichalcum
 			RecipeHelper.addShovelRecipe(orichalcumShovel, orichalcumBar);
 			RecipeHelper.addHoeRecipe(orichalcumHoe, orichalcumBar);
 			RecipeHelper.addSwordRecipe(orichalcumSword, orichalcumBar);
-			RecipeHelper.addHelmetRecipe(orichalcumPickaxe, orichalcumBar);
-			RecipeHelper.addPlateRecipe(orichalcumPickaxe, orichalcumBar);
-			RecipeHelper.addLegsRecipe(orichalcumPickaxe, orichalcumBar);
-			RecipeHelper.addBootsRecipe(orichalcumPickaxe, orichalcumBar);
+			RecipeHelper.addHelmetRecipe(orichalcumHelmet, orichalcumBar);
+			RecipeHelper.addPlateRecipe(orichalcumPlate, orichalcumBar);
+			RecipeHelper.addLegsRecipe(orichalcumLegs, orichalcumBar);
+			RecipeHelper.addBootsRecipe(orichalcumBoots, orichalcumBar);
 		    
 		    //Buckets/Shears
 			RecipeHelper.addBucketRecipe(orichalcumBar);

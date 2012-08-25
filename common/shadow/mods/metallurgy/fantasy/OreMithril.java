@@ -48,10 +48,10 @@ public class OreMithril
 			RecipeHelper.addShovelRecipe(mithrilShovel, mithrilBar);
 			RecipeHelper.addHoeRecipe(mithrilHoe, mithrilBar);
 			RecipeHelper.addSwordRecipe(mithrilSword, mithrilBar);
-			RecipeHelper.addHelmetRecipe(mithrilPickaxe, mithrilBar);
-			RecipeHelper.addPlateRecipe(mithrilPickaxe, mithrilBar);
-			RecipeHelper.addLegsRecipe(mithrilPickaxe, mithrilBar);
-			RecipeHelper.addBootsRecipe(mithrilPickaxe, mithrilBar);
+			RecipeHelper.addHelmetRecipe(mithrilHelmet, mithrilBar);
+			RecipeHelper.addPlateRecipe(mithrilPlate, mithrilBar);
+			RecipeHelper.addLegsRecipe(mithrilLegs, mithrilBar);
+			RecipeHelper.addBootsRecipe(mithrilBoots, mithrilBar);
 		    
 		    //Buckets/Shears
 			RecipeHelper.addBucketRecipe(mithrilBar);

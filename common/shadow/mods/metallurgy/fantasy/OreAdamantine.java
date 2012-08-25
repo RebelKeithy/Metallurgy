@@ -51,10 +51,10 @@ public class OreAdamantine
 			RecipeHelper.addShovelRecipe(adamantineShovel, adamantineBar);
 			RecipeHelper.addHoeRecipe(adamantineHoe, adamantineBar);
 			RecipeHelper.addSwordRecipe(adamantineSword, adamantineBar);
-			RecipeHelper.addHelmetRecipe(adamantinePickaxe, adamantineBar);
-			RecipeHelper.addPlateRecipe(adamantinePickaxe, adamantineBar);
-			RecipeHelper.addLegsRecipe(adamantinePickaxe, adamantineBar);
-			RecipeHelper.addBootsRecipe(adamantinePickaxe, adamantineBar);
+			RecipeHelper.addHelmetRecipe(adamantineHelmet, adamantineBar);
+			RecipeHelper.addPlateRecipe(adamantinePlate, adamantineBar);
+			RecipeHelper.addLegsRecipe(adamantineLegs, adamantineBar);
+			RecipeHelper.addBootsRecipe(adamantineBoots, adamantineBar);
 		    
 		    //Buckets/Shears
 			RecipeHelper.addBucketRecipe(adamantineBar);

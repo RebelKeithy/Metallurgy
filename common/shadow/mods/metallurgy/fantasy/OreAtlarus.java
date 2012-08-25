@@ -48,10 +48,10 @@ public class OreAtlarus
 			RecipeHelper.addShovelRecipe(atlarusShovel, atlarusBar);
 			RecipeHelper.addHoeRecipe(atlarusHoe, atlarusBar);
 			RecipeHelper.addSwordRecipe(atlarusSword, atlarusBar);
-			RecipeHelper.addHelmetRecipe(atlarusPickaxe, atlarusBar);
-			RecipeHelper.addPlateRecipe(atlarusPickaxe, atlarusBar);
-			RecipeHelper.addLegsRecipe(atlarusPickaxe, atlarusBar);
-			RecipeHelper.addBootsRecipe(atlarusPickaxe, atlarusBar);
+			RecipeHelper.addHelmetRecipe(atlarusHelmet, atlarusBar);
+			RecipeHelper.addPlateRecipe(atlarusPlate, atlarusBar);
+			RecipeHelper.addLegsRecipe(atlarusLegs, atlarusBar);
+			RecipeHelper.addBootsRecipe(atlarusBoots, atlarusBar);
 		    
 		    //Buckets/Shears
 			RecipeHelper.addBucketRecipe(atlarusBar);

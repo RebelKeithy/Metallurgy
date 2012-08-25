@@ -48,10 +48,10 @@ public class OreDeepIron
 		RecipeHelper.addShovelRecipe(deepIronShovel, deepIronBar);
 		RecipeHelper.addHoeRecipe(deepIronHoe, deepIronBar);
 		RecipeHelper.addSwordRecipe(deepIronSword, deepIronBar);
-		RecipeHelper.addHelmetRecipe(deepIronPickaxe, deepIronBar);
-		RecipeHelper.addPlateRecipe(deepIronPickaxe, deepIronBar);
-		RecipeHelper.addLegsRecipe(deepIronPickaxe, deepIronBar);
-		RecipeHelper.addBootsRecipe(deepIronPickaxe, deepIronBar);
+		RecipeHelper.addHelmetRecipe(deepIronHelmet, deepIronBar);
+		RecipeHelper.addPlateRecipe(deepIronPlate, deepIronBar);
+		RecipeHelper.addLegsRecipe(deepIronLegs, deepIronBar);
+		RecipeHelper.addBootsRecipe(deepIronBoots, deepIronBar);
 	    
 	    //Buckets/Shears
 		RecipeHelper.addBucketRecipe(deepIronBar);

@@ -45,10 +45,10 @@ public class AlloyHaderoth
 			RecipeHelper.addShovelRecipe(haderothShovel, haderothBar);
 			RecipeHelper.addHoeRecipe(haderothHoe, haderothBar);
 			RecipeHelper.addSwordRecipe(haderothSword, haderothBar);
-			RecipeHelper.addHelmetRecipe(haderothPickaxe, haderothBar);
-			RecipeHelper.addPlateRecipe(haderothPickaxe, haderothBar);
-			RecipeHelper.addLegsRecipe(haderothPickaxe, haderothBar);
-			RecipeHelper.addBootsRecipe(haderothPickaxe, haderothBar);
+			RecipeHelper.addHelmetRecipe(haderothHelmet, haderothBar);
+			RecipeHelper.addPlateRecipe(haderothPlate, haderothBar);
+			RecipeHelper.addLegsRecipe(haderothLegs, haderothBar);
+			RecipeHelper.addBootsRecipe(haderothBoots, haderothBar);
 		    
 		    //Buckets/Shears
 			RecipeHelper.addBucketRecipe(haderothBar);

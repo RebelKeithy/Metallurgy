@@ -48,10 +48,10 @@ public class OreOureclase
 			RecipeHelper.addShovelRecipe(oureclaseShovel, oureclaseBar);
 			RecipeHelper.addHoeRecipe(oureclaseHoe, oureclaseBar);
 			RecipeHelper.addSwordRecipe(oureclaseSword, oureclaseBar);
-			RecipeHelper.addHelmetRecipe(oureclasePickaxe, oureclaseBar);
-			RecipeHelper.addPlateRecipe(oureclasePickaxe, oureclaseBar);
-			RecipeHelper.addLegsRecipe(oureclasePickaxe, oureclaseBar);
-			RecipeHelper.addBootsRecipe(oureclasePickaxe, oureclaseBar);
+			RecipeHelper.addHelmetRecipe(oureclaseHelmet, oureclaseBar);
+			RecipeHelper.addPlateRecipe(oureclasePlate, oureclaseBar);
+			RecipeHelper.addLegsRecipe(oureclaseLegs, oureclaseBar);
+			RecipeHelper.addBootsRecipe(oureclaseBoots, oureclaseBar);
 		    
 		    //Buckets/Shears
 			RecipeHelper.addBucketRecipe(oureclaseBar);
