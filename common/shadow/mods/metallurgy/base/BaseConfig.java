@@ -185,10 +185,10 @@ public class BaseConfig  {
         config.load();
         
         
-    	baseMetalsVeinID = config.getOrCreateBlockIdProperty("Metal Ore", 900).getInt(900);
-    	baseMetalsBrickID = config.getOrCreateBlockIdProperty("Metal Brick", 901).getInt(901);
-    	baseAlloysBrickID = config.getOrCreateBlockIdProperty("Alloy Brick", 902).getInt(902);
-    	furnaceID = config.getOrCreateBlockIdProperty("Furnace", 920).getInt(920);
+    	baseMetalsVeinID = config.getOrCreateBlockIdProperty("Metal Ore", 901).getInt(900);
+    	baseMetalsBrickID = config.getOrCreateBlockIdProperty("Metal Brick", 902).getInt(901);
+    	baseAlloysBrickID = config.getOrCreateBlockIdProperty("Alloy Brick", 903).getInt(902);
+    	furnaceID = config.getOrCreateBlockIdProperty("Furnace", 904).getInt(904);
     	
     	angmallenEnabled = config.getOrCreateBooleanProperty("Enable Angmallen", "Ores", true).getBoolean(true);
     	bronzeEnabled = config.getOrCreateBooleanProperty("Enable Bronze", "Ores", true).getBoolean(true);

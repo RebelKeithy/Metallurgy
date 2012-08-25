@@ -293,9 +293,9 @@ public class FantasyConfig  {
         /* Load the configuration file */
         config.load();
         
-        veinID = config.getOrCreateBlockIdProperty("Metal Ore", 909).getInt(909);
-    	brickMetalsID = config.getOrCreateBlockIdProperty("Metal Brick", 910).getInt(910);
-    	brickAlloysID = config.getOrCreateBlockIdProperty("Alloy Brick", 911).getInt(911);
+        veinID = config.getOrCreateBlockIdProperty("Metal Ore", 919).getInt(919);
+    	brickMetalsID = config.getOrCreateBlockIdProperty("Metal Brick", 920).getInt(920);
+    	brickAlloysID = config.getOrCreateBlockIdProperty("Alloy Brick", 921).getInt(921);
     	
     	extractorSpeeds[0] = config.getOrCreateIntProperty("Prometheum", "Abstractor Speeds", 30000).getInt(30000)/1000;    	
     	extractorSpeeds[1] = config.getOrCreateIntProperty("DeepIron", "Abstractor Speeds", 28000).getInt(28000)/1000;    	

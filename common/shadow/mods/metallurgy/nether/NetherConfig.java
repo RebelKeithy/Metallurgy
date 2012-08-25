@@ -56,10 +56,10 @@ public class NetherConfig  {
         config.load();
         
         
-    	NetherMetalsVeinID = config.getOrCreateBlockIdProperty("Metal Ore", 906).getInt(906);
-    	NetherMetalsBrickID = config.getOrCreateBlockIdProperty("Metal Brick", 907).getInt(907);
-    	NetherAlloysBrickID = config.getOrCreateBlockIdProperty("Alloy Brick", 908).getInt(908);
-    	furnaceID = config.getOrCreateBlockIdProperty("Nether Smelter", 930).getInt(930);
+    	NetherMetalsVeinID = config.getOrCreateBlockIdProperty("Metal Ore", 915).getInt(915);
+    	NetherMetalsBrickID = config.getOrCreateBlockIdProperty("Metal Brick", 916).getInt(916);
+    	NetherAlloysBrickID = config.getOrCreateBlockIdProperty("Alloy Brick", 917).getInt(917);
+    	furnaceID = config.getOrCreateBlockIdProperty("Nether Smelter", 918).getInt(918);
 
     	for(int i = 0; i < 3; i++)
     		alloyEnabled[i] = config.getOrCreateBooleanProperty(AlloyNether.name[i] + " Enabled", "Ores", true).getBoolean(true);

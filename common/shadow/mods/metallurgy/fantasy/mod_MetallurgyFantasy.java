@@ -83,56 +83,56 @@ public class mod_MetallurgyFantasy
 	
 	public void setBlockHarvestLevels()
 	{
-		MinecraftForge.setBlockHarvestLevel(vein, 0, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(vein, 1, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(vein, 2, "pickaxe", 3);
+		MinecraftForge.setBlockHarvestLevel(vein, 0, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(vein, 1, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(vein, 2, "pickaxe", 2);
 		MinecraftForge.setBlockHarvestLevel(vein, 3, "pickaxe", 3);
 		MinecraftForge.setBlockHarvestLevel(vein, 4, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(vein, 5, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(vein, 6, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(vein, 7, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(vein, 8, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(vein, 9, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(vein, 10, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(vein, 11, "pickaxe", 3);
+		MinecraftForge.setBlockHarvestLevel(vein, 5, "pickaxe", 4);
+		MinecraftForge.setBlockHarvestLevel(vein, 6, "pickaxe", 4);
+		MinecraftForge.setBlockHarvestLevel(vein, 7, "pickaxe", 4);
+		MinecraftForge.setBlockHarvestLevel(vein, 8, "pickaxe", 4);
+		MinecraftForge.setBlockHarvestLevel(vein, 9, "pickaxe", 5);
+		MinecraftForge.setBlockHarvestLevel(vein, 10, "pickaxe", 6);
+		MinecraftForge.setBlockHarvestLevel(vein, 11, "pickaxe", 6);
 
-		MinecraftForge.setBlockHarvestLevel(brickMetals, 0, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(brickMetals, 1, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(brickMetals, 2, "pickaxe", 3);
+		MinecraftForge.setBlockHarvestLevel(brickMetals, 0, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(brickMetals, 1, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(brickMetals, 2, "pickaxe", 2); //Infuscolium
 		MinecraftForge.setBlockHarvestLevel(brickMetals, 3, "pickaxe", 3);
 		MinecraftForge.setBlockHarvestLevel(brickMetals, 4, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(brickMetals, 5, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(brickMetals, 6, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(brickMetals, 7, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(brickMetals, 8, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(brickMetals, 9, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(brickMetals, 10, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(brickMetals, 11, "pickaxe", 3);
+		MinecraftForge.setBlockHarvestLevel(brickMetals, 5, "pickaxe", 4);
+		MinecraftForge.setBlockHarvestLevel(brickMetals, 6, "pickaxe", 4);
+		MinecraftForge.setBlockHarvestLevel(brickMetals, 7, "pickaxe", 4);
+		MinecraftForge.setBlockHarvestLevel(brickMetals, 8, "pickaxe", 4);
+		MinecraftForge.setBlockHarvestLevel(brickMetals, 9, "pickaxe", 5);
+		MinecraftForge.setBlockHarvestLevel(brickMetals, 10, "pickaxe", 6);
+		MinecraftForge.setBlockHarvestLevel(brickMetals, 11, "pickaxe", 6);
 		
-		MinecraftForge.setBlockHarvestLevel(brickAlloys, 0, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(brickAlloys, 1, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(brickAlloys, 2, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(brickAlloys, 3, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(brickAlloys, 4, "pickaxe", 3);
+		MinecraftForge.setBlockHarvestLevel(brickAlloys, 0, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(brickAlloys, 1, "pickaxe", 4);
+		MinecraftForge.setBlockHarvestLevel(brickAlloys, 2, "pickaxe", 4);
+		MinecraftForge.setBlockHarvestLevel(brickAlloys, 3, "pickaxe", 5);
+		MinecraftForge.setBlockHarvestLevel(brickAlloys, 4, "pickaxe", 7);
 	}
 	
 	public void setToolLevels()
 	{
-		MinecraftForge.setToolClass(OreAdamantine.adamantinePickaxe, "pickaxe", 2);
-		MinecraftForge.setToolClass(OreAredrite.aredritePickaxe, "pickaxe", 2);
-		MinecraftForge.setToolClass(OreAstralSilver.astralSilverPickaxe, "pickaxe", 2);
-		MinecraftForge.setToolClass(OreAtlarus.atlarusPickaxe, "pickaxe", 2);
-		MinecraftForge.setToolClass(AlloyBlackSteel.blackSteelPickaxe, "pickaxe", 2);
-		MinecraftForge.setToolClass(OreCarmot.carmotPickaxe, "pickaxe", 2);
-		MinecraftForge.setToolClass(AlloyCelenegil.celenegilPickaxe, "pickaxe", 2);
-		MinecraftForge.setToolClass(OreDeepIron.deepIronPickaxe, "pickaxe", 2);
-		MinecraftForge.setToolClass(AlloyHaderoth.haderothPickaxe, "pickaxe", 2);
-		MinecraftForge.setToolClass(OreMithril.mithrilPickaxe, "pickaxe", 2);
-		MinecraftForge.setToolClass(OreOrichalcum.orichalcumPickaxe, "pickaxe", 2);
-		MinecraftForge.setToolClass(OreOureclase.oureclasePickaxe, "pickaxe", 2);
+		MinecraftForge.setToolClass(OreAdamantine.adamantinePickaxe, "pickaxe", 7);
+		MinecraftForge.setToolClass(OreAredrite.aredritePickaxe, "pickaxe", 4);
+		MinecraftForge.setToolClass(OreAstralSilver.astralSilverPickaxe, "pickaxe", 5);
+		MinecraftForge.setToolClass(OreAtlarus.atlarusPickaxe, "pickaxe", 7);
+		MinecraftForge.setToolClass(AlloyBlackSteel.blackSteelPickaxe, "pickaxe", 3);
+		MinecraftForge.setToolClass(OreCarmot.carmotPickaxe, "pickaxe", 5);
+		MinecraftForge.setToolClass(AlloyCelenegil.celenegilPickaxe, "pickaxe", 6);
+		MinecraftForge.setToolClass(OreDeepIron.deepIronPickaxe, "pickaxe", 3);
+		MinecraftForge.setToolClass(AlloyHaderoth.haderothPickaxe, "pickaxe", 5);
+		MinecraftForge.setToolClass(OreMithril.mithrilPickaxe, "pickaxe", 5);
+		MinecraftForge.setToolClass(OreOrichalcum.orichalcumPickaxe, "pickaxe", 6);
+		MinecraftForge.setToolClass(OreOureclase.oureclasePickaxe, "pickaxe", 4);
 		MinecraftForge.setToolClass(OrePrometheum.prometheumPickaxe, "pickaxe", 2);
-		MinecraftForge.setToolClass(AlloyQuicksilver.quicksilverPickaxe, "pickaxe", 2);
-		MinecraftForge.setToolClass(AlloyTartarite.tartaritePickaxe, "pickaxe", 2);
+		MinecraftForge.setToolClass(AlloyQuicksilver.quicksilverPickaxe, "pickaxe", 5);
+		MinecraftForge.setToolClass(AlloyTartarite.tartaritePickaxe, "pickaxe", 8);
 	}
 
 	public void registerOres()

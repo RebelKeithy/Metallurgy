@@ -58,9 +58,9 @@ public class PreciousConfig  {
     	for(int i = 0; i < OrePrecious.numMetals; i++)
     		metalEnabled[i] = config.getOrCreateBooleanProperty(OrePrecious.name[i] + " Enabled", "Ores", true).getBoolean(true);
         
-        PreciousMetalsVeinID = config.getOrCreateBlockIdProperty("Precious Metal Ore", 903).getInt(903);
-        PreciousMetalsBrickID = config.getOrCreateBlockIdProperty("Precious Metal Brick", 904).getInt(904);
-        PreciousAlloysBrickID = config.getOrCreateBlockIdProperty("Precious Alloy Brick", 905).getInt(905);
+        PreciousMetalsVeinID = config.getOrCreateBlockIdProperty("Precious Metal Ore", 910).getInt(910);
+        PreciousMetalsBrickID = config.getOrCreateBlockIdProperty("Precious Metal Brick", 911).getInt(911);
+        PreciousAlloysBrickID = config.getOrCreateBlockIdProperty("Precious Alloy Brick", 912).getInt(912);
 
     	ItemStartID = config.getOrCreateIntProperty("Item Start IDs", "Item Ids Uses next 250", 26750).getInt(26750);
     	

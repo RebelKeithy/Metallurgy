@@ -85,7 +85,7 @@ public class CoreConfig  {
     	RedstoneOreCount = config.getOrCreateIntProperty("Redstone Ore Count", "Ore Generation", 4).getInt(4);
     	RedstoneOreHeight = config.getOrCreateIntProperty("Redstone Ore Height", "Ore Generation", 128).getInt(128);
 
-    	crusherID = config.getOrCreateBlockIdProperty("Crusher", 921).getInt(921);
+    	crusherID = config.getOrCreateBlockIdProperty("Crusher", 900).getInt(900);
     	crushersEnabled = config.getOrCreateBooleanProperty("Enable Crushers", "Machines", true).getBoolean(true);
 
     	stoneCrusherSpeed = config.getOrCreateIntProperty("Stone Speed", "Crushers", 32000).getInt(32000)/1000f;

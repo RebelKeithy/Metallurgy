@@ -70,26 +70,26 @@ public class mod_MetallurgyNether
 		
 		GameRegistry.registerTileEntity(NF_TileEntityNetherForge.class, "netherFurnace");
 		
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 0, "pickaxe", 4); //Ignatius
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 0, "pickaxe", 4); //Ignatius
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 1, "pickaxe", 5); //Shadow Iron
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 1, "pickaxe", 5); //Shadow Iron
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 2, "pickaxe", 7); //Midasium
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 2, "pickaxe", 7); //Midasium
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 3, "pickaxe", 8); //Vyroxeres
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 3, "pickaxe", 8); //Vyroxeres
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 4, "pickaxe", 9); //Ceruclase
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 4, "pickaxe", 9); //Ceruclase
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 5, "pickaxe", 11); //Kalendrite
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 5, "pickaxe", 11); //Kalendrite
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 6, "pickaxe", 12); //Vulcanite
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 6, "pickaxe", 12); //Vulcanite
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 7, "pickaxe", 13); //Sanguinite
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 7, "pickaxe", 13); //Sanguinite
+		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 0, "pickaxe", 2); //Ignatius
+		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 0, "pickaxe", 2); //Ignatius
+		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 1, "pickaxe", 2); //Shadow Iron
+		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 1, "pickaxe", 2); //Shadow Iron
+		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 2, "pickaxe", 2); //Midasium
+		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 2, "pickaxe", 2); //Midasium
+		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 3, "pickaxe", 2); //Vyroxeres
+		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 3, "pickaxe", 2); //Vyroxeres
+		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 4, "pickaxe", 2); //Ceruclase
+		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 4, "pickaxe", 2); //Ceruclase
+		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 5, "pickaxe", 3); //Kalendrite
+		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 5, "pickaxe", 3); //Kalendrite
+		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 6, "pickaxe", 4); //Vulcanite
+		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 6, "pickaxe", 4); //Vulcanite
+		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 7, "pickaxe", 5); //Sanguinite
+		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 7, "pickaxe", 5); //Sanguinite
 		
-		MinecraftForge.setBlockHarvestLevel(NetherAlloysBrick, 0, "pickaxe", 6); //Shadow Steel
-		MinecraftForge.setBlockHarvestLevel(NetherAlloysBrick, 1, "pickaxe", 11); //Inolashite
-		MinecraftForge.setBlockHarvestLevel(NetherAlloysBrick, 2, "pickaxe", 12); //Amordrine
+		MinecraftForge.setBlockHarvestLevel(NetherAlloysBrick, 0, "pickaxe", 2); //Shadow Steel
+		MinecraftForge.setBlockHarvestLevel(NetherAlloysBrick, 1, "pickaxe", 3); //Inolashite
+		MinecraftForge.setBlockHarvestLevel(NetherAlloysBrick, 2, "pickaxe", 3); //Amordrine
 	
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		GameRegistry.registerWorldGenerator(new NetherWorldGen());
@@ -108,17 +108,17 @@ public class mod_MetallurgyNether
 	
 	public void setToolClass()
 	{
-		MinecraftForge.setToolClass(AlloyNether.Pickaxe[2], "pickaxe", 12);
-		MinecraftForge.setToolClass(AlloyNether.Pickaxe[1], "pickaxe", 11);
-		MinecraftForge.setToolClass(AlloyNether.Pickaxe[0], "pickaxe", 7);
-		MinecraftForge.setToolClass(OreNether.Pickaxe[0], "pickaxe", 5);
-		MinecraftForge.setToolClass(OreNether.Pickaxe[1], "pickaxe", 6);
-		MinecraftForge.setToolClass(OreNether.Pickaxe[2], "pickaxe", 8);
-		MinecraftForge.setToolClass(OreNether.Pickaxe[3], "pickaxe", 9);
-		MinecraftForge.setToolClass(OreNether.Pickaxe[4], "pickaxe", 10);
-		MinecraftForge.setToolClass(OreNether.Pickaxe[5], "pickaxe", 12);
-		MinecraftForge.setToolClass(OreNether.Pickaxe[6], "pickaxe", 13);
-		MinecraftForge.setToolClass(OreNether.Pickaxe[7], "pickaxe", 14);
+		MinecraftForge.setToolClass(AlloyNether.Pickaxe[2], "pickaxe", 4);
+		MinecraftForge.setToolClass(AlloyNether.Pickaxe[1], "pickaxe", 4);
+		MinecraftForge.setToolClass(AlloyNether.Pickaxe[0], "pickaxe", 2);
+		MinecraftForge.setToolClass(OreNether.Pickaxe[0], "pickaxe", 2);
+		MinecraftForge.setToolClass(OreNether.Pickaxe[1], "pickaxe", 2);
+		MinecraftForge.setToolClass(OreNether.Pickaxe[2], "pickaxe", 3);
+		MinecraftForge.setToolClass(OreNether.Pickaxe[3], "pickaxe", 3);
+		MinecraftForge.setToolClass(OreNether.Pickaxe[4], "pickaxe", 3);
+		MinecraftForge.setToolClass(OreNether.Pickaxe[5], "pickaxe", 4);
+		MinecraftForge.setToolClass(OreNether.Pickaxe[6], "pickaxe", 5);
+		MinecraftForge.setToolClass(OreNether.Pickaxe[7], "pickaxe", 6);
 	}
 	
 	public void registerOres()

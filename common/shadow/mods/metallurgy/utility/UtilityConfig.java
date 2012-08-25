@@ -79,7 +79,7 @@ public class UtilityConfig  {
         config.load();
         
         
-    	veinID = config.getOrCreateBlockIdProperty("Utility Ore", 912).getInt(912);
+    	veinID = config.getOrCreateBlockIdProperty("Utility Ore", 924).getInt(924);
     	
     	bitumenEnabled = config.getOrCreateBooleanProperty("Enable Bitumen", "Ores", true).getBoolean(true);
     	magnesiumEnabled = config.getOrCreateBooleanProperty("Enable Magnesium", "Ores", true).getBoolean(true);

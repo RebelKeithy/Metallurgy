@@ -58,7 +58,7 @@ public class mod_MetallurgyPrecious
 		PreciousMetalsVein = new BlockPreciousMetalsVein(PreciousConfig.PreciousMetalsVeinID, "/shadow/MetallurgyPreciousMetals.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("PreciousMetalsVein");
 		PreciousMetalsBrick = new BlockPreciousMetalsBrick(PreciousConfig.PreciousMetalsBrickID, "/shadow/MetallurgyPreciousMetals.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("PreciousMetalsBrick");
 		PreciousAlloysBrick = new BlockPreciousAlloysBrick(PreciousConfig.PreciousAlloysBrickID, "/shadow/MetallurgyPreciousAlloys.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("PreciousAlloysBrick");
-		PreciousChest = new FC_BlockChest(923).setHardness(0.5F).setResistance(.1F).setBlockName("PreciousChest");
+		PreciousChest = new FC_BlockChest(913).setHardness(0.5F).setResistance(.1F).setBlockName("PreciousChest");
 		
 		AlloyPrecious.init();
 		OrePrecious.init();
@@ -115,15 +115,15 @@ public class mod_MetallurgyPrecious
 	
 	public void setBlockHarvestLevels()
 	{
-		MinecraftForge.setBlockHarvestLevel(PreciousMetalsVein, 0, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(PreciousMetalsBrick, 0, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(PreciousMetalsVein, 1, "pickaxe", 4);
-		MinecraftForge.setBlockHarvestLevel(PreciousMetalsBrick, 1, "pickaxe", 4);
-		MinecraftForge.setBlockHarvestLevel(PreciousMetalsVein, 2, "pickaxe", 6);
-		MinecraftForge.setBlockHarvestLevel(PreciousMetalsBrick, 2, "pickaxe", 6);
+		MinecraftForge.setBlockHarvestLevel(PreciousMetalsVein, 0, "pickaxe", 1);
+		MinecraftForge.setBlockHarvestLevel(PreciousMetalsBrick, 0, "pickaxe", 1);
+		MinecraftForge.setBlockHarvestLevel(PreciousMetalsVein, 1, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(PreciousMetalsBrick, 1, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(PreciousMetalsVein, 2, "pickaxe", 3);
+		MinecraftForge.setBlockHarvestLevel(PreciousMetalsBrick, 2, "pickaxe", 3);
 		
-		MinecraftForge.setBlockHarvestLevel(PreciousAlloysBrick, 0, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(PreciousAlloysBrick, 1, "pickaxe", 6);
+		MinecraftForge.setBlockHarvestLevel(PreciousAlloysBrick, 0, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(PreciousAlloysBrick, 1, "pickaxe", 2);
 	}
 	
 	public void addChestRecipes()
