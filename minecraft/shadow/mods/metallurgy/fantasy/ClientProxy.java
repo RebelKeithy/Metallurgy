@@ -119,17 +119,17 @@ public class ClientProxy extends CommonProxy{
 		ModLoader.addName(OreAredrite.aredriteLegs, "Aredrite Legs");
 		ModLoader.addName(OreAredrite.aredriteBoots, "Aredrite Boots");
 
-		ModLoader.addName(OreAstralSilver.astralSilverBar, "AstralSilver Bar");
-		ModLoader.addName(OreAstralSilver.astralSilverDust, "AstralSilver Dust");
-		ModLoader.addName(OreAstralSilver.astralSilverPickaxe, "AstralSilver Pickaxe");
-		ModLoader.addName(OreAstralSilver.astralSilverShovel, "AstralSilver Shovel");
-		ModLoader.addName(OreAstralSilver.astralSilverAxe, "AstralSilver Axe");
-		ModLoader.addName(OreAstralSilver.astralSilverHoe, "AstralSilver Hoe");
-		ModLoader.addName(OreAstralSilver.astralSilverSword, "AstralSilver Sword");
-		ModLoader.addName(OreAstralSilver.astralSilverHelmet, "AstralSilver Helmet");
-		ModLoader.addName(OreAstralSilver.astralSilverPlate, "AstralSilver Plate");
-		ModLoader.addName(OreAstralSilver.astralSilverLegs, "AstralSilver Legs");
-		ModLoader.addName(OreAstralSilver.astralSilverBoots, "AstralSilver Boots");
+		ModLoader.addName(OreAstralSilver.astralSilverBar, "Astral Silver Bar");
+		ModLoader.addName(OreAstralSilver.astralSilverDust, "Astral Silver Dust");
+		ModLoader.addName(OreAstralSilver.astralSilverPickaxe, "Astral Silver Pickaxe");
+		ModLoader.addName(OreAstralSilver.astralSilverShovel, "Astral Silver Shovel");
+		ModLoader.addName(OreAstralSilver.astralSilverAxe, "Astral Silver Axe");
+		ModLoader.addName(OreAstralSilver.astralSilverHoe, "Astral Silver Hoe");
+		ModLoader.addName(OreAstralSilver.astralSilverSword, "Astral Silver Sword");
+		ModLoader.addName(OreAstralSilver.astralSilverHelmet, "Astral Silver Helmet");
+		ModLoader.addName(OreAstralSilver.astralSilverPlate, "Astral Silver Plate");
+		ModLoader.addName(OreAstralSilver.astralSilverLegs, "Astral Silver Legs");
+		ModLoader.addName(OreAstralSilver.astralSilverBoots, "Astral Silver Boots");
 
 		ModLoader.addName(OreAtlarus.atlarusBar, "Atlarus Bar");
 		ModLoader.addName(OreAtlarus.atlarusDust, "Atlarus Dust");
@@ -143,17 +143,17 @@ public class ClientProxy extends CommonProxy{
 		ModLoader.addName(OreAtlarus.atlarusLegs, "Atlarus Legs");
 		ModLoader.addName(OreAtlarus.atlarusBoots, "Atlarus Boots");
 
-		ModLoader.addName(AlloyBlackSteel.blackSteelBar, "BlackSteel Bar");
-		ModLoader.addName(AlloyBlackSteel.blackSteelDust, "BlackSteel Dust");
-		ModLoader.addName(AlloyBlackSteel.blackSteelPickaxe, "BlackSteel Pickaxe");
-		ModLoader.addName(AlloyBlackSteel.blackSteelShovel, "BlackSteel Shovel");
-		ModLoader.addName(AlloyBlackSteel.blackSteelAxe, "BlackSteel Axe");
-		ModLoader.addName(AlloyBlackSteel.blackSteelHoe, "BlackSteel Hoe");
-		ModLoader.addName(AlloyBlackSteel.blackSteelSword, "BlackSteel Sword");
-		ModLoader.addName(AlloyBlackSteel.blackSteelHelmet, "BlackSteel Helmet");
-		ModLoader.addName(AlloyBlackSteel.blackSteelPlate, "BlackSteel Plate");
-		ModLoader.addName(AlloyBlackSteel.blackSteelLegs, "BlackSteel Legs");
-		ModLoader.addName(AlloyBlackSteel.blackSteelBoots, "BlackSteel Boots");
+		ModLoader.addName(AlloyBlackSteel.blackSteelBar, "Black Steel Bar");
+		ModLoader.addName(AlloyBlackSteel.blackSteelDust, "Black Steel Dust");
+		ModLoader.addName(AlloyBlackSteel.blackSteelPickaxe, "Black Steel Pickaxe");
+		ModLoader.addName(AlloyBlackSteel.blackSteelShovel, "Black Steel Shovel");
+		ModLoader.addName(AlloyBlackSteel.blackSteelAxe, "Black Steel Axe");
+		ModLoader.addName(AlloyBlackSteel.blackSteelHoe, "Black Steel Hoe");
+		ModLoader.addName(AlloyBlackSteel.blackSteelSword, "Black Steel Sword");
+		ModLoader.addName(AlloyBlackSteel.blackSteelHelmet, "Black Steel Helmet");
+		ModLoader.addName(AlloyBlackSteel.blackSteelPlate, "Black Steel Plate");
+		ModLoader.addName(AlloyBlackSteel.blackSteelLegs, "Black Steel Legs");
+		ModLoader.addName(AlloyBlackSteel.blackSteelBoots, "Black Steel Boots");
 
 		ModLoader.addName(OreCarmot.carmotBar, "Carmot Bar");
 		ModLoader.addName(OreCarmot.carmotDust, "Carmot Dust");
