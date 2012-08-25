@@ -65,25 +65,35 @@ public class mod_MetallurgyCore
 	@Init
 	public void load(FMLInitializationEvent event) 
 	{
-		Iterator iterator = ModLoader.getLoadedMods().iterator();
-		do
-	    {	     
-	    	if (!iterator.hasNext())
-	    	{
-	    		break;
-	    	}
-	    	Object obj = iterator.next();
-	    	if (obj.getClass().getName().endsWith("mod_MetallurgyBaseMetals"))
-		    	hasBase = true;
-	    	if (obj.getClass().getName().endsWith("mod_MetallurgyPrecious"))
-		    	hasPrecious = true;
-	    	if (obj.getClass().getName().endsWith("mod_MetallurgyNether"))
-		    	hasNether = true;
-	    	if (obj.getClass().getName().endsWith("mod_MetallurgyFantasy"))
-		    	hasFantasy = true;
-	    	
-	    }
-	    while (true);
+		
+		try {
+			Class a = Class.forName("shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals");
+	    	hasBase = true;
+    		System.out.println("Metallurgy Core: Base Metals detected, comapatibility added");
+    	} catch(ClassNotFoundException e) {
+    		System.out.println("Metallurgy Core: Base Metals not detected, reason: " + e);
+    	}
+		try {
+			Class a = Class.forName("shadow.mods.metallurgy.nether.mod_MetallurgyNether");
+	    	hasNether = true;
+    		System.out.println("Metallurgy Core: Nether detected, comapatibility added");
+    	} catch(ClassNotFoundException e) {
+    		System.out.println("Metallurgy Core: Nether not detected, reason: " + e);
+    	}
+		try {
+			Class a = Class.forName("shadow.mods.metallurgy.precious.mod_MetallurgyPrecious");
+	    	hasPrecious = true;
+    		System.out.println("Metallurgy Core: Precious detected, comapatibility added");
+    	} catch(ClassNotFoundException e) {
+    		System.out.println("Metallurgy Core: Precious not detected, reason: " + e);
+    	}
+		try {
+			Class a = Class.forName("shadow.mods.metallurgy.fantasy.mod_MetallurgyFantasy");
+	    	hasFantasy = true;
+    		System.out.println("Metallurgy Core: Fantasy detected, comapatibility added");
+    	} catch(ClassNotFoundException e) {
+    		System.out.println("Metallurgy Core: Fantasy not detected, reason: " + e);
+    	}
 		
 		GameRegistry.registerWorldGenerator(new CoreWorldGen());
 		
