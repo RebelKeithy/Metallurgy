@@ -11,6 +11,7 @@ import net.minecraft.src.EnumArmorMaterial;
 import net.minecraft.src.FurnaceRecipes;
 import net.minecraft.src.IChunkProvider;
 import net.minecraft.src.Item;
+import net.minecraft.src.ItemBlock;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.ModLoader;
@@ -113,6 +114,23 @@ public class MetalSet implements IWorldGenerator {
 		}
 		
 		brick = new MetallurgyBlock(info.brickID(), imageName, numMetals, 1).setHardness(2F).setResistance(.1F).setBlockName(setName + "Brick");
+		
+	}
+
+	private class InnerMetallurgyBlockItem extends ItemBlock
+	{
+		public String[] names = name;
+		
+		public InnerMetallurgyBlockItem(int par1) {
+			super(par1);
+			// TODO Auto-generated constructor stub
+		}
+		
+		public String getName()
+		{
+			return name[0];
+		}
+		
 	}
 	
 	public void load()
