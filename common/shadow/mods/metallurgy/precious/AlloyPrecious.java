@@ -56,11 +56,11 @@ public class AlloyPrecious {
 		for(int i = 0; i < numAlloys; i++)
 		{
 			
-			Pickaxe[i] = new MetallurgyItemPickaxe(PreciousConfig.ItemStartID+(i*50)+2+150, imageName, toolEnum[0]).setIconCoord(i,7).setItemName(name[i] + "Pickaxe");
-			Shovel[i] = new MetallurgyItemSpade(PreciousConfig.ItemStartID+(i*50)+3+150, imageName, toolEnum[0]).setIconCoord(i,8).setItemName(name[i] + "Shovel");
-			Axe[i] = new MetallurgyItemAxe(PreciousConfig.ItemStartID+(i*50)+4+150, imageName, toolEnum[0]).setIconCoord(i,5).setItemName(name[i] + "Axe");
-			Hoe[i] = new MetallurgyItemHoe(PreciousConfig.ItemStartID+(i*50)+5+150, imageName, toolEnum[0]).setIconCoord(i,6).setItemName(name[i] + "Hoe");
-			Sword[i] = new MetallurgyItemSword(PreciousConfig.ItemStartID+(i*50)+6+150, imageName, toolEnum[0]).setIconCoord(i,9).setItemName(name[i] + "Sword");
+			Pickaxe[i] = new MetallurgyItemPickaxe(PreciousConfig.ItemStartID+(i*50)+2+150, imageName, toolEnum[i]).setIconCoord(i,7).setItemName(name[i] + "Pickaxe");
+			Shovel[i] = new MetallurgyItemSpade(PreciousConfig.ItemStartID+(i*50)+3+150, imageName, toolEnum[i]).setIconCoord(i,8).setItemName(name[i] + "Shovel");
+			Axe[i] = new MetallurgyItemAxe(PreciousConfig.ItemStartID+(i*50)+4+150, imageName, toolEnum[i]).setIconCoord(i,5).setItemName(name[i] + "Axe");
+			Hoe[i] = new MetallurgyItemHoe(PreciousConfig.ItemStartID+(i*50)+5+150, imageName, toolEnum[i]).setIconCoord(i,6).setItemName(name[i] + "Hoe");
+			Sword[i] = new MetallurgyItemSword(PreciousConfig.ItemStartID+(i*50)+6+150, imageName, toolEnum[i]).setIconCoord(i,9).setItemName(name[i] + "Sword");
 			
 			Helmet[i] = (new MetallurgyArmor(PreciousConfig.ItemStartID+(i*50)+7+150, imageName, EnumArmorMaterial.IRON, 0, 0, 10, 230)).setIconCoord(i,12).setItemName(name[i] + "Helmet");
 			Plate[i] = (new MetallurgyArmor(PreciousConfig.ItemStartID+(i*50)+8+150, imageName, EnumArmorMaterial.IRON, 0, 1, 10, 300)).setIconCoord(i,13).setItemName(name[i] + "Plate");
