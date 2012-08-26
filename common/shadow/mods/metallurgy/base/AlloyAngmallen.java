@@ -22,6 +22,7 @@ import shadow.mods.metallurgy.MetallurgyItemSpade;
 import shadow.mods.metallurgy.MetallurgyItemSword;
 import shadow.mods.metallurgy.MetallurgyProps;
 import shadow.mods.metallurgy.RecipeHelper;
+import shadow.mods.metallurgy.mod_MetallurgyCore;
 import shadow.mods.metallurgy.fantasy.FF_EssenceRecipes;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.common.DungeonHooks;
@@ -57,12 +58,8 @@ public class AlloyAngmallen
 		//Crusher
 		BC_CrusherRecipes.smelting().addCrushing(AngmallenBar.shiftedIndex, new ItemStack(AngmallenDust, 1));
 
-		
-		 try {
-			Class a = Class.forName("FF_EssenceRecipes");
+		if(mod_MetallurgyCore.hasFantasy)
 			FF_EssenceRecipes.essence().addEssenceAmount(AngmallenBar.shiftedIndex, 9);
-		} catch (ClassNotFoundException e) {
-		}
 		
         RecipeHelper.addBrickRecipes(mod_MetallurgyBaseMetals.BaseAlloysBrick.blockID, meta, AngmallenBar);
         

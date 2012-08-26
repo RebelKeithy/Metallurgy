@@ -104,12 +104,9 @@ public class OreNether {
 			//Crusher
 			BC_CrusherRecipes.smelting().addCrushing(mod_MetallurgyNether.NetherMetalsVein.blockID, i, new ItemStack(Dust[i], 2));
 			BC_CrusherRecipes.smelting().addCrushing(Bar[i].shiftedIndex, new ItemStack(Dust[i], 1));
-	
-			try {
-				Class a = Class.forName("FF_EssenceRecipes");
+
+			if(mod_MetallurgyCore.hasFantasy)
 				FF_EssenceRecipes.essence().addEssenceAmount(Bar[i].shiftedIndex, expValue[i]);
-			} catch (ClassNotFoundException e) {
-			}
 			 
 			//Bricks!
 			RecipeHelper.addBrickRecipes(mod_MetallurgyNether.NetherMetalsBrick.blockID, i, Bar[i], 0);

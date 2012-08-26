@@ -47,11 +47,8 @@ public class AlloyBronze
 		//Crusher
 		BC_CrusherRecipes.smelting().addCrushing(BronzeBar.shiftedIndex, new ItemStack(BronzeDust, 1));
 
-		 try {
-			Class a = Class.forName("FF_EssenceRecipes");
+		if(mod_MetallurgyCore.hasFantasy)
 			FF_EssenceRecipes.essence().addEssenceAmount(BronzeBar.shiftedIndex, 2);
-		} catch (ClassNotFoundException e) {
-		}
 		 
         RecipeHelper.addBrickRecipes(mod_MetallurgyBaseMetals.BaseAlloysBrick.blockID, meta, BronzeBar);
         

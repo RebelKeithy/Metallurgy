@@ -34,11 +34,8 @@ public class OreManganese
 		BC_CrusherRecipes.smelting().addCrushing(mod_MetallurgyBaseMetals.BaseMetalsVein.blockID, meta, new ItemStack(ManganeseDust, 2));
 		BC_CrusherRecipes.smelting().addCrushing(ManganeseBar.shiftedIndex, new ItemStack(ManganeseDust, 1));
 
-		try {
-			Class a = Class.forName("FF_EssenceRecipes");
+		if(mod_MetallurgyCore.hasFantasy)
 			FF_EssenceRecipes.essence().addEssenceAmount(ManganeseBar.shiftedIndex, 3);
-		} catch (ClassNotFoundException e) {
-		}
 		 
 		//Bricks!
 		RecipeHelper.addBrickRecipes(mod_MetallurgyBaseMetals.BaseMetalsBrick.blockID, meta, ManganeseBar);

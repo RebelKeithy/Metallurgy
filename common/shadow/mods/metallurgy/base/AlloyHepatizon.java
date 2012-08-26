@@ -47,11 +47,8 @@ public class AlloyHepatizon
 		//Crusher
 		BC_CrusherRecipes.smelting().addCrushing(HepatizonBar.shiftedIndex, new ItemStack(HepatizonDust, 1));
 
-		try {
-			Class a = Class.forName("FF_EssenceRecipes");
+		if(mod_MetallurgyCore.hasFantasy)
 			FF_EssenceRecipes.essence().addEssenceAmount(HepatizonBar.shiftedIndex, 8);
-		} catch (ClassNotFoundException e) {
-		}
 		 
         RecipeHelper.addBrickRecipes(mod_MetallurgyBaseMetals.BaseAlloysBrick.blockID, meta, HepatizonBar);
         

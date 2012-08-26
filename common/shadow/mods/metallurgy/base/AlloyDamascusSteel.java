@@ -47,11 +47,8 @@ public class AlloyDamascusSteel
 		//Crusher
 		BC_CrusherRecipes.smelting().addCrushing(DamascusSteelBar.shiftedIndex, new ItemStack(DamascusSteelDust, 1));
 
-		 try {
-			Class a = Class.forName("FF_EssenceRecipes");
+		if(mod_MetallurgyCore.hasFantasy)
 			FF_EssenceRecipes.essence().addEssenceAmount(DamascusSteelBar.shiftedIndex, 5);
-		} catch (ClassNotFoundException e) {
-		}
 		 
         RecipeHelper.addBrickRecipes(mod_MetallurgyBaseMetals.BaseAlloysBrick.blockID, meta, DamascusSteelBar);
         

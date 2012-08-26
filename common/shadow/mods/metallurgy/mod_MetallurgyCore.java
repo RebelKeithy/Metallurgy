@@ -60,12 +60,6 @@ public class mod_MetallurgyCore
 
 		proxy.registerRenderInformation();
 
-	}
-	
-	@Init
-	public void load(FMLInitializationEvent event) 
-	{
-		
 		try {
 			Class a = Class.forName("shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals");
 	    	hasBase = true;
@@ -94,6 +88,12 @@ public class mod_MetallurgyCore
     	} catch(ClassNotFoundException e) {
     		System.out.println("Metallurgy Core: Fantasy not detected, reason: " + e);
     	}
+	}
+	
+	@Init
+	public void load(FMLInitializationEvent event) 
+	{
+		
 		
 		GameRegistry.registerWorldGenerator(new CoreWorldGen());
 		

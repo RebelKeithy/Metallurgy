@@ -35,11 +35,8 @@ public class OreIron
 		BC_CrusherRecipes.smelting().addCrushing(Block.oreIron.blockID, new ItemStack(IronDust, 2));
 		BC_CrusherRecipes.smelting().addCrushing(Item.ingotIron.shiftedIndex, new ItemStack(IronDust, 1));
 
-		try {
-			Class a = Class.forName("FF_EssenceRecipes");
+		if(mod_MetallurgyCore.hasFantasy)
 			FF_EssenceRecipes.essence().addEssenceAmount(Item.ingotIron.shiftedIndex, 3);
-		} catch (ClassNotFoundException e) {
-		}
 		 
 		//Bricks!
 		RecipeHelper.addBrickRecipes(mod_MetallurgyBaseMetals.BaseMetalsBrick.blockID, meta, Item.ingotIron);

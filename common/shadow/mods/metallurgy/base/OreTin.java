@@ -6,6 +6,7 @@ import shadow.mods.metallurgy.BC_CrusherRecipes;
 import shadow.mods.metallurgy.MetallurgyItem;
 import shadow.mods.metallurgy.MetallurgyWorldGenMinable;
 import shadow.mods.metallurgy.RecipeHelper;
+import shadow.mods.metallurgy.mod_MetallurgyCore;
 import shadow.mods.metallurgy.fantasy.FF_EssenceRecipes;
 
 import net.minecraft.client.Minecraft;
@@ -36,11 +37,8 @@ public class OreTin
 		BC_CrusherRecipes.smelting().addCrushing(mod_MetallurgyBaseMetals.BaseMetalsVein.blockID, meta, new ItemStack(TinDust, 2));
 		BC_CrusherRecipes.smelting().addCrushing(TinBar.shiftedIndex, new ItemStack(TinDust, 1));
 
-		try {
-			Class a = Class.forName("FF_EssenceRecipes");
+		if(mod_MetallurgyCore.hasFantasy)
 			FF_EssenceRecipes.essence().addEssenceAmount(TinBar.shiftedIndex, 1);
-		} catch (ClassNotFoundException e) {
-		}
 		 
 		//Bricks!
 		RecipeHelper.addBrickRecipes(mod_MetallurgyBaseMetals.BaseMetalsBrick.blockID, meta, TinBar);

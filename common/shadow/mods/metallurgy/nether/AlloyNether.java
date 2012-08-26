@@ -78,12 +78,9 @@ public class AlloyNether {
 				
 			//Crusher
 			BC_CrusherRecipes.smelting().addCrushing(Bar.shiftedIndex, i, new ItemStack(Dust, 1, i));
-	
-			try {
-				Class a = Class.forName("FF_EssenceRecipes");
+
+			if(mod_MetallurgyCore.hasFantasy)
 				FF_EssenceRecipes.essence().addEssence(Bar.shiftedIndex, i, expValue[i]);
-			} catch (ClassNotFoundException e) {
-			}
 			 
 			//Bricks!
 			RecipeHelper.addBrickRecipes(mod_MetallurgyNether.NetherAlloysBrick.blockID, i, Bar, i);

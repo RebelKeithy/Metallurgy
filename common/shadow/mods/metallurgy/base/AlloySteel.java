@@ -46,12 +46,9 @@ public class AlloySteel
 		//Crusher
 		BC_CrusherRecipes.smelting().addCrushing(SteelBar.shiftedIndex, new ItemStack(SteelDust, 1));
 
-		try {
-			Class a = Class.forName("FF_EssenceRecipes");
+		if(mod_MetallurgyCore.hasFantasy)
 			FF_EssenceRecipes.essence().addEssenceAmount(SteelBar.shiftedIndex, 6);
-		} catch (ClassNotFoundException e) {
-		}
-		 
+		
         RecipeHelper.addBrickRecipes(mod_MetallurgyBaseMetals.BaseAlloysBrick.blockID, meta, SteelBar);
         
 		RecipeHelper.addPickaxeRecipe(SteelPickaxe, SteelBar);

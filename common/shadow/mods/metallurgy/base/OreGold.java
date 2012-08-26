@@ -41,11 +41,8 @@ public class OreGold
 		BC_CrusherRecipes.smelting().addCrushing(mod_MetallurgyBaseMetals.BaseMetalsVein.blockID, meta, new ItemStack(GoldDust, 2));
 		BC_CrusherRecipes.smelting().addCrushing(Item.ingotGold.shiftedIndex, new ItemStack(GoldDust, 1));
 
-		try {
-			Class a = Class.forName("FF_EssenceRecipes");
+		if(mod_MetallurgyCore.hasFantasy)
 			FF_EssenceRecipes.essence().addEssenceAmount(Item.ingotGold.shiftedIndex, 6);
-		} catch (ClassNotFoundException e) {
-		}
 		 
 		RecipeHelper.addBrickRecipes(mod_MetallurgyBaseMetals.BaseMetalsBrick.blockID, meta, Item.ingotGold);
 		

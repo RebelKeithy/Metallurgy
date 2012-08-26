@@ -83,12 +83,9 @@ public class OrePrecious {
 			//Crusher
 			BC_CrusherRecipes.smelting().addCrushing(mod_MetallurgyPrecious.PreciousMetalsVein.blockID, i, new ItemStack(Dust, 2, i));
 			BC_CrusherRecipes.smelting().addCrushing(Bar.shiftedIndex, i, new ItemStack(Dust, 1, i));
-	
-			try {
-				Class a = Class.forName("FF_EssenceRecipes");
+
+			if(mod_MetallurgyCore.hasFantasy)
 				FF_EssenceRecipes.essence().addEssence(Bar.shiftedIndex, i, expValue[i]);
-			} catch (ClassNotFoundException e) {
-			}
 			 
 			//Bricks!
 			RecipeHelper.addBrickRecipes(mod_MetallurgyPrecious.PreciousMetalsBrick.blockID, i, Bar, i);
