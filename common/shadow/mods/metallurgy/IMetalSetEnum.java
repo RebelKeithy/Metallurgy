@@ -1,17 +1,20 @@
 package shadow.mods.metallurgy;
 
+import java.util.List;
+
 public interface IMetalSetEnum {
 	
 	public int numMetals();
-	public int getStartID();
-	public String[] getNames();
-	public int[] getExpValues();
-	public String getImageFilename();
+	public int startID();
+	public String[] names();
+	public int[] expValues();
+	public String image();
 	public boolean isAlloy();
-	public int[] getVeinCount();
-	public int[] getOreCount();
-	public int[] getOreHeight();
-	public int getOreID();
-	public int getBrickID();
+	public int[] veinCount();
+	public int[] oreCount();
+	public int[] oreHeight();
+	public int oreID();
+	public int brickID();
 	public String getSetName();
+	public List catalysts();
 }

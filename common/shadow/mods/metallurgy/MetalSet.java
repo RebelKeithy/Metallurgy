@@ -79,16 +79,18 @@ public class MetalSet implements IWorldGenerator {
 		Legs = new Item[numMetals];
 		Boots = new Item[numMetals];
 		
-		name = info.getNames().clone();
-		expValue = info.getExpValues().clone();
-		imageName = info.getImageFilename();
-		int startID = info.getStartID();
+		name = info.names().clone();
+		expValue = info.expValues().clone();
+		imageName = info.image();
+		int startID = info.startID();
 		
 		for(int i = 0; i < numMetals; i++)
 		{
 			Dust[i] = (new MetallurgyItem(startID+(i*50), imageName)).setIconCoord(i,3).setItemName(name[i] + "Dust").setTabToDisplayOn(CreativeTabs.tabMaterials);
 			Bar[i] = (new MetallurgyItem(startID+(i*50)+1, imageName)).setIconCoord(i,4).setItemName(name[i] + "Bar").setTabToDisplayOn(CreativeTabs.tabMaterials);
 			
+			if(info.catalysts().contains(i))
+				continue;
 			Pickaxe[i] = new MetallurgyItemPickaxe(startID+(i*50)+2, imageName, toolEnum[i]).setIconCoord(i,7).setItemName(name[i] + "Pickaxe");
 			Shovel[i] = new MetallurgyItemSpade(startID+(i*50)+3, imageName, toolEnum[i]).setIconCoord(i,8).setItemName(name[i] + "Shovel");
 			Axe[i] = new MetallurgyItemAxe(startID+(i*50)+4, imageName, toolEnum[i]).setIconCoord(i,5).setItemName(name[i] + "Axe");
@@ -103,14 +105,14 @@ public class MetalSet implements IWorldGenerator {
 		
 		if(!info.isAlloy())
 		{
-			defaultVeinCount = info.getVeinCount().clone();
-			defaultOreCount = info.getOreCount().clone();
-			defaultOreHeight = info.getOreHeight().clone();
+			defaultVeinCount = info.veinCount().clone();
+			defaultOreCount = info.oreCount().clone();
+			defaultOreHeight = info.oreHeight().clone();
 			
-			ore = new MetallurgyBlock(info.getOreID(), imageName, numMetals, 0).setHardness(2F).setResistance(.1F).setBlockName(setName + "Ore");
+			ore = new MetallurgyBlock(info.oreID(), imageName, numMetals, 0).setHardness(2F).setResistance(.1F).setBlockName(setName + "Ore");
 		}
 		
-		brick = new MetallurgyBlock(info.getBrickID(), imageName, numMetals, 1).setHardness(2F).setResistance(.1F).setBlockName(setName + "Brick");
+		brick = new MetallurgyBlock(info.brickID(), imageName, numMetals, 1).setHardness(2F).setResistance(.1F).setBlockName(setName + "Brick");
 	}
 	
 	public void load()
