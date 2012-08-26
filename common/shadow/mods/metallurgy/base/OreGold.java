@@ -39,6 +39,7 @@ public class OreGold
 			
 		//Crusher
 		BC_CrusherRecipes.smelting().addCrushing(mod_MetallurgyBaseMetals.BaseMetalsVein.blockID, meta, new ItemStack(GoldDust, 2));
+		BC_CrusherRecipes.smelting().addCrushing(Block.oreGold.blockID, 0, new ItemStack(GoldDust, 2));
 		BC_CrusherRecipes.smelting().addCrushing(Item.ingotGold.shiftedIndex, new ItemStack(GoldDust, 1));
 
 		if(mod_MetallurgyCore.hasFantasy)
