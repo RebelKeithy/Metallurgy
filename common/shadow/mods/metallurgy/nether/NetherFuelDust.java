@@ -4,23 +4,16 @@ import cpw.mods.fml.common.IFuelHandler;
 import shadow.mods.metallurgy.MetallurgyItem;
 import net.minecraft.src.ItemStack;
 
-public class NetherFuelDust extends MetallurgyItem implements IFuelHandler{
+public class NetherFuelDust implements IFuelHandler{
  
-	public int burnTime;
-	
-	public NetherFuelDust(int id, String s, int time)
-	{
-		super(id, s);
-		burnTime = time;
-	}
-	
-	private NetherFuelDust(int i, String s) {
-		super(i, s);
-	}
 
 	@Override
 	public int getBurnTime(ItemStack stack) {
-		return burnTime;
+		if(stack.itemID == OreNether.Dust[0].shiftedIndex)
+			return 6400;
+		if(stack.itemID == OreNether.Dust[6].shiftedIndex)
+			return 51200;
+		return 0;
 	}
 
 }

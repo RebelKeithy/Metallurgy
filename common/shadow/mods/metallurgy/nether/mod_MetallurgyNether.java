@@ -102,8 +102,7 @@ public class mod_MetallurgyNether
 		
 		mod_NetherForge.load();
 		
-		GameRegistry.registerFuelHandler((IFuelHandler) OreNether.Dust[0]);
-		GameRegistry.registerFuelHandler((IFuelHandler) OreNether.Dust[6]);
+		GameRegistry.registerFuelHandler(new NetherFuelDust());
 	}
 	
 	public void setToolClass()

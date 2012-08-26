@@ -65,12 +65,7 @@ public class OreNether {
 	{
 		for(int i = 0; i < numMetals; i++)
 		{
-			if(i == 0)
-				Dust[i] = (new NetherFuelDust(NetherConfig.ItemStartID+(i*50), imageName, 6400)).setIconCoord(i,3).setItemName(name[i] + "Dust").setTabToDisplayOn(CreativeTabs.tabMaterials);
-			else if(i == 6)
-				Dust[i] = (new NetherFuelDust(NetherConfig.ItemStartID+(i*50), imageName, 51200)).setIconCoord(i,3).setItemName(name[i] + "Dust").setTabToDisplayOn(CreativeTabs.tabMaterials);
-			else
-				Dust[i] = (new MetallurgyItem(NetherConfig.ItemStartID+(i*50), imageName)).setIconCoord(i,3).setItemName(name[i] + "Dust").setTabToDisplayOn(CreativeTabs.tabMaterials);
+			Dust[i] = (new MetallurgyItem(NetherConfig.ItemStartID+(i*50), imageName)).setIconCoord(i,3).setItemName(name[i] + "Dust").setTabToDisplayOn(CreativeTabs.tabMaterials);
 			Bar[i] = (new MetallurgyItem(NetherConfig.ItemStartID+(i*50)+1, imageName)).setIconCoord(i,4).setItemName(name[i] + "Bar").setTabToDisplayOn(CreativeTabs.tabMaterials);
 			
 			Pickaxe[i] = new MetallurgyItemPickaxe(NetherConfig.ItemStartID+(i*50)+2, imageName, toolEnum[i]).setIconCoord(i,7).setItemName(name[i] + "Pickaxe");
