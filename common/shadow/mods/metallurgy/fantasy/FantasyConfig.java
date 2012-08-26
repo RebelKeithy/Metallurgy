@@ -297,17 +297,17 @@ public class FantasyConfig  {
     	brickMetalsID = config.getOrCreateBlockIdProperty("Metal Brick", 920).getInt(920);
     	brickAlloysID = config.getOrCreateBlockIdProperty("Alloy Brick", 921).getInt(921);
     	
-    	extractorSpeeds[0] = config.getOrCreateIntProperty("Prometheum", "Abstractor Speeds", 30000).getInt(30000)/1000;    	
-    	extractorSpeeds[1] = config.getOrCreateIntProperty("DeepIron", "Abstractor Speeds", 28000).getInt(28000)/1000;    	
-    	extractorSpeeds[2] = config.getOrCreateIntProperty("BlackSteel", "Abstractor Speeds", 26000).getInt(26000)/1000;    	
-    	extractorSpeeds[3] = config.getOrCreateIntProperty("Oureclase", "Abstractor Speeds", 24000).getInt(24000)/1000;    	
-    	extractorSpeeds[4] = config.getOrCreateIntProperty("Aredrite", "Abstractor Speeds", 22000).getInt(22000)/1000;    	
-    	extractorSpeeds[5] = config.getOrCreateIntProperty("Mithril", "Abstractor Speeds", 20000).getInt(20000)/1000;    	
-    	extractorSpeeds[6] = config.getOrCreateIntProperty("Haderoth", "Abstractor Speeds", 18000).getInt(18000)/1000;    	
-    	extractorSpeeds[7] = config.getOrCreateIntProperty("Orichalcum", "Abstractor Speeds", 16000).getInt(16000)/1000;    	
-    	extractorSpeeds[8] = config.getOrCreateIntProperty("Adamantine", "Abstractor Speeds", 14000).getInt(14000)/1000;    	
-    	extractorSpeeds[9] = config.getOrCreateIntProperty("Atlarus", "Abstractor Speeds", 12000).getInt(12000)/1000;    	    	
-    	extractorSpeeds[10] = config.getOrCreateIntProperty("Tartarite", "Abstractor Speeds", 10000).getInt(10000)/1000;
+    	extractorSpeeds[0] = config.getOrCreateIntProperty("Prometheum", "Abstractor Speeds", 22000).getInt(22000)/1000;    	
+    	extractorSpeeds[1] = config.getOrCreateIntProperty("DeepIron", "Abstractor Speeds", 20000).getInt(20000)/1000;    	
+    	extractorSpeeds[2] = config.getOrCreateIntProperty("BlackSteel", "Abstractor Speeds", 18000).getInt(18000)/1000;    	
+    	extractorSpeeds[3] = config.getOrCreateIntProperty("Oureclase", "Abstractor Speeds", 16000).getInt(16000)/1000;    	
+    	extractorSpeeds[4] = config.getOrCreateIntProperty("Aredrite", "Abstractor Speeds", 14000).getInt(14000)/1000;    	
+    	extractorSpeeds[5] = config.getOrCreateIntProperty("Mithril", "Abstractor Speeds", 12000).getInt(12000)/1000;    	
+    	extractorSpeeds[6] = config.getOrCreateIntProperty("Haderoth", "Abstractor Speeds", 10000).getInt(10000)/1000;    	
+    	extractorSpeeds[7] = config.getOrCreateIntProperty("Orichalcum", "Abstractor Speeds", 8000).getInt(8000)/1000;    	
+    	extractorSpeeds[8] = config.getOrCreateIntProperty("Adamantine", "Abstractor Speeds", 6000).getInt(6000)/1000;    	
+    	extractorSpeeds[9] = config.getOrCreateIntProperty("Atlarus", "Abstractor Speeds", 4000).getInt(4000)/1000;    	    	
+    	extractorSpeeds[10] = config.getOrCreateIntProperty("Tartarite", "Abstractor Speeds", 2000).getInt(2000)/1000;
 
     	prometheumEnabled = config.getOrCreateBooleanProperty("Enable Prometheum", "Ores", true).getBoolean(true);
     	deepIronEnabled = config.getOrCreateBooleanProperty("Enable Deep Iron", "Ores", true).getBoolean(true);
