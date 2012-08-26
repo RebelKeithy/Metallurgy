@@ -1,5 +1,8 @@
 package shadow.mods.metallurgy.precious;
 
+import java.io.File;
+
+import net.minecraft.client.Minecraft;
 import net.minecraft.src.ChestItemRenderHelper;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.Item;
@@ -114,5 +117,11 @@ public class ClientProxy extends CommonProxy{
 	@Override
 	public World getClientWorld() {
 		return FMLClientHandler.instance().getClient().theWorld;
+	}
+
+	@Override
+	public File getMinecraftDir()
+	{
+		return Minecraft.getMinecraftDir();
 	}
 }

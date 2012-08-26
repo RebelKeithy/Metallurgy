@@ -1,5 +1,8 @@
 package shadow.mods.metallurgy.nether;
 
+import java.io.File;
+
+import net.minecraft.client.Minecraft;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.Item;
 import net.minecraft.src.ModLoader;
@@ -85,5 +88,11 @@ public class ClientProxy extends shadow.mods.metallurgy.nether.CommonProxy{
 	@Override
 	public World getClientWorld() {
 		return FMLClientHandler.instance().getClient().theWorld;
+	}
+
+	@Override
+	public File getMinecraftDir()
+	{
+		return Minecraft.getMinecraftDir();
 	}
 }
