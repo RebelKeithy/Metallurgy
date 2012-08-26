@@ -66,4 +66,7 @@ public class CoreCommonProxy implements IGuiHandler
 		
 		//return null;
 	}
+
+	public void addTextureOverrides() {
+	}
 }

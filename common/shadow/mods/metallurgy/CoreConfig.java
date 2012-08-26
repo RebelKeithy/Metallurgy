@@ -41,6 +41,7 @@ public class CoreConfig  {
 	public static double bronzeCrusherSpeed;
 	public static double ironCrusherSpeed;
 	public static double steelCrusherSpeed;
+	public static boolean enableTextureOverrides;
 	
 	public static void init()
 	{
@@ -64,6 +65,8 @@ public class CoreConfig  {
 
         config.load();
 
+    	enableTextureOverrides = config.getOrCreateBooleanProperty("Enable", "Texture Override", true).getBoolean(true);
+    	
     	DiamondEnabled = config.getOrCreateBooleanProperty("Enable Diamond", "Ores", true).getBoolean(true);
     	EmeraldEnabled = config.getOrCreateBooleanProperty("Enable Emerald", "Ores", true).getBoolean(true);
     	LapisLazuliEnabled = config.getOrCreateBooleanProperty("Enable Lapis Lazuli", "Ores", true).getBoolean(true);
