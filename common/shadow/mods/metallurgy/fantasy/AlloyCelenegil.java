@@ -3,7 +3,7 @@ import java.io.File;
 import java.util.Random;
 
 import shadow.mods.metallurgy.*;
-import shadow.mods.metallurgy.precious.OrePrecious;
+import shadow.mods.metallurgy.precious.mod_MetallurgyPrecious;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.*;
@@ -57,7 +57,7 @@ public class AlloyCelenegil
 			RecipeHelper.addShearsRecipe(celenegilBar);
 
 		    if(FantasyConfig.celenegilEnabled && mod_MetallurgyCore.hasPrecious)
-		    	ModLoader.addShapelessRecipe(new ItemStack(celenegilDust, 1), new Object[] {OreOrichalcum.orichalcumDust, new ItemStack(OrePrecious.Dust, 1, 2)});
+		    	ModLoader.addShapelessRecipe(new ItemStack(celenegilDust, 1), new Object[] {OreOrichalcum.orichalcumDust, new ItemStack(mod_MetallurgyPrecious.ores.Dust[2], 1)});
 		    /*
 		    //Rails!
 			ModLoader.addRecipe(new ItemStack(Block.rail, 4), new Object[] {

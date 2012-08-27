@@ -30,8 +30,7 @@ import shadow.mods.metallurgy.base.OreManganese;
 import shadow.mods.metallurgy.base.OreTin;
 import shadow.mods.metallurgy.fantasy.FF_EssenceRecipes;
 import shadow.mods.metallurgy.fantasy.mod_MetallurgyFantasy;
-import shadow.mods.metallurgy.precious.AlloyPrecious;
-import shadow.mods.metallurgy.precious.OrePrecious;
+import shadow.mods.metallurgy.precious.mod_MetallurgyPrecious;
 
 public class OreNether {
 	
@@ -142,9 +141,9 @@ public class OreNether {
 		    if(mod_MetallurgyCore.hasPrecious)
 		    {
 				for(int i  = 0; i < 2; i++)
-					ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {new ItemStack(AlloyPrecious.Dust, 1, i), Dust[2]});
+					ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {new ItemStack(mod_MetallurgyPrecious.alloys.Dust[i], 1, i), Dust[2]});
 				for(int i  = 0; i < 3; i++)
-					ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {new ItemStack(OrePrecious.Dust, 1, i), Dust[2]});
+					ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {new ItemStack(mod_MetallurgyPrecious.ores.Dust[i], 1), Dust[2]});
 		    }
 		    
 		    //Nether Metals

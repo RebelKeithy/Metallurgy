@@ -20,8 +20,7 @@ import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.mod_MetallurgyCore;
 import shadow.mods.metallurgy.fantasy.FF_EssenceRecipes;
 import shadow.mods.metallurgy.fantasy.mod_MetallurgyFantasy;
-import shadow.mods.metallurgy.precious.AlloyPrecious;
-import shadow.mods.metallurgy.precious.OrePrecious;
+import shadow.mods.metallurgy.precious.mod_MetallurgyPrecious;
 
 public class AlloyNether {
 	
@@ -104,7 +103,7 @@ public class AlloyNether {
 		ModLoader.addShapelessRecipe(new ItemStack(Dust, 1, 0), new Object[] {OreNether.Dust[0], OreNether.Dust[0], OreNether.Dust[1]});
 	    ModLoader.addShapelessRecipe(new ItemStack(Dust, 1, 1), new Object[] {OreNether.Dust[3], OreNether.Dust[4]});
 	    if(mod_MetallurgyCore.hasPrecious)
-	    	ModLoader.addShapelessRecipe(new ItemStack(Dust, 1, 2), new Object[] {new ItemStack(OrePrecious.Dust, 1, 2), OreNether.Dust[5]});
+	    	ModLoader.addShapelessRecipe(new ItemStack(Dust, 1, 2), new Object[] {new ItemStack(mod_MetallurgyPrecious.ores.Dust[2], 1), OreNether.Dust[5]});
 		
 	}
 }

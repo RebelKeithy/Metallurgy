@@ -11,6 +11,8 @@ public interface IMetalSetEnum {
 	public int oreHarvestLevel(int i);
 	public int brickHarvestLevel(int i);
 	public int pickLevel(int i);
+	public int dungeonLootChance(int i);
+	public int dungeonLootAmount(int i);
 	public String image();
 	public boolean isAlloy();
 	public int veinCount(int i);

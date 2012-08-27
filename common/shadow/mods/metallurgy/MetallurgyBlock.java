@@ -41,7 +41,7 @@ public class MetallurgyBlock extends Block
     
     @Override
 	public int getBlockTextureFromSideAndMetadata(int i, int j) {
-		return j + row;
+		return j + (row * 16);
 	}
 	
 	public String getTextureFile()

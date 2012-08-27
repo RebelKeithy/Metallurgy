@@ -3,7 +3,7 @@ import java.io.File;
 import java.util.Random;
 
 import shadow.mods.metallurgy.*;
-import shadow.mods.metallurgy.precious.OrePrecious;
+import shadow.mods.metallurgy.precious.mod_MetallurgyPrecious;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.*;
@@ -57,7 +57,7 @@ public class AlloyQuicksilver
 			RecipeHelper.addShearsRecipe(quicksilverBar);
 
 		    if(FantasyConfig.quicksilverEnabled && mod_MetallurgyCore.hasPrecious)
-		    	ModLoader.addShapelessRecipe(new ItemStack(quicksilverDust, 1), new Object[] {OreMithril.mithrilDust, new ItemStack(OrePrecious.Dust, 1, 1)});
+		    	ModLoader.addShapelessRecipe(new ItemStack(quicksilverDust, 1), new Object[] {OreMithril.mithrilDust, new ItemStack(mod_MetallurgyPrecious.ores.Dust[1], 1)});
 		    
 		    /*
 		    //Rails!

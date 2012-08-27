@@ -16,6 +16,7 @@ import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.ModLoader;
 import net.minecraft.src.World;
+import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import shadow.mods.metallurgy.BC_CrusherRecipes;
@@ -79,6 +80,7 @@ public class MetalSet implements IWorldGenerator {
 		
 		for(int i = 0; i < numMetals; i++)
 		{
+			System.out.println(startID);
 			Dust[i] = (new MetallurgyItem(startID+(i*50), info.image())).setIconCoord(i,3).setItemName(info.name(i) + "Dust").setTabToDisplayOn(CreativeTabs.tabMaterials);
 			Bar[i] = (new MetallurgyItem(startID+(i*50)+1, info.image())).setIconCoord(i,4).setItemName(info.name(i) + "Bar").setTabToDisplayOn(CreativeTabs.tabMaterials);
 			
@@ -152,6 +154,7 @@ public class MetalSet implements IWorldGenerator {
 		{
 			OreDictionary.registerOre("dust" + info.name(i), new ItemStack(Dust[i], 1));
 			OreDictionary.registerOre("ingot" + info.name(i), new ItemStack(Bar[i], 1));
+			DungeonHooks.addDungeonLoot(new ItemStack(Bar[i], 1), info.dungeonLootChance(i), 1, info.dungeonLootAmount(i));
 		}
 		
 		if(ore != null)

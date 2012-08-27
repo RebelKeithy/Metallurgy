@@ -14,7 +14,6 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import shadow.mods.metallurgy.*;
-import shadow.mods.metallurgy.precious.OrePrecious;
 
 public class CoreClientProxy extends CoreCommonProxy{
 
@@ -32,7 +31,7 @@ public class CoreClientProxy extends CoreCommonProxy{
 		LanguageRegistry.instance().addStringLocalization("tile.Crusher.SteelCrusher.name", "Steel Crusher");
 	}
 	
-	public void addNamesToSet(MetalSet set)
+	public static void addNamesToSet(MetalSet set)
 	{
 		
 		for(int i = 0; i < set.numMetals; i++)
