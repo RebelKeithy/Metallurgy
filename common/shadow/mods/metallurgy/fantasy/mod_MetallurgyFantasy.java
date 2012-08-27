@@ -4,7 +4,9 @@ import java.io.File;
 import java.util.Random;
 
 import shadow.mods.metallurgy.MetalSet;
+import shadow.mods.metallurgy.mod_MetallurgyCore;
 import shadow.mods.metallurgy.base.BaseWorldGen;
+import shadow.mods.metallurgy.precious.mod_MetallurgyPrecious;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -74,5 +76,13 @@ public class mod_MetallurgyFantasy
 		mod_FantasyFurnace.load();
 		
 		FF_EssenceRecipes.essence().addEssenceAmount(Block.oreGold.blockID, 10);
+		
+		ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), new Object[] {ores.Dust[1], ores.Dust[2]});
+		if(mod_MetallurgyCore.hasPrecious)
+			ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), new Object[] {ores.Dust[7], new ItemStack(mod_MetallurgyPrecious.ores.Dust[1], 1)});
+		ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[2], 1), new Object[] {ores.Dust[7], ores.Dust[8]});
+		if(mod_MetallurgyCore.hasPrecious)
+			ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[3], 1), new Object[] {ores.Dust[9], new ItemStack(mod_MetallurgyPrecious.ores.Dust[2], 1)});
+		ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[4], 1), new Object[] {ores.Dust[10], ores.Dust[11]});
 	}
 }
