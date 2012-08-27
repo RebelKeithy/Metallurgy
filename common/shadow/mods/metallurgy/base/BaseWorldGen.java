@@ -61,7 +61,7 @@ public class BaseWorldGen implements IWorldGenerator
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(BaseConfig.GoldOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenMinable(mod_MetallurgyBaseMetals.BaseMetalsVein.blockID, 4, BaseConfig.GoldOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new MetallurgyWorldGenMinable(Block.oreGold.blockID, 4, BaseConfig.GoldOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 	
@@ -86,7 +86,7 @@ public class BaseWorldGen implements IWorldGenerator
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(BaseConfig.IronOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenMinable(mod_MetallurgyBaseMetals.BaseMetalsVein.blockID, 2, BaseConfig.IronOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new MetallurgyWorldGenMinable(Block.oreIron.blockID, 2, BaseConfig.IronOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 	
