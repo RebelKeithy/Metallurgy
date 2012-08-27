@@ -6,15 +6,21 @@ public interface IMetalSetEnum {
 	
 	public int numMetals();
 	public int startID();
-	public String[] names();
-	public int[] expValues();
+	public String name(int i);
+	public int expValue(int i);
+	public int oreHarvestLevel(int i);
+	public int brickHarvestLevel(int i);
+	public int pickLevel(int i);
 	public String image();
 	public boolean isAlloy();
-	public int[] veinCount();
-	public int[] oreCount();
-	public int[] oreHeight();
+	public int veinCount(int i);
+	public int oreCount(int i);
+	public int oreHeight(int i);
 	public int oreID();
 	public int brickID();
 	public String getSetName();
-	public List catalysts();
+	public MetallurgyEnumToolMaterial toolEnum(int i);
+	public boolean isCatalyst(int i);
 }
+
+

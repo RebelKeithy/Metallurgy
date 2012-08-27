@@ -14,7 +14,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import shadow.mods.metallurgy.*;
-import shadow.mods.metallurgy.base.*;
+import shadow.mods.metallurgy.precious.OrePrecious;
 
 public class CoreClientProxy extends CoreCommonProxy{
 
@@ -30,6 +30,32 @@ public class CoreClientProxy extends CoreCommonProxy{
 		LanguageRegistry.instance().addStringLocalization("tile.Crusher.BronzeCrusher.name", "Bronze Crusher");
 		LanguageRegistry.instance().addStringLocalization("tile.Crusher.IronCrusher.name", "Iron Crusher");
 		LanguageRegistry.instance().addStringLocalization("tile.Crusher.SteelCrusher.name", "Steel Crusher");
+	}
+	
+	public void addNamesToSet(MetalSet set)
+	{
+		
+		for(int i = 0; i < set.numMetals; i++)
+		{
+			if(!set.info.isAlloy())
+				LanguageRegistry.instance().addStringLocalization("tile." + set.setName + "Ore." + i + ".name", set.info.name(i) + " Ore");
+			LanguageRegistry.instance().addStringLocalization("tile." + set.setName + "Brick." + i + ".name", set.info.name(i) + " Brick");
+			ModLoader.addName(set.Dust[i], set.info.name(i) + " Dust");
+			ModLoader.addName(set.Bar[i], set.info.name(i) + " Bar");
+
+			if(!set.info.isCatalyst(i))
+			{
+				ModLoader.addName(set.Pickaxe[i], set.info.name(i) + " Pickaxe");
+				ModLoader.addName(set.Shovel[i], set.info.name(i) + " Shovel");
+				ModLoader.addName(set.Axe[i], set.info.name(i) + " Axe");
+				ModLoader.addName(set.Hoe[i], set.info.name(i) + " Hoe");
+				ModLoader.addName(set.Sword[i], set.info.name(i) + " Sword");
+				ModLoader.addName(set.Helmet[i], set.info.name(i) + " Helmet");
+				ModLoader.addName(set.Plate[i], set.info.name(i) + " Plate");
+				ModLoader.addName(set.Legs[i], set.info.name(i) + " Legs");
+				ModLoader.addName(set.Boots[i], set.info.name(i) + " Boots");
+			}
+		}
 	}
 	
 	@Override

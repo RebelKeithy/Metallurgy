@@ -20,7 +20,6 @@ public class MetallurgyItemPickaxe extends ItemPickaxe
     {
         super(itemID, EnumToolMaterial.EMERALD);
         texturePath = s;
-        efficiencyOnProperMaterial = 4F;
         toolMaterial = metallurgyenumtoolmaterial;
         setMaxDamage(metallurgyenumtoolmaterial.getMaxUses());
         efficiencyOnProperMaterial = metallurgyenumtoolmaterial.getEfficiencyOnProperMaterial();

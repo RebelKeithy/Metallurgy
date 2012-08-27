@@ -13,7 +13,6 @@ public class MetallurgyItemAxe extends ItemAxe
 {
 	public String texturePath;
     private static Block blocksEffectiveAgainst[];
-    private int damageVsEntity;
     protected MetallurgyEnumToolMaterial toolMaterial;
     
     
@@ -22,11 +21,9 @@ public class MetallurgyItemAxe extends ItemAxe
     {
         super(itemID, EnumToolMaterial.EMERALD);
         texturePath = s;
-        efficiencyOnProperMaterial = 4F;
         toolMaterial = metallurgyenumtoolmaterial;
         setMaxDamage(metallurgyenumtoolmaterial.getMaxUses());
         efficiencyOnProperMaterial = metallurgyenumtoolmaterial.getEfficiencyOnProperMaterial();
-        damageVsEntity = 2 + metallurgyenumtoolmaterial.getDamageVsEntity();
     }
 
     @Override
@@ -58,7 +55,7 @@ public class MetallurgyItemAxe extends ItemAxe
     @Override
     public int getDamageVsEntity(Entity entity)
     {
-        return damageVsEntity;
+        return 2 + toolMaterial.getDamageVsEntity();
     }
 
     @Override

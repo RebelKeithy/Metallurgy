@@ -3,9 +3,10 @@ package shadow.mods.metallurgy;
 import net.minecraft.src.ItemBlock;
 import net.minecraft.src.ItemStack;
 
-public class MetallurgyBlockItem extends ItemBlock {
-	public MetallurgyBlockItem(int i) {
-		super(i);
+public class MetallurgyItemBlock extends ItemBlock{
+
+	public MetallurgyItemBlock(int par1) {
+		super(par1);
 		setHasSubtypes(true);
 	}
 
@@ -17,7 +18,6 @@ public class MetallurgyBlockItem extends ItemBlock {
     @Override
 	public String getItemNameIS(ItemStack itemstack) {
 		int meta = itemstack.getItemDamage();
-		//return getItemName() + "." + AlloyNether.name[meta];
-		return "";
+		return getItemName() + "." + meta;
 	}
 }
