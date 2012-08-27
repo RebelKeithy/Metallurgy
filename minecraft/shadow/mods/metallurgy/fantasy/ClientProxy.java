@@ -29,19 +29,19 @@ public class ClientProxy extends CommonProxy{
 		CoreClientProxy.addNamesToSet(mod_MetallurgyFantasy.alloys);
 		CoreClientProxy.addNamesToSet(mod_MetallurgyFantasy.ores);
 		
+		ModLoader.addLocalization("tile.MetalFantasyFurnace.PrometheumFurnace.name", "Prometheum Abstractor");
+		ModLoader.addLocalization("tile.MetalFantasyFurnace.DeepIronFurnace.name", "Deep Iron Abstractor");
+		ModLoader.addLocalization("tile.MetalFantasyFurnace.BlackSteelFurnace.name", "Black Steel Abstractor");
+		ModLoader.addLocalization("tile.MetalFantasyFurnace.OureclaseFurnace.name", "Oureclase Abstractor");
+		ModLoader.addLocalization("tile.MetalFantasyFurnace.AredriteFurnace.name", "Aredrite Abstractor");
+		ModLoader.addLocalization("tile.MetalFantasyFurnace.MithrilFurnace.name", "Mithril Abstractor");
+		ModLoader.addLocalization("tile.MetalFantasyFurnace.HaderothFurnace.name", "Haderoth Abstractor");
+		ModLoader.addLocalization("tile.MetalFantasyFurnace.OrichalcumFurnace.name", "Orichalcum Abstractor");
+		ModLoader.addLocalization("tile.MetalFantasyFurnace.AdamantineFurnace.name", "Adamantine Abstractor");
+		ModLoader.addLocalization("tile.MetalFantasyFurnace.AtlarusFurnace.name", "Atlarus Abstractor");
+		ModLoader.addLocalization("tile.MetalFantasyFurnace.TartariteFurnace.name", "Tartarite Abstractor");
+				
 
-		ModLoader.addLocalization("tile.FantasyBrickMetals.PrometheumBrick.name", "Prometheum Brick");
-		ModLoader.addLocalization("tile.FantasyBrickMetals.DeepIronBrick.name", "Deep Iron Brick");
-		ModLoader.addLocalization("tile.FantasyBrickMetals.InfuscoliumBrick.name", "Infuscoliums Brick");
-		ModLoader.addLocalization("tile.FantasyBrickMetals.OureclaseBrick.name", "Oureclase Brick");
-		ModLoader.addLocalization("tile.FantasyBrickMetals.AredriteBrick.name", "Aredrite Brick");
-		ModLoader.addLocalization("tile.FantasyBrickMetals.AstralSilverBrick.name", "Astral Silver Brick");
-		ModLoader.addLocalization("tile.FantasyBrickMetals.CarmotBrick.name", "Carmot Brick");
-		ModLoader.addLocalization("tile.FantasyBrickMetals.MithrilBrick.name", "Mithril Brick");
-		ModLoader.addLocalization("tile.FantasyBrickMetals.RubraciumBrick.name", "Rubracium Brick");
-		ModLoader.addLocalization("tile.FantasyBrickMetals.OrichalcumBrick.name", "Orichalcum Brick");
-		ModLoader.addLocalization("tile.FantasyBrickMetals.AdamantineBrick.name", "Adamantine Brick");
-		ModLoader.addLocalization("tile.FantasyBrickMetals.AtlarusBrick.name", "Atlarus Brick");
 	}
 	
 	@Override
