@@ -27,6 +27,8 @@ public class CoreWorldGen implements IWorldGenerator
 			generateRedstone(world, rand, chunkX * 16, chunkZ * 16);
 		if(CoreConfig.goldEnabled)
 			generateGold(world, rand, chunkX * 16, chunkZ * 16);
+		if(CoreConfig.ironEnabled)
+			generateIron(world, rand, chunkX * 16, chunkZ * 16);
 	}
 
 	public static void generateDiamond(World world, Random rand, int chunkX, int chunkZ) {
@@ -104,6 +106,31 @@ public class CoreWorldGen implements IWorldGenerator
 			int randPosZ = chunkZ + rand.nextInt(16);
 			(new WorldGenMinable(Block.oreRedstone.blockID, CoreConfig.RedstoneOreCount))
 					.generate(world, rand, randPosX, randPosY, randPosZ);
+		}
+	}
+	
+	public static void generateIron(World world, Random rand, int chunkX, int chunkZ)
+	{		
+		for(int y = 128; y >= 0; y--)
+		{
+		        for(int x = 0; x <= 15; x++)
+		        {
+		                for(int z = 0; z <= 15; z++)
+		                {
+		                        if(world.getBlockId(chunkX + x, y, chunkZ + z) == Block.oreIron.blockID)
+		                        {
+		                                world.setBlockWithNotify(chunkX + x, y, chunkZ + z, 1);
+		                        }
+		                }
+		        }
+		}
+		
+		for(int i = 0; i < CoreConfig.IronVeinCount; i++)
+		{
+			int randPosX = chunkX + rand.nextInt(16);
+			int randPosY = rand.nextInt(CoreConfig.IronOreHeight);
+			int randPosZ = chunkZ + rand.nextInt(16);
+			(new MetallurgyWorldGenMinable(Block.oreIron.blockID, 2, CoreConfig.IronOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 	

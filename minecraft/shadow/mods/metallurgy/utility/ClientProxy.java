@@ -35,7 +35,7 @@ public class ClientProxy extends shadow.mods.metallurgy.utility.CommonProxy{
 	@Override
 	public void registerRenderInformation()
 	{
-		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyUtility.png");
+		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyUtilityOres.png");
 		//MinecraftForgeClient.preloadTexture("");
 	}
 	

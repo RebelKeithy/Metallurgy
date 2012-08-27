@@ -6,8 +6,9 @@ import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
 
+import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.mod_Gold;
-
+import shadow.mods.metallurgy.mod_Iron;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -44,14 +45,14 @@ public class mod_MetallurgyBaseMetals {
 	@Instance
 	public static mod_MetallurgyBaseMetals instance;
 
+	public static MetalSet alloys;
+	public static MetalSet ores;
+	
 	public mod_MetallurgyBaseMetals() 
 	{	
 		instance = this;
 	}
 	
-	public static Block BaseMetalsVein;
-	public static Block BaseMetalsBrick;
-	public static Block BaseAlloysBrick;
 	public static Block metalFurnace;
 	
 	@PreInit
@@ -59,127 +60,39 @@ public class mod_MetallurgyBaseMetals {
 	{
 		BaseConfig.init();
 		
+		alloys = new MetalSet(new AlloyBaseEnum());
+		ores = new MetalSet(new OreBaseEnum());
+		
 		proxy.registerRenderInformation();
 
-		BaseMetalsVein = new BlockMetalsVein(BaseConfig.baseMetalsVeinID, "/shadow/MetallurgyBaseMetals.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("BaseMetalsVein");
-		BaseMetalsBrick = new BlockMetalsBrick(BaseConfig.baseMetalsBrickID, "/shadow/MetallurgyBaseMetals.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("BaseMetalsBrick");
-		BaseAlloysBrick = new BlockMetalsBrick(BaseConfig.baseAlloysBrickID, "/shadow/MetallurgyBaseAlloys.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("BaseAlloysBrick");
 		metalFurnace = new BF_BlockMetalFurnace(BaseConfig.furnaceID, false).setHardness(3.5F).setBlockName("MetalFurnace");
 	}
 
 	@Init
 	public void load(FMLInitializationEvent event) 
 	{
-		
-		GameRegistry.registerBlock(BaseMetalsVein, shadow.mods.metallurgy.base.BlockMetalsVeinItem.class);
-		GameRegistry.registerBlock(BaseMetalsBrick, shadow.mods.metallurgy.base.BlockMetalsBrickItem.class);
-		GameRegistry.registerBlock(BaseAlloysBrick, shadow.mods.metallurgy.base.BlockAlloysBrickItem.class);
 		GameRegistry.registerBlock(metalFurnace, shadow.mods.metallurgy.base.BF_BlockMetalFurnaceItem.class);
 
 		ModLoader.registerTileEntity(BF_TileEntityMetalFurnace.class, "metalFurnace");
 		
-		GameRegistry.registerWorldGenerator(new BaseWorldGen());
-		
-		OreCopper.load();
-		mod_Gold.load();
-		OreIron.load();
-		OreManganese.load();
-		OreTin.load();
-		AlloyAngmallen.load();
-		AlloyBronze.load();
-		AlloyDamascusSteel.load();
-		AlloyHepatizon.load();
-		AlloySteel.load();
+		alloys.load();
+		ores.load();
 		
 		mod_Furnace.load();
 		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		
 		proxy.addNames();
-		
-		setBlockHarvestLevels();
-		registerOres();
-		addDungeonLoot();
-		setToolLevels();
+
+	    if(BaseConfig.alloyEnabled[0])
+	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), new Object[] {ores.Dust[0], ores.Dust[1]});
+	    if(BaseConfig.alloyEnabled[1])
+	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), new Object[] {alloys.Dust[0], mod_Iron.IronDust});
+	    if(BaseConfig.alloyEnabled[2])
+	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[2], 1), new Object[] {alloys.Dust[0], mod_Gold.GoldDust});
+	    if(BaseConfig.alloyEnabled[3])
+	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[3], 1), new Object[] {mod_Gold.GoldDust, mod_Iron.IronDust});
+	    if(BaseConfig.alloyEnabled[4])
+	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[4], 1), new Object[] {mod_Iron.IronDust, ores.Dust[2]});
 	}
-	
-	public void setBlockHarvestLevels()
-	{
-		MinecraftForge.setBlockHarvestLevel(BaseMetalsVein, 0, "pickaxe", 2); // Copper
-		MinecraftForge.setBlockHarvestLevel(BaseMetalsBrick, 0, "pickaxe", 2); // Copper
-		MinecraftForge.setBlockHarvestLevel(BaseMetalsVein, 1, "pickaxe", 2); // Tin
-		MinecraftForge.setBlockHarvestLevel(BaseMetalsBrick, 1, "pickaxe", 2); // Tin
-		MinecraftForge.setBlockHarvestLevel(BaseMetalsVein, 2, "pickaxe", 2); // Iron
-		MinecraftForge.setBlockHarvestLevel(BaseMetalsBrick, 2, "pickaxe", 2); // Iron
-		MinecraftForge.setBlockHarvestLevel(BaseMetalsVein, 3, "pickaxe", 3); // Manganese
-		MinecraftForge.setBlockHarvestLevel(BaseMetalsBrick, 3, "pickaxe", 3); // Manganese
-		MinecraftForge.setBlockHarvestLevel(BaseMetalsVein, 4, "pickaxe", 3); // Gold
-		MinecraftForge.setBlockHarvestLevel(BaseMetalsBrick, 4, "pickaxe", 3); // Gold
-
-		MinecraftForge.setBlockHarvestLevel(BaseAlloysBrick, 0, "pickaxe", 3); // Bronze
-		MinecraftForge.setBlockHarvestLevel(BaseAlloysBrick, 1, "pickaxe", 3); // Hepatizon
-		MinecraftForge.setBlockHarvestLevel(BaseAlloysBrick, 2, "pickaxe", 3); // Damascus
-		MinecraftForge.setBlockHarvestLevel(BaseAlloysBrick, 3, "pickaxe", 3); // Angmallen
-		MinecraftForge.setBlockHarvestLevel(BaseAlloysBrick, 4, "pickaxe", 4); // Steel
-	}
-	
-	public void registerOres()
-	{
-		OreDictionary.registerOre("dustAngmallen", new ItemStack(AlloyAngmallen.AngmallenDust, 1));
-		OreDictionary.registerOre("ingotAngmallen", new ItemStack(AlloyAngmallen.AngmallenBar, 1));
-
-		OreDictionary.registerOre("dustBronze", new ItemStack(AlloyBronze.BronzeDust, 1));
-		OreDictionary.registerOre("ingotBronze", new ItemStack(AlloyBronze.BronzeBar, 1));
-		
-		OreDictionary.registerOre("dustDamascusSteel", new ItemStack(AlloyDamascusSteel.DamascusSteelDust, 1));
-		OreDictionary.registerOre("ingotDamascusSteel", new ItemStack(AlloyDamascusSteel.DamascusSteelBar, 1));
-
-		OreDictionary.registerOre("dustHepatizon", new ItemStack(AlloyHepatizon.HepatizonDust, 1));
-		OreDictionary.registerOre("ingotHepatizon", new ItemStack(AlloyHepatizon.HepatizonBar, 1));
-
-		OreDictionary.registerOre("dustSteel", new ItemStack(AlloySteel.SteelDust, 1));
-		OreDictionary.registerOre("ingotSteel", new ItemStack(AlloySteel.SteelBar, 1));
-		
-		
-		OreDictionary.registerOre("oreCopper", new ItemStack(mod_MetallurgyBaseMetals.BaseMetalsVein, 1, OreCopper.meta));
-		OreDictionary.registerOre("dustCopper", new ItemStack(OreCopper.CopperDust, 1));
-		OreDictionary.registerOre("ingotCopper", new ItemStack(OreCopper.CopperBar, 1));
-
-		OreDictionary.registerOre("oreGold", new ItemStack(mod_MetallurgyBaseMetals.BaseMetalsVein, 1, mod_Gold.meta));
-		OreDictionary.registerOre("dustGold", new ItemStack(mod_Gold.GoldDust, 1));
-
-		OreDictionary.registerOre("oreIron", new ItemStack(mod_MetallurgyBaseMetals.BaseMetalsVein, 1, OreIron.meta));
-		OreDictionary.registerOre("dustIron", new ItemStack(OreIron.IronDust, 1));
-
-		OreDictionary.registerOre("oreManganese", new ItemStack(mod_MetallurgyBaseMetals.BaseMetalsVein, 1, OreManganese.meta));
-		OreDictionary.registerOre("dustManganese", new ItemStack(OreManganese.ManganeseDust, 1));
-		OreDictionary.registerOre("ingotManganese", new ItemStack(OreManganese.ManganeseBar, 1));
-
-		OreDictionary.registerOre("oreTin", new ItemStack(mod_MetallurgyBaseMetals.BaseMetalsVein, 1, OreTin.meta));
-		OreDictionary.registerOre("dustTin", new ItemStack(OreTin.TinDust, 1));
-		OreDictionary.registerOre("ingotTin", new ItemStack(OreTin.TinBar, 1));
-	}
-	
-	public void addDungeonLoot()
-	{
-		DungeonHooks.addDungeonLoot(new ItemStack(AlloyAngmallen.AngmallenBar), 075, 1, 2);
-		DungeonHooks.addDungeonLoot(new ItemStack(AlloyBronze.BronzeBar), 120, 1, 3);
-		DungeonHooks.addDungeonLoot(new ItemStack(AlloyDamascusSteel.DamascusSteelBar), 80, 1, 2);
-		DungeonHooks.addDungeonLoot(new ItemStack(AlloyHepatizon.HepatizonBar), 120, 1, 3);
-		DungeonHooks.addDungeonLoot(new ItemStack(AlloySteel.SteelBar), 50, 1, 2);
-		DungeonHooks.addDungeonLoot(new ItemStack(OreCopper.CopperBar), 150, 1, 6);
-		DungeonHooks.addDungeonLoot(new ItemStack(OreManganese.ManganeseBar), 65, 1, 2);
-		DungeonHooks.addDungeonLoot(new ItemStack(OreTin.TinBar), 130, 1, 4);
-	}
-	
-	public void setToolLevels()
-	{
-		MinecraftForge.setToolClass(AlloyAngmallen.AngmallenPickaxe, "pickaxe", 3);
-		MinecraftForge.setToolClass(AlloyBronze.BronzePickaxe, "pickaxe", 3);
-		MinecraftForge.setToolClass(AlloyDamascusSteel.DamascusSteelPickaxe, "pickaxe", 3);
-		MinecraftForge.setToolClass(AlloyHepatizon.HepatizonPickaxe, "pickaxe", 3);
-		MinecraftForge.setToolClass(AlloySteel.SteelPickaxe, "pickaxe", 4);
-		MinecraftForge.setToolClass(OreCopper.CopperPickaxe, "pickaxe", 2);
-	}
-	
 }

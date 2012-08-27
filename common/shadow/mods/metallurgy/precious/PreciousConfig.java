@@ -18,9 +18,6 @@ public class PreciousConfig  {
 
 	public static boolean[] alloyEnabled = new boolean[2];
 	public static boolean[] metalEnabled = new boolean[3];
-	
-	public static int ItemZincDustID;
-	public static int ItemZincBarID;
 
 	public static int ItemStartID;
 

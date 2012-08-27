@@ -5,8 +5,6 @@ import java.util.Random;
 import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.mod_Gold;
 import shadow.mods.metallurgy.mod_MetallurgyCore;
-import shadow.mods.metallurgy.base.AlloyBronze;
-import shadow.mods.metallurgy.base.OreCopper;
 import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
 
 import cpw.mods.fml.common.Mod;
@@ -84,7 +82,7 @@ public class mod_MetallurgyPrecious
 
 		if(mod_MetallurgyCore.hasBase)
 		{
-			ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), new Object[] {OreCopper.CopperDust, new ItemStack(ores.Dust[0], 1)});
+			ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), new Object[] {mod_MetallurgyBaseMetals.ores.Bar[0], new ItemStack(ores.Dust[0], 1)});
 	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), new Object[] {mod_Gold.GoldDust, new ItemStack(ores.Dust[1], 1)});
 		}
 	}

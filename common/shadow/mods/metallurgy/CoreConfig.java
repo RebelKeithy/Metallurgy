@@ -13,11 +13,14 @@ import net.minecraftforge.common.Configuration;
 
 public class CoreConfig  {
 
+	public static int ItemGoldDustID;
+	public static int ItemIronDustID;
 	public static boolean DiamondEnabled;
 	public static boolean EmeraldEnabled;
 	public static boolean LapisLazuliEnabled;
 	public static boolean RedstoneEnabled;
 	public static boolean goldEnabled;
+	public static boolean ironEnabled;
 	
 	public static int DiamondVeinCount;
 	public static int DiamondOreCount;
@@ -34,6 +37,10 @@ public class CoreConfig  {
 	public static int RedstoneVeinCount;
 	public static int RedstoneOreCount;
 	public static int RedstoneOreHeight;
+
+	public static int IronVeinCount;
+	public static int IronOreCount;
+	public static int IronOreHeight;
 
 	public static int GoldVeinCount;
 	public static int GoldOreCount;
@@ -72,10 +79,15 @@ public class CoreConfig  {
 
     	enableTextureOverrides = config.getOrCreateBooleanProperty("Enable", "Texture Override", true).getBoolean(true);
     	
+    	ItemGoldDustID = config.getOrCreateIntProperty("Gold Dust ID", "Item Ids", 26700).getInt(26700);
+    	ItemIronDustID = config.getOrCreateIntProperty("Gold Dust ID", "Item Ids", 26701).getInt(26701);
+    	
     	DiamondEnabled = config.getOrCreateBooleanProperty("Enable Diamond", "Ores", true).getBoolean(true);
     	EmeraldEnabled = config.getOrCreateBooleanProperty("Enable Emerald", "Ores", true).getBoolean(true);
     	LapisLazuliEnabled = config.getOrCreateBooleanProperty("Enable Lapis Lazuli", "Ores", true).getBoolean(true);
     	RedstoneEnabled = config.getOrCreateBooleanProperty("Enable Redstone", "Ores", true).getBoolean(true);
+    	goldEnabled = config.getOrCreateBooleanProperty("Enable Gold", "Ores", true).getBoolean(true);
+    	ironEnabled = config.getOrCreateBooleanProperty("Enable Iron", "Ores", true).getBoolean(true);
 
     	DiamondVeinCount = config.getOrCreateIntProperty("Diamond Vein Count", "Ore Generation", 4).getInt(4);
     	DiamondOreCount = config.getOrCreateIntProperty("Diamond Ore Count", "Ore Generation", 4).getInt(4);
@@ -97,6 +109,11 @@ public class CoreConfig  {
     	GoldVeinCount = config.getOrCreateIntProperty("Gold Vein Count", "Ore Generation", 4).getInt(4);
     	GoldOreCount = config.getOrCreateIntProperty("Gold Ore Count", "Ore Generation", 4).getInt(4);
     	GoldOreHeight = config.getOrCreateIntProperty("Gold Ore Height", "Ore Generation", 128).getInt(128);
+    	
+    	// Iron Generation
+    	IronVeinCount = config.getOrCreateIntProperty("Iron Vein Count", "Ore Generation", 6).getInt(6);
+    	IronOreCount = config.getOrCreateIntProperty("Iron Ore Count", "Ore Generation", 6).getInt(6);
+    	IronOreHeight = config.getOrCreateIntProperty("Iron Ore Height", "Ore Generation", 128).getInt(128);
 
     	crusherID = config.getOrCreateBlockIdProperty("Crusher", 900).getInt(900);
     	crushersEnabled = config.getOrCreateBooleanProperty("Enable Crushers", "Machines", true).getBoolean(true);

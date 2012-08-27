@@ -5,7 +5,6 @@ import java.util.Random;
 
 import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.mod_MetallurgyCore;
-import shadow.mods.metallurgy.base.BaseWorldGen;
 import shadow.mods.metallurgy.precious.mod_MetallurgyPrecious;
 
 import cpw.mods.fml.common.Mod;

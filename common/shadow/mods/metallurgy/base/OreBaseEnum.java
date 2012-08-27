@@ -1,30 +1,37 @@
-package shadow.mods.metallurgy.precious;
+package shadow.mods.metallurgy.base;
 
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 
-public class AlloyPreciousEnum implements IMetalSetEnum{
+public class OreBaseEnum implements IMetalSetEnum{
 
-	public static String[] name = {"Brass", "Electrum"};
-	private int[] expValues = {4, 11};
-	private int[] harvestLevels = {2, 2};
-	private int[] pickLevels = {1, 2};
-	private int[] dungeonLootChances = {35, 15};
-	private int[] dungeonLootAmounts = {3, 2};
+	public static final int numMetals = 3;
+	public static final String[] names = {"Copper", "Tin", "Manganese"};
+	private final int[] expValues = {1, 1, 3};
+	private final int[] harvestLevels = {2, 2, 3};
+	private final int[] pickLevels = {1, 0, 0};
+	private final int[] dungeonLootChances = {150, 130, 65};
+	private final int[] dungeonLootAmounts = {6, 4, 2};
+
+	public static int[] defaultVeinCount = {12, 10, 4};
+	public static int[] defaultOreCount = {6, 6, 4};
+	public static int[] defaultOreHeight = {128, 128, 128};
+	
+	public static int[] numRails = {4, 0, 0};
 	
 	@Override
 	public int numMetals() {
-		return 2;
+		return numMetals;
 	}
 
 	@Override
 	public int startID() {
-		return PreciousConfig.ItemStartID + 150;
+		return BaseConfig.ItemStartID;
 	}
 
 	@Override
 	public String name(int i) {
-		return name[i];
+		return names[i];
 	}
 
 	@Override
@@ -49,42 +56,42 @@ public class AlloyPreciousEnum implements IMetalSetEnum{
 
 	@Override
 	public String image() {
-		return "/shadow/MetallurgyPreciousAlloys.png";
+		return "/shadow/MetallurgyBaseMetals.png";
 	}
 
 	@Override
 	public boolean isAlloy() {
-		return true;
+		return false;
 	}
 
 	@Override
 	public int veinCount(int i) {
-		return 0;
+		return BaseConfig.VeinCount[i];
 	}
 
 	@Override
 	public int oreCount(int i) {
-		return 0;
+		return BaseConfig.OreCount[i];
 	}
 
 	@Override
 	public int oreHeight(int i) {
-		return 0;
+		return BaseConfig.OreHeight[i];
 	}
 
 	@Override
 	public int oreID() {
-		return 0;
+		return BaseConfig.baseMetalsVeinID;
 	}
 
 	@Override
 	public int brickID() {
-		return PreciousConfig.PreciousAlloysBrickID;
+		return BaseConfig.baseMetalsBrickID;
 	}
 
 	@Override
 	public String getSetName() {
-		return "PreciousAlloy";
+		return "BaseMetal";
 	}
 
 	@Override
@@ -92,15 +99,15 @@ public class AlloyPreciousEnum implements IMetalSetEnum{
 		switch(i)
 		{
 			case(0):
-				return MetallurgyEnumToolMaterial.Brass;
-			case(1):
-				return MetallurgyEnumToolMaterial.Electrum;
+				return MetallurgyEnumToolMaterial.Copper;
 		}
 		return MetallurgyEnumToolMaterial.Brass;
 	}
 
 	@Override
 	public boolean isCatalyst(int i) {
+		if(i == 1 || i == 2)
+			return true;
 		return false;
 	}
 
@@ -116,7 +123,7 @@ public class AlloyPreciousEnum implements IMetalSetEnum{
 
 	@Override
 	public int numRails(int i) {
-		return 0;
+		return numRails[i];
 	}
 
 }

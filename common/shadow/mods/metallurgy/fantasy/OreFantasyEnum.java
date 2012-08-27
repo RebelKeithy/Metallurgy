@@ -132,4 +132,9 @@ public class OreFantasyEnum implements IMetalSetEnum{
 		return 0;
 	}
 
+	@Override
+	public int numRails(int i) {
+		return 0;
+	}
+
 }

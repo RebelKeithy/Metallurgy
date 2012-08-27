@@ -97,6 +97,9 @@ public class MetalSet implements IWorldGenerator {
 			Plate[i] = (new MetallurgyArmor(startID+(i*50)+8, info.image(), EnumArmorMaterial.IRON, 0, 1, 10, 300)).setIconCoord(i,13).setItemName(info.name(i) + "Plate");
 			Legs[i] = (new MetallurgyArmor(startID+(i*50)+9, info.image(), EnumArmorMaterial.IRON, 0, 2, 10, 270)).setIconCoord(i,14).setItemName(info.name(i) + "Legs");
 			Boots[i] = (new MetallurgyArmor(startID+(i*50)+10, info.image(), EnumArmorMaterial.IRON, 0, 3, 10, 200)).setIconCoord(i,15).setItemName(info.name(i) + "Boots");
+		
+			if(info.numRails(i) > 0)
+				RecipeHelper.addRailsRecipe(Bar[i], info.numRails(i));
 		}
 		
 		if(!info.isAlloy())			

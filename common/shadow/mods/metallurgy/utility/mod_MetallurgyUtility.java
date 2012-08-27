@@ -3,8 +3,6 @@ package shadow.mods.metallurgy.utility;
 import java.io.File;
 import java.util.Random;
 
-import shadow.mods.metallurgy.base.BaseWorldGen;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.Mod.Init;

@@ -123,4 +123,9 @@ public class OrePreciousEnum implements IMetalSetEnum{
 		return dungeonLootAmounts[i];
 	}
 
+	@Override
+	public int numRails(int i) {
+		return 0;
+	}
+
 }

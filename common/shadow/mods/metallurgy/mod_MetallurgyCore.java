@@ -3,6 +3,7 @@ import java.io.File;
 import org.lwjgl.opengl.GL11;
 
 import shadow.mods.metallurgy.*;
+import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -23,10 +24,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;
+import net.minecraft.src.ItemStack;
 import net.minecraft.src.ModLoader;
 import net.minecraft.src.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.OreDictionary;
 
 @Mod(modid = "MetallurgyCore", name = "Metallurgy Core", version = "1.3")
 @NetworkMod(channels = { "MetallurgyCore" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
@@ -88,12 +91,15 @@ public class mod_MetallurgyCore
     	} catch(ClassNotFoundException e) {
     		System.out.println("Metallurgy Core: Fantasy not detected, reason: " + e);
     	}
+		
 	}
 	
 	@Init
 	public void load(FMLInitializationEvent event) 
 	{
 		
+		mod_Iron.load();
+		mod_Gold.load();
 		
 		GameRegistry.registerWorldGenerator(new CoreWorldGen());
 		
@@ -110,6 +116,13 @@ public class mod_MetallurgyCore
 		MinecraftForge.setBlockHarvestLevel(Block.oreGold, "pickaxe", 3);
 		MinecraftForge.setBlockHarvestLevel(Block.obsidian, "pickaxe", 4);
 
+
+		//OreDictionary.registerOre("oreGold", new ItemStack(mod_MetallurgyBaseMetals.BaseMetalsVein, 1, mod_Gold.meta));
+		OreDictionary.registerOre("dustGold", new ItemStack(mod_Gold.GoldDust, 1));
+
+		//OreDictionary.registerOre("oreIron", new ItemStack(mod_MetallurgyBaseMetals.BaseMetalsVein, 1, mod_Iron.meta));
+		OreDictionary.registerOre("dustIron", new ItemStack(mod_Iron.IronDust, 1));
+		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 
 		proxy.addNames();

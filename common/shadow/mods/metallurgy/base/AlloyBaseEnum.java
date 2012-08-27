@@ -1,30 +1,35 @@
-package shadow.mods.metallurgy.precious;
+package shadow.mods.metallurgy.base;
 
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 
-public class AlloyPreciousEnum implements IMetalSetEnum{
+public class AlloyBaseEnum implements IMetalSetEnum{
 
-	public static String[] name = {"Brass", "Electrum"};
-	private int[] expValues = {4, 11};
-	private int[] harvestLevels = {2, 2};
-	private int[] pickLevels = {1, 2};
-	private int[] dungeonLootChances = {35, 15};
-	private int[] dungeonLootAmounts = {3, 2};
+	public static int numMetals = 5;
+	public static String[] names = {"Bronze", "Hepatizon", "Damascus Steel", "Angmallen", "Steel"};
+	public static String imageName = "/shadow/MetallurgyBaseAlloys.png";
+	private int[] expValues = {2, 8, 5, 9, 6};
+	private int[] harvestLevels = {2, 2, 2, 2, 3};
+	private int[] pickLevels = {3, 3, 3, 3, 4};
+
+	private int[] dungeonLootChances = {120, 120, 80, 75, 50};
+	private int[] dungeonLootAmounts = {3, 3, 2, 2, 2};
+	
+	private int[] numRails = {20, 20, 20, 20, 20};
 	
 	@Override
 	public int numMetals() {
-		return 2;
+		return numMetals;
 	}
 
 	@Override
 	public int startID() {
-		return PreciousConfig.ItemStartID + 150;
+		return BaseConfig.ItemStartID + 150;
 	}
 
 	@Override
 	public String name(int i) {
-		return name[i];
+		return names[i];
 	}
 
 	@Override
@@ -49,7 +54,7 @@ public class AlloyPreciousEnum implements IMetalSetEnum{
 
 	@Override
 	public String image() {
-		return "/shadow/MetallurgyPreciousAlloys.png";
+		return imageName;
 	}
 
 	@Override
@@ -79,12 +84,12 @@ public class AlloyPreciousEnum implements IMetalSetEnum{
 
 	@Override
 	public int brickID() {
-		return PreciousConfig.PreciousAlloysBrickID;
+		return BaseConfig.baseAlloysBrickID;
 	}
 
 	@Override
 	public String getSetName() {
-		return "PreciousAlloy";
+		return "BaseAlloy";
 	}
 
 	@Override
@@ -92,11 +97,17 @@ public class AlloyPreciousEnum implements IMetalSetEnum{
 		switch(i)
 		{
 			case(0):
-				return MetallurgyEnumToolMaterial.Brass;
+				return MetallurgyEnumToolMaterial.Bronze;
 			case(1):
-				return MetallurgyEnumToolMaterial.Electrum;
+				return MetallurgyEnumToolMaterial.Hepatizon;
+			case(2):
+				return MetallurgyEnumToolMaterial.DamascusSteel;
+			case(3):
+				return MetallurgyEnumToolMaterial.Angmallen;
+			case(4):
+				return MetallurgyEnumToolMaterial.Steel;
 		}
-		return MetallurgyEnumToolMaterial.Brass;
+		return MetallurgyEnumToolMaterial.Bronze;
 	}
 
 	@Override
@@ -116,7 +127,7 @@ public class AlloyPreciousEnum implements IMetalSetEnum{
 
 	@Override
 	public int numRails(int i) {
-		return 0;
+		return numRails[i];
 	}
 
 }

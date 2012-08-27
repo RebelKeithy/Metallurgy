@@ -47,7 +47,7 @@ public class ClientProxy extends CommonProxy{
 	@Override
 	public void registerRenderInformation()
 	{
-		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyFurnaces.png");
+		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyFantasyFurnace.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyFantasyMetals.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyFantasyAlloys.png");
 	}

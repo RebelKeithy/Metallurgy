@@ -23,6 +23,7 @@ public interface IMetalSetEnum {
 	public String getSetName();
 	public MetallurgyEnumToolMaterial toolEnum(int i);
 	public boolean isCatalyst(int i);
+	public int numRails(int i);
 }
 
 

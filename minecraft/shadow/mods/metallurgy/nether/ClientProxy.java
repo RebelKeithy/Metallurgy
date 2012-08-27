@@ -52,7 +52,7 @@ public class ClientProxy extends shadow.mods.metallurgy.nether.CommonProxy{
 	@Override
 	public void registerRenderInformation()
 	{
-		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyFurnaces.png");
+		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyNetherForges.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyNetherMetals.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyNetherAlloys.png");
 	}

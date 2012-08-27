@@ -27,7 +27,7 @@ public class mod_Gold
 	
 	public static final int meta = 4;
 		
-	public static Item GoldDust = (new MetallurgyItem(BaseConfig.ItemGoldDustID, "/shadow/MetallurgyBaseMetals.png")).setIconCoord(4,3).setItemName("GoldDust").setTabToDisplayOn(CreativeTabs.tabMaterials);
+	public static Item GoldDust = (new MetallurgyItem(CoreConfig.ItemGoldDustID, "/shadow/MetallurgyBaseMetals.png")).setIconCoord(4,3).setItemName("GoldDust").setTabToDisplayOn(CreativeTabs.tabMaterials);
 	
 	public static void load()
 	{
@@ -35,13 +35,12 @@ public class mod_Gold
 		ModLoader.addSmelting(GoldDust.shiftedIndex, new ItemStack(Item.ingotGold, 1));
 			
 		//Crusher
-		BC_CrusherRecipes.smelting().addCrushing(mod_MetallurgyBaseMetals.BaseMetalsVein.blockID, meta, new ItemStack(GoldDust, 2));
 		BC_CrusherRecipes.smelting().addCrushing(Block.oreGold.blockID, 0, new ItemStack(GoldDust, 2));
 		BC_CrusherRecipes.smelting().addCrushing(Item.ingotGold.shiftedIndex, new ItemStack(GoldDust, 1));
 
 		if(mod_MetallurgyCore.hasFantasy)
 			FF_EssenceRecipes.essence().addEssenceAmount(Item.ingotGold.shiftedIndex, 6);
 		 
-		RecipeHelper.addBrickRecipes(mod_MetallurgyBaseMetals.BaseMetalsBrick.blockID, meta, Item.ingotGold);
+		//RecipeHelper.addBrickRecipes(mod_MetallurgyBaseMetals.BaseMetalsBrick.blockID, meta, Item.ingotGold);
 	}
 }
