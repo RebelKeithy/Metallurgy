@@ -120,10 +120,7 @@ public class ClientProxy extends CommonProxy{
 		ModLoader.addName(OreCopper.CopperLegs, "Copper Legs");
 		ModLoader.addName(OreCopper.CopperBoots, "Copper Boots");
 
-		ModLoader.addName(OreGold.GoldDust, "Gold Dust");
-		ModLoader.addName(OreGold.GoldCoin, "Gold Coin");
-		ModLoader.addName(OreGold.GoldCoin9, "Stack of Gold Coins");
-		ModLoader.addName(OreGold.GoldCoin81, "Bag of Gold Coins");
+		ModLoader.addName(mod_Gold.GoldDust, "Gold Dust");
 		
 		ModLoader.addName(OreIron.IronDust, "Iron Dust");
 

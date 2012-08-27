@@ -17,6 +17,7 @@ public class CoreConfig  {
 	public static boolean EmeraldEnabled;
 	public static boolean LapisLazuliEnabled;
 	public static boolean RedstoneEnabled;
+	public static boolean goldEnabled;
 	
 	public static int DiamondVeinCount;
 	public static int DiamondOreCount;
@@ -34,6 +35,10 @@ public class CoreConfig  {
 	public static int RedstoneOreCount;
 	public static int RedstoneOreHeight;
 
+	public static int GoldVeinCount;
+	public static int GoldOreCount;
+	public static int GoldOreHeight;
+	
 	public static boolean crushersEnabled;
 	public static int crusherID;
 	public static double stoneCrusherSpeed;
@@ -87,6 +92,11 @@ public class CoreConfig  {
     	RedstoneVeinCount = config.getOrCreateIntProperty("Redstone Vein Count", "Ore Generation", 4).getInt(4);
     	RedstoneOreCount = config.getOrCreateIntProperty("Redstone Ore Count", "Ore Generation", 4).getInt(4);
     	RedstoneOreHeight = config.getOrCreateIntProperty("Redstone Ore Height", "Ore Generation", 128).getInt(128);
+    	
+    	// Gold Generation
+    	GoldVeinCount = config.getOrCreateIntProperty("Gold Vein Count", "Ore Generation", 4).getInt(4);
+    	GoldOreCount = config.getOrCreateIntProperty("Gold Ore Count", "Ore Generation", 4).getInt(4);
+    	GoldOreHeight = config.getOrCreateIntProperty("Gold Ore Height", "Ore Generation", 128).getInt(128);
 
     	crusherID = config.getOrCreateBlockIdProperty("Crusher", 900).getInt(900);
     	crushersEnabled = config.getOrCreateBooleanProperty("Enable Crushers", "Machines", true).getBoolean(true);

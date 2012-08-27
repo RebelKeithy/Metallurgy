@@ -6,6 +6,9 @@ import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
 
+import shadow.mods.metallurgy.mod_Gold;
+
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
@@ -51,8 +54,6 @@ public class mod_MetallurgyBaseMetals {
 	public static Block BaseAlloysBrick;
 	public static Block metalFurnace;
 	
-	public static Block camoBlock;
-	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
@@ -64,14 +65,11 @@ public class mod_MetallurgyBaseMetals {
 		BaseMetalsBrick = new BlockMetalsBrick(BaseConfig.baseMetalsBrickID, "/shadow/MetallurgyBaseMetals.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("BaseMetalsBrick");
 		BaseAlloysBrick = new BlockMetalsBrick(BaseConfig.baseAlloysBrickID, "/shadow/MetallurgyBaseAlloys.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("BaseAlloysBrick");
 		metalFurnace = new BF_BlockMetalFurnace(BaseConfig.furnaceID, false).setHardness(3.5F).setBlockName("MetalFurnace");
-		
-		camoBlock = new CamoBlock(1000, Material.iron).setBlockName("CamoBlock");
 	}
 
 	@Init
 	public void load(FMLInitializationEvent event) 
 	{
-		GameRegistry.registerBlock(camoBlock);
 		
 		GameRegistry.registerBlock(BaseMetalsVein, shadow.mods.metallurgy.base.BlockMetalsVeinItem.class);
 		GameRegistry.registerBlock(BaseMetalsBrick, shadow.mods.metallurgy.base.BlockMetalsBrickItem.class);
@@ -83,7 +81,7 @@ public class mod_MetallurgyBaseMetals {
 		GameRegistry.registerWorldGenerator(new BaseWorldGen());
 		
 		OreCopper.load();
-		OreGold.load();
+		mod_Gold.load();
 		OreIron.load();
 		OreManganese.load();
 		OreTin.load();
@@ -147,8 +145,8 @@ public class mod_MetallurgyBaseMetals {
 		OreDictionary.registerOre("dustCopper", new ItemStack(OreCopper.CopperDust, 1));
 		OreDictionary.registerOre("ingotCopper", new ItemStack(OreCopper.CopperBar, 1));
 
-		OreDictionary.registerOre("oreGold", new ItemStack(mod_MetallurgyBaseMetals.BaseMetalsVein, 1, OreGold.meta));
-		OreDictionary.registerOre("dustGold", new ItemStack(OreGold.GoldDust, 1));
+		OreDictionary.registerOre("oreGold", new ItemStack(mod_MetallurgyBaseMetals.BaseMetalsVein, 1, mod_Gold.meta));
+		OreDictionary.registerOre("dustGold", new ItemStack(mod_Gold.GoldDust, 1));
 
 		OreDictionary.registerOre("oreIron", new ItemStack(mod_MetallurgyBaseMetals.BaseMetalsVein, 1, OreIron.meta));
 		OreDictionary.registerOre("dustIron", new ItemStack(OreIron.IronDust, 1));

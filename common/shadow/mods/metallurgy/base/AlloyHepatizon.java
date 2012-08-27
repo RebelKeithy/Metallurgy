@@ -70,6 +70,6 @@ public class AlloyHepatizon
 			RecipeHelper.addRailsRecipe(HepatizonBar, 20);
 	    
 	    if(BaseConfig.hepatizonEnabled)
-	    	ModLoader.addShapelessRecipe(new ItemStack(HepatizonDust, 1), new Object[] {AlloyBronze.BronzeDust, OreGold.GoldDust});
+	    	ModLoader.addShapelessRecipe(new ItemStack(HepatizonDust, 1), new Object[] {AlloyBronze.BronzeDust, mod_Gold.GoldDust});
 	}
 }

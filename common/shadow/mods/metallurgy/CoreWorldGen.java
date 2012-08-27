@@ -3,6 +3,7 @@ package shadow.mods.metallurgy;
 import java.util.Random;
 
 import shadow.mods.metallurgy.MetallurgyWorldGenMinable;
+import shadow.mods.metallurgy.base.BaseConfig;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.IChunkProvider;
@@ -24,6 +25,8 @@ public class CoreWorldGen implements IWorldGenerator
 			generateLapisLazuli(world, rand, chunkX * 16, chunkZ * 16);
 		if(CoreConfig.RedstoneEnabled)
 			generateRedstone(world, rand, chunkX * 16, chunkZ * 16);
+		if(CoreConfig.goldEnabled)
+			generateGold(world, rand, chunkX * 16, chunkZ * 16);
 	}
 
 	public static void generateDiamond(World world, Random rand, int chunkX, int chunkZ) {
@@ -101,6 +104,31 @@ public class CoreWorldGen implements IWorldGenerator
 			int randPosZ = chunkZ + rand.nextInt(16);
 			(new WorldGenMinable(Block.oreRedstone.blockID, CoreConfig.RedstoneOreCount))
 					.generate(world, rand, randPosX, randPosY, randPosZ);
+		}
+	}
+	
+	public static void generateGold(World world, Random rand, int chunkX, int chunkZ)
+	{		
+		for(int y = 128; y >= 0; y--)
+		{
+		        for(int x = 0; x <= 15; x++)
+		        {
+		                for(int z = 0; z <= 15; z++)
+		                {
+		                        if(world.getBlockId(chunkX + x, y, chunkZ + z) == Block.oreGold.blockID)
+		                        {
+		                                world.setBlockWithNotify(chunkX + x, y, chunkZ + z, 1);
+		                        }
+		                }
+		        }
+		}
+		
+		for(int i = 0; i < CoreConfig.GoldVeinCount; i++)
+		{
+			int randPosX = chunkX + rand.nextInt(16);
+			int randPosY = rand.nextInt(CoreConfig.GoldOreHeight);
+			int randPosZ = chunkZ + rand.nextInt(16);
+			(new MetallurgyWorldGenMinable(Block.oreGold.blockID, 4, CoreConfig.GoldOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 

@@ -147,10 +147,6 @@ public class BaseConfig  {
 	public static int TinOreCount;
 	public static int TinOreHeight;
 
-	public static int GoldVeinCount;
-	public static int GoldOreCount;
-	public static int GoldOreHeight;
-
 	public static int IronVeinCount;
 	public static int IronOreCount;
 	public static int IronOreHeight;
@@ -332,11 +328,6 @@ public class BaseConfig  {
     	TinVeinCount = config.getOrCreateIntProperty("Tin Vein Count", "Ore Generation", 10).getInt(10);
     	TinOreCount = config.getOrCreateIntProperty("Tin Ore Count", "Ore Generation", 6).getInt(6);
     	TinOreHeight = config.getOrCreateIntProperty("Tin Ore Height", "Ore Generation", 60).getInt(128);
-    	
-    	// Gold Generation
-    	GoldVeinCount = config.getOrCreateIntProperty("Gold Vein Count", "Ore Generation", 4).getInt(4);
-    	GoldOreCount = config.getOrCreateIntProperty("Gold Ore Count", "Ore Generation", 4).getInt(4);
-    	GoldOreHeight = config.getOrCreateIntProperty("Gold Ore Height", "Ore Generation", 128).getInt(128);
     	
     	// Iron Generation
     	IronVeinCount = config.getOrCreateIntProperty("Iron Vein Count", "Ore Generation", 6).getInt(6);

@@ -22,6 +22,7 @@ import shadow.mods.metallurgy.MetallurgyItemSpade;
 import shadow.mods.metallurgy.MetallurgyItemSword;
 import shadow.mods.metallurgy.MetallurgyProps;
 import shadow.mods.metallurgy.RecipeHelper;
+import shadow.mods.metallurgy.mod_Gold;
 import shadow.mods.metallurgy.mod_MetallurgyCore;
 import shadow.mods.metallurgy.fantasy.FF_EssenceRecipes;
 import net.minecraft.client.Minecraft;
@@ -78,7 +79,7 @@ public class AlloyAngmallen
 	    RecipeHelper.addShearsRecipe(AngmallenBar);
 	    
 	    if(BaseConfig.angmallenEnabled)
-	    	ModLoader.addShapelessRecipe(new ItemStack(AngmallenDust, 1), new Object[] {OreGold.GoldDust, OreIron.IronDust});
+	    	ModLoader.addShapelessRecipe(new ItemStack(AngmallenDust, 1), new Object[] {mod_Gold.GoldDust, OreIron.IronDust});
 	    
 	    //Rails!
 	    if(BaseConfig.railsEnabled)
