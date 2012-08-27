@@ -53,10 +53,10 @@ public class PreciousConfig  {
         /* Load the configuration file */
         config.load();
 
-    	for(int i = 0; i < AlloyPrecious.numAlloys; i++)
-    		alloyEnabled[i] = config.getOrCreateBooleanProperty(AlloyPrecious.name[i] + " Enabled", "Ores", true).getBoolean(true);
-    	for(int i = 0; i < OrePrecious.numMetals; i++)
-    		metalEnabled[i] = config.getOrCreateBooleanProperty(OrePrecious.name[i] + " Enabled", "Ores", true).getBoolean(true);
+    	for(int i = 0; i < 2; i++)
+    		alloyEnabled[i] = config.getOrCreateBooleanProperty(AlloyPreciousEnum.name[i] + " Enabled", "Ores", true).getBoolean(true);
+    	for(int i = 0; i < 3; i++)
+    		metalEnabled[i] = config.getOrCreateBooleanProperty(OrePreciousEnum.name[i] + " Enabled", "Ores", true).getBoolean(true);
         
         PreciousMetalsVeinID = config.getOrCreateBlockIdProperty("Precious Metal Ore", 910).getInt(910);
         PreciousMetalsBrickID = config.getOrCreateBlockIdProperty("Precious Metal Brick", 911).getInt(911);
@@ -66,9 +66,9 @@ public class PreciousConfig  {
     	
     	for(int i = 0; i < 3; i++)
     	{
-	    	VeinCount[i] = config.getOrCreateIntProperty(OrePrecious.name[i] + " Vein Count", "Ore Generation", OrePrecious.defaultVeinCount[i]).getInt(OrePrecious.defaultVeinCount[i]);
-	    	OreCount[i] = config.getOrCreateIntProperty(OrePrecious.name[i] + " Ore Count", "Ore Generation", OrePrecious.defaultOreCount[i]).getInt(OrePrecious.defaultOreCount[i]);
-	    	OreHeight[i] = config.getOrCreateIntProperty(OrePrecious.name[i] + " Height", "Ore Generation", OrePrecious.defaultOreHeight[i]).getInt(OrePrecious.defaultOreHeight[i]);
+	    	VeinCount[i] = config.getOrCreateIntProperty(OrePreciousEnum.name[i] + " Vein Count", "Ore Generation", OrePreciousEnum.defaultVeinCount[i]).getInt(OrePreciousEnum.defaultVeinCount[i]);
+	    	OreCount[i] = config.getOrCreateIntProperty(OrePreciousEnum.name[i] + " Ore Count", "Ore Generation", OrePreciousEnum.defaultOreCount[i]).getInt(OrePreciousEnum.defaultOreCount[i]);
+	    	OreHeight[i] = config.getOrCreateIntProperty(OrePreciousEnum.name[i] + " Height", "Ore Generation", OrePreciousEnum.defaultOreHeight[i]).getInt(OrePreciousEnum.defaultOreHeight[i]);
     	}
         
     	config.save();

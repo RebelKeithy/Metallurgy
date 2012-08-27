@@ -2,8 +2,11 @@ package shadow.mods.metallurgy.precious;
 import java.io.File;
 import java.util.Random;
 
+import shadow.mods.metallurgy.MetalSet;
+import shadow.mods.metallurgy.mod_MetallurgyCore;
 import shadow.mods.metallurgy.base.AlloyBronze;
 import shadow.mods.metallurgy.base.OreCopper;
+import shadow.mods.metallurgy.base.OreGold;
 import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
 
 import cpw.mods.fml.common.Mod;
@@ -38,10 +41,12 @@ public class mod_MetallurgyPrecious
 	
 	@Instance
 	public static mod_MetallurgyPrecious instance;
-
+	
+	public static MetalSet alloys;
+	public static MetalSet ores;
+	
 	public static Block PreciousMetalsVein;
 	public static Block PreciousMetalsBrick;
-	public static Block PreciousAlloysBrick;
 	
 	public static Block PreciousChest;
 	
@@ -54,94 +59,52 @@ public class mod_MetallurgyPrecious
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		PreciousConfig.init();
+		alloys = new MetalSet(new AlloyPreciousEnum());
+		ores = new MetalSet(new OrePreciousEnum());
 		
-		PreciousMetalsVein = new BlockPreciousMetalsVein(PreciousConfig.PreciousMetalsVeinID, "/shadow/MetallurgyPreciousMetals.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("PreciousMetalsVein");
-		PreciousMetalsBrick = new BlockPreciousMetalsBrick(PreciousConfig.PreciousMetalsBrickID, "/shadow/MetallurgyPreciousMetals.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("PreciousMetalsBrick");
-		PreciousAlloysBrick = new BlockPreciousAlloysBrick(PreciousConfig.PreciousAlloysBrickID, "/shadow/MetallurgyPreciousAlloys.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("PreciousAlloysBrick");
 		PreciousChest = new FC_BlockChest(913).setHardness(0.5F).setResistance(.1F).setBlockName("PreciousChest");
-		
-		AlloyPrecious.init();
-		OrePrecious.init();
 	}
 
 	@Init
 	public void init(FMLInitializationEvent event) 
 	{
-		GameRegistry.registerBlock(PreciousMetalsVein, BlockPreciousMetalsVeinItem.class);
-		GameRegistry.registerBlock(PreciousMetalsBrick, BlockPreciousMetalsBrickItem.class);
-		GameRegistry.registerBlock(PreciousAlloysBrick, BlockPreciousAlloysBrickItem.class);
-
 		GameRegistry.registerBlock(PreciousChest, FC_ChestItemBlock.class);
 		GameRegistry.registerTileEntity(FC_TileEntityChest.class, "PreciousChest");
+		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
+		
+		//AlloyPrecious.load();
+		alloys.load();
+		ores.load();
+		
+		addChestRecipes();
+		
+		proxy.addNames();
 		proxy.registerTileEntitySpecialRenderer();
 		proxy.registerRenderInformation();
-		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 
-		GameRegistry.registerWorldGenerator(new PreciousWorldGen());
-		
-		AlloyPrecious.load();
-		OrePrecious.load();
-		
-		registerOres();
-		addDungeonLoot();
-		setBlockHarvestLevels();
-		addChestRecipes();
-		proxy.addNames();
-		
-	}
-	
-	public void registerOres()
-	{
-		for(int i = 0; i < AlloyPrecious.numAlloys; i++)
+		if(mod_MetallurgyCore.hasBase)
 		{
-			OreDictionary.registerOre("dust" + AlloyPrecious.name[i], new ItemStack(AlloyPrecious.Dust, 1, i));
-			OreDictionary.registerOre("ingo" + AlloyPrecious.name[i], new ItemStack(AlloyPrecious.Bar, 1, i));
+			ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), new Object[] {OreCopper.CopperDust, new ItemStack(ores.Dust[0], 1)});
+	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), new Object[] {OreGold.GoldDust, new ItemStack(ores.Dust[1], 1)});
 		}
-		for(int i = 0; i < OrePrecious.numMetals; i++)
-		{
-			OreDictionary.registerOre("dust" + OrePrecious.name[i], new ItemStack(OrePrecious.Dust, 1, i));
-			OreDictionary.registerOre("ingo" + OrePrecious.name[i], new ItemStack(OrePrecious.Bar, 1, i));
-		}
-	}
-	
-	public void addDungeonLoot()
-	{
-		DungeonHooks.addDungeonLoot(new ItemStack(OrePrecious.Bar, 1, 0), 50, 1, 4);
-		DungeonHooks.addDungeonLoot(new ItemStack(OrePrecious.Bar, 1, 1), 25, 1, 3);
-		DungeonHooks.addDungeonLoot(new ItemStack(OrePrecious.Bar, 1, 2), 5, 1, 1);
-		DungeonHooks.addDungeonLoot(new ItemStack(AlloyPrecious.Bar, 1, 0), 35, 1, 3);
-		DungeonHooks.addDungeonLoot(new ItemStack(AlloyPrecious.Bar, 1, 1), 15, 1, 2);
-	}
-	
-	public void setBlockHarvestLevels()
-	{
-		MinecraftForge.setBlockHarvestLevel(PreciousMetalsVein, 0, "pickaxe", 1);
-		MinecraftForge.setBlockHarvestLevel(PreciousMetalsBrick, 0, "pickaxe", 1);
-		MinecraftForge.setBlockHarvestLevel(PreciousMetalsVein, 1, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(PreciousMetalsBrick, 1, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(PreciousMetalsVein, 2, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(PreciousMetalsBrick, 2, "pickaxe", 3);
-		
-		MinecraftForge.setBlockHarvestLevel(PreciousAlloysBrick, 0, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(PreciousAlloysBrick, 1, "pickaxe", 2);
 	}
 	
 	public void addChestRecipes()
 	{
 		ModLoader.addRecipe(new ItemStack(PreciousChest, 1, 0), new Object[] {
-			"XXX", "XFX", "XXX", Character.valueOf('X'), new ItemStack(AlloyPrecious.Bar, 1, 0), Character.valueOf('F'), Block.chest
+			"XXX", "XFX", "XXX", Character.valueOf('X'), new ItemStack(alloys.Bar[0], 1), Character.valueOf('F'), Block.chest
 		});
 		ModLoader.addRecipe(new ItemStack(PreciousChest, 1, 1), new Object[] {
-			"XXX", "XFX", "XXX", Character.valueOf('X'), new ItemStack(OrePrecious.Bar, 1, 1), Character.valueOf('F'), new ItemStack(PreciousChest, 1, 0)
+			"XXX", "XFX", "XXX", Character.valueOf('X'), new ItemStack(ores.Bar[1], 1), Character.valueOf('F'), new ItemStack(PreciousChest, 1, 0)
 		});
 		ModLoader.addRecipe(new ItemStack(PreciousChest, 1, 2), new Object[] {
 			"XXX", "XFX", "XXX", Character.valueOf('X'), Item.ingotGold, Character.valueOf('F'), new ItemStack(PreciousChest, 1, 1)
 		});
 		ModLoader.addRecipe(new ItemStack(PreciousChest, 1, 3), new Object[] {
-			"XXX", "XFX", "XXX", Character.valueOf('X'), new ItemStack(AlloyPrecious.Bar, 1, 1), Character.valueOf('F'), new ItemStack(PreciousChest, 1, 2)
+			"XXX", "XFX", "XXX", Character.valueOf('X'), new ItemStack(alloys.Bar[1], 1), Character.valueOf('F'), new ItemStack(PreciousChest, 1, 2)
 		});
 		ModLoader.addRecipe(new ItemStack(PreciousChest, 1, 4), new Object[] {
-			"XXX", "XFX", "XXX", Character.valueOf('X'), new ItemStack(OrePrecious.Bar, 1, 2), Character.valueOf('F'), new ItemStack(PreciousChest, 1, 3)
+			"XXX", "XFX", "XXX", Character.valueOf('X'), new ItemStack(ores.Bar[2], 1), Character.valueOf('F'), new ItemStack(PreciousChest, 1, 3)
 		});
 	}
 }
