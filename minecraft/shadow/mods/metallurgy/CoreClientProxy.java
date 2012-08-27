@@ -17,6 +17,19 @@ import shadow.mods.metallurgy.*;
 
 public class CoreClientProxy extends CoreCommonProxy{
 
+	public static void addArmorToSet(MetalSet set)
+	{
+		for(int i = 0; i < set.info.numMetals(); i++)
+		{
+			if(set.info.isCatalyst(i))
+				continue;
+			((MetallurgyArmor) (set.Helmet[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(set.info.name(i)));
+			((MetallurgyArmor) (set.Plate[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(set.info.name(i)));
+			((MetallurgyArmor) (set.Legs[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(set.info.name(i)));
+			((MetallurgyArmor) (set.Boots[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(set.info.name(i)));
+		}
+	}
+	
 	public void addNames()
 	{
 		LanguageRegistry.instance().addStringLocalization("container.crusher", "Crusher");

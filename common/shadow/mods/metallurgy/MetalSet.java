@@ -2,6 +2,7 @@ package shadow.mods.metallurgy;
 
 import java.util.Random;
 
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.registry.GameRegistry;
 

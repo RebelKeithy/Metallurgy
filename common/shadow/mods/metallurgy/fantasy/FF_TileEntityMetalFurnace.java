@@ -375,9 +375,9 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
             int var1 = par0ItemStack.getItem().shiftedIndex;
             Item var2 = par0ItemStack.getItem();
 
-            if (var1 == OrePrometheum.prometheumDust.shiftedIndex) return 1760;
-            if (var1 == OreAstralSilver.astralSilverDust.shiftedIndex) return 7040;
-            if (var1 == OreCarmot.carmotDust.shiftedIndex) return 14080;
+            if (var1 == mod_MetallurgyFantasy.ores.Dust[0].shiftedIndex) return 1760;
+            if (var1 == mod_MetallurgyFantasy.ores.Dust[5].shiftedIndex) return 7040;
+            if (var1 == mod_MetallurgyFantasy.ores.Bar[6].shiftedIndex) return 14080;
             return 0;
         }
     }

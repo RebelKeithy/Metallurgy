@@ -30,6 +30,8 @@ public class MetallurgyWorldGenNetherMinable extends WorldGenerator
 
     public boolean generate(World world, Random random, int i, int j, int k)
     {
+    	System.out.println(world.getWorldInfo().getDimension());
+    		
         float f = random.nextFloat() * 3.141593F;
         double d = (float)(i + 8) + (MathHelper.sin(f) * (float)numberOfBlocks) / 8F;
         double d1 = (float)(i + 8) - (MathHelper.sin(f) * (float)numberOfBlocks) / 8F;

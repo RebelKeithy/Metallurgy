@@ -19,72 +19,39 @@ public class mod_FantasyFurnace {
 		GameRegistry.registerTileEntity(FF_TileEntityMetalFurnace.class, "metalFantasyFurnace");
 		
 		
-		if(FantasyConfig.prometheumEnabled)
-		{
-			ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 0), new Object[] {
-				"XXX", "XFX", "XXX", Character.valueOf('X'), OrePrometheum.prometheumBar, Character.valueOf('F'), Block.stoneOvenIdle
-			});
-		}
-		if(FantasyConfig.deepIronEnabled)
-		{
-			ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 1), new Object[] {
-				"XXX", "XFX", "XXX", Character.valueOf('X'), OreDeepIron.deepIronBar, Character.valueOf('F'), new ItemStack(metalFurnace, 1, 0)
-			});
-		}
-		if(FantasyConfig.blackSteelEnabled)
-		{
-			ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 2), new Object[] {
-				"XXX", "XFX", "XXX", Character.valueOf('X'), AlloyBlackSteel.blackSteelBar, Character.valueOf('F'), new ItemStack(metalFurnace, 1, 1)
-			});
-		}
-		if(FantasyConfig.oureclaseEnabled)
-		{
-			ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 3), new Object[] {
-				"XXX", "XFX", "XXX", Character.valueOf('X'), OreOureclase.oureclaseBar, Character.valueOf('F'), new ItemStack(metalFurnace, 1, 2)
-			});
-		}
-		if(FantasyConfig.aredriteEnabled)
-		{
-			ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 4), new Object[] {
-				"XXX", "XFX", "XXX", Character.valueOf('X'), OreAredrite.aredriteBar, Character.valueOf('F'), new ItemStack(metalFurnace, 1, 3)
-			});
-		}
-		if(FantasyConfig.mithrilEnabled)
-		{
-			ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 5), new Object[] {
-				"XXX", "XFX", "XXX", Character.valueOf('X'), OreMithril.mithrilBar, Character.valueOf('F'), new ItemStack(metalFurnace, 1, 4)
-			});
-		}
-		if(FantasyConfig.haderothEnabled)
-		{
-			ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 6), new Object[] {
-				"XXX", "XFX", "XXX", Character.valueOf('X'), AlloyHaderoth.haderothBar, Character.valueOf('F'), new ItemStack(metalFurnace, 1, 5)
-			});
-		}
-		if(FantasyConfig.orichalcumEnabled)
-		{
-			ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 7), new Object[] {
-				"XXX", "XFX", "XXX", Character.valueOf('X'), OreOrichalcum.orichalcumBar, Character.valueOf('F'), new ItemStack(metalFurnace, 1, 6)
-			});
-		}
-		if(FantasyConfig.adamantineEnabled)
-		{
-			ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 8), new Object[] {
-				"XXX", "XFX", "XXX", Character.valueOf('X'), OreAdamantine.adamantineBar, Character.valueOf('F'), new ItemStack(metalFurnace, 1, 7)
-			});
-		}
-		if(FantasyConfig.atlarusEnabled)
-		{
-			ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 9), new Object[] {
-				"XXX", "XFX", "XXX", Character.valueOf('X'), OreAtlarus.atlarusBar, Character.valueOf('F'), new ItemStack(metalFurnace, 1, 8)
-			});
-		}
-		if(FantasyConfig.tartariteEnabled)
-		{
-			ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 10), new Object[] {
-				"XXX", "XFX", "XXX", Character.valueOf('X'), AlloyTartarite.tartariteBar, Character.valueOf('F'), new ItemStack(metalFurnace, 1, 9)
-			});
-		}
+		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 0), new Object[] {
+			"XXX", "XFX", "XXX", Character.valueOf('X'), mod_MetallurgyFantasy.ores.Bar[0], Character.valueOf('F'), Block.stoneOvenIdle
+		});
+		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 1), new Object[] {
+			"XXX", "XFX", "XXX", Character.valueOf('X'), mod_MetallurgyFantasy.ores.Bar[1], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 0)
+		});
+		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 2), new Object[] {
+			"XXX", "XFX", "XXX", Character.valueOf('X'), mod_MetallurgyFantasy.alloys.Bar[0], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 1)
+		});
+		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 3), new Object[] {
+			"XXX", "XFX", "XXX", Character.valueOf('X'), mod_MetallurgyFantasy.ores.Bar[3], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 2)
+		});
+		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 4), new Object[] {
+			"XXX", "XFX", "XXX", Character.valueOf('X'), mod_MetallurgyFantasy.ores.Bar[4], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 3)
+		});
+		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 5), new Object[] {
+			"XXX", "XFX", "XXX", Character.valueOf('X'), mod_MetallurgyFantasy.ores.Bar[7], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 4)
+		});
+		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 6), new Object[] {
+			"XXX", "XFX", "XXX", Character.valueOf('X'), mod_MetallurgyFantasy.alloys.Bar[2], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 5)
+		});
+		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 7), new Object[] {
+			"XXX", "XFX", "XXX", Character.valueOf('X'), mod_MetallurgyFantasy.ores.Bar[9], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 6)
+		});
+		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 8), new Object[] {
+			"XXX", "XFX", "XXX", Character.valueOf('X'), mod_MetallurgyFantasy.ores.Bar[10], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 7)
+		});
+		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 9), new Object[] {
+			"XXX", "XFX", "XXX", Character.valueOf('X'), mod_MetallurgyFantasy.ores.Bar[11], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 8)
+		});
+		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 10), new Object[] {
+			"XXX", "XFX", "XXX", Character.valueOf('X'), mod_MetallurgyFantasy.alloys.Bar[4], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 9)
+		});
 		
 	}
 }
