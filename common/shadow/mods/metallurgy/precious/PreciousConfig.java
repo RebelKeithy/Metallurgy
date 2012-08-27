@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 
 import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
-import shadow.mods.metallurgy.nether.AlloyNether;
-import shadow.mods.metallurgy.nether.OreNether;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;

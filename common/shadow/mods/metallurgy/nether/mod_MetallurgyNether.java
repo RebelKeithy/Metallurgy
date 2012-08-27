@@ -2,7 +2,20 @@ package shadow.mods.metallurgy.nether;
 import java.io.File;
 import java.util.Random;
 
+import shadow.mods.metallurgy.MetalSet;
+import shadow.mods.metallurgy.mod_MetallurgyCore;
+import shadow.mods.metallurgy.base.AlloyAngmallen;
+import shadow.mods.metallurgy.base.AlloyBronze;
+import shadow.mods.metallurgy.base.AlloyDamascusSteel;
+import shadow.mods.metallurgy.base.AlloyHepatizon;
+import shadow.mods.metallurgy.base.AlloySteel;
 import shadow.mods.metallurgy.base.BaseWorldGen;
+import shadow.mods.metallurgy.base.OreCopper;
+import shadow.mods.metallurgy.base.OreGold;
+import shadow.mods.metallurgy.base.OreIron;
+import shadow.mods.metallurgy.base.OreManganese;
+import shadow.mods.metallurgy.base.OreTin;
+import shadow.mods.metallurgy.precious.mod_MetallurgyPrecious;
 
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.Mod;
@@ -18,6 +31,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
+import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.ModLoader;
@@ -36,10 +50,8 @@ public class mod_MetallurgyNether
 	@Instance
 	public static mod_MetallurgyNether instance;
 	
-	public static Block NetherMetalsVein;
-	public static Block NetherMetalsBrick;
-	public static Block NetherAlloysBrick;
-	
+	public static MetalSet alloys;
+	public static MetalSet ores;	
 	
 	public mod_MetallurgyNether()
 	{
@@ -52,86 +64,71 @@ public class mod_MetallurgyNether
 	{
 		NetherConfig.init();
 
-		NetherMetalsVein = new BlockNetherMetalsVein(NetherConfig.NetherMetalsVeinID, "/shadow/MetallurgyNetherMetals.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("NetherMetalsVein");
-		NetherMetalsBrick = new BlockNetherMetalsBrick(NetherConfig.NetherMetalsBrickID, "/shadow/MetallurgyNetherMetals.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("NetherMetalsBrick");
-		NetherAlloysBrick = new BlockNetherAlloysBrick(NetherConfig.NetherAlloysBrickID, "/shadow/MetallurgyNetherAlloys.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("NetherAlloysBrick");
+		alloys = new MetalSet(new AlloyNetherEnum());
+		ores = new MetalSet(new OreNetherEnum());
+		
 		mod_NetherForge.init();
-		AlloyNether.init();
-		OreNether.init();
 	}
 
 	@Init
 	public void load(FMLInitializationEvent event) 
 	{
-		GameRegistry.registerBlock(NetherMetalsVein, BlockNetherMetalsVeinItem.class);
-		GameRegistry.registerBlock(NetherMetalsBrick, BlockNetherMetalsBrickItem.class);
-		GameRegistry.registerBlock(NetherAlloysBrick, BlockNetherAlloysBrickItem.class);
 		GameRegistry.registerBlock(mod_NetherForge.metalFurnace, NF_BlockNetherForgeItem.class);
-		
 		GameRegistry.registerTileEntity(NF_TileEntityNetherForge.class, "netherFurnace");
-		
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 0, "pickaxe", 2); //Ignatius
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 0, "pickaxe", 2); //Ignatius
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 1, "pickaxe", 2); //Shadow Iron
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 1, "pickaxe", 2); //Shadow Iron
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 2, "pickaxe", 2); //Midasium
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 2, "pickaxe", 2); //Midasium
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 3, "pickaxe", 2); //Vyroxeres
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 3, "pickaxe", 2); //Vyroxeres
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 4, "pickaxe", 2); //Ceruclase
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 4, "pickaxe", 2); //Ceruclase
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 5, "pickaxe", 3); //Kalendrite
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 5, "pickaxe", 3); //Kalendrite
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 6, "pickaxe", 4); //Vulcanite
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 6, "pickaxe", 4); //Vulcanite
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsVein, 7, "pickaxe", 5); //Sanguinite
-		MinecraftForge.setBlockHarvestLevel(NetherMetalsBrick, 7, "pickaxe", 5); //Sanguinite
-		
-		MinecraftForge.setBlockHarvestLevel(NetherAlloysBrick, 0, "pickaxe", 2); //Shadow Steel
-		MinecraftForge.setBlockHarvestLevel(NetherAlloysBrick, 1, "pickaxe", 3); //Inolashite
-		MinecraftForge.setBlockHarvestLevel(NetherAlloysBrick, 2, "pickaxe", 3); //Amordrine
 	
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
-		GameRegistry.registerWorldGenerator(new NetherWorldGen());
 		proxy.registerRenderInformation();
 		proxy.addNames();
 		proxy.addArmor();
 		
-		OreNether.load();
-		AlloyNether.load();
+		ores.load();
+		alloys.load();
 		
 		mod_NetherForge.load();
 		
 		GameRegistry.registerFuelHandler(new NetherFuelDust());
-	}
-	
-	public void setToolClass()
-	{
-		MinecraftForge.setToolClass(AlloyNether.Pickaxe[2], "pickaxe", 4);
-		MinecraftForge.setToolClass(AlloyNether.Pickaxe[1], "pickaxe", 4);
-		MinecraftForge.setToolClass(AlloyNether.Pickaxe[0], "pickaxe", 2);
-		MinecraftForge.setToolClass(OreNether.Pickaxe[0], "pickaxe", 2);
-		MinecraftForge.setToolClass(OreNether.Pickaxe[1], "pickaxe", 2);
-		MinecraftForge.setToolClass(OreNether.Pickaxe[2], "pickaxe", 3);
-		MinecraftForge.setToolClass(OreNether.Pickaxe[3], "pickaxe", 3);
-		MinecraftForge.setToolClass(OreNether.Pickaxe[4], "pickaxe", 3);
-		MinecraftForge.setToolClass(OreNether.Pickaxe[5], "pickaxe", 4);
-		MinecraftForge.setToolClass(OreNether.Pickaxe[6], "pickaxe", 5);
-		MinecraftForge.setToolClass(OreNether.Pickaxe[7], "pickaxe", 6);
-	}
-	
-	public void registerOres()
-	{
-		for(int i = 0; i < AlloyNether.numAlloys; i++)
-		{
-			OreDictionary.registerOre("dust" + AlloyNether.name[i], new ItemStack(AlloyNether.Dust, 1, i));
-			OreDictionary.registerOre("ingot" + AlloyNether.name[i], new ItemStack(AlloyNether.Bar, 1, i));
-		}
+		
+		addMidasiumRecipes();
 
-		for(int i = 0; i < OreNether.numMetals; i++)
-		{
-			OreDictionary.registerOre("dust" + OreNether.name[i], new ItemStack(OreNether.Dust[i], 1));
-			OreDictionary.registerOre("ingot" + OreNether.name[i], new ItemStack(OreNether.Bar[i], 1));
-		}
+		ModLoader.addRecipe(new ItemStack(Item.blazeRod, 1), new Object[] {
+			"X", "X", Character.valueOf('X'), ores.Bar[6]
+		});
+		
+		ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), new Object[] {ores.Dust[0], ores.Dust[0], ores.Dust[1]});
+	    ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), new Object[] {ores.Dust[3], ores.Dust[4]});
+	    if(mod_MetallurgyCore.hasPrecious)
+	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[2], 1), new Object[] {new ItemStack(mod_MetallurgyPrecious.ores.Dust[2], 1), ores.Dust[5]});
+	}
+	
+	public static void addMidasiumRecipes()
+	{	    
+		if(mod_MetallurgyCore.hasBase)
+	    {
+    		ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {OreCopper.CopperDust, ores.Dust[2]}); //Copper
+    		ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {OreTin.TinDust, ores.Dust[2]}); //Tin
+    		ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {AlloyBronze.BronzeDust, ores.Dust[2]}); //Bronze
+    		ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {AlloyHepatizon.HepatizonDust, ores.Dust[2]}); //Hepatizon
+    		ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {OreGold.GoldDust, ores.Dust[2]}); //Gold
+    		ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {OreIron.IronDust, ores.Dust[2]}); //Iron
+    		ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {AlloyDamascusSteel.DamascusSteelDust, ores.Dust[2]}); //Damascus Steel
+    		ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {AlloyAngmallen.AngmallenDust, ores.Dust[2]}); //Angmallen
+    		ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {OreManganese.ManganeseDust, ores.Dust[2]}); //Manganese
+    		ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {AlloySteel.SteelDust, ores.Dust[2]}); //Steel
+	    	    
+		    //Precious Metals
+		    if(mod_MetallurgyCore.hasPrecious)
+		    {
+				for(int i  = 0; i < 2; i++)
+					ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {new ItemStack(mod_MetallurgyPrecious.alloys.Dust[i], 1, i), ores.Dust[2]});
+				for(int i  = 0; i < 3; i++)
+					ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {new ItemStack(mod_MetallurgyPrecious.ores.Dust[i], 1), ores.Dust[2]});
+		    }
+		    
+		    //Nether Metals
+			for(int i  = 0; i < 3; i++)
+				ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {new ItemStack(alloys.Dust[i], 1), ores.Dust[2]});
+			for(int i  = 0; i < 8; i++)
+				ModLoader.addShapelessRecipe(new ItemStack(OreGold.GoldDust, 1), new Object[] {ores.Dust[i], ores.Dust[2]});
+	    }
 	}
 }

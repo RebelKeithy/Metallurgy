@@ -17,10 +17,6 @@ import shadow.mods.metallurgy.*;
 
 public class CoreClientProxy extends CoreCommonProxy{
 
-	public void addArmor()
-	{
-	}
-	
 	public void addNames()
 	{
 		LanguageRegistry.instance().addStringLocalization("container.crusher", "Crusher");

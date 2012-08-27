@@ -17,28 +17,28 @@ public class mod_NetherForge {
 	{
 		
 		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 0), new Object[] {
-			"XXX", "XFX", "XXX", Character.valueOf('X'), OreNether.Bar[0], Character.valueOf('F'), Block.stoneOvenIdle
+			"XXX", "XFX", "XXX", Character.valueOf('X'), mod_MetallurgyNether.ores.Bar[0], Character.valueOf('F'), Block.stoneOvenIdle
 		});
 		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 1), new Object[] {
-			"XXX", "XFX", "XXX", Character.valueOf('X'), OreNether.Bar[1], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 0)
+			"XXX", "XFX", "XXX", Character.valueOf('X'), mod_MetallurgyNether.ores.Bar[1], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 0)
 		});
 		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 2), new Object[] {
-			"XXX", "XFX", "XXX", Character.valueOf('X'), new ItemStack(AlloyNether.Bar, 1, 0), Character.valueOf('F'), new ItemStack(metalFurnace, 1, 1)
+			"XXX", "XFX", "XXX", Character.valueOf('X'), new ItemStack(mod_MetallurgyNether.alloys.Bar[0], 1), Character.valueOf('F'), new ItemStack(metalFurnace, 1, 1)
 		});
 		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 3), new Object[] {
-			"XXX", "XFX", "XXX", Character.valueOf('X'), OreNether.Bar[3], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 2)
+			"XXX", "XFX", "XXX", Character.valueOf('X'), mod_MetallurgyNether.ores.Bar[3], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 2)
 		});
 		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 4), new Object[] {
-			"XXX", "XFX", "XXX", Character.valueOf('X'), new ItemStack(AlloyNether.Bar, 1, 1), Character.valueOf('F'), new ItemStack(metalFurnace, 1, 3)
+			"XXX", "XFX", "XXX", Character.valueOf('X'), new ItemStack(mod_MetallurgyNether.alloys.Bar[1], 1), Character.valueOf('F'), new ItemStack(metalFurnace, 1, 3)
 		});
 		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 5), new Object[] {
-			"XXX", "XFX", "XXX", Character.valueOf('X'), OreNether.Bar[5], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 4)
+			"XXX", "XFX", "XXX", Character.valueOf('X'), mod_MetallurgyNether.ores.Bar[5], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 4)
 		});
 		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 6), new Object[] {
-			"XXX", "XFX", "XXX", Character.valueOf('X'), OreNether.Bar[6], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 5)
+			"XXX", "XFX", "XXX", Character.valueOf('X'), mod_MetallurgyNether.ores.Bar[6], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 5)
 		});
 		ModLoader.addRecipe(new ItemStack(metalFurnace, 1, 7), new Object[] {
-			"XXX", "XFX", "XXX", Character.valueOf('X'), OreNether.Bar[7], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 6)
+			"XXX", "XFX", "XXX", Character.valueOf('X'), mod_MetallurgyNether.ores.Bar[7], Character.valueOf('F'), new ItemStack(metalFurnace, 1, 6)
 		});
 	}
 }

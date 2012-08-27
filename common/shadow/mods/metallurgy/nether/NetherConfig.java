@@ -62,9 +62,9 @@ public class NetherConfig  {
     	furnaceID = config.getOrCreateBlockIdProperty("Nether Smelter", 918).getInt(918);
 
     	for(int i = 0; i < 3; i++)
-    		alloyEnabled[i] = config.getOrCreateBooleanProperty(AlloyNether.name[i] + " Enabled", "Ores", true).getBoolean(true);
+    		alloyEnabled[i] = config.getOrCreateBooleanProperty(AlloyNetherEnum.names[i] + " Enabled", "Ores", true).getBoolean(true);
     	for(int i = 0; i < 8; i++)
-    		metalEnabled[i] = config.getOrCreateBooleanProperty(OreNether.name[i] + " Enabled", "Ores", true).getBoolean(true);
+    		metalEnabled[i] = config.getOrCreateBooleanProperty(OreNetherEnum.names[i] + " Enabled", "Ores", true).getBoolean(true);
 
 
     	
@@ -90,9 +90,9 @@ public class NetherConfig  {
 
     	for(int i = 0; i < 8; i++)
     	{
-	    	VeinCount[i] = config.getOrCreateIntProperty(OreNether.name[i] + " Vein Count", "Ore Generation", OreNether.defaultVeinCount[i]).getInt(OreNether.defaultVeinCount[i]);
-	    	OreCount[i] = config.getOrCreateIntProperty(OreNether.name[i] + " Ore Count", "Ore Generation", OreNether.defaultOreCount[i]).getInt(OreNether.defaultOreCount[i]);
-	    	OreHeight[i] = config.getOrCreateIntProperty(OreNether.name[i] + " Height", "Ore Generation", OreNether.defaultOreHeight[i]).getInt(OreNether.defaultOreHeight[i]);
+	    	VeinCount[i] = config.getOrCreateIntProperty(OreNetherEnum.names[i] + " Vein Count", "Ore Generation", OreNetherEnum.defaultVeinCount[i]).getInt(OreNetherEnum.defaultVeinCount[i]);
+	    	OreCount[i] = config.getOrCreateIntProperty(OreNetherEnum.names[i] + " Ore Count", "Ore Generation", OreNetherEnum.defaultOreCount[i]).getInt(OreNetherEnum.defaultOreCount[i]);
+	    	OreHeight[i] = config.getOrCreateIntProperty(OreNetherEnum.names[i] + " Height", "Ore Generation", OreNetherEnum.defaultOreHeight[i]).getInt(OreNetherEnum.defaultOreHeight[i]);
     	}
     
     	ObsidianVeinCount = config.getOrCreateIntProperty("Obsidian Vein Count", "Ore Generation", 1).getInt(1);
