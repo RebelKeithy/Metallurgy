@@ -82,7 +82,7 @@ public class mod_MetallurgyPrecious
 
 		if(mod_MetallurgyCore.hasBase)
 		{
-			ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), new Object[] {mod_MetallurgyBaseMetals.ores.Bar[0], new ItemStack(ores.Dust[0], 1)});
+			ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), new Object[] {mod_MetallurgyBaseMetals.ores.Dust[0], new ItemStack(ores.Dust[0], 1)});
 	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), new Object[] {mod_Gold.GoldDust, new ItemStack(ores.Dust[1], 1)});
 		}
 	}
