@@ -27,7 +27,7 @@ public class mod_Gold
 	
 	public static final int meta = 4;
 		
-	public static Item GoldDust = (new MetallurgyItem(CoreConfig.ItemGoldDustID, "/shadow/MetallurgyBaseMetals.png")).setIconCoord(4,3).setItemName("GoldDust").setTabToDisplayOn(CreativeTabs.tabMaterials);
+	public static Item GoldDust = (new MetallurgyItem(CoreConfig.ItemGoldDustID, "/gui/items.png")).setItemName("GoldDust").setTabToDisplayOn(CreativeTabs.tabMaterials);
 	
 	public static void load()
 	{

@@ -94,11 +94,19 @@ public class CoreClientProxy extends CoreCommonProxy{
 		Item.axeSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronAxe.png"));
 		Item.hoeSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronHoe.png"));
 		Item.swordSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronSword.png"));
+		Item.helmetSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronHelmet.png"));
+		Item.plateSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronPlate.png"));
+		Item.legsSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronLegs.png"));
+		Item.bootsSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronBoots.png"));
+
+		mod_Gold.GoldDust.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldDust.png"));
+		mod_Iron.IronDust.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronDust.png"));
 	}
 	
 	@Override
 	public void registerRenderInformation()
 	{
+		MinecraftForgeClient.preloadTexture("/shadow/ItmGoldDust.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyTerrain.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyFurnaces.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyBaseMetals.png");
