@@ -101,7 +101,7 @@ public class OreBaseEnum implements IMetalSetEnum{
 			case(0):
 				return MetallurgyEnumToolMaterial.Copper;
 		}
-		return MetallurgyEnumToolMaterial.Brass;
+		return MetallurgyEnumToolMaterial.Copper;
 	}
 
 	@Override

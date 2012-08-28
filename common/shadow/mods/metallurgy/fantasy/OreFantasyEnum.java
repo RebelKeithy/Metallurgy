@@ -88,7 +88,7 @@ public class OreFantasyEnum implements IMetalSetEnum{
 
 	@Override
 	public String getSetName() {
-		return "NetherMetal";
+		return "FantasyMetal";
 	}
 
 	@Override
@@ -96,23 +96,31 @@ public class OreFantasyEnum implements IMetalSetEnum{
 		switch(i)
 		{
 			case(0):
-				return MetallurgyEnumToolMaterial.Inolashite;
+				return MetallurgyEnumToolMaterial.Prometheum;
 			case(1):
-				return MetallurgyEnumToolMaterial.ShadowIron;
+				return MetallurgyEnumToolMaterial.DeepIron;
 			case(2):
-				return MetallurgyEnumToolMaterial.Midasium;
+				return null;
 			case(3):
-				return MetallurgyEnumToolMaterial.Vyroxeres;
+				return MetallurgyEnumToolMaterial.Oureclase;
 			case(4):
-				return MetallurgyEnumToolMaterial.Ceruclase;
+				return MetallurgyEnumToolMaterial.Aredrite;
 			case(5):
-				return MetallurgyEnumToolMaterial.Kalendrite;
+				return MetallurgyEnumToolMaterial.AstralSilver;
 			case(6):
-				return MetallurgyEnumToolMaterial.Vulcanite;
+				return MetallurgyEnumToolMaterial.Carmot;
 			case(7):
-				return MetallurgyEnumToolMaterial.Sanguinite;
+				return MetallurgyEnumToolMaterial.Mithril;
+			case(8):
+				return null;
+			case(9):
+				return MetallurgyEnumToolMaterial.Orichalcum;
+			case(10):
+				return MetallurgyEnumToolMaterial.Adamantine;
+			case(11):
+				return MetallurgyEnumToolMaterial.Atlarus;
 		}
-		return MetallurgyEnumToolMaterial.Inolashite;
+		return MetallurgyEnumToolMaterial.Prometheum;
 	}
 
 	@Override
