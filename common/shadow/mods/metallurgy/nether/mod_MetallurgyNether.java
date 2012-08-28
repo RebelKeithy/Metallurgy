@@ -6,7 +6,9 @@ import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.mod_Iron;
 import shadow.mods.metallurgy.mod_Gold;
 import shadow.mods.metallurgy.mod_MetallurgyCore;
+import shadow.mods.metallurgy.base.OreBaseEnum;
 import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
+import shadow.mods.metallurgy.base.AlloyBaseEnum;
 import shadow.mods.metallurgy.precious.mod_MetallurgyPrecious;
 
 import cpw.mods.fml.common.IFuelHandler;
@@ -94,33 +96,30 @@ public class mod_MetallurgyNether
 	
 	public static void addMidasiumRecipes()
 	{	    
+		
+		ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {new ItemStack(mod_Iron.IronDust, 1), ores.Dust[2]});
+		ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {new ItemStack(mod_Gold.GoldDust, 1), ores.Dust[2]});
+		
 		if(mod_MetallurgyCore.hasBase)
 	    {
-    		ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {mod_MetallurgyBaseMetals.ores.Bar[0], ores.Dust[2]}); //Copper
-    		ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {mod_MetallurgyBaseMetals.ores.Bar[1], ores.Dust[2]}); //Tin
-    		ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {mod_MetallurgyBaseMetals.alloys.Bar[0], ores.Dust[2]}); //Bronze
-    		ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {mod_MetallurgyBaseMetals.alloys.Bar[1], ores.Dust[2]}); //Hepatizon
-    		ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {mod_Gold.GoldDust, ores.Dust[2]}); //Gold
-    		ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {mod_Iron.IronDust, ores.Dust[2]}); //Iron
-    		ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {mod_MetallurgyBaseMetals.alloys.Bar[2], ores.Dust[2]}); //Damascus Steel
-    		ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {mod_MetallurgyBaseMetals.alloys.Bar[3], ores.Dust[2]}); //Angmallen
-    		ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {mod_MetallurgyBaseMetals.ores.Bar[2], ores.Dust[2]}); //Manganese
-    		ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {mod_MetallurgyBaseMetals.alloys.Bar[4], ores.Dust[2]}); //Steel
-	    	    
-		    //Precious Metals
-		    if(mod_MetallurgyCore.hasPrecious)
-		    {
-				for(int i  = 0; i < 2; i++)
-					ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {new ItemStack(mod_MetallurgyPrecious.alloys.Dust[i], 1, i), ores.Dust[2]});
-				for(int i  = 0; i < 3; i++)
-					ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {new ItemStack(mod_MetallurgyPrecious.ores.Dust[i], 1), ores.Dust[2]});
-		    }
-		    
-		    //Nether Metals
+			for(int i  = 0; i < AlloyBaseEnum.numMetals; i++)
+				ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {new ItemStack(mod_MetallurgyBaseMetals.alloys.Dust[i], 1), ores.Dust[2]});
+			for(int i  = 0; i < OreBaseEnum.numMetals; i++)
+				ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {new ItemStack(mod_MetallurgyBaseMetals.ores.Dust[i], 1), ores.Dust[2]});
+		}
+	    //Precious Metals
+	    if(mod_MetallurgyCore.hasPrecious)
+	    {
+			for(int i  = 0; i < 2; i++)
+				ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {new ItemStack(mod_MetallurgyPrecious.alloys.Dust[i], 1), ores.Dust[2]});
 			for(int i  = 0; i < 3; i++)
-				ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {new ItemStack(alloys.Dust[i], 1), ores.Dust[2]});
-			for(int i  = 0; i < 8; i++)
-				ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {ores.Dust[i], ores.Dust[2]});
+				ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {new ItemStack(mod_MetallurgyPrecious.ores.Dust[i], 1), ores.Dust[2]});
 	    }
+	    
+	    //Nether Metals
+		for(int i  = 0; i < 3; i++)
+			ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {new ItemStack(alloys.Dust[i], 1), ores.Dust[2]});
+		for(int i  = 0; i < 8; i++)
+			ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {ores.Dust[i], ores.Dust[2]});
 	}
 }
