@@ -33,12 +33,12 @@ public class FC_ContainerChest extends Container
         	modifier = -9;
         }
         
-        
+        int i = 0;
         for (currRow = 0; currRow < this.numRows; ++currRow)
         {
-            for (currCol = 0; currCol < numCols; ++currCol)
+            for (currCol = 0; currCol < this.numCols; ++currCol)
             {
-                this.addSlotToContainer(new Slot(chestInv, currCol + currRow * numRows, 8 + currCol * 18 + modifier, 18 + currRow * 18));
+                this.addSlotToContainer(new Slot(chestInv, currCol + currRow * numCols, 8 + currCol * 18 + modifier, 18 + currRow * 18));
             }
         }
 
@@ -74,14 +74,14 @@ public class FC_ContainerChest extends Container
             ItemStack var4 = var3.getStack();
             var2 = var4.copy();
 
-            if (par1 < this.numRows * 9)
+            if (par1 < this.numRows * this.numCols)
             {
-                if (!this.mergeItemStack(var4, this.numRows * 9, this.inventorySlots.size(), true))
+                if (!this.mergeItemStack(var4, this.numRows * this.numCols, this.inventorySlots.size(), true))
                 {
                     return null;
                 }
             }
-            else if (!this.mergeItemStack(var4, 0, this.numRows * 9, false))
+            else if (!this.mergeItemStack(var4, 0, this.numRows * this.numCols, false))
             {
                 return null;
             }

@@ -81,7 +81,6 @@ public class MetalSet implements IWorldGenerator {
 		
 		for(int i = 0; i < numMetals; i++)
 		{
-			System.out.println(startID);
 			Dust[i] = (new MetallurgyItem(startID+(i*50), info.image())).setIconCoord(i,3).setItemName(info.name(i) + "Dust").setTabToDisplayOn(CreativeTabs.tabMaterials);
 			Bar[i] = (new MetallurgyItem(startID+(i*50)+1, info.image())).setIconCoord(i,4).setItemName(info.name(i) + "Bar").setTabToDisplayOn(CreativeTabs.tabMaterials);
 			
@@ -109,9 +108,14 @@ public class MetalSet implements IWorldGenerator {
 		
 		for(int i = 0; i < numMetals; i++)
 		{
-			MinecraftForge.setBlockHarvestLevel(ore, i, "pickaxe", info.oreHarvestLevel(i));
+			if(!info.isAlloy())	
+				MinecraftForge.setBlockHarvestLevel(ore, i, "pickaxe", info.oreHarvestLevel(i));
+			
 			MinecraftForge.setBlockHarvestLevel(brick, i, "pickaxe", info.oreHarvestLevel(i)); 
-			MinecraftForge.setToolClass(Pickaxe[0], "pickaxe", info.pickLevel(i));
+			
+			if(!info.isCatalyst(i))
+				MinecraftForge.setToolClass(Pickaxe[0], "pickaxe", info.pickLevel(i));
+			
 		}
 	}
 	
@@ -185,7 +189,10 @@ public class MetalSet implements IWorldGenerator {
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(info.oreHeight(meta));
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenNetherMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
+			if(info.getDimension() == 0)
+				(new MetallurgyWorldGenMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
+			if(info.getDimension() == -1)
+				(new MetallurgyWorldGenNetherMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 

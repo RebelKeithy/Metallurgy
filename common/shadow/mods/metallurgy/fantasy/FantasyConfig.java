@@ -78,7 +78,6 @@ public class FantasyConfig  {
 
     	for(int i = 0; i < OreFantasyEnum.numMetals; i++)
     	{
-    		System.out.println(OreFantasyEnum.defaultOreHeight[i]);
 	    	VeinCount[i] = config.getOrCreateIntProperty(OreFantasyEnum.names[i] + " Vein Count", "Ore Generation", OreFantasyEnum.defaultVeinCount[i]).getInt(OreFantasyEnum.defaultVeinCount[i]);
 	    	OreCount[i] = config.getOrCreateIntProperty(OreFantasyEnum.names[i] + " Ore Count", "Ore Generation", OreFantasyEnum.defaultOreCount[i]).getInt(OreFantasyEnum.defaultOreCount[i]);
 	    	OreHeight[i] = config.getOrCreateIntProperty(OreFantasyEnum.names[i] + " Height", "Ore Generation", OreFantasyEnum.defaultOreHeight[i]).getInt(OreFantasyEnum.defaultOreHeight[i]);

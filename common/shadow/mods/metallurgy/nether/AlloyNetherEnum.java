@@ -121,4 +121,10 @@ public class AlloyNetherEnum implements IMetalSetEnum{
 		return 0;
 	}
 
+	@Override
+	public int getDimension()
+	{
+		return -1;
+	}
+
 }

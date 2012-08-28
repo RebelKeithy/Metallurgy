@@ -212,7 +212,7 @@ public class NF_BlockNetherForge extends BlockContainer
      */
     public static void updateFurnaceBlockState(boolean par0, World par1World, int par2, int par3, int par4)
     {
-    	System.out.println("changing state");
+    	//System.out.println("changing state");
     	//aSystem.out.println("updating furnace" + par0);
         int metadata = par1World.getBlockMetadata(par2, par3, par4);
         //TileEntity var6 = par1World.getBlockTileEntity(par2, par3, par4);

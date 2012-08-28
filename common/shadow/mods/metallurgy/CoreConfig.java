@@ -79,8 +79,8 @@ public class CoreConfig  {
 
     	enableTextureOverrides = config.getOrCreateBooleanProperty("Enable", "Texture Override", true).getBoolean(true);
     	
-    	ItemGoldDustID = config.getOrCreateIntProperty("Gold Dust ID", "Item Ids", 26700).getInt(26700);
-    	ItemIronDustID = config.getOrCreateIntProperty("Gold Dust ID", "Item Ids", 26701).getInt(26701);
+    	ItemGoldDustID = config.getOrCreateIntProperty("Gold Dust ID", "Item Ids", 26200).getInt(26200);
+    	ItemIronDustID = config.getOrCreateIntProperty("Gold Dust ID", "Item Ids", 26201).getInt(26201);
     	
     	DiamondEnabled = config.getOrCreateBooleanProperty("Enable Diamond", "Ores", true).getBoolean(true);
     	EmeraldEnabled = config.getOrCreateBooleanProperty("Enable Emerald", "Ores", true).getBoolean(true);

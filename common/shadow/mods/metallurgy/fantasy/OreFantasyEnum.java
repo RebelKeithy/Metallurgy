@@ -137,4 +137,10 @@ public class OreFantasyEnum implements IMetalSetEnum{
 		return 0;
 	}
 
+	@Override
+	public int getDimension()
+	{
+		return 0;
+	}
+
 }

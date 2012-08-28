@@ -53,7 +53,6 @@ public class CoreCommonProxy implements IGuiHandler
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		
-		System.out.println("open gui");
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if (te != null && te instanceof BC_TileEntityCrusher) 
 		{

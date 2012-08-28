@@ -126,4 +126,10 @@ public class OreBaseEnum implements IMetalSetEnum{
 		return numRails[i];
 	}
 
+	@Override
+	public int getDimension()
+	{
+		return 0;
+	}
+
 }

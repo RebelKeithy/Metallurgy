@@ -19,7 +19,6 @@ public class MetallurgyItem extends Item
     {
         super(i);
         texturePath = s;
-        setHasSubtypes(true);
         setMaxDamage(0);
     }
     
@@ -30,5 +29,10 @@ public class MetallurgyItem extends Item
         return texturePath;
     }
 
+    public String toString()
+    {
+    	return super.toString() + " " + this.getItemName();
+    }
+    
     public String texturePath;
 }
