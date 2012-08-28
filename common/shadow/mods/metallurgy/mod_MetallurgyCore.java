@@ -108,7 +108,7 @@ public class mod_MetallurgyCore
 		MinecraftForge.setToolClass(Item.pickaxeSteel, "pickaxe", 3);
 		MinecraftForge.setToolClass(Item.pickaxeDiamond, "pickaxe", 4);
 		
-		MinecraftForge.setBlockHarvestLevel(Block.oreIron, "pickaxe", 3);
+		MinecraftForge.setBlockHarvestLevel(Block.oreIron, "pickaxe", 2);
 		MinecraftForge.setBlockHarvestLevel(Block.oreRedstone, "pickaxe", 3);
 		MinecraftForge.setBlockHarvestLevel(Block.oreRedstoneGlowing, "pickaxe", 3);
 		MinecraftForge.setBlockHarvestLevel(Block.oreLapis, "pickaxe", 3);
