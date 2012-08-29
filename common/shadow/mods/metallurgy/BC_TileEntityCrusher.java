@@ -26,7 +26,6 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 
     /** The number of ticks that the current item has been cooking for */
     public int furnaceCookTime = 0;
-    public float fuelMultiplier = 0.5f;
     
     public int furnaceTimeBase = 200;
 
@@ -39,11 +38,6 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
     public void setSpeed(int var1)
     {
     	furnaceTimeBase = var1;
-    }
-    
-    public void setFuelMultiplier(float var1)
-    {
-    	fuelMultiplier = var1;
     }
     
     /**
@@ -175,7 +169,6 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
         this.furnaceCookTime = par1NBTTagCompound.getShort("CookTime");
         this.direction = par1NBTTagCompound.getShort("Direction");
         this.furnaceTimeBase = par1NBTTagCompound.getShort("TimeBase");
-        this.fuelMultiplier = par1NBTTagCompound.getShort("FuelMultiplier");
         this.currentItemBurnTime = getItemBurnTime(this.furnaceItemStacks[1]);
     }
 
@@ -190,7 +183,6 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
         par1NBTTagCompound.setShort("CookTime", (short)this.furnaceCookTime);
         par1NBTTagCompound.setShort("Direction", (short)this.direction);
         par1NBTTagCompound.setShort("TimeBase", (short)this.furnaceTimeBase);
-        par1NBTTagCompound.setShort("FuelMultiplier", (short)this.fuelMultiplier);
         NBTTagList var2 = new NBTTagList();
 
         for (int var3 = 0; var3 < this.furnaceItemStacks.length; ++var3)
@@ -258,8 +250,7 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 
 		if ((++ticksSinceSync % 20) == 0) 
         {
-			worldObj.addBlockEvent(xCoord, yCoord, zCoord, mod_MetallurgyCore.crusher.blockID, 1, direction);
-			worldObj.addBlockEvent(xCoord, yCoord, zCoord, mod_MetallurgyCore.crusher.blockID, 2, furnaceTimeBase);
+            sync();
 		}
 		
         boolean var1 = this.furnaceBurnTime > 0;
@@ -311,9 +302,7 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
             if (var1 != this.furnaceBurnTime > 0)
             {
                 var2 = true;
-                BC_BlockCrusher.updateFurnaceBlockState(this.furnaceBurnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
-    			worldObj.addBlockEvent(xCoord, yCoord, zCoord, mod_MetallurgyCore.crusher.blockID, 1, direction);
-    			worldObj.addBlockEvent(xCoord, yCoord, zCoord, mod_MetallurgyCore.crusher.blockID, 2, furnaceTimeBase);
+                sync();
             }
         }
 
@@ -321,6 +310,12 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
         {
             this.onInventoryChanged();
         }
+    }
+    
+    public void sync()
+    {
+		worldObj.addBlockEvent(xCoord, yCoord, zCoord, mod_MetallurgyCore.crusher.blockID, 1, direction);
+		worldObj.addBlockEvent(xCoord, yCoord, zCoord, mod_MetallurgyCore.crusher.blockID, 2, furnaceTimeBase);
     }
 
     /**

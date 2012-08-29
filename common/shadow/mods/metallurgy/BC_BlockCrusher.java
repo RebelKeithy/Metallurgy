@@ -54,7 +54,7 @@ public class BC_BlockCrusher extends BlockContainer
     @Override
     protected int damageDropped(int metadata)
     {
-    	return (metadata < 8) ? metadata : metadata - 8;
+    	return metadata;
     }
     
     /**
@@ -63,18 +63,17 @@ public class BC_BlockCrusher extends BlockContainer
     @Override
     public int getBlockTextureFromSideAndMetadata(int side, int metadata)
     {
-    	int type = (metadata < 8) ? metadata : metadata - 8;
         if (side == 1 || side == 0)
         {
-            return 6 + (type * 16);
+            return 6 + (metadata * 16);
         } else if(side == 0)
-        	return 7 + (type * 16);
+        	return 7 + (metadata * 16);
         else
         {
             if(side != 3)
-            	return 5 + (type * 16);
+            	return 5 + (metadata * 16);
             else
-            	return 4 + (type * 16);
+            	return 4 + (metadata * 16);
         }
     }
 
@@ -85,27 +84,30 @@ public class BC_BlockCrusher extends BlockContainer
     public int getBlockTexture(IBlockAccess par1IBlockAccess, int x, int y, int z, int side)
     {    	
     	TileEntity tileEntity = par1IBlockAccess.getBlockTileEntity(x, y, z);
+    	if(!(tileEntity instanceof BC_TileEntityCrusher))
+    		return 0;
+    	
     	int metadata = par1IBlockAccess.getBlockMetadata(x, y, z);
-    	int type = (metadata < 8) ? metadata : metadata - 8;
-    	int	direction = (tileEntity instanceof BC_TileEntityCrusher) ? ((BC_TileEntityCrusher)tileEntity).getDirection() : 0;
+    	int	direction = ((BC_TileEntityCrusher)tileEntity).getDirection();
+    	boolean burning = ((BC_TileEntityCrusher)tileEntity).isBurning();
     	
         if (side == 1 || side == 0)
         {
-            return 6 + (type * 16);
+            return 6 + (metadata * 16);
         } else if(side == 0) {
-            return 7 + (type * 16);
+            return 7 + (metadata * 16);
         }
         else
         {
             if(side != direction)
-            	return 5 + (type * 16);
-            else if(metadata >= 8)
+            	return 5 + (metadata * 16);
+            else if(burning)
             {
-            	return 8 + (type * 16);
+            	return 8 + (metadata * 16);
             }
             else
             {
-            	return 4 + (type * 16);
+            	return 4 + (metadata * 16);
             }
         }
     }
@@ -118,9 +120,8 @@ public class BC_BlockCrusher extends BlockContainer
     {
     	
     	BC_TileEntityCrusher var6 = ((BC_TileEntityCrusher)(par1World.getBlockTileEntity(x, y, z)));
-    	int metadata = par1World.getBlockMetadata(x, y, z);
     	
-        if (metadata >= 8)
+        if (var6.isBurning())
         {
         	int direction = var6.getDirection();
             float var7 = (float)x + 0.5F;
@@ -175,20 +176,8 @@ public class BC_BlockCrusher extends BlockContainer
 
     	BC_TileEntityCrusher var6 = (BC_TileEntityCrusher)par1World.getBlockTileEntity(x, y, z);
     	int type = par1World.getBlockMetadata(x, y, z);
-    	type = type - (type/8) * 8;
         if (var6 != null)
         {
-            String name = "";
-        	if(type == 0)
-        		name = "Stone Crusher";
-        	else if(type == 1)
-        		name = "Copper Crusher";
-        	else if(type == 2)
-        		name = "Bronze Crusher";
-        	else if(type == 3)
-        		name = "Iron Crusher";
-        	else if(type == 4)
-        		name = "Steel Crusher";
             par5EntityPlayer.openGui(mod_MetallurgyCore.instance, type, par1World, x, y, z);
         }
 
@@ -200,12 +189,6 @@ public class BC_BlockCrusher extends BlockContainer
      */
     public static void updateFurnaceBlockState(boolean isBurning, World par1World, int x, int y, int z)
     {
-        int metadata = par1World.getBlockMetadata(x, y, z);
-        
-        if(isBurning && metadata < 8)
-        	par1World.setBlockMetadata(x, y, z, metadata + 8);
-        else if(!isBurning && metadata >= 8)
-        	par1World.setBlockMetadata(x, y, z, metadata - 8);
     }
 
     /**
@@ -214,7 +197,50 @@ public class BC_BlockCrusher extends BlockContainer
     @Override
     public TileEntity createNewTileEntity(World par1World)
     {
-        return new BC_TileEntityCrusher();
+        return null;
+    }
+
+    /**
+     * Returns the TileEntity used by this block.
+     */
+    @Override
+    public TileEntity createTileEntity(World par1World, int metadata)
+    {
+    	BC_TileEntityCrusher tec = new BC_TileEntityCrusher();
+    	
+	    switch(metadata)
+	    {
+	        case 0:
+	        {
+	            tec.setSpeed((int)(20 * CoreConfig.stoneCrusherSpeed));
+	            break;
+	        }
+	        case 1:
+	        {
+	        	tec.setSpeed((int)(20 * CoreConfig.copperCrusherSpeed));
+	        	break;
+	        }
+	        case 2:
+	        {
+	        	tec.setSpeed((int)(20 * CoreConfig.bronzeCrusherSpeed));
+	        	break;
+	        }
+	        case 3:
+	        {
+	        	tec.setSpeed((int)(20 * CoreConfig.ironCrusherSpeed));
+	        	break;
+	        }
+	        case 4:
+	        {
+	        	tec.setSpeed((int)(20 * CoreConfig.steelCrusherSpeed));
+	        	break;
+	        }
+	        default:
+	        	break;
+	    }
+	    
+	    return tec;
+	    //return new BC_TileEntityCrusher();
     }
 
     /**
@@ -251,36 +277,31 @@ public class BC_BlockCrusher extends BlockContainer
         BC_TileEntityCrusher tec = (BC_TileEntityCrusher)par1World.getBlockTileEntity(x, y, z);
         int metadata = par1World.getBlockMetadata(x, y, z);
         
-        switch((metadata < 8) ? metadata : metadata - 8)
+        switch(metadata)
         {
 	        case 0:
 	        {
 	            tec.setSpeed((int)(20 * CoreConfig.stoneCrusherSpeed));
-	            tec.setFuelMultiplier(1);
 	            break;
 	        }
 	        case 1:
 	        {
 	        	tec.setSpeed((int)(20 * CoreConfig.copperCrusherSpeed));
-	            tec.setFuelMultiplier(1);
 	        	break;
 	        }
 	        case 2:
 	        {
 	        	tec.setSpeed((int)(20 * CoreConfig.bronzeCrusherSpeed));
-	            tec.setFuelMultiplier(1);
 	        	break;
 	        }
 	        case 3:
 	        {
 	        	tec.setSpeed((int)(20 * CoreConfig.ironCrusherSpeed));
-	            tec.setFuelMultiplier(1);
 	        	break;
 	        }
 	        case 4:
 	        {
 	        	tec.setSpeed((int)(20 * CoreConfig.steelCrusherSpeed));
-	            tec.setFuelMultiplier(1);
 	        	break;
 	        }
 	        default:
