@@ -9,8 +9,8 @@ public class AlloyNetherEnum implements IMetalSetEnum{
 	public static String[] names = {"Shadow Steel", "Inolashite", "Amordrine"};
 	public static String imageName = "/shadow/MetallurgyNetherAlloys.png";
 	private int[] expValues = {4, 6, 24};
-	private int[] harvestLevels = {2, 3, 4};
-	private int[] pickLevels = {2, 4, 4};
+	private int[] harvestLevels = {2, 4, 4};
+	private int[] pickLevels = {3, 5, 5};
 	
 	@Override
 	public int numMetals() {

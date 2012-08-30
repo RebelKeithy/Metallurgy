@@ -9,8 +9,8 @@ public class OreNetherEnum implements IMetalSetEnum{
 	public static String imageName = "/shadow/MetallurgyNetherMetals.png";
 	public static String[] names = {"Ignatius", "Shadow Iron", "Midasium", "Vyroxeres", "Ceruclase", "Kalendrite", "Vulcanite", "Sanguinite"};
 	public static int[] expValues = {1, 2, 3, 3, 3, 4, 5, 6};
-	private final int[] harvestLevels = {2, 2, 2, 2, 2, 3, 4, 5};
-	private final int[] pickLevels = {2, 2, 3, 3, 3, 4, 5, 6};
+	private final int[] harvestLevels = {2, 2, 3, 3, 3, 4, 5, 6};
+	private final int[] pickLevels = {2, 2, 4, 4, 4, 5, 6, 7};
 
 	public static int[] defaultVeinCount = {12, 10, 6, 5, 5, 4, 3, 3};
 	public static int[] defaultOreCount = {6, 6, 6, 6, 4, 4, 4, 4};
