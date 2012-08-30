@@ -377,7 +377,7 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
 
             if (var1 == mod_MetallurgyFantasy.ores.Dust[0].shiftedIndex) return 1760;
             if (var1 == mod_MetallurgyFantasy.ores.Dust[5].shiftedIndex) return 7040;
-            if (var1 == mod_MetallurgyFantasy.ores.Bar[6].shiftedIndex) return 14080;
+            if (var1 == mod_MetallurgyFantasy.ores.Dust[6].shiftedIndex) return 14080;
             return 0;
         }
     }
