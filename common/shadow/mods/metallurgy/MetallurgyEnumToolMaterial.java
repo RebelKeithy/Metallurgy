@@ -16,7 +16,7 @@ public enum MetallurgyEnumToolMaterial
 	Bronze("Bronze", 0, 1, 250, 6F, 1, 9),
 	Hepatizon("Hepatizon", 0, 1, 300, 8F, 1, 22),
     //Iron("Iron", 0, 2, 251, 6F, 2, 14),
-    DamascusSteel("DamascusSteel", 0, 1, 500, 6F, 2, 18,
+    DamascusSteel("DamascusSteel", 0, 1, 500, 6F, 2, 18),
     Angmallen("Angmallen", 0, 2, 300, 8F, 2, 30),
     Steel("Steel", 0, 2, 750, 8F, 3, 14),
     //Diamond("Diamond", 0, 3, 1562, 8F, 3, 10),
@@ -58,7 +58,7 @@ public enum MetallurgyEnumToolMaterial
     static 
     {
         allToolMaterials = (new MetallurgyEnumToolMaterial[] {
-            Wood, Stone, Copper, Bronze, Hepatizon, Iron, DamascusSteel, Angmallen, Steel, Diamond, Ignatius, ShadowIron, ShadowSteel, Midasium, Vyroxeres, Ceruclase, Inolashite, Kalendrite, Amordrine, Vulcanite, Sanguinite, Mithril, Orichalcum, Adamantine, Brass, Silver, Gold, Platinum
+            Copper, Bronze, Hepatizon, DamascusSteel, Angmallen, Steel, Ignatius, ShadowIron, ShadowSteel, Midasium, Vyroxeres, Ceruclase, Inolashite, Kalendrite, Amordrine, Vulcanite, Sanguinite, Mithril, Orichalcum, Adamantine, Brass, Silver, Platinum
         });
     }
   /*
