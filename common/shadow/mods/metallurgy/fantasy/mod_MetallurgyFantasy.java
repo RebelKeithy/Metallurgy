@@ -74,8 +74,6 @@ public class mod_MetallurgyFantasy
 		
 		mod_FantasyFurnace.load();
 		
-		FF_EssenceRecipes.essence().addEssenceAmount(Block.oreGold.blockID, 10);
-		
 		ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), new Object[] {ores.Dust[1], ores.Dust[2]});
 		if(mod_MetallurgyCore.hasPrecious)
 			ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), new Object[] {ores.Dust[7], new ItemStack(mod_MetallurgyPrecious.ores.Dust[1], 1)});
