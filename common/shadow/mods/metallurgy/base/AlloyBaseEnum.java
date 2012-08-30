@@ -10,7 +10,7 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 	public static String imageName = "/shadow/MetallurgyBaseAlloys.png";
 	private int[] expValues = {2, 8, 5, 9, 6};
 	private int[] harvestLevels = {2, 2, 2, 2, 3};
-	private int[] pickLevels = {3, 3, 3, 3, 4};
+	private int[] pickLevels = {3, 3, 4, 3, 4};
 
 	private int[] dungeonLootChances = {120, 120, 80, 75, 50};
 	private int[] dungeonLootAmounts = {3, 3, 2, 2, 2};
