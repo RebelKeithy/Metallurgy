@@ -68,14 +68,14 @@ public class NetherConfig  {
 
 
     	
-    	speeds[0] = config.getOrCreateIntProperty("Ignatius", "Furnace Speed", 10000).getInt(10000)/1000f;
-    	speeds[1] = config.getOrCreateIntProperty("ShadowIron", "Furnace Speed", 9500).getInt(9500)/1000f;
-    	speeds[2] = config.getOrCreateIntProperty("ShadowSteel", "Furnace Speed", 9000).getInt(9000)/1000f;
-    	speeds[3] = config.getOrCreateIntProperty("Vyroxeres", "Furnace Speed", 8500).getInt(8500)/1000f;
-    	speeds[4] = config.getOrCreateIntProperty("Inolashite", "Furnace Speed", 8000).getInt(8000)/1000f;
-    	speeds[5] = config.getOrCreateIntProperty("Kalendrite", "Furnace Speed", 7000).getInt(7000)/1000f;
-    	speeds[6] = config.getOrCreateIntProperty("Vulcanite", "Furnace Speed", 6000).getInt(6000)/1000f;
-    	speeds[7] = config.getOrCreateIntProperty("Sanguinite", "Furnace Speed", 5000).getInt(5000)/1000f;
+    	speeds[0] = config.getOrCreateIntProperty("Ignatius", "Furnace Speed", 6000).getInt(6000)/1000f;
+    	speeds[1] = config.getOrCreateIntProperty("ShadowIron", "Furnace Speed", 5500).getInt(5500)/1000f;
+    	speeds[2] = config.getOrCreateIntProperty("ShadowSteel", "Furnace Speed", 5000).getInt(5000)/1000f;
+    	speeds[3] = config.getOrCreateIntProperty("Vyroxeres", "Furnace Speed", 4500).getInt(4500)/1000f;
+    	speeds[4] = config.getOrCreateIntProperty("Inolashite", "Furnace Speed", 4000).getInt(4000)/1000f;
+    	speeds[5] = config.getOrCreateIntProperty("Kalendrite", "Furnace Speed", 3500).getInt(3500)/1000f;
+    	speeds[6] = config.getOrCreateIntProperty("Vulcanite", "Furnace Speed", 3000).getInt(3000)/1000f;
+    	speeds[7] = config.getOrCreateIntProperty("Sanguinite", "Furnace Speed", 2000).getInt(2000)/1000f;
 
     	buckets[0] = config.getOrCreateIntProperty("Ignatius", "Furnace Buckets", 10).getInt(10);
     	buckets[1] = config.getOrCreateIntProperty("ShadowIron", "Furnace Buckets", 20).getInt(20);

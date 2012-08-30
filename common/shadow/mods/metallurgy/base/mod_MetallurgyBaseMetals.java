@@ -87,9 +87,9 @@ public class mod_MetallurgyBaseMetals {
 	    if(BaseConfig.alloyEnabled[0])
 	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), new Object[] {ores.Dust[0], ores.Dust[1]});
 	    if(BaseConfig.alloyEnabled[1])
-	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), new Object[] {alloys.Dust[0], mod_Iron.IronDust});
+	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), new Object[] {alloys.Dust[0], mod_Gold.GoldDust});
 	    if(BaseConfig.alloyEnabled[2])
-	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[2], 1), new Object[] {alloys.Dust[0], mod_Gold.GoldDust});
+	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[2], 1), new Object[] {alloys.Dust[0], mod_Iron.IronDust});
 	    if(BaseConfig.alloyEnabled[3])
 	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[3], 1), new Object[] {mod_Gold.GoldDust, mod_Iron.IronDust});
 	    if(BaseConfig.alloyEnabled[4])
