@@ -72,12 +72,12 @@ public class mod_MetallurgyUtility
 	
 	public void setBlockLevels()
 	{
-		MinecraftForge.setBlockHarvestLevel(vein, 0, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(vein, 1, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(vein, 2, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(vein, 3, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(vein, 4, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(vein, 5, "pickaxe", 3);
+		MinecraftForge.setBlockHarvestLevel(vein, 0, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(vein, 1, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(vein, 2, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(vein, 3, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(vein, 4, "pickaxe", 2);
+		MinecraftForge.setBlockHarvestLevel(vein, 5, "pickaxe", 2);
 	}
 	
 	public void registerOres()
