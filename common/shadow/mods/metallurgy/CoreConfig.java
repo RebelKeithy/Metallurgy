@@ -89,8 +89,8 @@ public class CoreConfig  {
     	goldEnabled = config.getOrCreateBooleanProperty("Enable Gold", "Ores", true).getBoolean(true);
     	ironEnabled = config.getOrCreateBooleanProperty("Enable Iron", "Ores", true).getBoolean(true);
 
-    	DiamondVeinCount = config.getOrCreateIntProperty("Diamond Vein Count", "Ore Generation", 4).getInt(4);
-    	DiamondOreCount = config.getOrCreateIntProperty("Diamond Ore Count", "Ore Generation", 4).getInt(4);
+    	DiamondVeinCount = config.getOrCreateIntProperty("Diamond Vein Count", "Ore Generation", 2).getInt(2);
+    	DiamondOreCount = config.getOrCreateIntProperty("Diamond Ore Count", "Ore Generation", 3).getInt(3);
     	DiamondOreHeight = config.getOrCreateIntProperty("Diamond Ore Height", "Ore Generation", 128).getInt(128);
     	
     	EmeraldVeinCount = config.getOrCreateIntProperty("Emerald Vein Count", "Ore Generation", 4).getInt(4);
@@ -101,8 +101,8 @@ public class CoreConfig  {
     	LapisLazuliOreCount = config.getOrCreateIntProperty("LapisLazuili Ore Count", "Ore Generation", 4).getInt(4);
     	LapisLazuliOreHeight = config.getOrCreateIntProperty("LapisLazuili Ore Height", "Ore Generation", 128).getInt(128);
 
-    	RedstoneVeinCount = config.getOrCreateIntProperty("Redstone Vein Count", "Ore Generation", 4).getInt(4);
-    	RedstoneOreCount = config.getOrCreateIntProperty("Redstone Ore Count", "Ore Generation", 4).getInt(4);
+    	RedstoneVeinCount = config.getOrCreateIntProperty("Redstone Vein Count", "Ore Generation", 6).getInt(6);
+    	RedstoneOreCount = config.getOrCreateIntProperty("Redstone Ore Count", "Ore Generation", 6).getInt(6);
     	RedstoneOreHeight = config.getOrCreateIntProperty("Redstone Ore Height", "Ore Generation", 128).getInt(128);
     	
     	// Gold Generation
@@ -111,8 +111,8 @@ public class CoreConfig  {
     	GoldOreHeight = config.getOrCreateIntProperty("Gold Ore Height", "Ore Generation", 128).getInt(128);
     	
     	// Iron Generation
-    	IronVeinCount = config.getOrCreateIntProperty("Iron Vein Count", "Ore Generation", 6).getInt(6);
-    	IronOreCount = config.getOrCreateIntProperty("Iron Ore Count", "Ore Generation", 6).getInt(6);
+    	IronVeinCount = config.getOrCreateIntProperty("Iron Vein Count", "Ore Generation", 9).getInt(9);
+    	IronOreCount = config.getOrCreateIntProperty("Iron Ore Count", "Ore Generation", 5).getInt(5);
     	IronOreHeight = config.getOrCreateIntProperty("Iron Ore Height", "Ore Generation", 128).getInt(128);
 
     	crusherID = config.getOrCreateBlockIdProperty("Crusher", 900).getInt(900);
