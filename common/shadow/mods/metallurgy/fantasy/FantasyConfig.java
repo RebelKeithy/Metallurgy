@@ -22,7 +22,7 @@ public class FantasyConfig  {
 	public static boolean[] metalEnabled = new boolean[12];
 	public static boolean furnaceEnabled;
 	
-	public static int[] extractorSpeeds = new int[11];
+	public static float[] extractorSpeeds = new float[11];
 	
 	public static int ItemStartID;
 
