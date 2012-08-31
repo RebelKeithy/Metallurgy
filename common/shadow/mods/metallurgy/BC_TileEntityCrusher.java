@@ -1,8 +1,13 @@
 package shadow.mods.metallurgy;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 import shadow.mods.metallurgy.base.BaseConfig;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraft.src.*;
@@ -34,6 +39,8 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 	private int ticksSinceSync;
 
 	private boolean needsUpdate;
+	
+	private boolean isBurning;
     
     public void setSpeed(int var1)
     {
@@ -215,7 +222,7 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
      */
     public int getCookProgressScaled(int par1)
     {
-        return this.furnaceCookTime * par1 / furnaceTimeBase;
+        return this.furnaceCookTime * par1 / (furnaceTimeBase + 1);
     }
 
     /**
@@ -248,9 +255,10 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
     public void updateEntity()
     {
 
-		if ((++ticksSinceSync % 20) == 0) 
+		if ((++ticksSinceSync % 80) == 0 && !worldObj.isRemote) 
         {
-            sync();
+            //sync();
+            sendPacket();
 		}
 		
         boolean var1 = this.furnaceBurnTime > 0;
@@ -292,31 +300,39 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
                     this.furnaceCookTime = 0;
                     this.smeltItem();
                     var2 = true;
+                    isBurning = true;
                 }
             }
             else
             {
                 this.furnaceCookTime = 0;
+                isBurning = false;
             }
 
             if (var1 != this.furnaceBurnTime > 0)
             {
                 var2 = true;
-                sync();
+               // sync();
             }
         }
 
         if (var2)
         {
             this.onInventoryChanged();
+            sendPacket();
+           // sync();
         }
     }
     
-    public void sync()
+    
+    /*public void sync()
     {
+    	
 		worldObj.addBlockEvent(xCoord, yCoord, zCoord, mod_MetallurgyCore.crusher.blockID, 1, direction);
 		worldObj.addBlockEvent(xCoord, yCoord, zCoord, mod_MetallurgyCore.crusher.blockID, 2, furnaceTimeBase);
-    }
+		worldObj.addBlockEvent(xCoord, yCoord, zCoord, mod_MetallurgyCore.crusher.blockID, 3, furnaceBurnTime);
+    	
+    }*/
 
     /**
      * Returns true if the furnace can smelt an item, i.e. has a source item, destination stack isn't full, etc.
@@ -427,13 +443,17 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
     {
 		if (i == 1) {
 			direction = j;
-			int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-			worldObj.setBlockAndMetadataWithUpdate(xCoord, yCoord, zCoord, mod_MetallurgyCore.crusher.blockID, meta, true);
+			//int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+			//worldObj.setBlockAndMetadataWithUpdate(xCoord, yCoord, zCoord, mod_MetallurgyCore.crusher.blockID, meta, true);
 		}
 		if (i == 2) {
 			furnaceTimeBase = j;
 			//int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 			//worldObj.setBlockAndMetadataWithUpdate(xCoord, yCoord, zCoord, BaseConfig.crusherID, meta, true);
+		}
+		if (i == 3)
+		{
+			furnaceBurnTime = j;
 		}
 	}
 
@@ -458,5 +478,36 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 	public int getType() {
 		int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 		return (meta < 8) ? meta : meta - 8;
+	}
+	
+	public void sendPacket()
+	{
+		if(worldObj.isRemote)
+			return;
+		
+		System.out.println("sending packet");
+		ByteArrayOutputStream bos = new ByteArrayOutputStream(140);
+		DataOutputStream dos = new DataOutputStream(bos);
+		try {
+			dos.writeInt(xCoord);
+			dos.writeInt(yCoord);
+			dos.writeInt(zCoord);
+			dos.writeInt(direction);
+			dos.writeInt(furnaceTimeBase);
+			System.out.println("sending base time " + furnaceTimeBase);
+			dos.writeInt(furnaceBurnTime);
+			System.out.println("sending burn time " + furnaceBurnTime);
+		} catch (IOException e) {
+			// UNPOSSIBLE?
+		}
+		Packet250CustomPayload packet = new Packet250CustomPayload();
+		packet.channel = "MetallurgyCore";
+		packet.data = bos.toByteArray();
+		packet.length = bos.size();
+		packet.isChunkDataPacket = true;
+		
+		if (packet != null) {
+			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, 0, packet);
+		}
 	}
 }

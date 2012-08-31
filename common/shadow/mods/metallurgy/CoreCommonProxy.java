@@ -42,6 +42,7 @@ public class CoreCommonProxy implements IGuiHandler
 		if (te != null && te instanceof BC_TileEntityCrusher) 
 		{
 			BC_TileEntityCrusher tec = (BC_TileEntityCrusher) te;
+			((BC_TileEntityCrusher) te).sendPacket();
 			return new BC_ContainerCrusher(player.inventory, tec);
 		}
 		else 

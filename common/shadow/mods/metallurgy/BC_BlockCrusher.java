@@ -54,7 +54,7 @@ public class BC_BlockCrusher extends BlockContainer
     @Override
     protected int damageDropped(int metadata)
     {
-    	return metadata;
+    	return (metadata < 8) ? metadata : metadata - 8;
     }
     
     /**
@@ -63,17 +63,18 @@ public class BC_BlockCrusher extends BlockContainer
     @Override
     public int getBlockTextureFromSideAndMetadata(int side, int metadata)
     {
+    	int type = (metadata < 8) ? metadata : metadata - 8;
         if (side == 1 || side == 0)
         {
-            return 6 + (metadata * 16);
+            return 6 + (type * 16);
         } else if(side == 0)
-        	return 7 + (metadata * 16);
+        	return 7 + (type * 16);
         else
         {
             if(side != 3)
-            	return 5 + (metadata * 16);
+            	return 5 + (type * 16);
             else
-            	return 4 + (metadata * 16);
+            	return 4 + (type * 16);
         }
     }
 
@@ -88,26 +89,27 @@ public class BC_BlockCrusher extends BlockContainer
     		return 0;
     	
     	int metadata = par1IBlockAccess.getBlockMetadata(x, y, z);
+    	int type = (metadata < 8) ? metadata : metadata - 8;
     	int	direction = ((BC_TileEntityCrusher)tileEntity).getDirection();
     	boolean burning = ((BC_TileEntityCrusher)tileEntity).isBurning();
     	
         if (side == 1 || side == 0)
         {
-            return 6 + (metadata * 16);
+            return 6 + (type * 16);
         } else if(side == 0) {
-            return 7 + (metadata * 16);
+            return 7 + (type * 16);
         }
         else
         {
             if(side != direction)
-            	return 5 + (metadata * 16);
+            	return 5 + (type * 16);
             else if(burning)
             {
-            	return 8 + (metadata * 16);
+            	return 8 + (type * 16);
             }
             else
             {
-            	return 4 + (metadata * 16);
+            	return 4 + (type * 16);
             }
         }
     }
@@ -120,6 +122,7 @@ public class BC_BlockCrusher extends BlockContainer
     {
     	
     	BC_TileEntityCrusher var6 = ((BC_TileEntityCrusher)(par1World.getBlockTileEntity(x, y, z)));
+    	int metadata = par1World.getBlockMetadata(x, y, z);
     	
         if (var6.isBurning())
         {
@@ -189,6 +192,14 @@ public class BC_BlockCrusher extends BlockContainer
      */
     public static void updateFurnaceBlockState(boolean isBurning, World par1World, int x, int y, int z)
     {
+    	/*
+    	int metadata = par1World.getBlockMetadata(x, y, z);
+    	
+    	if(isBurning && metadata < 8)
+    		par1World.setBlockMetadata(x, y, z, metadata + 8);
+    	if(!isBurning && metadata >= 8)
+    		par1World.setBlockMetadata(x, y, z, metadata - 8);
+    	*/
     }
 
     /**
@@ -197,6 +208,7 @@ public class BC_BlockCrusher extends BlockContainer
     @Override
     public TileEntity createNewTileEntity(World par1World)
     {
+    	System.out.println("null tile entity added");
         return null;
     }
 
@@ -206,7 +218,9 @@ public class BC_BlockCrusher extends BlockContainer
     @Override
     public TileEntity createTileEntity(World par1World, int metadata)
     {
+    	System.out.println("new non-null tile entity added");
     	BC_TileEntityCrusher tec = new BC_TileEntityCrusher();
+    	metadata = (metadata > 8) ? metadata : metadata - 8;
     	
 	    switch(metadata)
 	    {
@@ -250,7 +264,7 @@ public class BC_BlockCrusher extends BlockContainer
     public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLiving par5EntityLiving)
     {
     	
-    	
+    	System.out.println("placing crusher");
         int var6 = MathHelper.floor_double((double)(par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
         if (var6 == 0)
@@ -316,6 +330,9 @@ public class BC_BlockCrusher extends BlockContainer
     @Override
     public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
     {
+    	if(par1World.isRemote)
+    		return;
+    	
         if (!keepFurnaceInventory)
         {
         	BC_TileEntityCrusher var5 = (BC_TileEntityCrusher)par1World.getBlockTileEntity(par2, par3, par4);

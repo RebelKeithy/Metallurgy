@@ -260,7 +260,7 @@ public class FF_BlockMetalFurnace extends BlockContainer
         
         FF_TileEntityMetalFurnace var5 = (FF_TileEntityMetalFurnace)par1World.getBlockTileEntity(par2, par3, par4);
         int metadata = par1World.getBlockMetadata(par2, par3, par4);
-        var5.setSpeed(20 * FantasyConfig.extractorSpeeds[metadata]);
+        var5.setSpeed((int) (20 * FantasyConfig.extractorSpeeds[metadata]));
         
     }
 
