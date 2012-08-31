@@ -1,5 +1,7 @@
 package shadow.mods.metallurgy;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 import shadow.mods.metallurgy.MetallurgyWorldGenMinable;
@@ -13,10 +15,12 @@ import cpw.mods.fml.common.IWorldGenerator;
 
 public class CoreWorldGen implements IWorldGenerator
 {
-
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
+		
+		replaceOre(world, rand, chunkX * 16, chunkZ * 16);
+		
 		if(CoreConfig.DiamondEnabled)
 			generateDiamond(world, rand, chunkX * 16, chunkZ * 16);
 		if(CoreConfig.EmeraldEnabled)
@@ -29,19 +33,41 @@ public class CoreWorldGen implements IWorldGenerator
 			generateGold(world, rand, chunkX * 16, chunkZ * 16);
 		if(CoreConfig.ironEnabled)
 			generateIron(world, rand, chunkX * 16, chunkZ * 16);
+		
+	}
+	
+	private boolean shouldReplace(int blockID)
+	{
+
+		if(blockID == Block.oreDiamond.blockID && CoreConfig.DiamondEnabled)
+			return true;
+		if(blockID == Block.oreEmerald.blockID && CoreConfig.EmeraldEnabled)
+			return true;
+		if(blockID == Block.oreLapis.blockID && CoreConfig.LapisLazuliEnabled)
+			return true;
+		if(blockID == Block.oreRedstone.blockID && CoreConfig.RedstoneEnabled)
+			return true;
+		if(blockID == Block.oreGold.blockID && CoreConfig.goldEnabled)
+			return true;
+		if(blockID == Block.oreIron.blockID && CoreConfig.ironEnabled)
+			return true;
+		
+		return false;
 	}
 
-	public static void generateDiamond(World world, Random rand, int chunkX, int chunkZ) {
-		for (int y = 15; y >= 0; y--) {
+	public void replaceOre(World world, Random rand, int chunkX, int chunkZ) {
+		for (int y = 64; y >= 1; y--) {
 			for (int x = 0; x <= 15; x++) {
 				for (int z = 0; z <= 15; z++) {
-					if (world.getBlockId(chunkX + x, y, chunkZ + z) == Block.oreDiamond.blockID) {
-						world.setBlockWithNotify(chunkX + x, y, chunkZ + z, 1);
+					if (shouldReplace(world.getBlockId(chunkX + x, y, chunkZ + z))) {
+						world.setBlockAndMetadata(chunkX + x, y, chunkZ + z, 1, 0);
 					}
 				}
 			}
 		}
-
+	}
+	
+	public void generateDiamond(World world, Random rand, int chunkX, int chunkZ) {
 		for (int i = 0; i < CoreConfig.DiamondVeinCount; i++) {
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(CoreConfig.DiamondOreHeight);
@@ -50,17 +76,7 @@ public class CoreWorldGen implements IWorldGenerator
 		}
 	}
 
-	public static void generateEmerald(World world, Random rand, int chunkX, int chunkZ) {
-		for (int y = 15; y >= 0; y--) {
-			for (int x = 0; x <= 15; x++) {
-				for (int z = 0; z <= 15; z++) {
-					if (world.getBlockId(chunkX + x, y, chunkZ + z) == Block.oreEmerald.blockID) {
-						world.setBlockWithNotify(chunkX + x, y, chunkZ + z, 1);
-					}
-				}
-			}
-		}
-
+	public void generateEmerald(World world, Random rand, int chunkX, int chunkZ) {
 		for (int i = 0; i < CoreConfig.EmeraldVeinCount; i++) {
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(CoreConfig.EmeraldOreHeight);
@@ -69,17 +85,7 @@ public class CoreWorldGen implements IWorldGenerator
 		}
 	}
 	
-	public static void generateLapisLazuli(World world, Random rand, int chunkX, int chunkZ) {
-		for (int y = 32; y >= 0; y--) {
-			for (int x = 0; x <= 15; x++) {
-				for (int z = 0; z <= 15; z++) {
-					if (world.getBlockId(chunkX + x, y, chunkZ + z) == Block.oreLapis.blockID) {
-						world.setBlockWithNotify(chunkX + x, y, chunkZ + z, 1);
-					}
-				}
-			}
-		}
-
+	public void generateLapisLazuli(World world, Random rand, int chunkX, int chunkZ) {
 		for (int i = 0; i < CoreConfig.LapisLazuliVeinCount; i++) {
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(CoreConfig.LapisLazuliOreHeight);
@@ -89,17 +95,7 @@ public class CoreWorldGen implements IWorldGenerator
 		}
 	}
 
-	public static void generateRedstone(World world, Random rand, int chunkX, int chunkZ) {
-		for (int y = 16; y >= 0; y--) {
-			for (int x = 0; x <= 15; x++) {
-				for (int z = 0; z <= 15; z++) {
-					if (world.getBlockId(chunkX + x, y, chunkZ + z) == Block.oreRedstone.blockID) {
-						world.setBlockWithNotify(chunkX + x, y, chunkZ + z, 1);
-					}
-				}
-			}
-		}
-
+	public void generateRedstone(World world, Random rand, int chunkX, int chunkZ) {
 		for (int i = 0; i < CoreConfig.RedstoneVeinCount; i++) {
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(CoreConfig.RedstoneOreHeight);
@@ -109,54 +105,23 @@ public class CoreWorldGen implements IWorldGenerator
 		}
 	}
 	
-	public static void generateIron(World world, Random rand, int chunkX, int chunkZ)
-	{		
-		for(int y = 128; y >= 0; y--)
-		{
-		        for(int x = 0; x <= 15; x++)
-		        {
-		                for(int z = 0; z <= 15; z++)
-		                {
-		                        if(world.getBlockId(chunkX + x, y, chunkZ + z) == Block.oreIron.blockID)
-		                        {
-		                                world.setBlockWithNotify(chunkX + x, y, chunkZ + z, 1);
-		                        }
-		                }
-		        }
-		}
-		
-		for(int i = 0; i < CoreConfig.IronVeinCount; i++)
-		{
+	public void generateIron(World world, Random rand, int chunkX, int chunkZ) {				
+		for(int i = 0; i < CoreConfig.IronVeinCount; i++) {
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(CoreConfig.IronOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenMinable(Block.oreIron.blockID, 2, CoreConfig.IronOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new WorldGenMinable(Block.oreIron.blockID, CoreConfig.IronOreCount))
+					.generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 	
-	public static void generateGold(World world, Random rand, int chunkX, int chunkZ)
-	{		
-		for(int y = 128; y >= 0; y--)
-		{
-		        for(int x = 0; x <= 15; x++)
-		        {
-		                for(int z = 0; z <= 15; z++)
-		                {
-		                        if(world.getBlockId(chunkX + x, y, chunkZ + z) == Block.oreGold.blockID)
-		                        {
-		                                world.setBlockWithNotify(chunkX + x, y, chunkZ + z, 1);
-		                        }
-		                }
-		        }
-		}
-		
-		for(int i = 0; i < CoreConfig.GoldVeinCount; i++)
-		{
+	public void generateGold(World world, Random rand, int chunkX, int chunkZ) {		
+		for(int i = 0; i < CoreConfig.GoldVeinCount; i++) {
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(CoreConfig.GoldOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenMinable(Block.oreGold.blockID, 4, CoreConfig.GoldOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new WorldGenMinable(Block.oreGold.blockID, CoreConfig.GoldOreCount))
+					.generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
-
 }
