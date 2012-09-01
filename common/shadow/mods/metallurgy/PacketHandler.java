@@ -34,19 +34,7 @@ public class PacketHandler implements IPacketHandler
 			icte.furnaceTimeBase = speed;
 			icte.furnaceBurnTime = burnTime;
 		}
-		
-		//((BC_BlockCrusher)mod_MetallurgyCore.crusher).updateFurnaceBlockState(icte.isBurning(), world, x, y, z);
-		
-		/*
-		int metadata = world.getBlockMetadata(x, y, z);
-		if(metadata < 8 && icte.isBurning())
-			world.setBlockMetadata(x, y, z, metadata + 8);
-		if(metadata >= 8 && !icte.isBurning())
-			world.setBlockMetadata(x, y, z, metadata - 8);
-		*/
-		
+
 		world.markBlockNeedsUpdate(x, y, z);
-		
-		//world.setBlockTileEntity(x, y, z, icte);
 	}
 }

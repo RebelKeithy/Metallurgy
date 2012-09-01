@@ -1,7 +1,12 @@
 package shadow.mods.metallurgy.base;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.PacketDispatcher;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraft.src.*;
@@ -25,7 +30,6 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements IInventory,
 
     /** The number of ticks that the current item has been cooking for */
     public int furnaceCookTime = 0;
-    public float fuelMultiplier = 0.5f;
     
     public int furnaceTimeBase = 200;
 
@@ -36,11 +40,6 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements IInventory,
     public void setSpeed(int var1)
     {
     	furnaceTimeBase = var1;
-    }
-    
-    public void setFuelMultiplier(float var1)
-    {
-    	fuelMultiplier = var1;
     }
     
     /**
@@ -166,7 +165,6 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements IInventory,
         this.furnaceCookTime = par1NBTTagCompound.getShort("CookTime");
         this.direction = par1NBTTagCompound.getShort("Direction");
         this.furnaceTimeBase = par1NBTTagCompound.getShort("TimeBase");
-        this.fuelMultiplier = par1NBTTagCompound.getShort("FuelMultiplier");
         this.currentItemBurnTime = getItemBurnTime(this.furnaceItemStacks[1]);
     }
 
@@ -180,7 +178,6 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements IInventory,
         par1NBTTagCompound.setShort("CookTime", (short)this.furnaceCookTime);
         par1NBTTagCompound.setShort("Direction", (short)this.direction);
         par1NBTTagCompound.setShort("TimeBase", (short)this.furnaceTimeBase);
-        par1NBTTagCompound.setShort("FuelMultiplier", (short)this.fuelMultiplier);
         NBTTagList var2 = new NBTTagList();
 
         for (int var3 = 0; var3 < this.furnaceItemStacks.length; ++var3)
@@ -244,11 +241,12 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements IInventory,
     public void updateEntity()
     {
     	
-		if ((++ticksSinceSync % 20) == 0) 
+		if ((++ticksSinceSync % 80) == 0) 
         {
-			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
-			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 11, direction);
-		}
+			//int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
+			//worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 11, direction);
+			sendPacket();
+        }
 		
         boolean var1 = this.furnaceBurnTime > 0;
         boolean var2 = false;
@@ -262,7 +260,7 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements IInventory,
         {
             if (this.furnaceBurnTime == 0 && this.canSmelt())
             {
-                this.currentItemBurnTime = this.furnaceBurnTime = (int)(getItemBurnTime(this.furnaceItemStacks[1]) * fuelMultiplier);
+                this.currentItemBurnTime = this.furnaceBurnTime = (int)(getItemBurnTime(this.furnaceItemStacks[1]));
 
                 if (this.furnaceBurnTime > 0)
                 {
@@ -299,15 +297,13 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements IInventory,
             if (var1 != this.furnaceBurnTime > 0)
             {
                 var2 = true;
-                BF_BlockMetalFurnace.updateFurnaceBlockState(this.furnaceBurnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
         }
 
         if (var2)
         {
             this.onInventoryChanged();
-            worldObj.scheduleBlockUpdate(this.xCoord, this.yCoord, this.zCoord, BaseConfig.furnaceID, 20);
-            //worldObj.addBlockEvent(xCoord, yCoord, zCoord, BaseConfig.furnaceID, 1, direction);
+            sendPacket();
         }
     }
 
@@ -444,5 +440,34 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements IInventory,
 	public int getType() {
 		int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 		return (meta < 8) ? meta : meta - 8;
+	}
+	
+	public void sendPacket()
+	{
+		if(worldObj.isRemote)
+			return;
+		
+		System.out.println("sending packet");
+		ByteArrayOutputStream bos = new ByteArrayOutputStream(140);
+		DataOutputStream dos = new DataOutputStream(bos);
+		try {
+			dos.writeInt(xCoord);
+			dos.writeInt(yCoord);
+			dos.writeInt(zCoord);
+			dos.writeInt(direction);
+			dos.writeInt(furnaceTimeBase);
+			dos.writeInt(furnaceBurnTime);
+		} catch (IOException e) {
+			// UNPOSSIBLE?
+		}
+		Packet250CustomPayload packet = new Packet250CustomPayload();
+		packet.channel = "MetallurgyBase";
+		packet.data = bos.toByteArray();
+		packet.length = bos.size();
+		packet.isChunkDataPacket = true;
+		
+		if (packet != null) {
+			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.getWorldInfo().getDimension(), packet);
+		}
 	}
 }

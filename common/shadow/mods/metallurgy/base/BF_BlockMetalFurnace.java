@@ -90,7 +90,8 @@ public class BF_BlockMetalFurnace extends BlockContainer
     	int type = (meta < 8) ? meta : meta - 8;
     	int	dir = (tileEntity instanceof BF_TileEntityMetalFurnace) ? ((BF_TileEntityMetalFurnace)tileEntity).getDirection() : 0;
     	int time = (tileEntity instanceof BF_TileEntityMetalFurnace) ? (((BF_TileEntityMetalFurnace)tileEntity).furnaceCookTime * 10) % 2 : 0;
-
+    	boolean isBurning = (tileEntity instanceof BF_TileEntityMetalFurnace) ? ((BF_TileEntityMetalFurnace)tileEntity).isBurning() : false;
+    	
         if (par5 == 1 || par5 == 0)
         {
             return 2 + ((type + 1) * 16);
@@ -99,7 +100,7 @@ public class BF_BlockMetalFurnace extends BlockContainer
         {
             if(par5 != dir)
             	return 1 + ((type + 1) * 16);
-            else if(meta >= 8)
+            else if(isBurning)
             	return 3 + ((type + 1) * 16) + time;
             else
             	return 0 + ((type + 1) * 16);
@@ -113,10 +114,11 @@ public class BF_BlockMetalFurnace extends BlockContainer
     public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
         int meta = par1World.getBlockMetadata(par2, par3, par4);
-        if (meta >= 8)
+        BF_TileEntityMetalFurnace tef = (BF_TileEntityMetalFurnace) par1World.getBlockTileEntity(par2, par3, par4);
+        if (tef.isBurning())
         {
             //int var6 = par1World.getBlockMetadata(par2, par3, par4);
-            int var6 = ((BF_TileEntityMetalFurnace)(par1World.getBlockTileEntity(par2, par3, par4))).getDirection();
+            int var6 = tef.getDirection();
             float var7 = (float)par2 + 0.5F;
             float var8 = (float)par3 + 0.0F + par5Random.nextFloat() * 6.0F / 16.0F;
             float var9 = (float)par4 + 0.5F;
@@ -263,25 +265,21 @@ public class BF_BlockMetalFurnace extends BlockContainer
         case 0:
         {
             var5.setSpeed((int)(20 * BaseConfig.copperSpeed));
-            var5.setFuelMultiplier(1);
             break;
         }
         case 1:
         {
         	var5.setSpeed((int)(20 * BaseConfig.bronzeSpeed));
-            var5.setFuelMultiplier(1);
         	break;
         }
         case 2:
         {
         	var5.setSpeed((int)(20 * BaseConfig.ironSpeed));
-            var5.setFuelMultiplier(1);
         	break;
         }
         case 3:
         {
         	var5.setSpeed((int)(20 * BaseConfig.steelSpeed));
-            var5.setFuelMultiplier(1);
         	break;
         }
         default:

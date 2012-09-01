@@ -39,8 +39,6 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 	private int ticksSinceSync;
 
 	private boolean needsUpdate;
-	
-	private boolean isBurning;
     
     public void setSpeed(int var1)
     {
@@ -300,19 +298,16 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
                     this.furnaceCookTime = 0;
                     this.smeltItem();
                     var2 = true;
-                    isBurning = true;
                 }
             }
             else
             {
                 this.furnaceCookTime = 0;
-                isBurning = false;
             }
 
             if (var1 != this.furnaceBurnTime > 0)
             {
                 var2 = true;
-               // sync();
             }
         }
 
@@ -320,7 +315,6 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
         {
             this.onInventoryChanged();
             sendPacket();
-           // sync();
         }
     }
     
