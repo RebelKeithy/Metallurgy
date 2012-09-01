@@ -447,7 +447,6 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements IInventory,
 		if(worldObj.isRemote)
 			return;
 		
-		System.out.println("sending packet");
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(140);
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {

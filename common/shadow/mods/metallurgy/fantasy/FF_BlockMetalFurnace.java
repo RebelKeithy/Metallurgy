@@ -89,9 +89,7 @@ public class FF_BlockMetalFurnace extends BlockContainer
     	int	dir = (tileEntity instanceof FF_TileEntityMetalFurnace) ? ((FF_TileEntityMetalFurnace)tileEntity).getDirection() : 0;
     	int time = (tileEntity instanceof FF_TileEntityMetalFurnace) ? (((FF_TileEntityMetalFurnace)tileEntity).furnaceCookTime * 10) % 2 : 0;
     	boolean isBurning = (tileEntity instanceof FF_TileEntityMetalFurnace) ? (((FF_TileEntityMetalFurnace)tileEntity).isBurning()) : false;
-    			
-    	System.out.println("burning " + isBurning);
-    	
+    			    	
         if (par5 == 1 || par5 == 0)
         {
             return 2 + ((meta) * 16);

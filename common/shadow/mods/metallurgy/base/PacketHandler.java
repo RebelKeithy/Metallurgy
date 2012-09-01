@@ -26,8 +26,6 @@ public class PacketHandler implements IPacketHandler
 		int speed = dat.readInt();
 		int burnTime = dat.readInt();
 		
-		System.out.println("recieving packet " + direction + " " + speed + " " + burnTime);
-
 		World world = mod_MetallurgyBaseMetals.proxy.getClientWorld();
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		BF_TileEntityMetalFurnace icte = null;

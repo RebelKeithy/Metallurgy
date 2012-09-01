@@ -35,8 +35,6 @@ public class PacketHandler implements IPacketHandler
 			icte.furnaceTimeBase = speed;
 			icte.furnaceBurnTime = burnTime;
 		}
-		
-		System.out.println("recieving packet");
 
 		world.markBlockNeedsUpdate(x, y, z);
 	}

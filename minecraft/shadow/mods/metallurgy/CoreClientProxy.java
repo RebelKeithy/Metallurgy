@@ -69,7 +69,8 @@ public class CoreClientProxy extends CoreCommonProxy{
 	@Override
 	public void addTextureOverrides()
 	{
-		Item.swordWood.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmWoodSword.png"));
+		Item.swordWood.setTextureFile("/shadow/ItmWoodSword.png");
+		//Item.swordWood.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmWoodSword.png"));
 		Item.pickaxeWood.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmWoodPickaxe.png"));
 		Item.axeWood.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmWoodAxe.png"));
 		Item.hoeWood.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmWoodHoe.png"));

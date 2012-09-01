@@ -208,7 +208,6 @@ public class BC_BlockCrusher extends BlockContainer
     @Override
     public TileEntity createNewTileEntity(World par1World)
     {
-    	System.out.println("null tile entity added");
         return null;
     }
 
@@ -218,7 +217,6 @@ public class BC_BlockCrusher extends BlockContainer
     @Override
     public TileEntity createTileEntity(World par1World, int metadata)
     {
-    	System.out.println("new non-null tile entity added");
     	BC_TileEntityCrusher tec = new BC_TileEntityCrusher();
     	metadata = (metadata > 8) ? metadata : metadata - 8;
     	
@@ -263,8 +261,6 @@ public class BC_BlockCrusher extends BlockContainer
     @Override
     public void onBlockPlacedBy(World par1World, int x, int y, int z, EntityLiving par5EntityLiving)
     {
-    	
-    	System.out.println("placing crusher");
         int var6 = MathHelper.floor_double((double)(par5EntityLiving.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 
         if (var6 == 0)

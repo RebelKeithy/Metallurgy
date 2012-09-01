@@ -25,6 +25,7 @@ import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
+import net.minecraft.src.Material;
 import net.minecraft.src.ModLoader;
 import net.minecraft.src.World;
 import net.minecraftforge.client.MinecraftForgeClient;
@@ -49,6 +50,10 @@ public class mod_MetallurgyCore
 	public static boolean hasFantasy;
 
 	public static Block crusher;
+	
+	public static Block smoke;
+	public static Block smokeInactive;
+	public static Block smokeEater;
 
 	public mod_MetallurgyCore()
 	{
@@ -61,6 +66,10 @@ public class mod_MetallurgyCore
 		config.init();
 		crusher = new BC_BlockCrusher(CoreConfig.crusherID, false).setHardness(3.5F).setBlockName("Crusher").setCreativeTab(CreativeTabs.tabDeco);
 
+		smoke = new BlockSmoke(1000, true).setBlockName("Smoke").setCreativeTab(CreativeTabs.tabDeco);
+		smokeInactive = new BlockSmoke(1001, false).setBlockName("Smoke");
+		smokeEater = new BlockSmokeEater(1002, true).setBlockName("Eater").setCreativeTab(CreativeTabs.tabDeco);
+		
 		proxy.registerRenderInformation();
 
 		try {
@@ -100,6 +109,10 @@ public class mod_MetallurgyCore
 		
 		mod_Iron.load();
 		mod_Gold.load();
+		
+		GameRegistry.registerBlock(smoke);
+		GameRegistry.registerBlock(smokeInactive);
+		GameRegistry.registerBlock(smokeEater);
 		
 		GameRegistry.registerWorldGenerator(new CoreWorldGen());
 		

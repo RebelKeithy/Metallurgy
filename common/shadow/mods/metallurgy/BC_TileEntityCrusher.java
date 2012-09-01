@@ -479,7 +479,6 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 		if(worldObj.isRemote)
 			return;
 		
-		System.out.println("sending packet");
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(140);
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {
@@ -488,9 +487,7 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 			dos.writeInt(zCoord);
 			dos.writeInt(direction);
 			dos.writeInt(furnaceTimeBase);
-			System.out.println("sending base time " + furnaceTimeBase);
 			dos.writeInt(furnaceBurnTime);
-			System.out.println("sending burn time " + furnaceBurnTime);
 		} catch (IOException e) {
 			// UNPOSSIBLE?
 		}
