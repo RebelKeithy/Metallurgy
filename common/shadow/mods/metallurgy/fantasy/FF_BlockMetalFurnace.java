@@ -71,8 +71,6 @@ public class FF_BlockMetalFurnace extends BlockContainer
         }
         else
         {
-            //int var6 = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
-            //int var6 = ((TileEntityMetalFurnace)(par1IBlockAccess.getBlockTileEntity(par2, par3, par4))).getDirection();
             if(side != 3)
             	return 1 + (metadata * 16);
             else
@@ -92,6 +90,8 @@ public class FF_BlockMetalFurnace extends BlockContainer
     	int time = (tileEntity instanceof FF_TileEntityMetalFurnace) ? (((FF_TileEntityMetalFurnace)tileEntity).furnaceCookTime * 10) % 2 : 0;
     	boolean isBurning = (tileEntity instanceof FF_TileEntityMetalFurnace) ? (((FF_TileEntityMetalFurnace)tileEntity).isBurning()) : false;
     			
+    	System.out.println("burning " + isBurning);
+    	
         if (par5 == 1 || par5 == 0)
         {
             return 2 + ((meta) * 16);
@@ -188,6 +188,7 @@ public class FF_BlockMetalFurnace extends BlockContainer
      */
     public static void updateFurnaceBlockState(boolean isBurning, World par1World, int par2, int par3, int par4)
     {
+    	/*
     	//System.out.println("updating furnace" + isBurning);
         int var5 = par1World.getBlockMetadata(par2, par3, par4);
         //TileEntity var6 = par1World.getBlockTileEntity(par2, par3, par4);
@@ -235,25 +236,21 @@ public class FF_BlockMetalFurnace extends BlockContainer
 
         if (var6 == 0)
         {
-            //par1World.setBlockMetadataWithNotify(par2, par3, par4, 2);
             ((FF_TileEntityMetalFurnace)(par1World.getBlockTileEntity(par2, par3, par4))).setDirection(2);
         }
 
         if (var6 == 1)
         {
-            //par1World.setBlockMetadataWithNotify(par2, par3, par4, 5);
             ((FF_TileEntityMetalFurnace)(par1World.getBlockTileEntity(par2, par3, par4))).setDirection(5);
         }
 
         if (var6 == 2)
         {
-            //par1World.setBlockMetadataWithNotify(par2, par3, par4, 3);
             ((FF_TileEntityMetalFurnace)(par1World.getBlockTileEntity(par2, par3, par4))).setDirection(3);
         }
 
         if (var6 == 3)
         {
-            //par1World.setBlockMetadataWithNotify(par2, par3, par4, 4);
             ((FF_TileEntityMetalFurnace)(par1World.getBlockTileEntity(par2, par3, par4))).setDirection(4);
         }
         

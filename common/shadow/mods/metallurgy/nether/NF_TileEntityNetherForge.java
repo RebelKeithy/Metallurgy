@@ -1,7 +1,12 @@
 package shadow.mods.metallurgy.nether;
 
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.network.PacketDispatcher;
 
 import net.minecraft.src.*;
 import net.minecraftforge.common.ForgeDirection;
@@ -257,9 +262,10 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
      */
     public void updateEntity()
     {
-		if ((++ticksSinceSync % 20) == 0) 
+		if ((++ticksSinceSync % 80) == 0) 
         {
-			sync();
+			//sync();
+			sendPacket();
 		}
 		
         boolean var1 = this.furnaceBurnTime > 0;
@@ -289,14 +295,15 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
         if(prevIsBurning != isBurning)
         {
         	checkBurning = true;
-            NF_BlockNetherForge.updateFurnaceBlockState(this.isBurning, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+            //NF_BlockNetherForge.updateFurnaceBlockState(this.isBurning, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
         }
 
         if (checkBurning)
         {
             this.onInventoryChanged();
-			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
-			sync();
+			//int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
+			//sync();
+			sendPacket();
         }
     }
 
@@ -391,5 +398,33 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
 		// TODO Auto-generated method stub
 		int scaledFuel = MathHelper.ceiling_float_int(i * (fuel/((float)(maxFuel))));
 		return (scaledFuel >= i) ? i : scaledFuel;
+	}
+	
+	public void sendPacket()
+	{
+		if(worldObj.isRemote)
+			return;
+		
+		ByteArrayOutputStream bos = new ByteArrayOutputStream(140);
+		DataOutputStream dos = new DataOutputStream(bos);
+		try {
+			dos.writeInt(xCoord);
+			dos.writeInt(yCoord);
+			dos.writeInt(zCoord);
+			dos.writeInt(direction);
+			dos.writeInt(furnaceTimeBase);
+			dos.writeInt(furnaceBurnTime);
+		} catch (IOException e) {
+			// UNPOSSIBLE?
+		}
+		Packet250CustomPayload packet = new Packet250CustomPayload();
+		packet.channel = "MetallurgyNether";
+		packet.data = bos.toByteArray();
+		packet.length = bos.size();
+		packet.isChunkDataPacket = true;
+		
+		if (packet != null) {
+			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, 0, packet);
+		}
 	}
 }

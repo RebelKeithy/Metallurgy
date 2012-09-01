@@ -95,6 +95,9 @@ public class NF_BlockNetherForge extends BlockContainer
     	int time = (tileEntity instanceof NF_TileEntityNetherForge) ? (((NF_TileEntityNetherForge)tileEntity).furnaceCookTime * 10) % 2 : 0;
 
     	int	fuel = (tileEntity instanceof NF_TileEntityNetherForge) ? ((NF_TileEntityNetherForge)tileEntity).getScaledFuel(4) : 0;
+    	boolean isBurning = (tileEntity instanceof NF_TileEntityNetherForge) ? ((NF_TileEntityNetherForge)tileEntity).isBurning() : false;
+    	
+    	
     	//par5 = ((TileEntityMetalFurnace)(par1IBlockAccess.getBlockTileEntity(par2, par3, par4))).getDirection();
         if (par5 == 1)
         {
@@ -111,7 +114,7 @@ public class NF_BlockNetherForge extends BlockContainer
         {
             if(par5 != dir)
             	return 9 + fuel + (type * 16);
-            else if(metadata >= 8)
+            else if(isBurning)
             	return 4 + fuel + (type * 16);
             else
             	return 0 + fuel + (type * 16);
@@ -125,7 +128,8 @@ public class NF_BlockNetherForge extends BlockContainer
     public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
     {
     	int metadata = par1World.getBlockMetadata(par2, par3, par4);
-        if (metadata >= 8)
+    	NF_TileEntityNetherForge tef = (NF_TileEntityNetherForge) par1World.getBlockTileEntity(par2, par3, par4);
+        if (tef.isBurning())
         {
             //int var6 = par1World.getBlockMetadata(par2, par3, par4);
             int var6 = ((NF_TileEntityNetherForge)(par1World.getBlockTileEntity(par2, par3, par4))).getDirection();
