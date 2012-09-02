@@ -21,7 +21,12 @@ public class MetallurgyItem extends Item
         texturePath = s;
         setMaxDamage(0);
     }
-    
+
+
+    public void addInformation(ItemStack par1ItemStack, List par2List)
+    {
+    	par2List.add(par1ItemStack.itemID - 256 + ":" + par1ItemStack.getItemDamage());
+    }
 
     @Override
     public String getTextureFile()

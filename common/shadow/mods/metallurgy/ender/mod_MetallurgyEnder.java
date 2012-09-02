@@ -3,14 +3,17 @@ import java.io.File;
 import java.util.Random;
 
 import shadow.mods.metallurgy.MetalSet;
+import shadow.mods.metallurgy.RecipeHelper;
 
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -65,7 +68,12 @@ public class mod_MetallurgyEnder
 
 		ores.load();
 		alloys.load();
+	}
 
-		ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), new Object[] { ores.Dust[0], ores.Dust[1] });
+	@PostInit
+	public void load(FMLPostInitializationEvent event) 
+	{
+		if(EnderConfig.alloyEnabled[0])
+			RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "dustEximite", "dustMeutoite");
 	}
 }

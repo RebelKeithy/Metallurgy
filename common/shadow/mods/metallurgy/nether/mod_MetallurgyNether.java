@@ -3,6 +3,7 @@ import java.io.File;
 import java.util.Random;
 
 import shadow.mods.metallurgy.MetalSet;
+import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.mod_Iron;
 import shadow.mods.metallurgy.mod_Gold;
 import shadow.mods.metallurgy.mod_MetallurgyCore;
@@ -16,8 +17,10 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -123,5 +126,17 @@ public class mod_MetallurgyNether
 			ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {new ItemStack(alloys.Dust[i], 1), ores.Dust[2]});
 		for(int i  = 0; i < 8; i++)
 			ModLoader.addShapelessRecipe(new ItemStack(mod_Gold.GoldDust, 1), new Object[] {ores.Dust[i], ores.Dust[2]});
+	}
+
+	@PostInit
+	public void load(FMLPostInitializationEvent event) 
+	{
+		/*
+		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "dustDeep Iron", "dustInfuscolium");
+		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[1], 1), "dustMithril", "dustSilver");
+		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[2], 1), "dustMithril", "dustRubracium");
+		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[3], 1), "dustOrichalcum", "dustPlatinum");
+		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[4], 1), "dustAdamantine", "dustAtlarus");
+		*/
 	}
 }

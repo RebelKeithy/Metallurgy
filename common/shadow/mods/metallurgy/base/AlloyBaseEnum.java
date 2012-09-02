@@ -133,7 +133,7 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 	@Override
 	public int getDimension()
 	{
-		return 0;
+		return BaseConfig.dimensionID;
 	}
 
 	@Override

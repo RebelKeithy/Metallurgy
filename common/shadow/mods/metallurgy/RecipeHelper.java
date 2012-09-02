@@ -1,10 +1,14 @@
 package shadow.mods.metallurgy;
 
+import java.util.ArrayList;
+
+import shadow.mods.metallurgy.base.BaseConfig;
 import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
 import net.minecraft.src.Block;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.ModLoader;
+import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RecipeHelper {
@@ -156,6 +160,15 @@ public class RecipeHelper {
 		ModLoader.addRecipe(new ItemStack(storage, 1), new Object[] {
 			"XXX", "XXX", "XXX", Character.valueOf('X'), item
 		});
+	}
+	
+	public static void addAlloyRecipe(ItemStack alloy, String dust1, String dust2)
+	{
+	    	ArrayList<ItemStack> dustList1 = OreDictionary.getOres(dust1);
+	    	ArrayList<ItemStack> dustList2 = OreDictionary.getOres(dust2);
+	    	for(ItemStack copper : dustList1)
+	    		for(ItemStack tin : dustList2)
+	    			ModLoader.addShapelessRecipe(alloy, new Object[] {copper, tin});
 	}
 
 }

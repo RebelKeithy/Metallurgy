@@ -1,21 +1,25 @@
 package shadow.mods.metallurgy.base;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
 
 import shadow.mods.metallurgy.MetalSet;
+import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.mod_Gold;
 import shadow.mods.metallurgy.mod_Iron;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -66,9 +70,6 @@ public class mod_MetallurgyBaseMetals {
 		proxy.registerRenderInformation();
 
 		metalFurnace = new BF_BlockMetalFurnace(BaseConfig.furnaceID, false).setHardness(3.5F).setBlockName("MetalFurnace");
-	
-		MinecraftForge.EVENT_BUS.register(ores);
-		MinecraftForge.EVENT_BUS.register(alloys);
 	}
 
 	@Init
@@ -87,15 +88,20 @@ public class mod_MetallurgyBaseMetals {
 		
 		proxy.addNames();
 
+	}
+
+	@PostInit
+	public void load(FMLPostInitializationEvent event) 
+	{
 	    if(BaseConfig.alloyEnabled[0])
-	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), new Object[] {ores.Dust[0], ores.Dust[1]});
+	    	RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "dustCopper", "dustTin");
 	    if(BaseConfig.alloyEnabled[1])
-	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), new Object[] {alloys.Dust[0], mod_Gold.GoldDust});
+	    	RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[1], 1), "dustBronze", "dustGold");
 	    if(BaseConfig.alloyEnabled[2])
-	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[2], 1), new Object[] {alloys.Dust[0], mod_Iron.IronDust});
+	    	RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[2], 1), "dustBronze", "dustIron");
 	    if(BaseConfig.alloyEnabled[3])
-	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[3], 1), new Object[] {mod_Gold.GoldDust, mod_Iron.IronDust});
+	    	RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[3], 1), "dustGold", "dustIron");
 	    if(BaseConfig.alloyEnabled[4])
-	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[4], 1), new Object[] {mod_Iron.IronDust, ores.Dust[2]});
+	    	RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[4], 1), "dustIron", "dustManganese");
 	}
 }

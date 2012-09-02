@@ -345,17 +345,39 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
         {
             int var1 = FF_EssenceRecipes.essence().getEssenceResult(this.furnaceItemStacks[0]);
 
+            int type = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+            
+            int totalXP = (int) (var1 * FantasyConfig.xpBonus[type] / 10f);
+            
+            System.out.println(var1 + " " + type + " " + totalXP + " " + FantasyConfig.xpBonus[type]);
+            
             --this.furnaceItemStacks[0].stackSize;
 
             if (this.furnaceItemStacks[0].stackSize <= 0)
             {
                 this.furnaceItemStacks[0] = null;
             }
+
+            int xpPerOrb = 1;
+            int orbCount = totalXP;
             
+            if(totalXP > 20) {
+                xpPerOrb = 2;
+                orbCount = (totalXP/2) + 1;
+            } 
+            if(totalXP > 40) {
+                xpPerOrb = 4;
+                orbCount = (totalXP/4) + 1;
+            }
+            if(totalXP > 80) {
+                xpPerOrb = 8;
+                orbCount = (totalXP/8) + 1;
+            }
+                
             EntityXPOrb orb;
-            for(int n = 0; n < var1; n++)
+            for(int n = 0; n < orbCount; n++)
             {
-	            orb = new EntityXPOrb(this.worldObj, this.xCoord + 0.5, this.yCoord + 1, this.zCoord + 0.5, 1);
+	            orb = new EntityXPOrb(this.worldObj, this.xCoord + 0.5, this.yCoord + 1, this.zCoord + 0.5, xpPerOrb);
 	            orb.motionY = 0.4;
 	            this.worldObj.spawnEntityInWorld(orb);
             }

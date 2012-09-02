@@ -23,6 +23,7 @@ public class FantasyConfig  {
 	public static boolean furnaceEnabled;
 	
 	public static float[] extractorSpeeds = new float[11];
+	public static int[] xpBonus = new int[11];
 	
 	public static int ItemStartID;
 
@@ -60,17 +61,29 @@ public class FantasyConfig  {
 
     	dimensionID = config.getOrCreateIntProperty("Dimension ID", "Dimension", 0).getInt(0);
     	
-    	extractorSpeeds[0] = config.getOrCreateIntProperty("Prometheum", "Abstractor Speeds", 22000).getInt(22000)/1000;    	
-    	extractorSpeeds[1] = config.getOrCreateIntProperty("DeepIron", "Abstractor Speeds", 20000).getInt(20000)/1000;    	
-    	extractorSpeeds[2] = config.getOrCreateIntProperty("BlackSteel", "Abstractor Speeds", 18000).getInt(18000)/1000;    	
-    	extractorSpeeds[3] = config.getOrCreateIntProperty("Oureclase", "Abstractor Speeds", 16000).getInt(16000)/1000;    	
-    	extractorSpeeds[4] = config.getOrCreateIntProperty("Aredrite", "Abstractor Speeds", 14000).getInt(14000)/1000;    	
-    	extractorSpeeds[5] = config.getOrCreateIntProperty("Mithril", "Abstractor Speeds", 12000).getInt(12000)/1000;    	
-    	extractorSpeeds[6] = config.getOrCreateIntProperty("Haderoth", "Abstractor Speeds", 10000).getInt(10000)/1000;    	
-    	extractorSpeeds[7] = config.getOrCreateIntProperty("Orichalcum", "Abstractor Speeds", 8000).getInt(8000)/1000;    	
-    	extractorSpeeds[8] = config.getOrCreateIntProperty("Adamantine", "Abstractor Speeds", 6000).getInt(6000)/1000;    	
-    	extractorSpeeds[9] = config.getOrCreateIntProperty("Atlarus", "Abstractor Speeds", 4000).getInt(4000)/1000;    	    	
-    	extractorSpeeds[10] = config.getOrCreateIntProperty("Tartarite", "Abstractor Speeds", 2000).getInt(2000)/1000;
+    	extractorSpeeds[0] = config.getOrCreateIntProperty("Prometheum", "Abstractor Speeds", 22000).getInt(22000)/1000f;    	
+    	extractorSpeeds[1] = config.getOrCreateIntProperty("DeepIron", "Abstractor Speeds", 20000).getInt(20000)/1000f;    	
+    	extractorSpeeds[2] = config.getOrCreateIntProperty("BlackSteel", "Abstractor Speeds", 18000).getInt(18000)/1000f;    	
+    	extractorSpeeds[3] = config.getOrCreateIntProperty("Oureclase", "Abstractor Speeds", 16000).getInt(16000)/1000f;    	
+    	extractorSpeeds[4] = config.getOrCreateIntProperty("Aredrite", "Abstractor Speeds", 14000).getInt(14000)/1000f;    	
+    	extractorSpeeds[5] = config.getOrCreateIntProperty("Mithril", "Abstractor Speeds", 12000).getInt(12000)/1000f;    	
+    	extractorSpeeds[6] = config.getOrCreateIntProperty("Haderoth", "Abstractor Speeds", 10000).getInt(10000)/1000f;    	
+    	extractorSpeeds[7] = config.getOrCreateIntProperty("Orichalcum", "Abstractor Speeds", 8000).getInt(8000)/1000f;    	
+    	extractorSpeeds[8] = config.getOrCreateIntProperty("Adamantine", "Abstractor Speeds", 6000).getInt(6000)/1000f;    	
+    	extractorSpeeds[9] = config.getOrCreateIntProperty("Atlarus", "Abstractor Speeds", 4000).getInt(4000)/1000f;    	    	
+    	extractorSpeeds[10] = config.getOrCreateIntProperty("Tartarite", "Abstractor Speeds", 2000).getInt(2000)/1000f;
+    	
+    	xpBonus[0] = config.getOrCreateIntProperty("Prometheum", "Abstractor Bonus", 10).getInt(10); 
+    	xpBonus[1] = config.getOrCreateIntProperty("DeepIron", "Abstractor Bonus", 12).getInt(12); 
+    	xpBonus[2] = config.getOrCreateIntProperty("BlackSteel", "Abstractor Bonus", 14).getInt(14); 
+    	xpBonus[3] = config.getOrCreateIntProperty("Oureclase", "Abstractor Bonus", 16).getInt(16); 
+    	xpBonus[4] = config.getOrCreateIntProperty("Aredrite", "Abstractor Bonus", 18).getInt(18); 
+    	xpBonus[5] = config.getOrCreateIntProperty("Mithril", "Abstractor Bonus", 20).getInt(20); 
+    	xpBonus[6] = config.getOrCreateIntProperty("Haderoth", "Abstractor Bonus", 24).getInt(24); 
+    	xpBonus[7] = config.getOrCreateIntProperty("Orichalcum", "Abstractor Bonus", 28).getInt(28); 
+    	xpBonus[8] = config.getOrCreateIntProperty("Adamantine", "Abstractor Bonus", 32).getInt(32); 
+    	xpBonus[9] = config.getOrCreateIntProperty("Atlarus", "Abstractor Bonus", 36).getInt(36); 
+    	xpBonus[10] = config.getOrCreateIntProperty("Tartarite", "Abstractor Bonus", 40).getInt(40); 
 
     	for(int i = 0; i < AlloyFantasyEnum.numMetals; i++)
     		alloyEnabled[i] = config.getOrCreateBooleanProperty(AlloyFantasyEnum.names[i] + " Enabled", "Ores", true).getBoolean(true);

@@ -1,18 +1,22 @@
 package shadow.mods.metallurgy.precious;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Random;
 
 import shadow.mods.metallurgy.MetalSet;
+import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.mod_Gold;
 import shadow.mods.metallurgy.mod_MetallurgyCore;
 import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -61,9 +65,6 @@ public class mod_MetallurgyPrecious
 		ores = new MetalSet(new OrePreciousEnum());
 		
 		PreciousChest = new FC_BlockChest(913).setHardness(0.5F).setResistance(.1F).setBlockName("PreciousChest");
-
-		MinecraftForge.EVENT_BUS.register(ores);
-		MinecraftForge.EVENT_BUS.register(alloys);
 	}
 
 	@Init
@@ -77,35 +78,45 @@ public class mod_MetallurgyPrecious
 		alloys.load();
 		ores.load();
 		
-		addChestRecipes();
 		
 		proxy.addNames();
 		proxy.registerTileEntitySpecialRenderer();
 		proxy.registerRenderInformation();
+	}
 
-		if(mod_MetallurgyCore.hasBase)
-		{
-			ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), new Object[] {mod_MetallurgyBaseMetals.ores.Dust[0], new ItemStack(ores.Dust[0], 1)});
-	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), new Object[] {mod_Gold.GoldDust, new ItemStack(ores.Dust[1], 1)});
-		}
+	@PostInit
+	public void load(FMLPostInitializationEvent event) 
+	{
+		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "dustZinc", "dustCopper");
+		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[1], 1), "dustGold", "dustSilver");
+		addChestRecipes();
 	}
 	
 	public void addChestRecipes()
 	{
-		ModLoader.addRecipe(new ItemStack(PreciousChest, 1, 0), new Object[] {
-			"XXX", "XFX", "XXX", Character.valueOf('X'), new ItemStack(alloys.Bar[0], 1), Character.valueOf('F'), Block.chest
-		});
-		ModLoader.addRecipe(new ItemStack(PreciousChest, 1, 1), new Object[] {
-			"XXX", "XFX", "XXX", Character.valueOf('X'), new ItemStack(ores.Bar[1], 1), Character.valueOf('F'), new ItemStack(PreciousChest, 1, 0)
-		});
+
+    	for(ItemStack brass : OreDictionary.getOres("ingotBrass"))
+			ModLoader.addRecipe(new ItemStack(PreciousChest, 1, 0), new Object[] {
+				"XXX", "XFX", "XXX", Character.valueOf('X'), brass, Character.valueOf('F'), Block.chest
+			});
+
+    	for(ItemStack silver : OreDictionary.getOres("ingotSilver"))
+			ModLoader.addRecipe(new ItemStack(PreciousChest, 1, 1), new Object[] {
+				"XXX", "XFX", "XXX", Character.valueOf('X'), silver, Character.valueOf('F'), new ItemStack(PreciousChest, 1, 0)
+			});
+
 		ModLoader.addRecipe(new ItemStack(PreciousChest, 1, 2), new Object[] {
 			"XXX", "XFX", "XXX", Character.valueOf('X'), Item.ingotGold, Character.valueOf('F'), new ItemStack(PreciousChest, 1, 1)
 		});
-		ModLoader.addRecipe(new ItemStack(PreciousChest, 1, 3), new Object[] {
-			"XXX", "XFX", "XXX", Character.valueOf('X'), new ItemStack(alloys.Bar[1], 1), Character.valueOf('F'), new ItemStack(PreciousChest, 1, 2)
-		});
-		ModLoader.addRecipe(new ItemStack(PreciousChest, 1, 4), new Object[] {
-			"XXX", "XFX", "XXX", Character.valueOf('X'), new ItemStack(ores.Bar[2], 1), Character.valueOf('F'), new ItemStack(PreciousChest, 1, 3)
-		});
+
+    	for(ItemStack electrum: OreDictionary.getOres("ingotElectrum"))
+			ModLoader.addRecipe(new ItemStack(PreciousChest, 1, 3), new Object[] {
+				"XXX", "XFX", "XXX", Character.valueOf('X'), electrum, Character.valueOf('F'), new ItemStack(PreciousChest, 1, 2)
+			});
+
+    	for(ItemStack platinum: OreDictionary.getOres("ingotPlatinum"))
+			ModLoader.addRecipe(new ItemStack(PreciousChest, 1, 4), new Object[] {
+				"XXX", "XFX", "XXX", Character.valueOf('X'), platinum, Character.valueOf('F'), new ItemStack(PreciousChest, 1, 3)
+			});
 	}
 }
