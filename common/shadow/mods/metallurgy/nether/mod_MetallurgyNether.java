@@ -88,6 +88,8 @@ public class mod_MetallurgyNether
 			"X", "X", Character.valueOf('X'), ores.Bar[6]
 		});
 		
+		GameRegistry.registerWorldGenerator(new ObsidianSpawns());
+		
 		ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), new Object[] {ores.Dust[0], ores.Dust[0], ores.Dust[1]});
 	    ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), new Object[] {ores.Dust[3], ores.Dust[4]});
 	    if(mod_MetallurgyCore.hasPrecious)

@@ -66,6 +66,9 @@ public class mod_MetallurgyBaseMetals {
 		proxy.registerRenderInformation();
 
 		metalFurnace = new BF_BlockMetalFurnace(BaseConfig.furnaceID, false).setHardness(3.5F).setBlockName("MetalFurnace");
+	
+		MinecraftForge.EVENT_BUS.register(ores);
+		MinecraftForge.EVENT_BUS.register(alloys);
 	}
 
 	@Init

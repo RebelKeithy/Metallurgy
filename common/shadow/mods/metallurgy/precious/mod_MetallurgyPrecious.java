@@ -61,6 +61,9 @@ public class mod_MetallurgyPrecious
 		ores = new MetalSet(new OrePreciousEnum());
 		
 		PreciousChest = new FC_BlockChest(913).setHardness(0.5F).setResistance(.1F).setBlockName("PreciousChest");
+
+		MinecraftForge.EVENT_BUS.register(ores);
+		MinecraftForge.EVENT_BUS.register(alloys);
 	}
 
 	@Init

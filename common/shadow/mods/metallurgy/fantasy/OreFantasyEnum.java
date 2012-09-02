@@ -22,8 +22,8 @@ public class OreFantasyEnum implements IMetalSetEnum{
 	}
 
 	@Override
-	public int startID() {
-		return FantasyConfig.ItemStartID;
+	public int startID(int i) {
+		return FantasyConfig.ItemStartID + (i * 50);
 	}
 
 	@Override

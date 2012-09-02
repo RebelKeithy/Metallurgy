@@ -19,7 +19,9 @@ import net.minecraft.src.ModLoader;
 import net.minecraft.src.World;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.OreDictionary.OreRegisterEvent;
 import shadow.mods.metallurgy.BC_CrusherRecipes;
 import shadow.mods.metallurgy.MetallurgyArmor;
 import shadow.mods.metallurgy.MetallurgyItem;
@@ -77,25 +79,25 @@ public class MetalSet implements IWorldGenerator {
 		Legs = new Item[numMetals];
 		Boots = new Item[numMetals];
 	
-		int startID = info.startID();
 		
 		for(int i = 0; i < numMetals; i++)
 		{
-			Dust[i] = (new MetallurgyItem(startID+(i*50), info.image())).setIconCoord(i,3).setItemName(info.name(i) + "Dust").setTabToDisplayOn(CreativeTabs.tabMaterials);
-			Bar[i] = (new MetallurgyItem(startID+(i*50)+1, info.image())).setIconCoord(i,4).setItemName(info.name(i) + "Bar").setTabToDisplayOn(CreativeTabs.tabMaterials);
+			int startID = info.startID(i);
+			Dust[i] = (new MetallurgyItem(startID, info.image())).setIconCoord(i,3).setItemName(info.name(i) + "Dust").setTabToDisplayOn(CreativeTabs.tabMaterials);
+			Bar[i] = (new MetallurgyItem(startID+1, info.image())).setIconCoord(i,4).setItemName(info.name(i) + "Bar").setTabToDisplayOn(CreativeTabs.tabMaterials);
 			
 			if(info.isCatalyst(i))
 				continue;
-			Pickaxe[i] = new MetallurgyItemPickaxe(startID+(i*50)+2, info.image(), info.toolEnum(i)).setIconCoord(i,7).setItemName(info.name(i) + "Pickaxe");
-			Shovel[i] = new MetallurgyItemSpade(startID+(i*50)+3, info.image(), info.toolEnum(i)).setIconCoord(i,8).setItemName(info.name(i) + "Shovel");
-			Axe[i] = new MetallurgyItemAxe(startID+(i*50)+4, info.image(), info.toolEnum(i)).setIconCoord(i,5).setItemName(info.name(i) + "Axe");
-			Hoe[i] = new MetallurgyItemHoe(startID+(i*50)+5, info.image(), info.toolEnum(i)).setIconCoord(i,6).setItemName(info.name(i) + "Hoe");
-			Sword[i] = new MetallurgyItemSword(startID+(i*50)+6, info.image(), info.toolEnum(i)).setIconCoord(i,9).setItemName(info.name(i) + "Sword");
+			Pickaxe[i] = new MetallurgyItemPickaxe(startID+2, info.image(), info.toolEnum(i)).setIconCoord(i,7).setItemName(info.name(i) + "Pickaxe");
+			Shovel[i] = new MetallurgyItemSpade(startID+3, info.image(), info.toolEnum(i)).setIconCoord(i,8).setItemName(info.name(i) + "Shovel");
+			Axe[i] = new MetallurgyItemAxe(startID+4, info.image(), info.toolEnum(i)).setIconCoord(i,5).setItemName(info.name(i) + "Axe");
+			Hoe[i] = new MetallurgyItemHoe(startID+5, info.image(), info.toolEnum(i)).setIconCoord(i,6).setItemName(info.name(i) + "Hoe");
+			Sword[i] = new MetallurgyItemSword(startID+6, info.image(), info.toolEnum(i)).setIconCoord(i,9).setItemName(info.name(i) + "Sword");
 			
-			Helmet[i] = (new MetallurgyArmor(startID+(i*50)+7, info.image(), EnumArmorMaterial.IRON, 0, 0, 10, 230)).setIconCoord(i,12).setItemName(info.name(i) + "Helmet");
-			Plate[i] = (new MetallurgyArmor(startID+(i*50)+8, info.image(), EnumArmorMaterial.IRON, 0, 1, 10, 300)).setIconCoord(i,13).setItemName(info.name(i) + "Plate");
-			Legs[i] = (new MetallurgyArmor(startID+(i*50)+9, info.image(), EnumArmorMaterial.IRON, 0, 2, 10, 270)).setIconCoord(i,14).setItemName(info.name(i) + "Legs");
-			Boots[i] = (new MetallurgyArmor(startID+(i*50)+10, info.image(), EnumArmorMaterial.IRON, 0, 3, 10, 200)).setIconCoord(i,15).setItemName(info.name(i) + "Boots");
+			Helmet[i] = (new MetallurgyArmor(startID+7, info.image(), EnumArmorMaterial.IRON, 0, 0, 10, 230)).setIconCoord(i,12).setItemName(info.name(i) + "Helmet");
+			Plate[i] = (new MetallurgyArmor(startID+8, info.image(), EnumArmorMaterial.IRON, 0, 1, 10, 300)).setIconCoord(i,13).setItemName(info.name(i) + "Plate");
+			Legs[i] = (new MetallurgyArmor(startID+9, info.image(), EnumArmorMaterial.IRON, 0, 2, 10, 270)).setIconCoord(i,14).setItemName(info.name(i) + "Legs");
+			Boots[i] = (new MetallurgyArmor(startID+10, info.image(), EnumArmorMaterial.IRON, 0, 3, 10, 200)).setIconCoord(i,15).setItemName(info.name(i) + "Boots");
 		
 			if(info.numRails(i) > 0)
 				RecipeHelper.addRailsRecipe(Bar[i], info.numRails(i));
@@ -174,6 +176,49 @@ public class MetalSet implements IWorldGenerator {
 		GameRegistry.registerBlock(brick, MetallurgyItemBlock.class);
 	}
 	
+
+    @ForgeSubscribe
+    public void oreRegistered(OreRegisterEvent event)
+    {
+    	for(int i = 0; i < info.numMetals(); i++)
+    	{
+    		if(event.Name.equals("ore" + info.name(i)));
+    		{
+    			//Crusher
+    			if(ore != null)
+    				BC_CrusherRecipes.smelting().addCrushing(event.Ore.itemID, event.Ore.getItemDamage(), new ItemStack(Dust[i], 2));
+    		}
+    		
+    		if(event.Name.equals("ingot" + info.name(i)));
+    		{
+    			BC_CrusherRecipes.smelting().addCrushing(event.Ore.itemID, new ItemStack(Dust[i], 1));
+
+    			if(mod_MetallurgyCore.hasFantasy)
+    				FF_EssenceRecipes.essence().addEssenceAmount(event.Ore.itemID, info.expValue(i));
+    			 
+    			//Bricks!
+    			RecipeHelper.addBrickRecipes(brick.blockID, i, event.Ore.getItem(), event.Ore.getItemDamage());
+    			
+    	        if(!info.isCatalyst(i))
+    	        {
+    				RecipeHelper.addAxeRecipe(Axe[i], event.Ore.getItem());
+    				RecipeHelper.addPickaxeRecipe(Pickaxe[i], event.Ore.getItem());
+    				RecipeHelper.addShovelRecipe(Shovel[i], event.Ore.getItem());
+    				RecipeHelper.addHoeRecipe(Hoe[i], event.Ore.getItem());
+    				RecipeHelper.addSwordRecipe(Sword[i], event.Ore.getItem());
+    				RecipeHelper.addHelmetRecipe(Helmet[i], event.Ore.getItem());
+    				RecipeHelper.addPlateRecipe(Plate[i], event.Ore.getItem());
+    				RecipeHelper.addLegsRecipe(Legs[i], event.Ore.getItem());
+    				RecipeHelper.addBootsRecipe(Boots[i], event.Ore.getItem());
+    			    
+    			    //Buckets/Shears
+    				RecipeHelper.addBucketRecipe(event.Ore.getItem());
+    				RecipeHelper.addShearsRecipe(event.Ore.getItem());
+    	        }
+    		}
+    	}
+    }
+    
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
@@ -189,10 +234,13 @@ public class MetalSet implements IWorldGenerator {
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(info.oreHeight(meta));
 			int randPosZ = chunkZ + rand.nextInt(16);
+			//System.out.println("spawning " + info.name(meta) + " " + randPosX + " " + randPosY + " " + randPosZ);
 			if(info.getDimension() == 0)
 				(new MetallurgyWorldGenMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
 			if(info.getDimension() == -1)
 				(new MetallurgyWorldGenNetherMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
+			if(info.getDimension() == 2)
+				(new MetallurgyWorldGenEnderMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 

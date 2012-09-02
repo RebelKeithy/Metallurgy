@@ -20,21 +20,8 @@ public class ClientProxy extends shadow.mods.metallurgy.nether.CommonProxy{
 
 	public void addArmor()
 	{
-		for(int i = 0; i < AlloyNetherEnum.numMetals; i++)
-		{
-			((MetallurgyArmor) (mod_MetallurgyNether.alloys.Helmet[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(AlloyNetherEnum.names[i]));
-			((MetallurgyArmor) (mod_MetallurgyNether.alloys.Plate[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(AlloyNetherEnum.names[i]));
-			((MetallurgyArmor) (mod_MetallurgyNether.alloys.Legs[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(AlloyNetherEnum.names[i]));
-			((MetallurgyArmor) (mod_MetallurgyNether.alloys.Boots[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(AlloyNetherEnum.names[i]));
-		}
-		
-		for(int i = 0; i < OreNetherEnum.numMetals; i++)
-		{
-			((MetallurgyArmor) (mod_MetallurgyNether.ores.Helmet[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(OreNetherEnum.names[i]));
-			((MetallurgyArmor) (mod_MetallurgyNether.ores.Plate[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(OreNetherEnum.names[i]));
-			((MetallurgyArmor) (mod_MetallurgyNether.ores.Legs[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(OreNetherEnum.names[i]));
-			((MetallurgyArmor) (mod_MetallurgyNether.ores.Boots[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(OreNetherEnum.names[i]));
-		}
+		CoreClientProxy.addArmorToSet(mod_MetallurgyNether.ores);
+		CoreClientProxy.addArmorToSet(mod_MetallurgyNether.alloys);
 	}
 	
 	public void addNames()

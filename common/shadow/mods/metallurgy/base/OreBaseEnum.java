@@ -25,8 +25,8 @@ public class OreBaseEnum implements IMetalSetEnum{
 	}
 
 	@Override
-	public int startID() {
-		return BaseConfig.ItemStartID;
+	public int startID(int i) {
+		return BaseConfig.ItemStartID + (i * 50);
 	}
 
 	@Override

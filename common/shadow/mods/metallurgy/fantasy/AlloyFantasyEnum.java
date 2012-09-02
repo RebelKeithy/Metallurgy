@@ -18,8 +18,8 @@ public class AlloyFantasyEnum implements IMetalSetEnum{
 	}
 
 	@Override
-	public int startID() {
-		return FantasyConfig.ItemStartID + 600;
+	public int startID(int i) {
+		return FantasyConfig.ItemStartID + 600 + (i * 50);
 	}
 
 	@Override

@@ -17,29 +17,15 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import shadow.mods.metallurgy.CoreClientProxy;
 import shadow.mods.metallurgy.MetallurgyArmor;
+import shadow.mods.metallurgy.fantasy.mod_MetallurgyFantasy;
 import shadow.mods.metallurgy.precious.*;
 
 public class ClientProxy extends CommonProxy{
 
 	public void addArmor()
 	{
-		for(int i = 0; i < mod_MetallurgyPrecious.alloys.numMetals; i++)
-		{
-			((MetallurgyArmor) (mod_MetallurgyPrecious.alloys.Helmet[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(AlloyPreciousEnum.name[i]));
-			((MetallurgyArmor) (mod_MetallurgyPrecious.alloys.Plate[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(AlloyPreciousEnum.name[i]));
-			((MetallurgyArmor) (mod_MetallurgyPrecious.alloys.Legs[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(AlloyPreciousEnum.name[i]));
-			((MetallurgyArmor) (mod_MetallurgyPrecious.alloys.Boots[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(AlloyPreciousEnum.name[i]));
-		}
-		
-		for(int i = 0; i < mod_MetallurgyPrecious.ores.numMetals; i++)
-		{
-			if(mod_MetallurgyPrecious.ores.info.isCatalyst(i))
-				continue;
-			((MetallurgyArmor) (mod_MetallurgyPrecious.alloys.Helmet[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(AlloyPreciousEnum.name[i]));
-			((MetallurgyArmor) (mod_MetallurgyPrecious.alloys.Plate[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(AlloyPreciousEnum.name[i]));
-			((MetallurgyArmor) (mod_MetallurgyPrecious.alloys.Legs[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(AlloyPreciousEnum.name[i]));
-			((MetallurgyArmor) (mod_MetallurgyPrecious.alloys.Boots[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(AlloyPreciousEnum.name[i]));
-		}
+		CoreClientProxy.addArmorToSet(mod_MetallurgyPrecious.alloys);
+		CoreClientProxy.addArmorToSet(mod_MetallurgyPrecious.ores);
 	}
 	
 	public void addNames()

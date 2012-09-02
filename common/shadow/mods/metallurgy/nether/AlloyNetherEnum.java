@@ -18,8 +18,8 @@ public class AlloyNetherEnum implements IMetalSetEnum{
 	}
 
 	@Override
-	public int startID() {
-		return NetherConfig.ItemStartID + 400;
+	public int startID(int i) {
+		return NetherConfig.alloyItemIds[i];
 	}
 
 	@Override

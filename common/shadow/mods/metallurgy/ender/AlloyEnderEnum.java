@@ -1,21 +1,16 @@
-package shadow.mods.metallurgy.base;
+package shadow.mods.metallurgy.ender;
 
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 
-public class AlloyBaseEnum implements IMetalSetEnum{
+public class AlloyEnderEnum implements IMetalSetEnum{
 
-	public static int numMetals = 5;
-	public static String[] names = {"Bronze", "Hepatizon", "Damascus Steel", "Angmallen", "Steel"};
-	public static String imageName = "/shadow/MetallurgyBaseAlloys.png";
-	private int[] expValues = {2, 8, 5, 9, 6};
-	private int[] harvestLevels = {2, 2, 2, 2, 3};
-	private int[] pickLevels = {3, 3, 4, 3, 4};
-
-	private int[] dungeonLootChances = {120, 120, 80, 75, 50};
-	private int[] dungeonLootAmounts = {3, 3, 2, 2, 2};
-	
-	private int[] numRails = {20, 20, 20, 20, 20};
+	public static int numMetals = 1;
+	public static String[] names = {"Desichalkos"};
+	public static String imageName = "/shadow/MetallurgyEnderAlloys.png";
+	private int[] expValues = {10};
+	private int[] harvestLevels = {2};
+	private int[] pickLevels = {3};
 	
 	@Override
 	public int numMetals() {
@@ -24,7 +19,7 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 
 	@Override
 	public int startID(int i) {
-		return BaseConfig.ItemStartID + 150 + (i * 50);
+		return EnderConfig.alloyItemIds[i];
 	}
 
 	@Override
@@ -84,12 +79,12 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 
 	@Override
 	public int brickID() {
-		return BaseConfig.baseAlloysBrickID;
+		return EnderConfig.EnderAlloysBrickID;
 	}
 
 	@Override
 	public String getSetName() {
-		return "BaseAlloy";
+		return "EnderAlloy";
 	}
 
 	@Override
@@ -97,17 +92,9 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 		switch(i)
 		{
 			case(0):
-				return MetallurgyEnumToolMaterial.Bronze;
-			case(1):
-				return MetallurgyEnumToolMaterial.Hepatizon;
-			case(2):
-				return MetallurgyEnumToolMaterial.DamascusSteel;
-			case(3):
-				return MetallurgyEnumToolMaterial.Angmallen;
-			case(4):
 				return MetallurgyEnumToolMaterial.Steel;
 		}
-		return MetallurgyEnumToolMaterial.Bronze;
+		return MetallurgyEnumToolMaterial.Steel;
 	}
 
 	@Override
@@ -117,22 +104,23 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 
 	@Override
 	public int dungeonLootChance(int i) {
-		return dungeonLootChances[i];
+		return 0;
 	}
 
 	@Override
 	public int dungeonLootAmount(int i) {
-		return dungeonLootAmounts[i];
+		return 0;
 	}
 
 	@Override
 	public int numRails(int i) {
-		return numRails[i];
+		return 0;
 	}
 
 	@Override
 	public int getDimension()
 	{
-		return 0;
+		return 2;
 	}
+
 }

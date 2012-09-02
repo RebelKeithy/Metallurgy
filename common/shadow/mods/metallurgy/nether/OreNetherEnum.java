@@ -5,16 +5,16 @@ import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 
 public class OreNetherEnum implements IMetalSetEnum{
 
-	public static final int numMetals = 8;	
+	public static final int numMetals = 10;	
 	public static String imageName = "/shadow/MetallurgyNetherMetals.png";
-	public static String[] names = {"Ignatius", "Shadow Iron", "Midasium", "Vyroxeres", "Ceruclase", "Kalendrite", "Vulcanite", "Sanguinite"};
-	public static int[] expValues = {1, 2, 3, 3, 3, 4, 5, 6};
-	private final int[] harvestLevels = {2, 2, 3, 3, 3, 4, 5, 6};
-	private final int[] pickLevels = {2, 2, 4, 4, 4, 5, 6, 7};
+	public static String[] names = {"Ignatius", "Shadow Iron", "Midasium", "Vyroxeres", "Ceruclase", "Kalendrite", "Vulcanite", "Sanguinite", "Lemurite", "Adluorite"};
+	public static int[] expValues = {1, 2, 3, 3, 3, 4, 5, 6, 3, 4};
+	private final int[] harvestLevels = {2, 2, 3, 3, 3, 4, 5, 6, 0, 0};
+	private final int[] pickLevels = {2, 2, 4, 4, 4, 5, 6, 7, 0, 0};
 
-	public static int[] defaultVeinCount = {12, 10, 6, 5, 5, 4, 3, 3};
-	public static int[] defaultOreCount = {6, 6, 6, 6, 4, 4, 4, 4};
-	public static int[] defaultOreHeight = {128, 128, 128, 128, 128, 128, 128, 128};
+	public static int[] defaultVeinCount = {12, 10, 6, 5, 5, 4, 3, 3, 8, 6};
+	public static int[] defaultOreCount = {6, 6, 6, 6, 4, 4, 4, 4, 6, 4};
+	public static int[] defaultOreHeight = {128, 128, 128, 128, 128, 128, 128, 128, 128, 128};
 	
 	@Override
 	public int numMetals() {
@@ -22,8 +22,8 @@ public class OreNetherEnum implements IMetalSetEnum{
 	}
 
 	@Override
-	public int startID() {
-		return NetherConfig.ItemStartID;
+	public int startID(int i) {
+		return NetherConfig.metalItemIds[i];
 	}
 
 	@Override
@@ -117,6 +117,8 @@ public class OreNetherEnum implements IMetalSetEnum{
 
 	@Override
 	public boolean isCatalyst(int i) {
+		if(i >= 8)
+			return true;
 		return false;
 	}
 

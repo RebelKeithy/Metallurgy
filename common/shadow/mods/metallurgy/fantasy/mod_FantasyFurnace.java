@@ -7,10 +7,8 @@ public class mod_FantasyFurnace {
 	public static String texturePath = "/shadow/MetallurgyFantasyFurnace.png";
 
 	public static int furnaceID = 922;
-	public static int furnaceOnID = 923;
 	
 	public static Block metalFurnace = new FF_BlockMetalFurnace(furnaceID, false).setHardness(3.5F).setBlockName("MetalFantasyFurnace");
-	public static Block metalFurnaceOn = new FF_BlockMetalFurnace(furnaceOnID, true).setHardness(3.5F).setBlockName("MetalFantasyFurnace");	
 	
 	public static void load()
 	{

@@ -18,8 +18,8 @@ public class AlloyPreciousEnum implements IMetalSetEnum{
 	}
 
 	@Override
-	public int startID() {
-		return PreciousConfig.ItemStartID + 150;
+	public int startID(int i) {
+		return PreciousConfig.ItemStartID + 150 + (i * 50);
 	}
 
 	@Override

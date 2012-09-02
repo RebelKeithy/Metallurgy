@@ -5,7 +5,7 @@ import java.util.List;
 public interface IMetalSetEnum {
 	
 	public int numMetals();
-	public int startID();
+	public int startID(int i);
 	public String name(int i);
 	public int expValue(int i);
 	public int oreHarvestLevel(int i);
