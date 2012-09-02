@@ -22,12 +22,6 @@ import shadow.mods.metallurgy.precious.*;
 
 public class ClientProxy extends CommonProxy{
 
-	public void addArmor()
-	{
-		CoreClientProxy.addArmorToSet(mod_MetallurgyPrecious.alloys);
-		CoreClientProxy.addArmorToSet(mod_MetallurgyPrecious.ores);
-	}
-	
 	public void addNames()
 	{
 		CoreClientProxy.addNamesToSet(mod_MetallurgyPrecious.alloys);

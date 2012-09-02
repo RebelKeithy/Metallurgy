@@ -1,5 +1,7 @@
 package shadow.mods.metallurgy.base;
 
+import net.minecraft.src.EnumArmorMaterial;
+import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 
@@ -16,6 +18,8 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 	private int[] dungeonLootAmounts = {3, 3, 2, 2, 2};
 	
 	private int[] numRails = {20, 20, 20, 20, 20};
+	
+	public static EnumArmorMaterial copperAmor = EnumHelper.addArmorMaterial("Copper", 20, new int[] {2, 3, 4, 3}, 10);
 	
 	@Override
 	public int numMetals() {

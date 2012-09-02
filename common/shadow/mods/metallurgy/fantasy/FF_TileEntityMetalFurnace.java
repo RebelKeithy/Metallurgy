@@ -248,12 +248,13 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
 
 		if ((++ticksSinceSync % 40) == 0) 
         {
-			sendPacket();
-			/*
+			//sendPacket();
+			
 			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 1, direction);
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 2, furnaceTimeBase);
-			*/
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, furnaceBurnTime);
+			
 		}
 		
         if (this.furnaceBurnTime > 0)
@@ -309,13 +310,14 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
         if (var2)
         {
             this.onInventoryChanged();
-            sendPacket();
-			/*
+            //sendPacket();
+			
 			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 1, direction);
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 2, furnaceTimeBase);
-            worldObj.scheduleBlockUpdate(this.xCoord, this.yCoord, this.zCoord, BaseConfig.furnaceID, 20);
-            */
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, furnaceBurnTime);
+            worldObj.markBlockAsNeedsUpdate(xCoord, yCoord, zCoord);
+            
         }
     }
 
@@ -381,7 +383,7 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
 	            orb.motionY = 0.4;
 	            this.worldObj.spawnEntityInWorld(orb);
             }
-            
+           
         }
     }
 
@@ -414,7 +416,10 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
 			direction = j;
 		} else if (i == 2) {
 			furnaceTimeBase = j;
+		} else if (i == 3) {
+			furnaceBurnTime = j;
 		}
+        worldObj.markBlockAsNeedsUpdate(xCoord, yCoord, zCoord);
 	}
     
     /**

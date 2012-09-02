@@ -71,7 +71,6 @@ public class mod_MetallurgyFantasy
 
 		proxy.registerRenderInformation();
 		proxy.addNames();
-		proxy.addArmor();
 		
 		alloys.load();
 		ores.load();

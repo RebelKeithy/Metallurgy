@@ -4,6 +4,7 @@ import java.io.File;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.ItemArmor;
 import net.minecraft.src.Item;
 import net.minecraft.src.ModLoader;
 import net.minecraft.src.TileEntity;
@@ -16,19 +17,6 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 import shadow.mods.metallurgy.*;
 
 public class CoreClientProxy extends CoreCommonProxy{
-
-	public static void addArmorToSet(MetalSet set)
-	{
-		for(int i = 0; i < set.info.numMetals(); i++)
-		{
-			if(set.info.isCatalyst(i))
-				continue;
-			((MetallurgyArmor) (set.Helmet[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(set.info.name(i)));
-			((MetallurgyArmor) (set.Plate[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(set.info.name(i)));
-			((MetallurgyArmor) (set.Legs[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(set.info.name(i)));
-			((MetallurgyArmor) (set.Boots[i])).setTexture(RenderingRegistry.addNewArmourRendererPrefix(set.info.name(i)));
-		}
-	}
 	
 	public void addNames()
 	{

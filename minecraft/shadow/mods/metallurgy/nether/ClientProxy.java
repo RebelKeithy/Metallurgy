@@ -17,12 +17,6 @@ import shadow.mods.metallurgy.*;
 import shadow.mods.metallurgy.precious.mod_MetallurgyPrecious;
 
 public class ClientProxy extends shadow.mods.metallurgy.nether.CommonProxy{
-
-	public void addArmor()
-	{
-		CoreClientProxy.addArmorToSet(mod_MetallurgyNether.ores);
-		CoreClientProxy.addArmorToSet(mod_MetallurgyNether.alloys);
-	}
 	
 	public void addNames()
 	{

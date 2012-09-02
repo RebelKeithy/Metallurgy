@@ -76,7 +76,6 @@ public class mod_MetallurgyNether
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		proxy.registerRenderInformation();
 		proxy.addNames();
-		proxy.addArmor();
 		
 		ores.load();
 		alloys.load();

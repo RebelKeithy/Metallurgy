@@ -18,11 +18,6 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class ClientProxy extends shadow.mods.metallurgy.ender.CommonProxy{
 
-	public void addArmor()
-	{
-		CoreClientProxy.addArmorToSet(mod_MetallurgyEnder.ores);
-		CoreClientProxy.addArmorToSet(mod_MetallurgyEnder.alloys);
-	}
 	
 	public void addNames()
 	{

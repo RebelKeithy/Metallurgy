@@ -87,7 +87,6 @@ public class mod_MetallurgyBaseMetals {
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		
 		proxy.addNames();
-
 	}
 
 	@PostInit

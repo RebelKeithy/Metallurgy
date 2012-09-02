@@ -10,8 +10,6 @@ import cpw.mods.fml.common.network.IGuiHandler;
 
 public class CommonProxy implements IGuiHandler
 {
-	public void addArmor() {}
-	
 	public void addNames() {}
 	
 	public void registerRenderInformation()

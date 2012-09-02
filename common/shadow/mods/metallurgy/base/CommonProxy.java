@@ -60,5 +60,4 @@ public class CommonProxy implements IGuiHandler
 	{
 		return new File(".");
 	}
-
 }

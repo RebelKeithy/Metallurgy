@@ -18,12 +18,6 @@ import shadow.mods.metallurgy.base.*;
 import shadow.mods.metallurgy.fantasy.mod_MetallurgyFantasy;
 
 public class ClientProxy extends CommonProxy{
-
-	public void addArmor()
-	{
-		CoreClientProxy.addArmorToSet(mod_MetallurgyBaseMetals.alloys);
-		CoreClientProxy.addArmorToSet(mod_MetallurgyBaseMetals.ores);
-	}
 	
 	public void addNames()
 	{

@@ -9,19 +9,11 @@ import cpw.mods.fml.common.network.IGuiHandler;
 
 public class CommonProxy implements IGuiHandler
 {
-	public void addArmor() {}
-	
 	public void addNames() {}
 	
-	public void registerRenderInformation()
-	{
-
-	}
+	public void registerRenderInformation() {}
 	
-	public void registerTileEntitySpecialRenderer(/*PLACEHOLDER*/)
-	{
-		// TODO: Add special render types here
-	}
+	public void registerTileEntitySpecialRenderer() {}
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
