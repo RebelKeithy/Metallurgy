@@ -34,6 +34,7 @@ public class BaseConfig  {
 	public static int[] VeinCount = new int[8];
 	public static int[] OreCount = new int[8];
 	public static int[] OreHeight = new int[8];
+	public static int dimensionID;
 	
 	
 	
@@ -65,6 +66,8 @@ public class BaseConfig  {
     	baseMetalsBrickID = config.getOrCreateBlockIdProperty("Metal Brick", 902).getInt(901);
     	baseAlloysBrickID = config.getOrCreateBlockIdProperty("Alloy Brick", 903).getInt(902);
     	furnaceID = config.getOrCreateBlockIdProperty("Furnace", 904).getInt(904);
+    	
+    	dimensionID = config.getOrCreateIntProperty("Dimension ID", "Dimension", 0).getInt(0);
     	
     	furnacesEnabled = config.getOrCreateBooleanProperty("Enable Furnaces", "Machines", true).getBoolean(true);
     	railsEnabled = config.getOrCreateBooleanProperty("Enable Rail Recipes", "Machines", true).getBoolean(true);

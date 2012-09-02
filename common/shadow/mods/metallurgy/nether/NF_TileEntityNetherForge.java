@@ -424,7 +424,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
 		packet.isChunkDataPacket = true;
 		
 		if (packet != null) {
-			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, 0, packet);
+			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.worldType, packet);
 		}
 	}
 }

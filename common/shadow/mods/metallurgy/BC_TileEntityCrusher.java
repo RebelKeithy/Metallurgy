@@ -498,7 +498,7 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 		packet.isChunkDataPacket = true;
 		
 		if (packet != null) {
-			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, 0, packet);
+			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.worldType, packet);
 		}
 	}
 }

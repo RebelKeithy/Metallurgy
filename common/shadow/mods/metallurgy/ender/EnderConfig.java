@@ -23,6 +23,7 @@ public class EnderConfig  {
 	
 	public static int[] alloyItemIds = new int[1];
 	public static int[] metalItemIds = new int [2];
+	public static int dimensionID;
 	
 	
 	public static void init()
@@ -53,6 +54,8 @@ public class EnderConfig  {
     	EnderMetalsBrickID = config.getOrCreateBlockIdProperty("Metal Brick", 925).getInt(925);
     	EnderAlloysBrickID = config.getOrCreateBlockIdProperty("Alloy Brick", 926).getInt(926);
 
+    	dimensionID = config.getOrCreateIntProperty("Dimension ID", "Dimension", 1).getInt(1);
+    	
     	for(int i = 0; i < 1; i++)
     		alloyEnabled[i] = config.getOrCreateBooleanProperty(AlloyEnderEnum.names[i] + " Enabled", "Ores", true).getBoolean(true);
     	for(int i = 0; i < 2; i++)

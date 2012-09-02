@@ -2,6 +2,8 @@ package shadow.mods.metallurgy.precious;
 
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
+import shadow.mods.metallurgy.ender.EnderConfig;
+import shadow.mods.metallurgy.nether.NetherConfig;
 
 public class OrePreciousEnum implements IMetalSetEnum{
 
@@ -131,7 +133,12 @@ public class OrePreciousEnum implements IMetalSetEnum{
 	@Override
 	public int getDimension()
 	{
-		return 0;
+		return PreciousConfig.dimensionID;
+	}
+
+	@Override
+	public boolean metalEnabled(int i) {
+		return PreciousConfig.metalEnabled[i];
 	}
 
 }

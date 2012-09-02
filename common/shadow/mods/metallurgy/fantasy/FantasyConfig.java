@@ -29,6 +29,7 @@ public class FantasyConfig  {
 	public static int[] VeinCount = new int[12];
 	public static int[] OreCount = new int[12];
 	public static int[] OreHeight = new int[12];
+	public static int dimensionID;
 	
 	public static void init()
 	{
@@ -56,6 +57,8 @@ public class FantasyConfig  {
         FantasyMetalsVeinID = config.getOrCreateBlockIdProperty("Metal Ore", 919).getInt(919);
     	FantasyMetalsBrickID = config.getOrCreateBlockIdProperty("Metal Brick", 920).getInt(920);
     	FantasyAlloysBrickID = config.getOrCreateBlockIdProperty("Alloy Brick", 921).getInt(921);
+
+    	dimensionID = config.getOrCreateIntProperty("Dimension ID", "Dimension", 0).getInt(0);
     	
     	extractorSpeeds[0] = config.getOrCreateIntProperty("Prometheum", "Abstractor Speeds", 22000).getInt(22000)/1000;    	
     	extractorSpeeds[1] = config.getOrCreateIntProperty("DeepIron", "Abstractor Speeds", 20000).getInt(20000)/1000;    	

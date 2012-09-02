@@ -135,4 +135,9 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 	{
 		return 0;
 	}
+
+	@Override
+	public boolean metalEnabled(int i) {
+		return BaseConfig.alloyEnabled[i];
+	}
 }

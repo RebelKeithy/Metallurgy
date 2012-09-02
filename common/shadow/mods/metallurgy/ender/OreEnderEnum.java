@@ -2,6 +2,7 @@ package shadow.mods.metallurgy.ender;
 
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
+import shadow.mods.metallurgy.base.BaseConfig;
 
 public class OreEnderEnum implements IMetalSetEnum{
 
@@ -126,7 +127,12 @@ public class OreEnderEnum implements IMetalSetEnum{
 	@Override
 	public int getDimension()
 	{
-		return 2;
+		return EnderConfig.dimensionID;
+	}
+
+	@Override
+	public boolean metalEnabled(int i) {
+		return EnderConfig.metalEnabled[i];
 	}
 
 }

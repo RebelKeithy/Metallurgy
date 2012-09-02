@@ -220,10 +220,13 @@ public class MetalSet implements IWorldGenerator {
     }
     
 	@Override
-	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
+	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) 
+	{
+		if(world.provider.worldType != info.getDimension())
+			return;
 
 		for(int i = 0; i < numMetals; i++)
-			//if(NetherConfig.metalEnabled[i])
+			if(info.metalEnabled(i))
 				generateOre(world, rand, chunkX * 16, chunkZ * 16, i);
 	}
 
@@ -235,12 +238,12 @@ public class MetalSet implements IWorldGenerator {
 			int randPosY = rand.nextInt(info.oreHeight(meta));
 			int randPosZ = chunkZ + rand.nextInt(16);
 			//System.out.println("spawning " + info.name(meta) + " " + randPosX + " " + randPosY + " " + randPosZ);
-			if(info.getDimension() == 0)
-				(new MetallurgyWorldGenMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
 			if(info.getDimension() == -1)
 				(new MetallurgyWorldGenNetherMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
-			if(info.getDimension() == 2)
+			else if(info.getDimension() == 1)
 				(new MetallurgyWorldGenEnderMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
+			else
+				(new MetallurgyWorldGenMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 

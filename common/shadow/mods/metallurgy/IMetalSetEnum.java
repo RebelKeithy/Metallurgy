@@ -25,6 +25,7 @@ public interface IMetalSetEnum {
 	public boolean isCatalyst(int i);
 	public int numRails(int i);
 	public int getDimension();
+	public boolean metalEnabled(int i);
 }
 
 

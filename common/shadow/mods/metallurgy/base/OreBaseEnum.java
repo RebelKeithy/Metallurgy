@@ -129,7 +129,12 @@ public class OreBaseEnum implements IMetalSetEnum{
 	@Override
 	public int getDimension()
 	{
-		return 0;
+		return BaseConfig.dimensionID;
+	}
+
+	@Override
+	public boolean metalEnabled(int i) {
+		return BaseConfig.metalEnabled[i];
 	}
 
 }

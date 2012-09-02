@@ -36,6 +36,7 @@ public class NetherConfig  {
 	
 	public static int[] alloyItemIds = new int[3];
 	public static int[] metalItemIds = new int [10];
+	public static int dimensionID;
 	
 	
 	public static void init()
@@ -69,6 +70,8 @@ public class NetherConfig  {
     	NetherAlloysBrickID = config.getOrCreateBlockIdProperty("Alloy Brick", 917).getInt(917);
     	furnaceID = config.getOrCreateBlockIdProperty("Nether Smelter", 918).getInt(918);
 
+    	dimensionID = config.getOrCreateIntProperty("Dimension ID", "Dimension", -1).getInt(-1);
+    	
     	for(int i = 0; i < 3; i++)
     		alloyEnabled[i] = config.getOrCreateBooleanProperty(AlloyNetherEnum.names[i] + " Enabled", "Ores", true).getBoolean(true);
     	for(int i = 0; i < 10; i++)

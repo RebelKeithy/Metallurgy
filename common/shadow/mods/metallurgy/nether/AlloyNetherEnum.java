@@ -2,6 +2,8 @@ package shadow.mods.metallurgy.nether;
 
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
+import shadow.mods.metallurgy.ender.EnderConfig;
+import shadow.mods.metallurgy.fantasy.FantasyConfig;
 
 public class AlloyNetherEnum implements IMetalSetEnum{
 
@@ -124,7 +126,12 @@ public class AlloyNetherEnum implements IMetalSetEnum{
 	@Override
 	public int getDimension()
 	{
-		return -1;
+		return NetherConfig.dimensionID;
+	}
+
+	@Override
+	public boolean metalEnabled(int i) {
+		return NetherConfig.alloyEnabled[i];
 	}
 
 }

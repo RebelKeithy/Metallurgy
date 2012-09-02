@@ -2,6 +2,7 @@ package shadow.mods.metallurgy.fantasy;
 
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
+import shadow.mods.metallurgy.base.BaseConfig;
 
 public class OreFantasyEnum implements IMetalSetEnum{
 
@@ -148,7 +149,12 @@ public class OreFantasyEnum implements IMetalSetEnum{
 	@Override
 	public int getDimension()
 	{
-		return 0;
+		return FantasyConfig.dimensionID;
+	}
+
+	@Override
+	public boolean metalEnabled(int i) {
+		return FantasyConfig.metalEnabled[i];
 	}
 
 }
