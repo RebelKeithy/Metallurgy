@@ -86,7 +86,7 @@ public class OrePreciousEnum implements IMetalSetEnum{
 
 	@Override
 	public int oreMinHeight(int i) {
-		return PreciousConfig.minOreHeight[i];
+		return PreciousConfig.OreMinHeight[i];
 	}
 
 	@Override
