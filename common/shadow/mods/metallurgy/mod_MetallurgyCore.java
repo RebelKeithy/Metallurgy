@@ -137,6 +137,7 @@ public class mod_MetallurgyCore
 
 		proxy.addNames();
 		proxy.registerRenderInformation();
+		proxy.registerTileEntitySpecialRenderer();
 		if(CoreConfig.enableTextureOverrides)
 			proxy.addTextureOverrides();
 		ModLoader.registerBlock(crusher, shadow.mods.metallurgy.BC_BlockCrusherItem.class);

@@ -11,10 +11,14 @@ import net.minecraft.src.TileEntity;
 import net.minecraft.src.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import shadow.mods.metallurgy.*;
+import shadow.mods.metallurgy.precious.FC_ChestRenderHelper;
+import shadow.mods.metallurgy.precious.FC_TileEntityChest;
+import shadow.mods.metallurgy.precious.FC_TileEntityChestRenderer;
 
 public class CoreClientProxy extends CoreCommonProxy{
 	
@@ -97,8 +101,14 @@ public class CoreClientProxy extends CoreCommonProxy{
 	}
 	
 	@Override
+	public void registerTileEntitySpecialRenderer() {
+		ClientRegistry.bindTileEntitySpecialRenderer(BC_TileEntityCrusher.class, new BC_TileEntityCrusherRenderer());
+	}
+	
+	@Override
 	public void registerRenderInformation()
 	{
+		RenderingRegistry.registerBlockHandler(new BC_CrusherRenderHelper());
 		MinecraftForgeClient.preloadTexture("/shadow/ItmGoldDust.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyTerrain.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyFurnaces.png");

@@ -30,10 +30,22 @@ public class BC_TileEntityCrusherRenderer extends TileEntitySpecialRenderer
         BC_ModelCrusher var14;
 
         var14 = this.chestModel;
+        
+        String type = "";
+        
+        if(par1TileEntityChest.getType() == 1)
+        	type = "Copper";
+        else if(par1TileEntityChest.getType() == 2)
+        	type = "Bronze";
+        else if(par1TileEntityChest.getType() == 3)
+        	type = "Iron";
+        else if(par1TileEntityChest.getType() == 4)
+        	type = "Steel";
+        
         if(par1TileEntityChest.isBurning())
-        	this.bindTextureByName("/shadow/ModelCrusherBurning.png");
+        	this.bindTextureByName("/shadow/ModelCrusher" + type + "Burning.png");
         else
-            this.bindTextureByName("/shadow/ModelCrusher.png");
+            this.bindTextureByName("/shadow/ModelCrusher" + type + ".png");
 
         GL11.glPushMatrix();
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
