@@ -9,8 +9,10 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -139,12 +141,17 @@ public class mod_MetallurgyCore
 			proxy.addTextureOverrides();
 		ModLoader.registerBlock(crusher, shadow.mods.metallurgy.BC_BlockCrusherItem.class);
 		ModLoader.registerTileEntity(BC_TileEntityCrusher.class, "crusher");
-		mod_Crusher.load();
 		
 		mod_MetallurgyTextureOverride.load();
 		//mod_MetallurgyzAchievements.load();
 		
 	    
 
+	}
+
+	@PostInit
+	public void load(FMLPostInitializationEvent event) 
+	{
+		mod_Crusher.load();
 	}
 }
