@@ -19,16 +19,16 @@ public class OreFantasyEnum implements IMetalSetEnum{
 	public static int[] defaultOreCount = {10, 4, 3, 3, 3, 3, 2, 3, 3, 4, 4, 3};
 	public static int[] defaultOreHeight = {128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128};
 
-	public static EnumArmorMaterial prometheumArmor = EnumHelper.addArmorMaterial("Prometheum", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial deepIronArmor = EnumHelper.addArmorMaterial("Deep Iron", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial oureclaseArmor = EnumHelper.addArmorMaterial("Oureclase", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial aredriteArmor = EnumHelper.addArmorMaterial("Aredrite", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial astralSilverArmor = EnumHelper.addArmorMaterial("Astral Silver", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial carmotArmor = EnumHelper.addArmorMaterial("Carmot", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial mithrilArmor = EnumHelper.addArmorMaterial("Mithril", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial orichalcumArmor = EnumHelper.addArmorMaterial("Orichalcum", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial adamantineArmor = EnumHelper.addArmorMaterial("Adamantine", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial atlarusArmor = EnumHelper.addArmorMaterial("Atlarus", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial prometheumArmor = EnumHelper.addArmorMaterial("Prometheum", 9, new int[] {2, 3, 2, 1}, 16);
+	public static EnumArmorMaterial deepIronArmor = EnumHelper.addArmorMaterial("Deep Iron", 14, new int[] {2, 6, 5, 2}, 14);
+	public static EnumArmorMaterial oureclaseArmor = EnumHelper.addArmorMaterial("Oureclase", 20, new int[] {3, 6, 5, 4}, 18);
+	public static EnumArmorMaterial aredriteArmor = EnumHelper.addArmorMaterial("Aredrite", 24, new int[] {3, 6, 5, 4}, 18);
+	public static EnumArmorMaterial astralSilverArmor = EnumHelper.addArmorMaterial("Astral Silver", 10, new int[] {2, 6, 5, 2}, 30);
+	public static EnumArmorMaterial carmotArmor = EnumHelper.addArmorMaterial("Carmot", 12, new int[] {3, 6, 5, 3}, 40);
+	public static EnumArmorMaterial mithrilArmor = EnumHelper.addArmorMaterial("Mithril", 28, new int[] {4, 6, 5, 4}, 18);
+	public static EnumArmorMaterial orichalcumArmor = EnumHelper.addArmorMaterial("Orichalcum", 34, new int[] {4, 7, 6, 4}, 20);
+	public static EnumArmorMaterial adamantineArmor = EnumHelper.addArmorMaterial("Adamantine", 38, new int[] {5, 7, 6, 4}, 22);
+	public static EnumArmorMaterial atlarusArmor = EnumHelper.addArmorMaterial("Atlarus", 40, new int[] {5, 7, 6, 4}, 22);
 	
 	@Override
 	public int numMetals() {

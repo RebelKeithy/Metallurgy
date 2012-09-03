@@ -19,11 +19,11 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 	
 	private int[] numRails = {20, 20, 20, 20, 20};
 	
-	public static EnumArmorMaterial bronzeArmor = EnumHelper.addArmorMaterial("Bronze", 20, new int[] {5, 5, 5, 10}, 10);
-	public static EnumArmorMaterial hepatizonArmor = EnumHelper.addArmorMaterial("Hepatizon", 20, new int[] {5, 5, 5, 5}, 10);
-	public static EnumArmorMaterial damascusSteelArmor = EnumHelper.addArmorMaterial("Damascus Steel", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial angmallenArmor = EnumHelper.addArmorMaterial("Angmallen", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial steelArmor = EnumHelper.addArmorMaterial("Steel", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial bronzeArmor = EnumHelper.addArmorMaterial("Bronze", 13, new int[] {2, 4, 3, 3}, 9);
+	public static EnumArmorMaterial hepatizonArmor = EnumHelper.addArmorMaterial("Hepatizon", 14, new int[] {2, 4, 3, 3}, 22);
+	public static EnumArmorMaterial damascusSteelArmor = EnumHelper.addArmorMaterial("Damascus Steel", 20, new int[] {3, 6, 5, 3}, 18);
+	public static EnumArmorMaterial angmallenArmor = EnumHelper.addArmorMaterial("Angmallen", 18, new int[] {3, 6, 5, 3}, 30);
+	public static EnumArmorMaterial steelArmor = EnumHelper.addArmorMaterial("Steel", 22, new int[] {3, 6, 5, 3}, 18);
 	
 	@Override
 	public int numMetals() {

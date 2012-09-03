@@ -15,7 +15,7 @@ public class AlloyEnderEnum implements IMetalSetEnum{
 	private int[] harvestLevels = {2};
 	private int[] pickLevels = {3};
 	
-	public static EnumArmorMaterial desichalkosArmor = EnumHelper.addArmorMaterial("Desichalkos", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial desichalkosArmor = EnumHelper.addArmorMaterial("Desichalkos", 30, new int[] {4, 7, 5, 4}, 30);
 	
 	@Override
 	public int numMetals() {

@@ -16,9 +16,9 @@ public class AlloyNetherEnum implements IMetalSetEnum{
 	private int[] harvestLevels = {2, 4, 4};
 	private int[] pickLevels = {3, 5, 5};
 
-	public static EnumArmorMaterial shadowSteelArmor = EnumHelper.addArmorMaterial("Shadow Steel", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial inolashiteArmor = EnumHelper.addArmorMaterial("Inolashite", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial amordrineArmor = EnumHelper.addArmorMaterial("Amordrine", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial shadowSteelArmor = EnumHelper.addArmorMaterial("Shadow Steel", 20, new int[] {3, 6, 5, 4}, 5);
+	public static EnumArmorMaterial inolashiteArmor = EnumHelper.addArmorMaterial("Inolashite", 30, new int[] {4, 7, 5, 4}, 25);
+	public static EnumArmorMaterial amordrineArmor = EnumHelper.addArmorMaterial("Amordrine", 32, new int[] {4, 7, 5, 4}, 50);
 	
 	@Override
 	public int numMetals() {

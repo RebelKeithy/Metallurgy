@@ -21,7 +21,7 @@ public class OreBaseEnum implements IMetalSetEnum{
 	
 	public static int[] numRails = {4, 0, 0};
 	
-	public static EnumArmorMaterial copperArmor = EnumHelper.addArmorMaterial("Copper", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial copperArmor = EnumHelper.addArmorMaterial("Copper", 10, new int[] {2, 3, 2, 1}, 5);
 
 	@Override
 	public int numMetals() {

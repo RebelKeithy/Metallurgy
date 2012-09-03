@@ -21,8 +21,8 @@ public class OrePreciousEnum implements IMetalSetEnum{
 	public static int[] defaultOreCount = {8, 6, 3};
 	public static int[] defaultOreHeight = {128, 128, 128};
 
-	public static EnumArmorMaterial silverArmor = EnumHelper.addArmorMaterial("Silver", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial platinumArmor = EnumHelper.addArmorMaterial("Platinum", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial silverArmor = EnumHelper.addArmorMaterial("Silver", 5, new int[] {2, 4, 3, 2}, 20);
+	public static EnumArmorMaterial platinumArmor = EnumHelper.addArmorMaterial("Platinum", 11, new int[] {3, 6, 5, 3}, 50);
 	
 	@Override
 	public int numMetals() {

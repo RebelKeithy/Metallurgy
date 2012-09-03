@@ -16,8 +16,8 @@ public class AlloyPreciousEnum implements IMetalSetEnum{
 	private int[] dungeonLootChances = {35, 15};
 	private int[] dungeonLootAmounts = {3, 2};
 	
-	public static EnumArmorMaterial brassArmor = EnumHelper.addArmorMaterial("Brass", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial electrumArmor = EnumHelper.addArmorMaterial("Electrum", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial brassArmor = EnumHelper.addArmorMaterial("Brass", 3, new int[] {2, 5, 3, 3}, 18);
+	public static EnumArmorMaterial electrumArmor = EnumHelper.addArmorMaterial("Electrum", 9, new int[] {2, 6, 5, 2}, 30);
 	
 	@Override
 	public int numMetals() {

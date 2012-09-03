@@ -16,11 +16,11 @@ public class AlloyFantasyEnum implements IMetalSetEnum{
 	private int[] harvestLevels = {2, 4, 4, 5, 7};
 	private int[] pickLevels = {3, 5, 5, 6, 7};
 
-	public static EnumArmorMaterial blackSteelArmor = EnumHelper.addArmorMaterial("Black Steel", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial quicksilverArmor = EnumHelper.addArmorMaterial("Quicksilver", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial haderothArmor = EnumHelper.addArmorMaterial("Haderoth", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial celenegilArmor = EnumHelper.addArmorMaterial("Celenegil", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial tartariteArmor = EnumHelper.addArmorMaterial("Tartarite", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial blackSteelArmor = EnumHelper.addArmorMaterial("Black Steel", 22, new int[] {3, 6, 5, 3}, 17);
+	public static EnumArmorMaterial quicksilverArmor = EnumHelper.addArmorMaterial("Quicksilver", 30, new int[] {4, 7, 5, 4}, 20);
+	public static EnumArmorMaterial haderothArmor = EnumHelper.addArmorMaterial("Haderoth", 32, new int[] {4, 7, 5, 4}, 19);
+	public static EnumArmorMaterial celenegilArmor = EnumHelper.addArmorMaterial("Celenegil", 36, new int[] {5, 7, 6, 4}, 50);
+	public static EnumArmorMaterial tartariteArmor = EnumHelper.addArmorMaterial("Tartarite", 42, new int[] {5, 7, 6, 5}, 25);
 	
 	@Override
 	public int numMetals() {

@@ -57,8 +57,8 @@ public class CoreClientProxy extends CoreCommonProxy{
 	@Override
 	public void addTextureOverrides()
 	{
-		Item.swordWood.setTextureFile("/shadow/ItmWoodSword.png");
-		//Item.swordWood.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmWoodSword.png"));
+		//Item.swordWood.setIconIndex(0).setTextureFile("/shadow/ItmWoodSword.png");
+		Item.swordWood.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmWoodSword.png"));
 		Item.pickaxeWood.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmWoodPickaxe.png"));
 		Item.axeWood.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmWoodAxe.png"));
 		Item.hoeWood.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmWoodHoe.png"));
@@ -87,6 +87,10 @@ public class CoreClientProxy extends CoreCommonProxy{
 		Item.plateSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronPlate.png"));
 		Item.legsSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronLegs.png"));
 		Item.bootsSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronBoots.png"));
+		Item.helmetGold.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldHelmet.png"));
+		Item.plateGold.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldPlate.png"));
+		Item.legsGold.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldLegs.png"));
+		Item.bootsGold.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldBoots.png"));
 
 		mod_Gold.GoldDust.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldDust.png"));
 		mod_Iron.IronDust.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronDust.png"));

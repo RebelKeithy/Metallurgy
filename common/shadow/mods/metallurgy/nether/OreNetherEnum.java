@@ -19,14 +19,14 @@ public class OreNetherEnum implements IMetalSetEnum{
 	public static int[] defaultOreCount = {6, 6, 6, 6, 4, 4, 4, 4, 6, 4};
 	public static int[] defaultOreHeight = {128, 128, 128, 128, 128, 128, 128, 128, 128, 128};
 
-	public static EnumArmorMaterial ignatiusArmor = EnumHelper.addArmorMaterial("Ignatius", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial shadowIronArmor = EnumHelper.addArmorMaterial("Shadow Iron", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial midasiumArmor = EnumHelper.addArmorMaterial("Midasium", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial vyroxeresArmor = EnumHelper.addArmorMaterial("Vyroxeres", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial ceruclaseArmor = EnumHelper.addArmorMaterial("Ceruclase", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial kalendriteArmor = EnumHelper.addArmorMaterial("Kalendrite", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial vulcaniteArmor = EnumHelper.addArmorMaterial("Vulcanite", 20, new int[] {2, 3, 4, 3}, 10);
-	public static EnumArmorMaterial sanguiniteArmor = EnumHelper.addArmorMaterial("Sanguinite", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial ignatiusArmor = EnumHelper.addArmorMaterial("Ignatius", 15, new int[] {2, 6, 5, 2}, 15);
+	public static EnumArmorMaterial shadowIronArmor = EnumHelper.addArmorMaterial("Shadow Iron", 16, new int[] {3, 6, 5, 2}, 3);
+	public static EnumArmorMaterial midasiumArmor = EnumHelper.addArmorMaterial("Midasium", 8, new int[] {2, 5, 3, 3}, 35);
+	public static EnumArmorMaterial vyroxeresArmor = EnumHelper.addArmorMaterial("Vyroxeres", 23, new int[] {3, 6, 5, 4}, 16);
+	public static EnumArmorMaterial ceruclaseArmor = EnumHelper.addArmorMaterial("Ceruclase", 25, new int[] {3, 6, 5, 4}, 18);
+	public static EnumArmorMaterial kalendriteArmor = EnumHelper.addArmorMaterial("Kalendrite", 28, new int[] {4, 6, 5, 4}, 20);
+	public static EnumArmorMaterial vulcaniteArmor = EnumHelper.addArmorMaterial("Vulcanite", 34, new int[] {4, 7, 5, 4}, 20);
+	public static EnumArmorMaterial sanguiniteArmor = EnumHelper.addArmorMaterial("Sanguinite", 36, new int[] {5, 7, 6, 4}, 25);
 	
 	@Override
 	public int numMetals() {
