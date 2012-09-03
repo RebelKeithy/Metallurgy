@@ -13,8 +13,7 @@ public class NF_ContainerNetherForge extends Container
     {
         this.furnace = par2TileEntityNetherForge;
         this.addSlotToContainer(new Slot(par2TileEntityNetherForge, 0, 36, 34));
-        this.addSlotToContainer(new Slot(par2TileEntityNetherForge, 1, 56, 53));
-        this.addSlotToContainer(new NF_SlotNetherForge(par1InventoryPlayer.player, par2TileEntityNetherForge, 2, 96, 34));
+        this.addSlotToContainer(new NF_SlotNetherForge(par1InventoryPlayer.player, par2TileEntityNetherForge, 1, 96, 34));
         int var3;
 
         for (var3 = 0; var3 < 3; ++var3)
@@ -47,14 +46,9 @@ public class NF_ContainerNetherForge extends Container
                 var2.updateCraftingInventoryInfo(this, 0, this.furnace.furnaceCookTime);
             }
 
-            if (this.lastBurnTime != this.furnace.furnaceBurnTime)
-            {
-                var2.updateCraftingInventoryInfo(this, 1, this.furnace.furnaceBurnTime);
-            }
-
             if (this.lastItemBurnTime != this.furnace.currentItemBurnTime)
             {
-                var2.updateCraftingInventoryInfo(this, 2, this.furnace.currentItemBurnTime);
+                var2.updateCraftingInventoryInfo(this, 1, this.furnace.currentItemBurnTime);
             }
         }
 
@@ -71,11 +65,6 @@ public class NF_ContainerNetherForge extends Container
         }
 
         if (par1 == 1)
-        {
-            this.furnace.furnaceBurnTime = par2;
-        }
-
-        if (par1 == 2)
         {
             this.furnace.currentItemBurnTime = par2;
         }
@@ -99,7 +88,7 @@ public class NF_ContainerNetherForge extends Container
             ItemStack var4 = var3.getStack();
             var2 = var4.copy();
 
-            if (par1 == 2)
+            if (par1 == 1)
             {
                 if (!this.mergeItemStack(var4, 3, 39, true))
                 {
@@ -119,24 +108,24 @@ public class NF_ContainerNetherForge extends Container
                 }
                 else if (TileEntityFurnace.isItemFuel(var4))
                 {
-                    if (!this.mergeItemStack(var4, 1, 2, false))
+                    if (!this.mergeItemStack(var4, 0, 1, false))
                     {
                         return null;
                     }
                 }
-                else if (par1 >= 3 && par1 < 30)
+                else if (par1 >= 2 && par1 < 29)
                 {
-                    if (!this.mergeItemStack(var4, 30, 39, false))
+                    if (!this.mergeItemStack(var4, 29, 38, false))
                     {
                         return null;
                     }
                 }
-                else if (par1 >= 30 && par1 < 39 && !this.mergeItemStack(var4, 3, 30, false))
+                else if (par1 >= 29 && par1 < 38 && !this.mergeItemStack(var4, 2, 29, false))
                 {
                     return null;
                 }
             }
-            else if (!this.mergeItemStack(var4, 3, 39, false))
+            else if (!this.mergeItemStack(var4, 2, 38, false))
             {
                 return null;
             }

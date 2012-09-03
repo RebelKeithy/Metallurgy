@@ -17,7 +17,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
     /**
      * The ItemStacks that hold the items currently being used in the furnace
      */
-    private ItemStack[] furnaceItemStacks = new ItemStack[3];
+    private ItemStack[] furnaceItemStacks = new ItemStack[2];
 
     /** The number of ticks that the furnace will keep burning */
     public int furnaceBurnTime = 0;
@@ -314,9 +314,9 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
     {
         ItemStack var1 = FurnaceRecipes.smelting().getSmeltingResult(this.furnaceItemStacks[0]);
         if (var1 == null) return false;
-        if (this.furnaceItemStacks[2] == null) return true;
-        if (!this.furnaceItemStacks[2].isItemEqual(var1)) return false;
-        int result = furnaceItemStacks[2].stackSize + var1.stackSize;
+        if (this.furnaceItemStacks[1] == null) return true;
+        if (!this.furnaceItemStacks[1].isItemEqual(var1)) return false;
+        int result = furnaceItemStacks[1].stackSize + var1.stackSize;
         return (result <= getInventoryStackLimit() && result <= var1.getMaxStackSize());
     }
 
@@ -329,13 +329,13 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
         {
             ItemStack var1 = FurnaceRecipes.smelting().getSmeltingResult(this.furnaceItemStacks[0]);
 
-            if (this.furnaceItemStacks[2] == null)
+            if (this.furnaceItemStacks[1] == null)
             {
-                this.furnaceItemStacks[2] = var1.copy();
+                this.furnaceItemStacks[1] = var1.copy();
             }
-            else if (this.furnaceItemStacks[2].isItemEqual(var1))
+            else if (this.furnaceItemStacks[1].isItemEqual(var1))
             {
-                ++this.furnaceItemStacks[2].stackSize;
+                ++this.furnaceItemStacks[1].stackSize;
             }
 
             --this.furnaceItemStacks[0].stackSize;
