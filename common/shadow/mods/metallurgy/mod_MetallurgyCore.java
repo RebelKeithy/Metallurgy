@@ -51,9 +51,9 @@ public class mod_MetallurgyCore
 
 	public static Block crusher;
 	
-	//public static Block smoke;
-	//public static Block smokeInactive;
-	//public static Block smokeEater;
+	public static Block smoke;
+	public static Block smokeInactive;
+	public static Block smokeEater;
 
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
