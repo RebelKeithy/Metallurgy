@@ -116,7 +116,7 @@ public class MetalSet implements IWorldGenerator {
 			MinecraftForge.setBlockHarvestLevel(brick, i, "pickaxe", info.oreHarvestLevel(i)); 
 			
 			if(!info.isCatalyst(i))
-				MinecraftForge.setToolClass(Pickaxe[0], "pickaxe", info.pickLevel(i));
+				MinecraftForge.setToolClass(Pickaxe[i], "pickaxe", info.pickLevel(i));
 			
 		}
 		

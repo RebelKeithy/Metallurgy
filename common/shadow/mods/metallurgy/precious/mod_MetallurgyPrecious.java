@@ -41,7 +41,7 @@ public class mod_MetallurgyPrecious
 	@SidedProxy(clientSide = "shadow.mods.metallurgy.precious.ClientProxy", serverSide = "shadow.mods.metallurgy.precious.CommonProxy")
 	public static CommonProxy proxy;
 	
-	@Instance
+	@Instance( value = "MetallurgyPrecious" )
 	public static mod_MetallurgyPrecious instance;
 	
 	public static MetalSet alloys;
@@ -52,10 +52,6 @@ public class mod_MetallurgyPrecious
 	
 	public static Block PreciousChest;
 	
-	public mod_MetallurgyPrecious()
-	{
-		instance = this;
-	}
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)

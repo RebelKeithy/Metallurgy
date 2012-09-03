@@ -42,16 +42,11 @@ public class mod_MetallurgyFantasy
 	@SidedProxy(clientSide = "shadow.mods.metallurgy.fantasy.ClientProxy", serverSide = "shadow.mods.metallurgy.fantasy.CommonProxy")
 	public static CommonProxy proxy;
 	
-	@Instance
+	@Instance( value = "MetallurgyFantasy" )
 	public static mod_MetallurgyFantasy instance;
 	
 	public static MetalSet alloys;
 	public static MetalSet ores;
-	
-	public mod_MetallurgyFantasy()
-	{
-		instance = this;
-	}
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)

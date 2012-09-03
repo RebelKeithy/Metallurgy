@@ -46,16 +46,12 @@ public class mod_MetallurgyBaseMetals {
 	@SidedProxy(clientSide = "shadow.mods.metallurgy.base.ClientProxy", serverSide = "shadow.mods.metallurgy.base.CommonProxy")
 	public static CommonProxy proxy;
 	
-	@Instance
+	@Instance( value = "MetallurgyBase" )
 	public static mod_MetallurgyBaseMetals instance;
 
 	public static MetalSet alloys;
 	public static MetalSet ores;
 	
-	public mod_MetallurgyBaseMetals() 
-	{	
-		instance = this;
-	}
 	
 	public static Block metalFurnace;
 	public static Block metalLadder;

@@ -37,16 +37,12 @@ public class mod_MetallurgyEnder
 	@SidedProxy(clientSide = "shadow.mods.metallurgy.ender.ClientProxy", serverSide = "shadow.mods.metallurgy.ender.CommonProxy")
 	public static CommonProxy proxy;
 	
-	@Instance
+	@Instance( value = "MetallurgyEnder" )
 	public static mod_MetallurgyEnder instance;
 	
 	public static MetalSet alloys;
 	public static MetalSet ores;	
 	
-	public mod_MetallurgyEnder()
-	{
-		instance = this;
-	}
 
 	
 	@PreInit

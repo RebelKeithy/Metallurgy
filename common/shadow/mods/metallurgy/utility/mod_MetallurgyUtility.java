@@ -29,15 +29,10 @@ public class mod_MetallurgyUtility
 	@SidedProxy(clientSide = "shadow.mods.metallurgy.utility.ClientProxy", serverSide = "shadow.mods.metallurgy.utility.CommonProxy")
 	public static CommonProxy proxy;
 	
-	@Instance
+	@Instance( value = "MetallurgyUtility")
 	public static mod_MetallurgyUtility instance;
 
 	public static Block vein;
-	
-	public mod_MetallurgyUtility()
-	{
-		instance = this;
-	}
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)

@@ -44,17 +44,12 @@ public class mod_MetallurgyNether
 	@SidedProxy(clientSide = "shadow.mods.metallurgy.nether.ClientProxy", serverSide = "shadow.mods.metallurgy.nether.CommonProxy")
 	public static CommonProxy proxy;
 	
-	@Instance
+	@Instance( value = "MetallurgyNether" )
 	public static mod_MetallurgyNether instance;
 	
 	public static MetalSet alloys;
 	public static MetalSet ores;	
 	
-	public mod_MetallurgyNether()
-	{
-		instance = this;
-	}
-
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)

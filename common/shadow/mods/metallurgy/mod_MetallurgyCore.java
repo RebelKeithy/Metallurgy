@@ -39,7 +39,7 @@ public class mod_MetallurgyCore
 	@SidedProxy(clientSide = "shadow.mods.metallurgy.CoreClientProxy", serverSide = "shadow.mods.metallurgy.CoreCommonProxy")
 	public static CoreCommonProxy proxy;
 
-	@Instance
+	@Instance( value = "MetallurgyCore" )
 	public static mod_MetallurgyCore instance;
 	
 	public static CoreConfig config;
@@ -55,11 +55,6 @@ public class mod_MetallurgyCore
 	public static Block smokeInactive;
 	public static Block smokeEater;
 
-	public mod_MetallurgyCore()
-	{
-		instance = this;
-	}
-	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
