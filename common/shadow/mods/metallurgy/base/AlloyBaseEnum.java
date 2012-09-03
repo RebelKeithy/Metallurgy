@@ -17,7 +17,7 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 	private int[] dungeonLootChances = {120, 120, 80, 75, 50};
 	private int[] dungeonLootAmounts = {3, 3, 2, 2, 2};
 	
-	private int[] numRails = {20, 20, 20, 20, 20};
+	private int[] numRails = {10, 14, 26, 22, 32};
 	
 	public static EnumArmorMaterial bronzeArmor = EnumHelper.addArmorMaterial("Bronze", 13, new int[] {2, 4, 3, 3}, 9);
 	public static EnumArmorMaterial hepatizonArmor = EnumHelper.addArmorMaterial("Hepatizon", 14, new int[] {2, 4, 3, 3}, 22);
