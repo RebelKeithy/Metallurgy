@@ -51,9 +51,9 @@ public class mod_MetallurgyCore
 
 	public static Block crusher;
 	
-	public static Block smoke;
-	public static Block smokeInactive;
-	public static Block smokeEater;
+	//public static Block smoke;
+	//public static Block smokeInactive;
+	//public static Block smokeEater;
 
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
@@ -61,9 +61,9 @@ public class mod_MetallurgyCore
 		config.init();
 		crusher = new BC_BlockCrusher(CoreConfig.crusherID, false).setHardness(3.5F).setBlockName("Crusher").setCreativeTab(CreativeTabs.tabDeco);
 
-		smoke = new BlockSmoke(1000, true).setBlockName("Smoke").setCreativeTab(CreativeTabs.tabDeco);
-		smokeInactive = new BlockSmoke(1001, false).setBlockName("Smoke");
-		smokeEater = new BlockSmokeEater(1002, true).setBlockName("Eater").setCreativeTab(CreativeTabs.tabDeco);
+		//smoke = new BlockSmoke(1000, true).setBlockName("Smoke").setCreativeTab(CreativeTabs.tabDeco);
+		//smokeInactive = new BlockSmoke(1001, false).setBlockName("Smoke");
+		//smokeEater = new BlockSmokeEater(1002, true).setBlockName("Eater").setCreativeTab(CreativeTabs.tabDeco);
 		
 		proxy.registerRenderInformation();
 
@@ -105,9 +105,9 @@ public class mod_MetallurgyCore
 		mod_Iron.load();
 		mod_Gold.load();
 		
-		GameRegistry.registerBlock(smoke);
-		GameRegistry.registerBlock(smokeInactive);
-		GameRegistry.registerBlock(smokeEater);
+		//GameRegistry.registerBlock(smoke);
+		//GameRegistry.registerBlock(smokeInactive);
+		//GameRegistry.registerBlock(smokeEater);
 		
 		GameRegistry.registerWorldGenerator(new CoreWorldGen());
 		
