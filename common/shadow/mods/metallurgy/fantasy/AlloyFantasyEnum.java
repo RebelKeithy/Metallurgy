@@ -1,5 +1,7 @@
 package shadow.mods.metallurgy.fantasy;
 
+import net.minecraft.src.EnumArmorMaterial;
+import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 import shadow.mods.metallurgy.base.BaseConfig;
@@ -13,6 +15,12 @@ public class AlloyFantasyEnum implements IMetalSetEnum{
 	private int[] expValues = {4, 9, 6, 25, 13};
 	private int[] harvestLevels = {2, 4, 4, 5, 7};
 	private int[] pickLevels = {3, 5, 5, 6, 7};
+
+	public static EnumArmorMaterial blackSteelArmor = EnumHelper.addArmorMaterial("Black Steel", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial quicksilverArmor = EnumHelper.addArmorMaterial("Quicksilver", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial haderothArmor = EnumHelper.addArmorMaterial("Haderoth", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial celenegilArmor = EnumHelper.addArmorMaterial("Celenegil", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial tartariteArmor = EnumHelper.addArmorMaterial("Tartarite", 20, new int[] {2, 3, 4, 3}, 10);
 	
 	@Override
 	public int numMetals() {
@@ -105,6 +113,24 @@ public class AlloyFantasyEnum implements IMetalSetEnum{
 				return MetallurgyEnumToolMaterial.Tartarite;
 		}
 		return MetallurgyEnumToolMaterial.BlackSteel;
+	}
+	
+	public EnumArmorMaterial armorEnum(int i)
+	{
+		switch(i)
+		{
+			case(0):
+				return blackSteelArmor;
+			case(1):
+				return quicksilverArmor;
+			case(2):
+				return haderothArmor;
+			case(3):
+				return celenegilArmor;
+			case(4):
+				return tartariteArmor;
+		}
+		return blackSteelArmor;
 	}
 
 	@Override

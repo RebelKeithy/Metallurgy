@@ -1,5 +1,7 @@
 package shadow.mods.metallurgy.precious;
 
+import net.minecraft.src.EnumArmorMaterial;
+import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 import shadow.mods.metallurgy.ender.EnderConfig;
@@ -13,6 +15,9 @@ public class AlloyPreciousEnum implements IMetalSetEnum{
 	private int[] pickLevels = {1, 2};
 	private int[] dungeonLootChances = {35, 15};
 	private int[] dungeonLootAmounts = {3, 2};
+	
+	public static EnumArmorMaterial brassArmor = EnumHelper.addArmorMaterial("Brass", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial electrumArmor = EnumHelper.addArmorMaterial("Electrum", 20, new int[] {2, 3, 4, 3}, 10);
 	
 	@Override
 	public int numMetals() {
@@ -130,6 +135,15 @@ public class AlloyPreciousEnum implements IMetalSetEnum{
 	@Override
 	public boolean metalEnabled(int i) {
 		return PreciousConfig.alloyEnabled[i];
+	}
+
+	@Override
+	public EnumArmorMaterial armorEnum(int i) 
+	{
+		if(i == 0)
+			return brassArmor;
+		else
+			return electrumArmor;
 	}
 
 }

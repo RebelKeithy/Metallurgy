@@ -1,5 +1,7 @@
 package shadow.mods.metallurgy.nether;
 
+import net.minecraft.src.EnumArmorMaterial;
+import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 import shadow.mods.metallurgy.ender.EnderConfig;
@@ -16,6 +18,15 @@ public class OreNetherEnum implements IMetalSetEnum{
 	public static int[] defaultVeinCount = {12, 10, 6, 5, 5, 4, 3, 3, 8, 6};
 	public static int[] defaultOreCount = {6, 6, 6, 6, 4, 4, 4, 4, 6, 4};
 	public static int[] defaultOreHeight = {128, 128, 128, 128, 128, 128, 128, 128, 128, 128};
+
+	public static EnumArmorMaterial ignatiusArmor = EnumHelper.addArmorMaterial("Ignatius", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial shadowIronArmor = EnumHelper.addArmorMaterial("Shadow Iron", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial midasiumArmor = EnumHelper.addArmorMaterial("Midasium", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial vyroxeresArmor = EnumHelper.addArmorMaterial("Vyroxeres", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial ceruclaseArmor = EnumHelper.addArmorMaterial("Ceruclase", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial kalendriteArmor = EnumHelper.addArmorMaterial("Kalendrite", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial vulcaniteArmor = EnumHelper.addArmorMaterial("Vulcanite", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial sanguiniteArmor = EnumHelper.addArmorMaterial("Sanguinite", 20, new int[] {2, 3, 4, 3}, 10);
 	
 	@Override
 	public int numMetals() {
@@ -97,7 +108,7 @@ public class OreNetherEnum implements IMetalSetEnum{
 		switch(i)
 		{
 			case(0):
-				return MetallurgyEnumToolMaterial.Inolashite;
+				return MetallurgyEnumToolMaterial.Ignatius;
 			case(1):
 				return MetallurgyEnumToolMaterial.ShadowIron;
 			case(2):
@@ -113,7 +124,31 @@ public class OreNetherEnum implements IMetalSetEnum{
 			case(7):
 				return MetallurgyEnumToolMaterial.Sanguinite;
 		}
-		return MetallurgyEnumToolMaterial.Inolashite;
+		return MetallurgyEnumToolMaterial.Ignatius;
+	}
+	
+	public EnumArmorMaterial armorEnum(int i)
+	{
+		switch(i)
+		{
+			case(0):
+				return ignatiusArmor;
+			case(1):
+				return shadowIronArmor;
+			case(2):
+				return midasiumArmor;
+			case(3):
+				return vyroxeresArmor;
+			case(4):
+				return ceruclaseArmor;
+			case(5):
+				return kalendriteArmor;
+			case(6):
+				return vulcaniteArmor;
+			case(7):
+				return sanguiniteArmor;
+		}
+		return ignatiusArmor;
 	}
 
 	@Override

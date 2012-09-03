@@ -1,5 +1,7 @@
 package shadow.mods.metallurgy.fantasy;
 
+import net.minecraft.src.EnumArmorMaterial;
+import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 import shadow.mods.metallurgy.base.BaseConfig;
@@ -16,6 +18,17 @@ public class OreFantasyEnum implements IMetalSetEnum{
 	public static int[] defaultVeinCount = {6, 5, 5, 4, 4, 3, 3, 3, 2, 2, 1, 1};
 	public static int[] defaultOreCount = {10, 4, 3, 3, 3, 3, 2, 3, 3, 4, 4, 3};
 	public static int[] defaultOreHeight = {128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128};
+
+	public static EnumArmorMaterial prometheumArmor = EnumHelper.addArmorMaterial("Prometheum", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial deepIronArmor = EnumHelper.addArmorMaterial("Deep Iron", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial oureclaseArmor = EnumHelper.addArmorMaterial("Oureclase", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial aredriteArmor = EnumHelper.addArmorMaterial("Aredrite", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial astralSilverArmor = EnumHelper.addArmorMaterial("Astral Silver", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial carmotArmor = EnumHelper.addArmorMaterial("Carmot", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial mithrilArmor = EnumHelper.addArmorMaterial("Mithril", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial orichalcumArmor = EnumHelper.addArmorMaterial("Orichalcum", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial adamantineArmor = EnumHelper.addArmorMaterial("Adamantine", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial atlarusArmor = EnumHelper.addArmorMaterial("Atlarus", 20, new int[] {2, 3, 4, 3}, 10);
 	
 	@Override
 	public int numMetals() {
@@ -122,6 +135,38 @@ public class OreFantasyEnum implements IMetalSetEnum{
 				return MetallurgyEnumToolMaterial.Atlarus;
 		}
 		return MetallurgyEnumToolMaterial.Prometheum;
+	}
+	
+	public EnumArmorMaterial armorEnum(int i)
+	{
+		switch(i)
+		{
+			case(0):
+				return prometheumArmor;
+			case(1):
+				return deepIronArmor;
+			case(2):
+				return null;
+			case(3):
+				return oureclaseArmor;
+			case(4):
+				return aredriteArmor;
+			case(5):
+				return astralSilverArmor;
+			case(6):
+				return carmotArmor;
+			case(7):
+				return mithrilArmor;
+			case(8):
+				return null;
+			case(9):
+				return orichalcumArmor;
+			case(10):
+				return adamantineArmor;
+			case(11):
+				return atlarusArmor;
+		}
+		return prometheumArmor;
 	}
 
 	@Override

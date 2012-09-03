@@ -1,5 +1,7 @@
 package shadow.mods.metallurgy.ender;
 
+import net.minecraft.src.EnumArmorMaterial;
+import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 import shadow.mods.metallurgy.base.BaseConfig;
@@ -12,6 +14,8 @@ public class AlloyEnderEnum implements IMetalSetEnum{
 	private int[] expValues = {10};
 	private int[] harvestLevels = {2};
 	private int[] pickLevels = {3};
+	
+	public static EnumArmorMaterial desichalkosArmor = EnumHelper.addArmorMaterial("Desichalkos", 20, new int[] {2, 3, 4, 3}, 10);
 	
 	@Override
 	public int numMetals() {
@@ -127,6 +131,12 @@ public class AlloyEnderEnum implements IMetalSetEnum{
 	@Override
 	public boolean metalEnabled(int i) {
 		return EnderConfig.alloyEnabled[i];
+	}
+
+	@Override
+	public EnumArmorMaterial armorEnum(int i) 
+	{
+		return desichalkosArmor;
 	}
 
 }

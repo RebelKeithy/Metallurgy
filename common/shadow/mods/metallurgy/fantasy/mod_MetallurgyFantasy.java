@@ -30,6 +30,7 @@ import net.minecraft.src.Material;
 import net.minecraft.src.ModLoader;
 import net.minecraft.src.World;
 import net.minecraftforge.client.MinecraftForgeClient;
+import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -68,7 +69,7 @@ public class mod_MetallurgyFantasy
 	public void load(FMLInitializationEvent event) 
 	{		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
-
+		
 		proxy.registerRenderInformation();
 		proxy.addNames();
 		

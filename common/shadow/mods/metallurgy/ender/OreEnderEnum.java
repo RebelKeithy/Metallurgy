@@ -1,5 +1,7 @@
 package shadow.mods.metallurgy.ender;
 
+import net.minecraft.src.EnumArmorMaterial;
+import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 import shadow.mods.metallurgy.base.BaseConfig;
@@ -16,6 +18,8 @@ public class OreEnderEnum implements IMetalSetEnum{
 	public static int[] defaultVeinCount = {12, 10};
 	public static int[] defaultOreCount = {6, 6};
 	public static int[] defaultOreHeight = {128, 128};
+
+	public static EnumArmorMaterial eximiteArmor = EnumHelper.addArmorMaterial("Eximite", 20, new int[] {2, 3, 4, 3}, 10);
 	
 	@Override
 	public int numMetals() {
@@ -133,6 +137,12 @@ public class OreEnderEnum implements IMetalSetEnum{
 	@Override
 	public boolean metalEnabled(int i) {
 		return EnderConfig.metalEnabled[i];
+	}
+
+	@Override
+	public EnumArmorMaterial armorEnum(int i) 
+	{
+		return eximiteArmor;
 	}
 
 }

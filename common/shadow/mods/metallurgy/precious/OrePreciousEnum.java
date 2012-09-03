@@ -1,5 +1,7 @@
 package shadow.mods.metallurgy.precious;
 
+import net.minecraft.src.EnumArmorMaterial;
+import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 import shadow.mods.metallurgy.ender.EnderConfig;
@@ -18,6 +20,9 @@ public class OrePreciousEnum implements IMetalSetEnum{
 	public static int[] defaultVeinCount = {8, 6, 3};
 	public static int[] defaultOreCount = {8, 6, 3};
 	public static int[] defaultOreHeight = {128, 128, 128};
+
+	public static EnumArmorMaterial silverArmor = EnumHelper.addArmorMaterial("Silver", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial platinumArmor = EnumHelper.addArmorMaterial("Platinum", 20, new int[] {2, 3, 4, 3}, 10);
 	
 	@Override
 	public int numMetals() {
@@ -106,6 +111,20 @@ public class OrePreciousEnum implements IMetalSetEnum{
 				return MetallurgyEnumToolMaterial.Platinum;
 		}
 		return MetallurgyEnumToolMaterial.Brass;
+	}
+	
+	public EnumArmorMaterial armorEnum(int i)
+	{
+		switch(i)
+		{
+			case(0):
+				return null;
+			case(1):
+				return silverArmor;
+			case(2):
+				return platinumArmor;
+		}
+		return silverArmor;
 	}
 
 	@Override

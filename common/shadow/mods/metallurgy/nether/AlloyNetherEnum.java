@@ -1,5 +1,7 @@
 package shadow.mods.metallurgy.nether;
 
+import net.minecraft.src.EnumArmorMaterial;
+import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 import shadow.mods.metallurgy.ender.EnderConfig;
@@ -13,6 +15,10 @@ public class AlloyNetherEnum implements IMetalSetEnum{
 	private int[] expValues = {4, 6, 24};
 	private int[] harvestLevels = {2, 4, 4};
 	private int[] pickLevels = {3, 5, 5};
+
+	public static EnumArmorMaterial shadowSteelArmor = EnumHelper.addArmorMaterial("Shadow Steel", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial inolashiteArmor = EnumHelper.addArmorMaterial("Inolashite", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial amordrineArmor = EnumHelper.addArmorMaterial("Amordrine", 20, new int[] {2, 3, 4, 3}, 10);
 	
 	@Override
 	public int numMetals() {
@@ -101,6 +107,20 @@ public class AlloyNetherEnum implements IMetalSetEnum{
 				return MetallurgyEnumToolMaterial.Amordrine;
 		}
 		return MetallurgyEnumToolMaterial.Brass;
+	}
+	
+	public EnumArmorMaterial armorEnum(int i)
+	{
+		switch(i)
+		{
+			case(0):
+				return shadowSteelArmor;
+			case(1):
+				return inolashiteArmor;
+			case(2):
+				return amordrineArmor;
+		}
+		return shadowSteelArmor;
 	}
 
 	@Override

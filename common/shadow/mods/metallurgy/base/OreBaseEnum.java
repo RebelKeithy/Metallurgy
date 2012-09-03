@@ -1,5 +1,7 @@
 package shadow.mods.metallurgy.base;
 
+import net.minecraft.src.EnumArmorMaterial;
+import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 
@@ -19,6 +21,8 @@ public class OreBaseEnum implements IMetalSetEnum{
 	
 	public static int[] numRails = {4, 0, 0};
 	
+	public static EnumArmorMaterial copperArmor = EnumHelper.addArmorMaterial("Copper", 20, new int[] {2, 3, 4, 3}, 10);
+
 	@Override
 	public int numMetals() {
 		return numMetals;
@@ -135,6 +139,12 @@ public class OreBaseEnum implements IMetalSetEnum{
 	@Override
 	public boolean metalEnabled(int i) {
 		return BaseConfig.metalEnabled[i];
+	}
+
+	@Override
+	public EnumArmorMaterial armorEnum(int i) 
+	{
+		return copperArmor;
 	}
 
 }

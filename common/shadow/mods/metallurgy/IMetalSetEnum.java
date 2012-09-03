@@ -2,6 +2,8 @@ package shadow.mods.metallurgy;
 
 import java.util.List;
 
+import net.minecraft.src.EnumArmorMaterial;
+
 public interface IMetalSetEnum {
 	
 	public int numMetals();
@@ -26,6 +28,7 @@ public interface IMetalSetEnum {
 	public int numRails(int i);
 	public int getDimension();
 	public boolean metalEnabled(int i);
+	public EnumArmorMaterial armorEnum(int i);
 }
 
 

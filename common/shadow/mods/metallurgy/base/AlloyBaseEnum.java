@@ -19,7 +19,11 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 	
 	private int[] numRails = {20, 20, 20, 20, 20};
 	
-	public static EnumArmorMaterial copperAmor = EnumHelper.addArmorMaterial("Copper", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial bronzeArmor = EnumHelper.addArmorMaterial("Bronze", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial hepatizonArmor = EnumHelper.addArmorMaterial("Hepatizon", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial damascusSteelArmor = EnumHelper.addArmorMaterial("Damascus Steel", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial angmallenArmor = EnumHelper.addArmorMaterial("Angmallen", 20, new int[] {2, 3, 4, 3}, 10);
+	public static EnumArmorMaterial steelArmor = EnumHelper.addArmorMaterial("Steel", 20, new int[] {2, 3, 4, 3}, 10);
 	
 	@Override
 	public int numMetals() {
@@ -112,6 +116,24 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 				return MetallurgyEnumToolMaterial.Steel;
 		}
 		return MetallurgyEnumToolMaterial.Bronze;
+	}
+	
+	public EnumArmorMaterial armorEnum(int i)
+	{
+		switch(i)
+		{
+			case(0):
+				return bronzeArmor;
+			case(1):
+				return hepatizonArmor;
+			case(2):
+				return damascusSteelArmor;
+			case(3):
+				return angmallenArmor;
+			case(4):
+				return steelArmor;
+		}
+		return bronzeArmor;
 	}
 
 	@Override
