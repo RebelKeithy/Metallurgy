@@ -146,4 +146,10 @@ public class AlloyPreciousEnum implements IMetalSetEnum{
 			return electrumArmor;
 	}
 
+	@Override
+	public int oreMinHeight(int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

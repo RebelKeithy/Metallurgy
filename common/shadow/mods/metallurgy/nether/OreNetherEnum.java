@@ -184,4 +184,10 @@ public class OreNetherEnum implements IMetalSetEnum{
 		return NetherConfig.metalEnabled[i];
 	}
 
+	@Override
+	public int oreMinHeight(int i) {
+		// TODO Auto-generated method stub
+		return NetherConfig.OreMinHeight[i];
+	}
+
 }

@@ -252,7 +252,7 @@ public class MetalSet implements IWorldGenerator {
 		for(int i = 0; i < info.veinCount(meta); i++)
 		{
 			int randPosX = chunkX + rand.nextInt(16);
-			int randPosY = rand.nextInt(info.oreHeight(meta));
+			int randPosY = rand.nextInt(info.oreHeight(meta) - info.oreMinHeight(meta)) + info.oreMinHeight(meta);
 			int randPosZ = chunkZ + rand.nextInt(16);
 			//System.out.println("spawning " + info.name(meta) + " " + randPosX + " " + randPosY + " " + randPosZ);
 			if(info.getDimension() == -1)

@@ -147,4 +147,10 @@ public class OreBaseEnum implements IMetalSetEnum{
 		return copperArmor;
 	}
 
+	@Override
+	public int oreMinHeight(int i) {
+		// TODO Auto-generated method stub
+		return BaseConfig.OreMinHeight[i];
+	}
+
 }

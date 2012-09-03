@@ -166,4 +166,10 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 	public boolean metalEnabled(int i) {
 		return BaseConfig.alloyEnabled[i];
 	}
+
+	@Override
+	public int oreMinHeight(int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

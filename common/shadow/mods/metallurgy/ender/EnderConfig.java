@@ -20,6 +20,7 @@ public class EnderConfig  {
 	public static int[] VeinCount = new int[2];
 	public static int[] OreCount = new int[2];
 	public static int[] OreHeight = new int[2];
+	public static int[] OreMinHeight = new int[2];
 	
 	public static int[] alloyItemIds = new int[1];
 	public static int[] metalItemIds = new int [2];
@@ -76,6 +77,7 @@ public class EnderConfig  {
 	    	VeinCount[i] = config.getOrCreateIntProperty(OreEnderEnum.names[i] + " Vein Count", "Ore Generation", OreEnderEnum.defaultVeinCount[i]).getInt(OreEnderEnum.defaultVeinCount[i]);
 	    	OreCount[i] = config.getOrCreateIntProperty(OreEnderEnum.names[i] + " Ore Count", "Ore Generation", OreEnderEnum.defaultOreCount[i]).getInt(OreEnderEnum.defaultOreCount[i]);
 	    	OreHeight[i] = config.getOrCreateIntProperty(OreEnderEnum.names[i] + " Height", "Ore Generation", OreEnderEnum.defaultOreHeight[i]).getInt(OreEnderEnum.defaultOreHeight[i]);
+	    	OreMinHeight[i] = config.getOrCreateIntProperty(OreEnderEnum.names[i] + " Height", "Ore Generation", 0).getInt(0);
     	}
     
     	config.save();

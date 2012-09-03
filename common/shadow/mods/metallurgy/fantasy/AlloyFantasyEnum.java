@@ -164,4 +164,10 @@ public class AlloyFantasyEnum implements IMetalSetEnum{
 		return FantasyConfig.alloyEnabled[i];
 	}
 
+	@Override
+	public int oreMinHeight(int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

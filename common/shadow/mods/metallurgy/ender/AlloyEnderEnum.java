@@ -139,4 +139,10 @@ public class AlloyEnderEnum implements IMetalSetEnum{
 		return desichalkosArmor;
 	}
 
+	@Override
+	public int oreMinHeight(int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

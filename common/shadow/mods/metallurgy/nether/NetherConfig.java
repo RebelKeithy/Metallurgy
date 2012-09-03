@@ -27,6 +27,7 @@ public class NetherConfig  {
 	public static int[] VeinCount = new int[10];
 	public static int[] OreCount = new int[10];
 	public static int[] OreHeight = new int[10];
+	public static int[] OreMinHeight = new int[10];
 
 	public static int ObsidianVeinCount;
 	public static int ObsidianOreCount;
@@ -121,6 +122,7 @@ public class NetherConfig  {
 	    	VeinCount[i] = config.getOrCreateIntProperty(OreNetherEnum.names[i] + " Vein Count", "Ore Generation", OreNetherEnum.defaultVeinCount[i]).getInt(OreNetherEnum.defaultVeinCount[i]);
 	    	OreCount[i] = config.getOrCreateIntProperty(OreNetherEnum.names[i] + " Ore Count", "Ore Generation", OreNetherEnum.defaultOreCount[i]).getInt(OreNetherEnum.defaultOreCount[i]);
 	    	OreHeight[i] = config.getOrCreateIntProperty(OreNetherEnum.names[i] + " Height", "Ore Generation", OreNetherEnum.defaultOreHeight[i]).getInt(OreNetherEnum.defaultOreHeight[i]);
+	    	OreMinHeight[i] = config.getOrCreateIntProperty(OreNetherEnum.names[i] + " Height", "Ore Generation", 0).getInt(0);
     	}
     
     	ObsidianVeinCount = config.getOrCreateIntProperty("Obsidian Vein Count", "Ore Generation", 1).getInt(1);

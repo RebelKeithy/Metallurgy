@@ -145,4 +145,10 @@ public class OreEnderEnum implements IMetalSetEnum{
 		return eximiteArmor;
 	}
 
+	@Override
+	public int oreMinHeight(int i) {
+		// TODO Auto-generated method stub
+		return EnderConfig.OreMinHeight[i];
+	}
+
 }

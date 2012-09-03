@@ -20,6 +20,7 @@ public interface IMetalSetEnum {
 	public int veinCount(int i);
 	public int oreCount(int i);
 	public int oreHeight(int i);
+	public int oreMinHeight(int i);
 	public int oreID();
 	public int brickID();
 	public String getSetName();

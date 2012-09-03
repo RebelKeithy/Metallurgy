@@ -30,6 +30,7 @@ public class FantasyConfig  {
 	public static int[] VeinCount = new int[12];
 	public static int[] OreCount = new int[12];
 	public static int[] OreHeight = new int[12];
+	public static int[] OreMinHeight = new int[12];
 	public static int dimensionID;
 	
 	public static void init()
@@ -97,6 +98,7 @@ public class FantasyConfig  {
 	    	VeinCount[i] = config.getOrCreateIntProperty(OreFantasyEnum.names[i] + " Vein Count", "Ore Generation", OreFantasyEnum.defaultVeinCount[i]).getInt(OreFantasyEnum.defaultVeinCount[i]);
 	    	OreCount[i] = config.getOrCreateIntProperty(OreFantasyEnum.names[i] + " Ore Count", "Ore Generation", OreFantasyEnum.defaultOreCount[i]).getInt(OreFantasyEnum.defaultOreCount[i]);
 	    	OreHeight[i] = config.getOrCreateIntProperty(OreFantasyEnum.names[i] + " Height", "Ore Generation", OreFantasyEnum.defaultOreHeight[i]).getInt(OreFantasyEnum.defaultOreHeight[i]);
+	    	OreMinHeight[i] = config.getOrCreateIntProperty(OreFantasyEnum.names[i] + " Height", "Ore Generation", 0).getInt(0);
     	}
     	
     	config.save();

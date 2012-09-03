@@ -154,4 +154,10 @@ public class AlloyNetherEnum implements IMetalSetEnum{
 		return NetherConfig.alloyEnabled[i];
 	}
 
+	@Override
+	public int oreMinHeight(int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

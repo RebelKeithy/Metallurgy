@@ -34,6 +34,7 @@ public class BaseConfig  {
 	public static int[] VeinCount = new int[8];
 	public static int[] OreCount = new int[8];
 	public static int[] OreHeight = new int[8];
+	public static int[] OreMinHeight = new int[8];
 	public static int dimensionID;
 	
 	
@@ -90,6 +91,7 @@ public class BaseConfig  {
 	    	VeinCount[i] = config.getOrCreateIntProperty(OreBaseEnum.names[i] + " Vein Count", "Ore Generation", OreBaseEnum.defaultVeinCount[i]).getInt(OreBaseEnum.defaultVeinCount[i]);
 	    	OreCount[i] = config.getOrCreateIntProperty(OreBaseEnum.names[i] + " Ore Count", "Ore Generation", OreBaseEnum.defaultOreCount[i]).getInt(OreBaseEnum.defaultOreCount[i]);
 	    	OreHeight[i] = config.getOrCreateIntProperty(OreBaseEnum.names[i] + " Height", "Ore Generation", OreBaseEnum.defaultOreHeight[i]).getInt(OreBaseEnum.defaultOreHeight[i]);
+	    	OreMinHeight[i] = config.getOrCreateIntProperty(OreBaseEnum.names[i] + " Height", "Ore Generation", 0).getInt(0);
     	}
         
     	

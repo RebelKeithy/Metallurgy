@@ -21,10 +21,11 @@ public class PreciousConfig  {
 
 	public static int ItemStartID;
 
-	public static int[] VeinCount = new int[8];
-	public static int[] OreCount = new int[8];
-	public static int[] OreHeight = new int[8];
+	public static int[] VeinCount = new int[3];
+	public static int[] OreCount = new int[3];
+	public static int[] OreHeight = new int[3];
 	public static int dimensionID;
+	public static int[] OreMinHeight = new int[3];
 	
 	public static void init()
 	{
@@ -67,6 +68,7 @@ public class PreciousConfig  {
 	    	VeinCount[i] = config.getOrCreateIntProperty(OrePreciousEnum.name[i] + " Vein Count", "Ore Generation", OrePreciousEnum.defaultVeinCount[i]).getInt(OrePreciousEnum.defaultVeinCount[i]);
 	    	OreCount[i] = config.getOrCreateIntProperty(OrePreciousEnum.name[i] + " Ore Count", "Ore Generation", OrePreciousEnum.defaultOreCount[i]).getInt(OrePreciousEnum.defaultOreCount[i]);
 	    	OreHeight[i] = config.getOrCreateIntProperty(OrePreciousEnum.name[i] + " Height", "Ore Generation", OrePreciousEnum.defaultOreHeight[i]).getInt(OrePreciousEnum.defaultOreHeight[i]);
+	    	OreMinHeight[i] = config.getOrCreateIntProperty(OrePreciousEnum.name[i] + " Height", "Ore Generation", 0).getInt(0);
     	}
         
     	config.save();

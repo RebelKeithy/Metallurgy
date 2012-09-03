@@ -126,7 +126,7 @@ public class FC_TileEntityChestRenderer extends TileEntitySpecialRenderer
         var12 = 1.0F - var12 * var12 * var12;
         var14.chestLid.rotateAngleX = -(var12 * (float)Math.PI / 2.0F);
         var14.renderAll();
-        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+        //GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glPopMatrix();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }

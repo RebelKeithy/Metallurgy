@@ -202,4 +202,10 @@ public class OreFantasyEnum implements IMetalSetEnum{
 		return FantasyConfig.metalEnabled[i];
 	}
 
+	@Override
+	public int oreMinHeight(int i) {
+		// TODO Auto-generated method stub
+		return FantasyConfig.OreMinHeight[i];
+	}
+
 }
