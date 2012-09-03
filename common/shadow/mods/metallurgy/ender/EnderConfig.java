@@ -77,7 +77,7 @@ public class EnderConfig  {
 	    	VeinCount[i] = config.getOrCreateIntProperty(OreEnderEnum.names[i] + " Vein Count", "Ore Generation", OreEnderEnum.defaultVeinCount[i]).getInt(OreEnderEnum.defaultVeinCount[i]);
 	    	OreCount[i] = config.getOrCreateIntProperty(OreEnderEnum.names[i] + " Ore Count", "Ore Generation", OreEnderEnum.defaultOreCount[i]).getInt(OreEnderEnum.defaultOreCount[i]);
 	    	OreHeight[i] = config.getOrCreateIntProperty(OreEnderEnum.names[i] + " Height", "Ore Generation", OreEnderEnum.defaultOreHeight[i]).getInt(OreEnderEnum.defaultOreHeight[i]);
-	    	OreMinHeight[i] = config.getOrCreateIntProperty(OreEnderEnum.names[i] + " Height", "Ore Generation", 0).getInt(0);
+	    	OreMinHeight[i] = config.getOrCreateIntProperty(OreEnderEnum.names[i] + " Minimum Height", "Ore Generation", 0).getInt(0);
     	}
     
     	config.save();

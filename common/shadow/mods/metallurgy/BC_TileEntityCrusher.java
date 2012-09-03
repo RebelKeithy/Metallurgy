@@ -39,6 +39,8 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 	private int ticksSinceSync;
 
 	private boolean needsUpdate;
+
+	private int type;
     
     public void setSpeed(int var1)
     {
@@ -470,8 +472,13 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
     }
 
 	public int getType() {
-		int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-		return (meta < 8) ? meta : meta - 8;
+		if(worldObj != null)
+		{
+			int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+			return (meta < 8) ? meta : meta - 8;
+		}
+		
+		return type;
 	}
 	
 	public void sendPacket()
@@ -500,5 +507,9 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 		if (packet != null) {
 			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.worldType, packet);
 		}
+	}
+
+	public void setType(int metadata) {
+		type = metadata;
 	}
 }

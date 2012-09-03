@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import net.minecraft.src.BlockContainer;
@@ -24,6 +25,8 @@ public class BC_BlockCrusher extends BlockContainer
     /** True if this is an active furnace, false if idle */
     private final boolean isActive;
 
+	private int renderId = RenderingRegistry.getNextAvailableRenderId();
+
     /**
      * This flag is used to prevent the furnace inventory to be dropped upon block removal, is used internally when the
      * furnace block changes from idle to active and vice-versa.
@@ -42,6 +45,34 @@ public class BC_BlockCrusher extends BlockContainer
 		return mod_Crusher.texturePath;
 	}
 
+    /**
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
+     */
+    @Override
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+    
+    /**
+     * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
+     */
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    /**
+     * The type of render function that is called for this block
+     */
+    @Override
+    public int getRenderType()
+    {
+        return renderId;
+    }
+    
     /**
      * Returns the ID of the items to drop on destruction.
      */
