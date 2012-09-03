@@ -13,7 +13,7 @@ public class AlloyPreciousEnum implements IMetalSetEnum{
 	private int[] expValues = {4, 11};
 	private int[] harvestLevels = {2, 2};
 	private int[] pickLevels = {1, 2};
-	private int[] dungeonLootChances = {35, 15};
+	private int[] dungeonLootChances = {25, 10};
 	private int[] dungeonLootAmounts = {3, 2};
 	
 	public static EnumArmorMaterial brassArmor = EnumHelper.addArmorMaterial("Brass", 3, new int[] {2, 5, 3, 3}, 18);

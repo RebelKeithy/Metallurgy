@@ -14,7 +14,7 @@ public class OrePreciousEnum implements IMetalSetEnum{
 	private final int[] expValues = {3, 5, 20};
 	private final int[] harvestLevels = {1, 2, 3};
 	private final int[] pickLevels = {1, 1, 3};
-	private final int[] dungeonLootChances = {50, 25, 5};
+	private final int[] dungeonLootChances = {40, 18, 4};
 	private final int[] dungeonLootAmounts = {4, 3, 1};
 
 	public static int[] defaultVeinCount = {8, 6, 3};

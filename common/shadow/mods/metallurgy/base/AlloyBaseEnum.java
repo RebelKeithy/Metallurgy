@@ -14,7 +14,7 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 	private int[] harvestLevels = {2, 2, 2, 2, 3};
 	private int[] pickLevels = {3, 3, 4, 3, 4};
 
-	private int[] dungeonLootChances = {120, 120, 80, 75, 50};
+	private int[] dungeonLootChances = {80, 80, 60, 55, 45};
 	private int[] dungeonLootAmounts = {3, 3, 2, 2, 2};
 	
 	private int[] numRails = {10, 14, 26, 22, 32};
