@@ -37,7 +37,7 @@ public enum MetallurgyEnumToolMaterial
     DeepIron("DeepIron", 0, 2, 250, 6F, 2, 14),
 	BlackSteel("BlackSteel", 0, 2, 500, 8F, 2, 17),
     Oureclase("Oureclase", 0, 3, 750, 8F, 2, 18),
-    Aredrite("Aredrite", 0, 3, 750, 8F, 2, 18),
+    Aredrite("Aredrite", 0, 3, 1000, 4F, 2, 18),
     AstralSilver("AstralSilver", 0, 4, 35, 12F, 1, 30),
     Carmot("Carmot", 0, 4, 50, 12F, 1, 40),
     Mithril("Mithril", 0, 4, 1000, 9F, 3, 18),

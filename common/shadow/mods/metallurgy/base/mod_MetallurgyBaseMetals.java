@@ -58,6 +58,7 @@ public class mod_MetallurgyBaseMetals {
 	}
 	
 	public static Block metalFurnace;
+	public static Block metalLadder;
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
@@ -70,12 +71,14 @@ public class mod_MetallurgyBaseMetals {
 		proxy.registerRenderInformation();
 
 		metalFurnace = new BF_BlockMetalFurnace(BaseConfig.furnaceID, false).setHardness(3.5F).setBlockName("MetalFurnace");
+		metalLadder = new BlockMetalLadder(1020, 0).setHardness(0.4F).setStepSound(Block.soundWoodFootstep).setBlockName("MetalLadder");
 	}
 
 	@Init
 	public void load(FMLInitializationEvent event) 
 	{
 		GameRegistry.registerBlock(metalFurnace, shadow.mods.metallurgy.base.BF_BlockMetalFurnaceItem.class);
+		GameRegistry.registerBlock(metalLadder, shadow.mods.metallurgy.base.ItemBlockMetalLadder.class);
 
 		ModLoader.registerTileEntity(BF_TileEntityMetalFurnace.class, "metalFurnace");
 		

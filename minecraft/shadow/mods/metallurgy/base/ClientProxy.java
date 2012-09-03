@@ -33,6 +33,11 @@ public class ClientProxy extends CommonProxy{
 		LanguageRegistry.instance().addStringLocalization("tile.MetalFurnace.BronzeFurnace.name", "Bronze Furnace");
 		LanguageRegistry.instance().addStringLocalization("tile.MetalFurnace.IronFurnace.name", "Iron Furnace");
 		LanguageRegistry.instance().addStringLocalization("tile.MetalFurnace.SteelFurnace.name", "Steel Furnace");
+		
+		LanguageRegistry.instance().addStringLocalization("tile.MetalLadder.Copper.name", "Copper Furnace");
+		LanguageRegistry.instance().addStringLocalization("tile.MetalLadder.Bronze.name", "Bronze Furnace");
+		LanguageRegistry.instance().addStringLocalization("tile.MetalLadder.Iron.name", "Iron Furnace");
+		LanguageRegistry.instance().addStringLocalization("tile.MetalLadder.Steel.name", "Steel Furnace");
 	}
 	
 	@Override
