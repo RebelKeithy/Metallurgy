@@ -96,8 +96,6 @@ public class CoreClientProxy extends CoreCommonProxy{
 		Item.legsGold.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldLegs.png"));
 		Item.bootsGold.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldBoots.png"));
 
-		mod_Gold.GoldDust.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldDust.png"));
-		mod_Iron.IronDust.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronDust.png"));
 	}
 	
 	@Override
@@ -109,7 +107,8 @@ public class CoreClientProxy extends CoreCommonProxy{
 	public void registerRenderInformation()
 	{
 		RenderingRegistry.registerBlockHandler(new BC_CrusherRenderHelper());
-		MinecraftForgeClient.preloadTexture("/shadow/ItmGoldDust.png");
+		mod_Gold.GoldDust.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldDust.png"));
+		mod_Iron.IronDust.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronDust.png"));
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyTerrain.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyFurnaces.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyBaseMetals.png");
