@@ -168,6 +168,7 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
         this.direction = par1NBTTagCompound.getShort("Direction");
         this.furnaceTimeBase = par1NBTTagCompound.getShort("TimeBase");
         this.currentItemBurnTime = getItemBurnTime(this.furnaceItemStacks[1]);
+        ticksSinceSync = 40;
     }
 
     /**
@@ -242,11 +243,11 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
      */
     @Override
     public void updateEntity()
-    {
+    {    	
         boolean prevIsBurning = this.furnaceBurnTime > 0;
         boolean var2 = false;
 
-		if ((++ticksSinceSync % 40) == 0) 
+		if ((++ticksSinceSync) > 40) 
         {
 			//sendPacket();
 			
@@ -359,6 +360,7 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
             }
 
             int xpPerOrb = 1;
+            
             int orbCount = totalXP;
             
             if(totalXP > 20) {
@@ -375,14 +377,14 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
             }
                 
             EntityXPOrb orb;
-            
             for(int n = 0; n < orbCount; n++)
             {
-	            orb = new EntityXPOrb(this.worldObj, this.xCoord + 0.5, this.yCoord + 1, this.zCoord + 0.5, xpPerOrb);
-	            orb.motionY = 0.4;
-	            this.worldObj.spawnEntityInWorld(orb);
+                orb = new EntityXPOrb(this.worldObj, this.xCoord + 0.5, this.yCoord + 0.75, this.zCoord + 0.5, xpPerOrb);
+                orb.motionY = 0.4;
+                this.worldObj.spawnEntityInWorld(orb);
+                this.worldObj.updateEntities();
             }
-           
+            sendPacket();
         }
     }
 
@@ -462,12 +464,14 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
 	
 	public void sendPacket()
 	{
+		System.out.println("sending packet");
 		if(worldObj.isRemote)
 			return;
 		
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(140);
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {
+			dos.writeInt(1);
 			dos.writeInt(xCoord);
 			dos.writeInt(yCoord);
 			dos.writeInt(zCoord);
@@ -478,7 +482,7 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
 			// UNPOSSIBLE?
 		}
 		Packet250CustomPayload packet = new Packet250CustomPayload();
-		packet.channel = "MetallurgyFantasy";
+		packet.channel = "MetallurgyFantas";
 		packet.data = bos.toByteArray();
 		packet.length = bos.size();
 		packet.isChunkDataPacket = true;
