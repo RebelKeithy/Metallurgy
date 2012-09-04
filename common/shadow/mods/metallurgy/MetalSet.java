@@ -168,7 +168,6 @@ public class MetalSet implements IWorldGenerator {
 
 		for(int i = 0; i < info.numMetals(); i++)
 		{
-			System.out.println(info.name(i));
 			if(ore != null)
 				OreDictionary.registerOre("ore" + info.name(i), new ItemStack(ore, 1, i));
 			OreDictionary.registerOre("dust" + info.name(i), new ItemStack(Dust[i], 1));
@@ -239,7 +238,7 @@ public class MetalSet implements IWorldGenerator {
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) 
 	{
-		if(world.provider.worldType != info.getDimension())
+		if(!info.spawnsInDimension(world.provider.worldType))
 			return;
 
 		for(int i = 0; i < numMetals; i++)
@@ -255,11 +254,11 @@ public class MetalSet implements IWorldGenerator {
 			int randPosY = rand.nextInt(info.oreHeight(meta) - info.oreMinHeight(meta)) + info.oreMinHeight(meta);
 			int randPosZ = chunkZ + rand.nextInt(16);
 			//System.out.println("spawning " + info.name(meta) + " " + randPosX + " " + randPosY + " " + randPosZ);
-			if(info.getDimension() == -1)
+			if(info.spawnsInDimension(-1) && world.provider.isHellWorld)
 				(new MetallurgyWorldGenNetherMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
-			else if(info.getDimension() == 1)
+			else if(info.spawnsInDimension(1) && world.provider.worldType == 1)
 				(new MetallurgyWorldGenEnderMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
-			else
+			else if(info.spawnsInDimension(world.provider.worldType))
 				(new MetallurgyWorldGenMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}

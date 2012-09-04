@@ -37,9 +37,9 @@ public class mod_MetallurgyUtility
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		UtilityConfig.init();
+		ConfigUtility.init();
 	
-		vein = new BlockVein(UtilityConfig.veinID, "/shadow/MetallurgyUtilityOres.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("UtilityVein");
+		vein = new BlockVein(ConfigUtility.veinID, "/shadow/MetallurgyUtilityOres.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("UtilityVein");
 	}
 
 	@Init

@@ -19,7 +19,7 @@ public class mod_Sulfur
 {
 	public static final int meta = 1;
 	
-	public static Item sulfur = (new UtilityItem(UtilityConfig.itemSulfurID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(meta,1).setItemName("Sulfur").setTabToDisplayOn(CreativeTabs.tabMaterials);
+	public static Item sulfur = (new UtilityItem(ConfigUtility.itemSulfurID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(meta,1).setItemName("Sulfur").setTabToDisplayOn(CreativeTabs.tabMaterials);
 	
 	//Load Recipes
 	public static void load()

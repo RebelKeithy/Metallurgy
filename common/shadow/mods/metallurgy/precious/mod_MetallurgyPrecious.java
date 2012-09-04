@@ -56,7 +56,7 @@ public class mod_MetallurgyPrecious
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		PreciousConfig.init();
+		ConfigPrecious.init();
 		alloys = new MetalSet(new AlloyPreciousEnum());
 		ores = new MetalSet(new OrePreciousEnum());
 		

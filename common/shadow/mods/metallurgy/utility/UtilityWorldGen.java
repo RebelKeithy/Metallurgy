@@ -15,82 +15,82 @@ public class UtilityWorldGen implements IWorldGenerator
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
-		if(world.provider.worldType != UtilityConfig.dimensionID)
+		if(world.provider.worldType != ConfigUtility.dimensionID)
 			return;
 		
-		if(UtilityConfig.bitumenEnabled)
+		if(ConfigUtility.bitumenEnabled)
 			generateBitumen(world, rand, chunkX * 16, chunkZ * 16);
-		if(UtilityConfig.magnesiumEnabled)
+		if(ConfigUtility.magnesiumEnabled)
 			generateMagnesium(world, rand, chunkX * 16, chunkZ * 16);
-		if(UtilityConfig.phosphoriteEnabled)
+		if(ConfigUtility.phosphoriteEnabled)
 			generatePhosphorite(world, rand, chunkX * 16, chunkZ * 16);
-		if(UtilityConfig.potashEnabled)
+		if(ConfigUtility.potashEnabled)
 			generatePostash(world, rand, chunkX * 16, chunkZ * 16);
-		if(UtilityConfig.saltpeterEnabled)
+		if(ConfigUtility.saltpeterEnabled)
 			generateSaltpeter(world, rand, chunkX * 16, chunkZ * 16);
-		if(UtilityConfig.sulfurEnabled)
+		if(ConfigUtility.sulfurEnabled)
 			generateSulfur(world, rand, chunkX * 16, chunkZ * 16);
 
 	}
 	
 	public static void generateBitumen(World world, Random rand, int chunkX, int chunkZ){
-		for(int i = 0; i < UtilityConfig.BitumenVeinCount; i++)
+		for(int i = 0; i < ConfigUtility.BitumenVeinCount; i++)
 		{
 			int randPosX = chunkX + rand.nextInt(16);
-			int randPosY = rand.nextInt(UtilityConfig.BitumenOreHeight);
+			int randPosY = rand.nextInt(ConfigUtility.BitumenOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Bitumen.meta, UtilityConfig.BitumenOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Bitumen.meta, ConfigUtility.BitumenOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 
 
 	public static void generateMagnesium(World world, Random rand, int chunkX, int chunkZ){
-		for(int i = 0; i < UtilityConfig.MagnesiumVeinCount; i++)
+		for(int i = 0; i < ConfigUtility.MagnesiumVeinCount; i++)
 		{
 			int randPosX = chunkX + rand.nextInt(16);
-			int randPosY = rand.nextInt(UtilityConfig.MagnesiumOreHeight);
+			int randPosY = rand.nextInt(ConfigUtility.MagnesiumOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Magnesium.meta, UtilityConfig.MagnesiumOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Magnesium.meta, ConfigUtility.MagnesiumOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 	
 	public static void generatePhosphorite(World world, Random rand, int chunkX, int chunkZ){
-		for(int i = 0; i < UtilityConfig.PhosphoriteVeinCount; i++)
+		for(int i = 0; i < ConfigUtility.PhosphoriteVeinCount; i++)
 		{
 			int randPosX = chunkX + rand.nextInt(16);
-			int randPosY = rand.nextInt(UtilityConfig.PhosphoriteOreHeight);
+			int randPosY = rand.nextInt(ConfigUtility.PhosphoriteOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Phosphorite.meta, UtilityConfig.PhosphoriteOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Phosphorite.meta, ConfigUtility.PhosphoriteOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 
 	public static void generatePostash(World world, Random rand, int chunkX, int chunkZ){
-		for(int i = 0; i < UtilityConfig.PotashVeinCount; i++)
+		for(int i = 0; i < ConfigUtility.PotashVeinCount; i++)
 		{
 			int randPosX = chunkX + rand.nextInt(16);
-			int randPosY = rand.nextInt(UtilityConfig.PotashOreHeight);
+			int randPosY = rand.nextInt(ConfigUtility.PotashOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Potash.meta, UtilityConfig.PotashOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Potash.meta, ConfigUtility.PotashOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 
 	public static void generateSaltpeter(World world, Random rand, int chunkX, int chunkZ){
-		for(int i = 0; i < UtilityConfig.SaltpeterVeinCount; i++)
+		for(int i = 0; i < ConfigUtility.SaltpeterVeinCount; i++)
 		{
 			int randPosX = chunkX + rand.nextInt(16);
-			int randPosY = rand.nextInt(UtilityConfig.SaltpeterOreHeight);
+			int randPosY = rand.nextInt(ConfigUtility.SaltpeterOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Saltpeter.meta, UtilityConfig.SaltpeterOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Saltpeter.meta, ConfigUtility.SaltpeterOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 
 	public static void generateSulfur(World world, Random rand, int chunkX, int chunkZ){
-		for(int i = 0; i < UtilityConfig.SulfurVeinCount; i++)
+		for(int i = 0; i < ConfigUtility.SulfurVeinCount; i++)
 		{
 			int randPosX = chunkX + rand.nextInt(16);
-			int randPosY = rand.nextInt(UtilityConfig.SulfurOreHeight);
+			int randPosY = rand.nextInt(ConfigUtility.SulfurOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Sulfur.meta, UtilityConfig.SulfurOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Sulfur.meta, ConfigUtility.SulfurOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 }

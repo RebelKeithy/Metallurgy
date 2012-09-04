@@ -19,7 +19,7 @@ public class mod_Saltpeter
 {
 	public static final int meta = 2;
 	
-	public static Item saltpeter = (new UtilityItem(UtilityConfig.itemSaltpeterID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(meta,1).setItemName("Saltpeter").setTabToDisplayOn(CreativeTabs.tabMaterials);
+	public static Item saltpeter = (new UtilityItem(ConfigUtility.itemSaltpeterID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(meta,1).setItemName("Saltpeter").setTabToDisplayOn(CreativeTabs.tabMaterials);
 	
 	//Load Recipes
 	public static void load()

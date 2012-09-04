@@ -11,7 +11,7 @@ import net.minecraft.src.Block;
 import net.minecraft.src.Item;
 import net.minecraftforge.common.Configuration;
 
-public class BaseConfig  {
+public class ConfigBase  {
 
 	public static int baseMetalsVeinID;
 	public static int baseMetalsBrickID;
@@ -35,7 +35,7 @@ public class BaseConfig  {
 	public static int[] OreCount = new int[8];
 	public static int[] OreHeight = new int[8];
 	public static int[] OreMinHeight = new int[8];
-	public static int dimensionID;
+	public static String dimensions;
 	
 	
 	
@@ -68,7 +68,7 @@ public class BaseConfig  {
     	baseAlloysBrickID = config.getOrCreateBlockIdProperty("Alloy Brick", 903).getInt(902);
     	furnaceID = config.getOrCreateBlockIdProperty("Furnace", 904).getInt(904);
     	
-    	dimensionID = config.getOrCreateIntProperty("Dimension ID", "Dimension", 0).getInt(0);
+    	dimensions = config.getOrCreateProperty("Dimensions", "Dimensions", "0").value;
     	
     	furnacesEnabled = config.getOrCreateBooleanProperty("Enable Furnaces", "Machines", true).getBoolean(true);
     	railsEnabled = config.getOrCreateBooleanProperty("Enable Rail Recipes", "Machines", true).getBoolean(true);

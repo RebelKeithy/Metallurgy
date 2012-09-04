@@ -10,7 +10,7 @@ public class mod_NetherForge {
 	
 	public static void init()
 	{
-		metalFurnace = new NF_BlockNetherForge(NetherConfig.furnaceID, false).setHardness(3.5F).setBlockName("NetherForge");
+		metalFurnace = new NF_BlockNetherForge(ConfigNether.furnaceID, false).setHardness(3.5F).setBlockName("NetherForge");
 	}
 	
 	public static void load()

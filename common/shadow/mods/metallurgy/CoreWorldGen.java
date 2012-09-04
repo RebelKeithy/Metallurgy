@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import shadow.mods.metallurgy.MetallurgyWorldGenMinable;
-import shadow.mods.metallurgy.base.BaseConfig;
+import shadow.mods.metallurgy.base.ConfigBase;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.IChunkProvider;

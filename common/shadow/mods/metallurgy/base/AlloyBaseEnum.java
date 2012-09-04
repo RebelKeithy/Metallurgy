@@ -32,7 +32,7 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 
 	@Override
 	public int startID(int i) {
-		return BaseConfig.ItemStartID + 150 + (i * 50);
+		return ConfigBase.ItemStartID + 150 + (i * 50);
 	}
 
 	@Override
@@ -92,7 +92,7 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 
 	@Override
 	public int brickID() {
-		return BaseConfig.baseAlloysBrickID;
+		return ConfigBase.baseAlloysBrickID;
 	}
 
 	@Override
@@ -157,14 +157,14 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 	}
 
 	@Override
-	public int getDimension()
+	public boolean spawnsInDimension(int i)
 	{
-		return BaseConfig.dimensionID;
+		return false;
 	}
 
 	@Override
 	public boolean metalEnabled(int i) {
-		return BaseConfig.alloyEnabled[i];
+		return ConfigBase.alloyEnabled[i];
 	}
 
 	@Override

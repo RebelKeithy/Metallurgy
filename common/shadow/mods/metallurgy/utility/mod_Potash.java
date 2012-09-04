@@ -19,8 +19,8 @@ public class mod_Potash
 {
 	public static final int meta = 5;
 	
-	public static Item potash = (new UtilityItem(UtilityConfig.itemPotashID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(meta,1).setItemName("Potash").setTabToDisplayOn(CreativeTabs.tabMaterials);
-	public static Item fertilizer = (new UtilityItemFertilizer(UtilityConfig.itemFertilizerID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(1,2).setItemName("Fertilizer").setTabToDisplayOn(CreativeTabs.tabMaterials);
+	public static Item potash = (new UtilityItem(ConfigUtility.itemPotashID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(meta,1).setItemName("Potash").setTabToDisplayOn(CreativeTabs.tabMaterials);
+	public static Item fertilizer = (new UtilityItemFertilizer(ConfigUtility.itemFertilizerID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(1,2).setItemName("Fertilizer").setTabToDisplayOn(CreativeTabs.tabMaterials);
 	
 	//Load Recipes
 	public static void load()

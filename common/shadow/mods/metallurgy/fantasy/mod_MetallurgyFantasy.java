@@ -6,7 +6,7 @@ import java.util.Random;
 import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.mod_MetallurgyCore;
-import shadow.mods.metallurgy.ender.EnderConfig;
+import shadow.mods.metallurgy.ender.ConfigEnder;
 import shadow.mods.metallurgy.precious.mod_MetallurgyPrecious;
 
 import cpw.mods.fml.common.Mod;
@@ -51,7 +51,7 @@ public class mod_MetallurgyFantasy
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		FantasyConfig.init();
+		ConfigFantasy.init();
 
 		alloys = new MetalSet(new AlloyFantasyEnum());
 		ores = new MetalSet(new OreFantasyEnum());

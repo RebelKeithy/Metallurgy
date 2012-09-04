@@ -54,7 +54,7 @@ public class mod_MetallurgyNether
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		NetherConfig.init();
+		ConfigNether.init();
 
 		alloys = new MetalSet(new AlloyNetherEnum());
 		ores = new MetalSet(new OreNetherEnum());

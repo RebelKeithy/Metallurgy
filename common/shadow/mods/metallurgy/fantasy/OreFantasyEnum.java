@@ -1,10 +1,13 @@
 package shadow.mods.metallurgy.fantasy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
-import shadow.mods.metallurgy.base.BaseConfig;
+import shadow.mods.metallurgy.base.ConfigBase;
 
 public class OreFantasyEnum implements IMetalSetEnum{
 
@@ -29,6 +32,18 @@ public class OreFantasyEnum implements IMetalSetEnum{
 	public static EnumArmorMaterial orichalcumArmor = EnumHelper.addArmorMaterial("Orichalcum", 34, new int[] {4, 7, 6, 4}, 20);
 	public static EnumArmorMaterial adamantineArmor = EnumHelper.addArmorMaterial("Adamantine", 38, new int[] {5, 7, 6, 4}, 22);
 	public static EnumArmorMaterial atlarusArmor = EnumHelper.addArmorMaterial("Atlarus", 40, new int[] {5, 7, 6, 4}, 22);
+
+	public static List<Integer> dimList = new ArrayList<Integer>();
+	
+	static
+	{
+		System.out.println(ConfigFantasy.dimensions);
+		for(String str : ConfigFantasy.dimensions.split(",")) {
+			System.out.println(Integer.parseInt(str));
+		    dimList.add(Integer.parseInt(str));
+		}
+		
+	}
 	
 	@Override
 	public int numMetals() {
@@ -37,7 +52,7 @@ public class OreFantasyEnum implements IMetalSetEnum{
 
 	@Override
 	public int startID(int i) {
-		return FantasyConfig.ItemStartID + (i * 50);
+		return ConfigFantasy.ItemStartID + (i * 50);
 	}
 
 	@Override
@@ -77,27 +92,27 @@ public class OreFantasyEnum implements IMetalSetEnum{
 
 	@Override
 	public int veinCount(int i) {
-		return FantasyConfig.VeinCount[i];
+		return ConfigFantasy.VeinCount[i];
 	}
 
 	@Override
 	public int oreCount(int i) {
-		return FantasyConfig.OreCount[i];
+		return ConfigFantasy.OreCount[i];
 	}
 
 	@Override
 	public int oreHeight(int i) {
-		return FantasyConfig.OreHeight[i];
+		return ConfigFantasy.OreHeight[i];
 	}
 
 	@Override
 	public int oreID() {
-		return FantasyConfig.FantasyMetalsVeinID;
+		return ConfigFantasy.FantasyMetalsVeinID;
 	}
 
 	@Override
 	public int brickID() {
-		return FantasyConfig.FantasyMetalsBrickID;
+		return ConfigFantasy.FantasyMetalsBrickID;
 	}
 
 	@Override
@@ -192,20 +207,20 @@ public class OreFantasyEnum implements IMetalSetEnum{
 	}
 
 	@Override
-	public int getDimension()
+	public boolean spawnsInDimension(int i)
 	{
-		return FantasyConfig.dimensionID;
+		return dimList.contains(i);
 	}
 
 	@Override
 	public boolean metalEnabled(int i) {
-		return FantasyConfig.metalEnabled[i];
+		return ConfigFantasy.metalEnabled[i];
 	}
 
 	@Override
 	public int oreMinHeight(int i) {
 		// TODO Auto-generated method stub
-		return FantasyConfig.OreMinHeight[i];
+		return ConfigFantasy.OreMinHeight[i];
 	}
 
 }

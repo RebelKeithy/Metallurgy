@@ -1,10 +1,14 @@
 package shadow.mods.metallurgy.nether;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
-import shadow.mods.metallurgy.ender.EnderConfig;
+import shadow.mods.metallurgy.base.ConfigBase;
+import shadow.mods.metallurgy.ender.ConfigEnder;
 
 public class OreNetherEnum implements IMetalSetEnum{
 
@@ -27,6 +31,15 @@ public class OreNetherEnum implements IMetalSetEnum{
 	public static EnumArmorMaterial kalendriteArmor = EnumHelper.addArmorMaterial("Kalendrite", 28, new int[] {4, 6, 5, 4}, 20);
 	public static EnumArmorMaterial vulcaniteArmor = EnumHelper.addArmorMaterial("Vulcanite", 34, new int[] {4, 7, 5, 4}, 20);
 	public static EnumArmorMaterial sanguiniteArmor = EnumHelper.addArmorMaterial("Sanguinite", 36, new int[] {5, 7, 6, 4}, 25);
+
+	public static List<Integer> dimList = new ArrayList<Integer>();
+	
+	static
+	{
+		for(String str : ConfigNether.dimensions.split(" ")) {
+		    dimList.add(Integer.parseInt(str));
+		}
+	}
 	
 	@Override
 	public int numMetals() {
@@ -35,7 +48,7 @@ public class OreNetherEnum implements IMetalSetEnum{
 
 	@Override
 	public int startID(int i) {
-		return NetherConfig.metalItemIds[i];
+		return ConfigNether.metalItemIds[i];
 	}
 
 	@Override
@@ -75,27 +88,27 @@ public class OreNetherEnum implements IMetalSetEnum{
 
 	@Override
 	public int veinCount(int i) {
-		return NetherConfig.VeinCount[i];
+		return ConfigNether.VeinCount[i];
 	}
 
 	@Override
 	public int oreCount(int i) {
-		return NetherConfig.OreCount[i];
+		return ConfigNether.OreCount[i];
 	}
 
 	@Override
 	public int oreHeight(int i) {
-		return NetherConfig.OreHeight[i];
+		return ConfigNether.OreHeight[i];
 	}
 
 	@Override
 	public int oreID() {
-		return NetherConfig.NetherMetalsVeinID;
+		return ConfigNether.NetherMetalsVeinID;
 	}
 
 	@Override
 	public int brickID() {
-		return NetherConfig.NetherMetalsBrickID;
+		return ConfigNether.NetherMetalsBrickID;
 	}
 
 	@Override
@@ -174,20 +187,20 @@ public class OreNetherEnum implements IMetalSetEnum{
 	}
 
 	@Override
-	public int getDimension()
+	public boolean spawnsInDimension(int i)
 	{
-		return NetherConfig.dimensionID;
+		return dimList.contains(i);
 	}
 
 	@Override
 	public boolean metalEnabled(int i) {
-		return NetherConfig.metalEnabled[i];
+		return ConfigNether.metalEnabled[i];
 	}
 
 	@Override
 	public int oreMinHeight(int i) {
 		// TODO Auto-generated method stub
-		return NetherConfig.OreMinHeight[i];
+		return ConfigNether.OreMinHeight[i];
 	}
 
 }

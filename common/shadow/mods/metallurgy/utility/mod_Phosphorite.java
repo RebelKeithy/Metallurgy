@@ -19,8 +19,8 @@ public class mod_Phosphorite
 {
 	public static final int meta = 0;
 	
-	public static Item phosphorite = (new UtilityItem(UtilityConfig.itemPhosphoriteID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(meta,1).setItemName("Phosphorite").setTabToDisplayOn(CreativeTabs.tabMaterials);
-	public static Item phosphorus = (new UtilityItem(UtilityConfig.itemPhosphorousID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(meta,2).setItemName("Phosphorous").setTabToDisplayOn(CreativeTabs.tabMaterials);
+	public static Item phosphorite = (new UtilityItem(ConfigUtility.itemPhosphoriteID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(meta,1).setItemName("Phosphorite").setTabToDisplayOn(CreativeTabs.tabMaterials);
+	public static Item phosphorus = (new UtilityItem(ConfigUtility.itemPhosphorousID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(meta,2).setItemName("Phosphorous").setTabToDisplayOn(CreativeTabs.tabMaterials);
 	
 	//Load Recipes
 	public static void load()

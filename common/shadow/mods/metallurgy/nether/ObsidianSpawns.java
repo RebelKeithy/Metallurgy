@@ -14,13 +14,12 @@ public class ObsidianSpawns implements IWorldGenerator {
 
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
-		for(int i = 0; i < NetherConfig.ObsidianVeinCount; i++)
+		for(int i = 0; i < ConfigNether.ObsidianVeinCount; i++)
 		{
 			int randPosX = (chunkX * 16) + rand.nextInt(16);
-			int randPosY = rand.nextInt(NetherConfig.ObsidianOreHeight);
+			int randPosY = rand.nextInt(ConfigNether.ObsidianOreHeight);
 			int randPosZ = (chunkZ * 16) + rand.nextInt(16);
-			System.out.println("spawning obsidian " + randPosX + " " + randPosY + " " + randPosZ);
-			(new MetallurgyWorldGenNetherMinable(Block.obsidian.blockID, 0, NetherConfig.ObsidianOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new MetallurgyWorldGenNetherMinable(Block.obsidian.blockID, 0, ConfigNether.ObsidianOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 

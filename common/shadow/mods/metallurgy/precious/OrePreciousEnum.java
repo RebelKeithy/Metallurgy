@@ -1,11 +1,15 @@
 package shadow.mods.metallurgy.precious;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
-import shadow.mods.metallurgy.ender.EnderConfig;
-import shadow.mods.metallurgy.nether.NetherConfig;
+import shadow.mods.metallurgy.base.ConfigBase;
+import shadow.mods.metallurgy.ender.ConfigEnder;
+import shadow.mods.metallurgy.nether.ConfigNether;
 
 public class OrePreciousEnum implements IMetalSetEnum{
 
@@ -23,6 +27,16 @@ public class OrePreciousEnum implements IMetalSetEnum{
 
 	public static EnumArmorMaterial silverArmor = EnumHelper.addArmorMaterial("Silver", 5, new int[] {2, 4, 3, 2}, 20);
 	public static EnumArmorMaterial platinumArmor = EnumHelper.addArmorMaterial("Platinum", 11, new int[] {3, 6, 5, 3}, 50);
+
+	public static List<Integer> dimList = new ArrayList<Integer>();
+	
+	static
+	{
+		if(ConfigPrecious.dimensions != null)
+			for(String str : ConfigPrecious.dimensions.split(" ")) {
+				dimList.add(Integer.parseInt(str));
+			}
+	}
 	
 	@Override
 	public int numMetals() {
@@ -31,7 +45,7 @@ public class OrePreciousEnum implements IMetalSetEnum{
 
 	@Override
 	public int startID(int i) {
-		return PreciousConfig.ItemStartID + (i * 50);
+		return ConfigPrecious.ItemStartID + (i * 50);
 	}
 
 	@Override
@@ -71,32 +85,32 @@ public class OrePreciousEnum implements IMetalSetEnum{
 
 	@Override
 	public int veinCount(int i) {
-		return PreciousConfig.VeinCount[i];
+		return ConfigPrecious.VeinCount[i];
 	}
 
 	@Override
 	public int oreCount(int i) {
-		return PreciousConfig.OreCount[i];
+		return ConfigPrecious.OreCount[i];
 	}
 
 	@Override
 	public int oreHeight(int i) {
-		return PreciousConfig.OreHeight[i];
+		return ConfigPrecious.OreHeight[i];
 	}
 
 	@Override
 	public int oreMinHeight(int i) {
-		return PreciousConfig.OreMinHeight[i];
+		return ConfigPrecious.OreMinHeight[i];
 	}
 
 	@Override
 	public int oreID() {
-		return PreciousConfig.PreciousMetalsVeinID;
+		return ConfigPrecious.PreciousMetalsVeinID;
 	}
 
 	@Override
 	public int brickID() {
-		return PreciousConfig.PreciousMetalsBrickID;
+		return ConfigPrecious.PreciousMetalsBrickID;
 	}
 
 	@Override
@@ -155,14 +169,14 @@ public class OrePreciousEnum implements IMetalSetEnum{
 	}
 
 	@Override
-	public int getDimension()
+	public boolean spawnsInDimension(int i)
 	{
-		return PreciousConfig.dimensionID;
+		return dimList.contains(i);
 	}
 
 	@Override
 	public boolean metalEnabled(int i) {
-		return PreciousConfig.metalEnabled[i];
+		return ConfigPrecious.metalEnabled[i];
 	}
 
 }

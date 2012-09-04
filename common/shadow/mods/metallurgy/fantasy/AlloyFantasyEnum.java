@@ -4,8 +4,8 @@ import net.minecraft.src.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
-import shadow.mods.metallurgy.base.BaseConfig;
-import shadow.mods.metallurgy.ender.EnderConfig;
+import shadow.mods.metallurgy.base.ConfigBase;
+import shadow.mods.metallurgy.ender.ConfigEnder;
 
 public class AlloyFantasyEnum implements IMetalSetEnum{
 
@@ -29,7 +29,7 @@ public class AlloyFantasyEnum implements IMetalSetEnum{
 
 	@Override
 	public int startID(int i) {
-		return FantasyConfig.ItemStartID + 600 + (i * 50);
+		return ConfigFantasy.ItemStartID + 600 + (i * 50);
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public class AlloyFantasyEnum implements IMetalSetEnum{
 
 	@Override
 	public int brickID() {
-		return FantasyConfig.FantasyAlloysBrickID;
+		return ConfigFantasy.FantasyAlloysBrickID;
 	}
 
 	@Override
@@ -154,14 +154,14 @@ public class AlloyFantasyEnum implements IMetalSetEnum{
 	}
 
 	@Override
-	public int getDimension()
+	public boolean spawnsInDimension(int i)
 	{
-		return FantasyConfig.dimensionID;
+		return false;
 	}
 
 	@Override
 	public boolean metalEnabled(int i) {
-		return FantasyConfig.alloyEnabled[i];
+		return ConfigFantasy.alloyEnabled[i];
 	}
 
 	@Override

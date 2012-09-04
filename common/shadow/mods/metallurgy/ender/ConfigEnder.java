@@ -8,7 +8,7 @@ import net.minecraft.src.Block;
 import net.minecraft.src.Item;
 import net.minecraftforge.common.Configuration;
 
-public class EnderConfig  {
+public class ConfigEnder  {
 
 	public static int EnderMetalsVeinID;
 	public static int EnderMetalsBrickID;
@@ -24,7 +24,7 @@ public class EnderConfig  {
 	
 	public static int[] alloyItemIds = new int[1];
 	public static int[] metalItemIds = new int [2];
-	public static int dimensionID;
+	public static String dimensions;
 	
 	
 	public static void init()
@@ -55,7 +55,7 @@ public class EnderConfig  {
     	EnderMetalsBrickID = config.getOrCreateBlockIdProperty("Metal Brick", 925).getInt(925);
     	EnderAlloysBrickID = config.getOrCreateBlockIdProperty("Alloy Brick", 926).getInt(926);
 
-    	dimensionID = config.getOrCreateIntProperty("Dimension ID", "Dimension", 1).getInt(1);
+    	dimensions = config.getOrCreateProperty("Dimensions", "Dimensions", "1").value;
     	
     	for(int i = 0; i < 1; i++)
     		alloyEnabled[i] = config.getOrCreateBooleanProperty(AlloyEnderEnum.names[i] + " Enabled", "Ores", true).getBoolean(true);

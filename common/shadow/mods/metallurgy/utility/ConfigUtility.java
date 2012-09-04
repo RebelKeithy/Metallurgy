@@ -8,7 +8,7 @@ import net.minecraft.src.Block;
 import net.minecraft.src.Item;
 import net.minecraftforge.common.Configuration;
 
-public class UtilityConfig  {
+public class ConfigUtility  {
 
 	public static int veinID;
 	

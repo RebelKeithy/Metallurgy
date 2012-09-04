@@ -2,7 +2,7 @@ package shadow.mods.metallurgy;
 
 import java.util.ArrayList;
 
-import shadow.mods.metallurgy.base.BaseConfig;
+import shadow.mods.metallurgy.base.ConfigBase;
 import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
 import net.minecraft.src.Block;
 import net.minecraft.src.Item;

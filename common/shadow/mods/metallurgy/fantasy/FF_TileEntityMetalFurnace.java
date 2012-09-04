@@ -4,7 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import shadow.mods.metallurgy.base.BaseConfig;
+import shadow.mods.metallurgy.base.ConfigBase;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -349,9 +349,7 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
 
             int type = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
             
-            int totalXP = (int) (var1 * FantasyConfig.xpBonus[type] / 10f);
-            
-            System.out.println(var1 + " " + type + " " + totalXP + " " + FantasyConfig.xpBonus[type]);
+            int totalXP = (int) (var1 * ConfigFantasy.xpBonus[type] / 10f);
             
             --this.furnaceItemStacks[0].stackSize;
 

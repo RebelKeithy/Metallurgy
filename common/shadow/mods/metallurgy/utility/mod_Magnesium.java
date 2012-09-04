@@ -19,7 +19,7 @@ public class mod_Magnesium
 {
 	public static final int meta = 3;
 	
-	public static Item magnesium = (new UtilityItem(UtilityConfig.itemMagnesiumID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(meta,1).setItemName("Magnesium").setTabToDisplayOn(CreativeTabs.tabMaterials);
+	public static Item magnesium = (new UtilityItem(ConfigUtility.itemMagnesiumID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(meta,1).setItemName("Magnesium").setTabToDisplayOn(CreativeTabs.tabMaterials);
 	
 	//Load Recipes
 	public static void load()

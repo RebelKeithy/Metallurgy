@@ -48,7 +48,7 @@ public class mod_MetallurgyEnder
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		EnderConfig.init();
+		ConfigEnder.init();
 
 		alloys = new MetalSet(new AlloyEnderEnum());
 		ores = new MetalSet(new OreEnderEnum());
@@ -68,7 +68,7 @@ public class mod_MetallurgyEnder
 	@PostInit
 	public void load(FMLPostInitializationEvent event) 
 	{
-		if(EnderConfig.alloyEnabled[0])
+		if(ConfigEnder.alloyEnabled[0])
 			RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "dustEximite", "dustMeutoite");
 	}
 }

@@ -10,7 +10,7 @@ import net.minecraft.src.Block;
 import net.minecraft.src.Item;
 import net.minecraftforge.common.Configuration;
 
-public class PreciousConfig  {
+public class ConfigPrecious  {
 
 	public static int PreciousMetalsVeinID;
 	public static int PreciousMetalsBrickID;
@@ -24,8 +24,8 @@ public class PreciousConfig  {
 	public static int[] VeinCount = new int[3];
 	public static int[] OreCount = new int[3];
 	public static int[] OreHeight = new int[3];
-	public static int dimensionID;
 	public static int[] OreMinHeight = new int[3];
+	public static String dimensions;
 	
 	public static void init()
 	{
@@ -59,7 +59,7 @@ public class PreciousConfig  {
         PreciousMetalsBrickID = config.getOrCreateBlockIdProperty("Precious Metal Brick", 911).getInt(911);
         PreciousAlloysBrickID = config.getOrCreateBlockIdProperty("Precious Alloy Brick", 912).getInt(912);
 
-    	dimensionID = config.getOrCreateIntProperty("Dimension ID", "Dimension", 0).getInt(0);
+    	dimensions = config.getOrCreateProperty("Dimensions", "Dimensions", "0").value;
     	
     	ItemStartID = config.getOrCreateIntProperty("Item Start IDs", "Item Ids Uses next 250", 26750).getInt(26750);
     	

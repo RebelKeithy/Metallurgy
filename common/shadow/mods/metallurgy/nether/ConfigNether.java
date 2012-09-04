@@ -8,7 +8,7 @@ import net.minecraft.src.Block;
 import net.minecraft.src.Item;
 import net.minecraftforge.common.Configuration;
 
-public class NetherConfig  {
+public class ConfigNether  {
 
 	public static int NetherMetalsVeinID;
 	public static int NetherMetalsBrickID;
@@ -37,7 +37,7 @@ public class NetherConfig  {
 	
 	public static int[] alloyItemIds = new int[3];
 	public static int[] metalItemIds = new int [10];
-	public static int dimensionID;
+	public static String dimensions;
 	
 	
 	public static void init()
@@ -71,7 +71,7 @@ public class NetherConfig  {
     	NetherAlloysBrickID = config.getOrCreateBlockIdProperty("Alloy Brick", 917).getInt(917);
     	furnaceID = config.getOrCreateBlockIdProperty("Nether Smelter", 918).getInt(918);
 
-    	dimensionID = config.getOrCreateIntProperty("Dimension ID", "Dimension", -1).getInt(-1);
+    	dimensions = config.getOrCreateProperty("Dimensions", "Dimensions", "-1").value;
     	
     	for(int i = 0; i < 3; i++)
     		alloyEnabled[i] = config.getOrCreateBooleanProperty(AlloyNetherEnum.names[i] + " Enabled", "Ores", true).getBoolean(true);

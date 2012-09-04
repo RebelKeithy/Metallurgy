@@ -1,5 +1,8 @@
 package shadow.mods.metallurgy.base;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
@@ -23,6 +26,15 @@ public class OreBaseEnum implements IMetalSetEnum{
 	
 	public static EnumArmorMaterial copperArmor = EnumHelper.addArmorMaterial("Copper", 10, new int[] {2, 3, 2, 1}, 5);
 
+	public static List<Integer> dimList = new ArrayList<Integer>();
+	
+	static
+	{
+		for(String str : ConfigBase.dimensions.split(" ")) {
+		    dimList.add(Integer.parseInt(str));
+		}
+	}
+	
 	@Override
 	public int numMetals() {
 		return numMetals;
@@ -30,7 +42,7 @@ public class OreBaseEnum implements IMetalSetEnum{
 
 	@Override
 	public int startID(int i) {
-		return BaseConfig.ItemStartID + (i * 50);
+		return ConfigBase.ItemStartID + (i * 50);
 	}
 
 	@Override
@@ -70,27 +82,27 @@ public class OreBaseEnum implements IMetalSetEnum{
 
 	@Override
 	public int veinCount(int i) {
-		return BaseConfig.VeinCount[i];
+		return ConfigBase.VeinCount[i];
 	}
 
 	@Override
 	public int oreCount(int i) {
-		return BaseConfig.OreCount[i];
+		return ConfigBase.OreCount[i];
 	}
 
 	@Override
 	public int oreHeight(int i) {
-		return BaseConfig.OreHeight[i];
+		return ConfigBase.OreHeight[i];
 	}
 
 	@Override
 	public int oreID() {
-		return BaseConfig.baseMetalsVeinID;
+		return ConfigBase.baseMetalsVeinID;
 	}
 
 	@Override
 	public int brickID() {
-		return BaseConfig.baseMetalsBrickID;
+		return ConfigBase.baseMetalsBrickID;
 	}
 
 	@Override
@@ -131,14 +143,14 @@ public class OreBaseEnum implements IMetalSetEnum{
 	}
 
 	@Override
-	public int getDimension()
+	public boolean spawnsInDimension(int i)
 	{
-		return BaseConfig.dimensionID;
+		return dimList.contains(i);
 	}
 
 	@Override
 	public boolean metalEnabled(int i) {
-		return BaseConfig.metalEnabled[i];
+		return ConfigBase.metalEnabled[i];
 	}
 
 	@Override
@@ -150,7 +162,7 @@ public class OreBaseEnum implements IMetalSetEnum{
 	@Override
 	public int oreMinHeight(int i) {
 		// TODO Auto-generated method stub
-		return BaseConfig.OreMinHeight[i];
+		return ConfigBase.OreMinHeight[i];
 	}
 
 }

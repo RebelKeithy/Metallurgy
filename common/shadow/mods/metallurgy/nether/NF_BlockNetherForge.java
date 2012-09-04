@@ -51,7 +51,7 @@ public class NF_BlockNetherForge extends BlockContainer
     @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return NetherConfig.furnaceID;
+        return ConfigNether.furnaceID;
     }
     
     @Override
@@ -297,8 +297,8 @@ public class NF_BlockNetherForge extends BlockContainer
         NF_TileEntityNetherForge var5 = (NF_TileEntityNetherForge)par1World.getBlockTileEntity(par2, par3, par4);
         int metadata = par1World.getBlockMetadata(par2, par3, par4);
         
-        var5.setSpeed((int)(20 * NetherConfig.speeds[metadata]));
-        var5.setMaxBuckets((int)(NetherConfig.buckets[metadata]));
+        var5.setSpeed((int)(20 * ConfigNether.speeds[metadata]));
+        var5.setMaxBuckets((int)(ConfigNether.buckets[metadata]));
     }
 
     /**

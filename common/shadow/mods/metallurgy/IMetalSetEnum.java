@@ -27,7 +27,7 @@ public interface IMetalSetEnum {
 	public MetallurgyEnumToolMaterial toolEnum(int i);
 	public boolean isCatalyst(int i);
 	public int numRails(int i);
-	public int getDimension();
+	public boolean spawnsInDimension(int i);
 	public boolean metalEnabled(int i);
 	public EnumArmorMaterial armorEnum(int i);
 }

@@ -59,14 +59,14 @@ public class mod_MetallurgyBaseMetals {
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		BaseConfig.init();
+		ConfigBase.init();
 		
 		alloys = new MetalSet(new AlloyBaseEnum());
 		ores = new MetalSet(new OreBaseEnum());
 		
 		proxy.registerRenderInformation();
 
-		metalFurnace = new BF_BlockMetalFurnace(BaseConfig.furnaceID, false).setHardness(3.5F).setBlockName("MetalFurnace");
+		metalFurnace = new BF_BlockMetalFurnace(ConfigBase.furnaceID, false).setHardness(3.5F).setBlockName("MetalFurnace");
 		metalLadder = new BlockMetalLadder(1020, 0).setHardness(0.4F).setStepSound(Block.soundWoodFootstep).setBlockName("MetalLadder");
 	}
 
@@ -91,15 +91,15 @@ public class mod_MetallurgyBaseMetals {
 	@PostInit
 	public void load(FMLPostInitializationEvent event) 
 	{
-	    if(BaseConfig.alloyEnabled[0])
+	    if(ConfigBase.alloyEnabled[0])
 	    	RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "dustCopper", "dustTin");
-	    if(BaseConfig.alloyEnabled[1])
+	    if(ConfigBase.alloyEnabled[1])
 	    	RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[1], 1), "dustBronze", "dustGold");
-	    if(BaseConfig.alloyEnabled[2])
+	    if(ConfigBase.alloyEnabled[2])
 	    	RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[2], 1), "dustBronze", "dustIron");
-	    if(BaseConfig.alloyEnabled[3])
+	    if(ConfigBase.alloyEnabled[3])
 	    	RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[3], 1), "dustGold", "dustIron");
-	    if(BaseConfig.alloyEnabled[4])
+	    if(ConfigBase.alloyEnabled[4])
 	    	RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[4], 1), "dustIron", "dustManganese");
 	}
 }

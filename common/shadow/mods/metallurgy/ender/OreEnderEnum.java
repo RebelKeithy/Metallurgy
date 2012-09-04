@@ -1,10 +1,13 @@
 package shadow.mods.metallurgy.ender;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
-import shadow.mods.metallurgy.base.BaseConfig;
+import shadow.mods.metallurgy.base.ConfigBase;
 
 public class OreEnderEnum implements IMetalSetEnum{
 
@@ -20,6 +23,15 @@ public class OreEnderEnum implements IMetalSetEnum{
 	public static int[] defaultOreHeight = {128, 128};
 
 	public static EnumArmorMaterial eximiteArmor = EnumHelper.addArmorMaterial("Eximite", 24, new int[] {4, 6, 5, 4}, 25);
+
+	public static List<Integer> dimList = new ArrayList<Integer>();
+	
+	static
+	{
+		for(String str : ConfigEnder.dimensions.split(" ")) {
+		    dimList.add(Integer.parseInt(str));
+		}
+	}
 	
 	@Override
 	public int numMetals() {
@@ -28,7 +40,7 @@ public class OreEnderEnum implements IMetalSetEnum{
 
 	@Override
 	public int startID(int i) {
-		return EnderConfig.metalItemIds[i];
+		return ConfigEnder.metalItemIds[i];
 	}
 
 	@Override
@@ -68,27 +80,27 @@ public class OreEnderEnum implements IMetalSetEnum{
 
 	@Override
 	public int veinCount(int i) {
-		return EnderConfig.VeinCount[i];
+		return ConfigEnder.VeinCount[i];
 	}
 
 	@Override
 	public int oreCount(int i) {
-		return EnderConfig.OreCount[i];
+		return ConfigEnder.OreCount[i];
 	}
 
 	@Override
 	public int oreHeight(int i) {
-		return EnderConfig.OreHeight[i];
+		return ConfigEnder.OreHeight[i];
 	}
 
 	@Override
 	public int oreID() {
-		return EnderConfig.EnderMetalsVeinID;
+		return ConfigEnder.EnderMetalsVeinID;
 	}
 
 	@Override
 	public int brickID() {
-		return EnderConfig.EnderMetalsBrickID;
+		return ConfigEnder.EnderMetalsBrickID;
 	}
 
 	@Override
@@ -129,14 +141,14 @@ public class OreEnderEnum implements IMetalSetEnum{
 	}
 
 	@Override
-	public int getDimension()
+	public boolean spawnsInDimension(int i)
 	{
-		return EnderConfig.dimensionID;
+		return dimList.contains(i);
 	}
 
 	@Override
 	public boolean metalEnabled(int i) {
-		return EnderConfig.metalEnabled[i];
+		return ConfigEnder.metalEnabled[i];
 	}
 
 	@Override
@@ -148,7 +160,7 @@ public class OreEnderEnum implements IMetalSetEnum{
 	@Override
 	public int oreMinHeight(int i) {
 		// TODO Auto-generated method stub
-		return EnderConfig.OreMinHeight[i];
+		return ConfigEnder.OreMinHeight[i];
 	}
 
 }

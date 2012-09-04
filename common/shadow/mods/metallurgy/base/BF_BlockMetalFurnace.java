@@ -49,7 +49,7 @@ public class BF_BlockMetalFurnace extends BlockContainer
     @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return BaseConfig.furnaceID;
+        return ConfigBase.furnaceID;
     }
     
     @Override
@@ -264,22 +264,22 @@ public class BF_BlockMetalFurnace extends BlockContainer
         {
         case 0:
         {
-            var5.setSpeed((int)(20 * BaseConfig.copperSpeed));
+            var5.setSpeed((int)(20 * ConfigBase.copperSpeed));
             break;
         }
         case 1:
         {
-        	var5.setSpeed((int)(20 * BaseConfig.bronzeSpeed));
+        	var5.setSpeed((int)(20 * ConfigBase.bronzeSpeed));
         	break;
         }
         case 2:
         {
-        	var5.setSpeed((int)(20 * BaseConfig.ironSpeed));
+        	var5.setSpeed((int)(20 * ConfigBase.ironSpeed));
         	break;
         }
         case 3:
         {
-        	var5.setSpeed((int)(20 * BaseConfig.steelSpeed));
+        	var5.setSpeed((int)(20 * ConfigBase.steelSpeed));
         	break;
         }
         default:

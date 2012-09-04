@@ -53,7 +53,6 @@ public class MetallurgyArmor extends ItemArmor implements IArmorTextureProvider
     
     public void setTexture(int index)
     {
-    	System.out.println("setting render index " + index + " of " + this);
     	this.renderIndex = index;
     }
 
