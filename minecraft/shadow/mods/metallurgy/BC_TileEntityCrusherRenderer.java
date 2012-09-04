@@ -17,10 +17,12 @@ public class BC_TileEntityCrusherRenderer extends TileEntitySpecialRenderer
     public void renderTileEntityChestAt(BC_TileEntityCrusher par1TileEntityChest, double par2, double par4, double par6, float par8)
     {
         int var9;
-
+        float offset = 0;
+        
         if (par1TileEntityChest.worldObj == null)
         {
-            var9 = 0;
+            var9 = 5;
+            offset = 0.1f;
         }
         else
         {
@@ -76,11 +78,11 @@ public class BC_TileEntityCrusherRenderer extends TileEntitySpecialRenderer
         }
 
         GL11.glRotatef((float)var11, 0.0F, 1.0F, 0.0F);
-        GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+        GL11.glTranslatef(-0.5F, -0.5F + offset, -0.5F);
         float var13;
 
         var14.renderAll();
-        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+        //GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glPopMatrix();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }

@@ -41,7 +41,8 @@ public class FC_TileEntityChestRenderer extends TileEntitySpecialRenderer
 
         int direction = par1TileEntityChest.getDirection();
         int type = par1TileEntityChest.getType();
-
+        float offset = 0;
+        
         switch(type)
         {
             case 0:
@@ -75,7 +76,8 @@ public class FC_TileEntityChestRenderer extends TileEntitySpecialRenderer
 
         if (!par1TileEntityChest.func_70309_m())
         {
-            var9 = 0;
+            var9 = 5;
+            offset = 0.1f;
         }
         else
         {
@@ -117,8 +119,9 @@ public class FC_TileEntityChestRenderer extends TileEntitySpecialRenderer
             var11 = -90;
         }
 
+        
         GL11.glRotatef((float)var11, 0.0F, 1.0F, 0.0F);
-        GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+        GL11.glTranslatef(-0.5F, -0.5f + offset, -0.5F);
         float var12 = par1TileEntityChest.prevLidAngle + (par1TileEntityChest.lidAngle - par1TileEntityChest.prevLidAngle) * par8;
         float var13;
 
