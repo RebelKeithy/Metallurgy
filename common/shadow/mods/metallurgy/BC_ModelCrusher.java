@@ -1,5 +1,6 @@
 package shadow.mods.metallurgy;
 import net.minecraft.src.ModelBase;
+import net.minecraft.src.ModelBox;
 import net.minecraft.src.ModelRenderer;
 
 
@@ -87,9 +88,6 @@ public class BC_ModelCrusher extends ModelBase
      */
     public void renderAll()
     {
-        //this.crusherTop.render(0.0625F);
-        //this.chestKnob.render(0.0625F);
-        //this.chrusherBelow.render(0.0625F);
         this.Shape1.render(0.0625F);
         this.Shape2.render(0.0625F);
         this.Shape3.render(0.0625F);

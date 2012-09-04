@@ -1,6 +1,8 @@
 package shadow.mods.metallurgy;
 
 import org.lwjgl.opengl.GL11;
+
+import net.minecraft.src.ModLoader;
 import net.minecraft.src.TileEntitySpecialRenderer;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.ModelChest;
@@ -9,7 +11,7 @@ import org.lwjgl.opengl.GL12;
 public class BC_TileEntityCrusherRenderer extends TileEntitySpecialRenderer
 {
     /** The normal small chest model. */
-    private BC_ModelCrusher chestModel = new BC_ModelCrusher();
+    private BC_ModelCrusher crusherModel = new BC_ModelCrusher();
 
     /**
      * Renders the TileEntity for the chest at a position.
@@ -31,7 +33,7 @@ public class BC_TileEntityCrusherRenderer extends TileEntitySpecialRenderer
 
         BC_ModelCrusher var14;
 
-        var14 = this.chestModel;
+        var14 = this.crusherModel;
         
         String type = "";
         

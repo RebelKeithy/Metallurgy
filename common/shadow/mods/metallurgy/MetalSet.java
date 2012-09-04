@@ -94,10 +94,10 @@ public class MetalSet implements IWorldGenerator {
 			Hoe[i] = new MetallurgyItemHoe(startID+5, info.image(), info.toolEnum(i)).setIconCoord(i,6).setItemName(info.name(i) + "Hoe");
 			Sword[i] = new MetallurgyItemSword(startID+6, info.image(), info.toolEnum(i)).setIconCoord(i,9).setItemName(info.name(i) + "Sword");
 			
-			Helmet[i] = (new MetallurgyArmor(startID+7, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_1", info.armorEnum(i), 0, 0, 10, 230)).setIconCoord(i,12).setItemName(info.name(i) + "Helmet");
-			Plate[i] = (new MetallurgyArmor(startID+8, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_1", info.armorEnum(i), 0, 1, 10, 300)).setIconCoord(i,13).setItemName(info.name(i) + "Plate");
-			Legs[i] = (new MetallurgyArmor(startID+9, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_2", info.armorEnum(i), 0, 2, 10, 270)).setIconCoord(i,14).setItemName(info.name(i) + "Legs");
-			Boots[i] = (new MetallurgyArmor(startID+10, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_1", info.armorEnum(i), 0, 3, 10, 200)).setIconCoord(i,15).setItemName(info.name(i) + "Boots");
+			Helmet[i] = (new MetallurgyArmor(startID+7, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_1", info.armorEnum(i), 0, 0)).setIconCoord(i,12).setItemName(info.name(i) + "Helmet");
+			Plate[i] = (new MetallurgyArmor(startID+8, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_1", info.armorEnum(i), 0, 1)).setIconCoord(i,13).setItemName(info.name(i) + "Plate");
+			Legs[i] = (new MetallurgyArmor(startID+9, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_2", info.armorEnum(i), 0, 2)).setIconCoord(i,14).setItemName(info.name(i) + "Legs");
+			Boots[i] = (new MetallurgyArmor(startID+10, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_1", info.armorEnum(i), 0, 3)).setIconCoord(i,15).setItemName(info.name(i) + "Boots");
 		
 			if(info.numRails(i) > 0)
 				RecipeHelper.addRailsRecipe(Bar[i], info.numRails(i));

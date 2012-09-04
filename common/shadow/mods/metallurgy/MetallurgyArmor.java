@@ -16,29 +16,15 @@ import net.minecraftforge.common.IArmorTextureProvider;
 
 public class MetallurgyArmor extends ItemArmor implements IArmorTextureProvider
 {
-
-    private static final int maxDamageArray[] = {
-        11, 16, 15, 13
-    };
-    
-    public final int armorType; //Slot
-    public final int damageReduceAmount; //% of damage absorbed
-    public int renderIndex; //Artwork Name
-    private final EnumArmorMaterial material;
     public String texturePath;
     public String texturePrefix;
     
-    public MetallurgyArmor(int i, String s, String s2, EnumArmorMaterial enumarmormaterial, int j, int k, int l, int m)
+    public MetallurgyArmor(int i, String s, String s2, EnumArmorMaterial enumarmormaterial, int j, int k)
     {
     	super(i, enumarmormaterial, j, k);
     	
-        material = enumarmormaterial;
         texturePath = s;
         texturePrefix = s2;
-        armorType = k;
-        damageReduceAmount = l;
-        setMaxDamage(m);
-        maxStackSize = 1;
     }
     
     public String getArmorTextureFile(ItemStack itemstack)
@@ -50,25 +36,10 @@ public class MetallurgyArmor extends ItemArmor implements IArmorTextureProvider
     {
     	texturePrefix = tex;
     }
-    
-    public void setTexture(int index)
-    {
-    	this.renderIndex = index;
-    }
 
     @Override
 	public String getTextureFile()
     {		
 		return texturePath;
-    }
-
-    public int getItemEnchantability()
-    {
-        return material.getEnchantability();
-    }
-
-    static int[] func_40436_c()
-    {
-        return maxDamageArray;
     }
 }
