@@ -3,6 +3,7 @@ package shadow.mods.metallurgy.fantasy;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.Random;
 
 import shadow.mods.metallurgy.base.ConfigBase;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -304,14 +305,13 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
             if (prevIsBurning != this.furnaceBurnTime > 0)
             {
                 var2 = true;
-                //FF_BlockMetalFurnace.updateFurnaceBlockState(this.furnaceBurnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
         }
 
         if (var2)
         {
             this.onInventoryChanged();
-            //sendPacket();
+            sendPacket();
 			
 			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 1, direction);
@@ -379,8 +379,34 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
             EntityXPOrb orb;
             for(int n = 0; n < orbCount; n++)
             {
-                orb = new EntityXPOrb(this.worldObj, this.xCoord + 0.5, this.yCoord + 0.75, this.zCoord + 0.5, xpPerOrb);
-                orb.motionY = 0.4;
+            	double xOffset = 0.5;
+            	double zOffset = 0.5;
+            	double xMotion = 0;
+            	double zMotion = 0;
+            	
+            	if(direction == 2) {
+            		xOffset = 1;
+            		xMotion = 0.1;
+            	} else if(direction == 3) {
+            		zOffset = 1;
+            		zMotion = 0.1;
+            	} else if(direction == 4) {
+            		xOffset = 0;
+            		xMotion = -0.1;
+            	} else if(direction == 5) {
+            		zOffset = 0;
+            		zOffset = -0.1;
+            	}
+            	
+            	Random rand = new Random();
+            	xOffset += (rand.nextInt(31) - 15) / 100.0;
+              	zOffset += (rand.nextInt(31) - 15) / 100.0;
+            	xMotion += (rand.nextInt(11) - 5) / 100.0;
+              	zMotion += (rand.nextInt(11) - 5) / 100.0;
+            	
+                orb = new EntityXPOrb(this.worldObj, this.xCoord + xOffset, this.yCoord + 0.5, this.zCoord + zOffset, xpPerOrb);
+                orb.motionX = xMotion;
+                orb.motionZ = zMotion;
                 this.worldObj.spawnEntityInWorld(orb);
                 this.worldObj.updateEntities();
             }

@@ -172,47 +172,11 @@ public class FF_BlockMetalFurnace extends BlockContainer
 
             if (var6 != null)
             {
-                //par5EntityPlayer.displayGUIFurnace(var6);
-                //ModLoader.openGUI(par5EntityPlayer, new FF_GuiMetalFurnace(par5EntityPlayer.inventory, var6));
                 par5EntityPlayer.openGui(mod_MetallurgyFantasy.instance, 0, par1World, par2, par3, par4);
             }
 
             return true;
         }
-    }
-
-    /**
-     * Update which block ID the furnace is using depending on whether or not it is burning
-     */
-    public static void updateFurnaceBlockState(boolean isBurning, World par1World, int par2, int par3, int par4)
-    {
-    	/*
-    	//System.out.println("updating furnace" + isBurning);
-        int var5 = par1World.getBlockMetadata(par2, par3, par4);
-        //TileEntity var6 = par1World.getBlockTileEntity(par2, par3, par4);
-        //keepFurnaceInventory = true;
-
-        if (isBurning && var5 < 8)
-        {
-            //par1World.setBlockMetadata(par2, par3, par4, var5 + 8);
-            //par1World.setBlockWithNotify(par2, par3, par4, mod_FantasyFurnace.metalFurnace.blockID);
-        }
-        else if(!isBurning && var5 >= 8)
-        {
-            //par1World.setBlockMetadata(par2, par3, par4, var5 - 8);
-        }
-
-        //keepFurnaceInventory = false;
-        //par1World.setBlockMetadataWithNotify(par2, par3, par4, var5);
-        //((TileEntityMetalFurnace)(var6)).setDirection(var5);
-
-        /*
-        if (var6 != null)
-        {
-            var6.validate();
-            par1World.setBlockTileEntity(par2, par3, par4, var6);
-        }
-        */
     }
 
     /**
