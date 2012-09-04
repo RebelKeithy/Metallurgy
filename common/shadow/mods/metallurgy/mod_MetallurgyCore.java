@@ -52,6 +52,7 @@ public class mod_MetallurgyCore
 	public static boolean hasFantasy;
 
 	public static Block crusher;
+	public static Block vanillaBricks;
 	
 	public static Block smoke;
 	public static Block smokeInactive;
@@ -62,7 +63,8 @@ public class mod_MetallurgyCore
 	{
 		config.init();
 		crusher = new BC_BlockCrusher(CoreConfig.crusherID, false).setHardness(3.5F).setBlockName("Crusher").setCreativeTab(CreativeTabs.tabDeco);
-
+		vanillaBricks = new MetallurgyBlock(CoreConfig.vanillaBrickID, "/shadow/VanillaBricks.png", 2, 1).setHardness(2F).setResistance(.1F).setBlockName("VanillaBrick");
+		
 		//smoke = new BlockSmoke(1000, true).setBlockName("Smoke").setCreativeTab(CreativeTabs.tabDeco);
 		//smokeInactive = new BlockSmoke(1001, false).setBlockName("Smoke");
 		//smokeEater = new BlockSmokeEater(1002, true).setBlockName("Eater").setCreativeTab(CreativeTabs.tabDeco);
@@ -111,6 +113,8 @@ public class mod_MetallurgyCore
 		//GameRegistry.registerBlock(smokeInactive);
 		//GameRegistry.registerBlock(smokeEater);
 		
+		GameRegistry.registerBlock(vanillaBricks, MetallurgyItemBlock.class);
+		
 		GameRegistry.registerWorldGenerator(new CoreWorldGen());
 		
 		MinecraftForge.setToolClass(Item.pickaxeWood, "pickaxe", 1);
@@ -146,7 +150,8 @@ public class mod_MetallurgyCore
 		mod_MetallurgyTextureOverride.load();
 		//mod_MetallurgyzAchievements.load();
 		
-	    
+	    RecipeHelper.addBrickRecipes(vanillaBricks.blockID, 0, Item.ingotIron);
+	    RecipeHelper.addBrickRecipes(vanillaBricks.blockID, 1, Item.ingotGold);
 
 	}
 

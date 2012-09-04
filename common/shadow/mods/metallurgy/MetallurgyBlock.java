@@ -30,8 +30,8 @@ public class MetallurgyBlock extends Block
         super(i, Material.iron);
         texturePath = s;
         this.setCreativeTab(CreativeTabs.tabBlock);
-        this.row = row;
         this.numTypes = numTypes;
+        this.row = row;
     }
 
     @Override

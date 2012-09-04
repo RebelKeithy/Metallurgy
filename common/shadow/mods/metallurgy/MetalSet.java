@@ -195,7 +195,7 @@ public class MetalSet implements IWorldGenerator {
     		//System.out.println("comparing " + event.Name + " to " + info.name(i));
     		if(event.Name.equals("ore" + info.name(i)))
     		{
-    			FurnaceRecipes.smelting().addSmelting(event.Ore.itemID, i, new ItemStack(Bar[i], 1));
+    			FurnaceRecipes.smelting().addSmelting(event.Ore.itemID, i, new ItemStack(Bar[i], info.expValue(i)));
     			BC_CrusherRecipes.smelting().addCrushing(event.Ore.itemID, event.Ore.getItemDamage(), new ItemStack(Dust[i], 2));
     		}
 

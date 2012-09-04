@@ -54,6 +54,7 @@ public class CoreConfig  {
 	public static double ironCrusherSpeed;
 	public static double steelCrusherSpeed;
 	public static boolean enableTextureOverrides;
+	public static int vanillaBrickID;
 	
 	public static void init()
 	{
@@ -116,6 +117,7 @@ public class CoreConfig  {
     	IronOreHeight = config.getOrCreateIntProperty("Iron Ore Height", "Ore Generation", 128).getInt(128);
 
     	crusherID = config.getOrCreateBlockIdProperty("Crusher", 900).getInt(900);
+    	vanillaBrickID = config.getOrCreateBlockIdProperty("Bricks", 905).getInt(905);
     	crushersEnabled = config.getOrCreateBooleanProperty("Enable Crushers", "Machines", true).getBoolean(true);
 
     	stoneCrusherSpeed = config.getOrCreateIntProperty("Stone Speed", "Crushers", 32000).getInt(32000)/1000f;

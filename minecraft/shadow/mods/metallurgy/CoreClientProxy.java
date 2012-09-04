@@ -30,6 +30,9 @@ public class CoreClientProxy extends CoreCommonProxy{
 		LanguageRegistry.instance().addStringLocalization("tile.Crusher.BronzeCrusher.name", "Bronze Crusher");
 		LanguageRegistry.instance().addStringLocalization("tile.Crusher.IronCrusher.name", "Iron Crusher");
 		LanguageRegistry.instance().addStringLocalization("tile.Crusher.SteelCrusher.name", "Steel Crusher");
+
+		LanguageRegistry.instance().addStringLocalization("tile.VanillaBrick.0.name", "Iron Bricks");
+		LanguageRegistry.instance().addStringLocalization("tile.VanillaBrick.1.name", "Gold Bricks");
 	}
 	
 	public static void addNamesToSet(MetalSet set)
