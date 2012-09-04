@@ -375,6 +375,7 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
             }
                 
             EntityXPOrb orb;
+            
             for(int n = 0; n < orbCount; n++)
             {
 	            orb = new EntityXPOrb(this.worldObj, this.xCoord + 0.5, this.yCoord + 1, this.zCoord + 0.5, xpPerOrb);

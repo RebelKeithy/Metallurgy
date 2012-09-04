@@ -117,7 +117,7 @@ public class FF_ContainerMetalFurnace extends Container
                         return null;
                     }
                 }
-                else if (TileEntityFurnace.isItemFuel(var4))
+                else if (FF_TileEntityMetalFurnace.isItemFuel(var4))
                 {
                     if (!this.mergeItemStack(var4, 1, 2, false))
                     {
