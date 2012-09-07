@@ -177,6 +177,7 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
         this.direction = par1NBTTagCompound.getShort("Direction");
         this.furnaceTimeBase = par1NBTTagCompound.getShort("TimeBase");
         this.currentItemBurnTime = getItemBurnTime(this.furnaceItemStacks[1]);
+        ticksSinceSync = 20;
     }
 
     /**
@@ -257,8 +258,11 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 
 		if ((++ticksSinceSync % 80) == 0 && !worldObj.isRemote) 
         {
-            //sync();
-            sendPacket();
+			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 1, direction);
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 2, furnaceTimeBase);
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, furnaceBurnTime);
+            //sendPacket();
 		}
 		
         boolean var1 = this.furnaceBurnTime > 0;
@@ -437,20 +441,14 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
     @Override
 	public void receiveClientEvent(int i, int j) 
     {
-		if (i == 1) {
+		if (i == 1)
 			direction = j;
-			//int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-			//worldObj.setBlockAndMetadataWithUpdate(xCoord, yCoord, zCoord, mod_MetallurgyCore.crusher.blockID, meta, true);
-		}
-		if (i == 2) {
+		if (i == 2)
 			furnaceTimeBase = j;
-			//int meta = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-			//worldObj.setBlockAndMetadataWithUpdate(xCoord, yCoord, zCoord, BaseConfig.crusherID, meta, true);
-		}
 		if (i == 3)
-		{
 			furnaceBurnTime = j;
-		}
+
+		worldObj.markBlockAsNeedsUpdate(xCoord, yCoord, zCoord);
 	}
 
     public void openChest() {}
@@ -505,7 +503,7 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 		packet.isChunkDataPacket = true;
 		
 		if (packet != null) {
-			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.worldType, packet);
+			//PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.worldType, packet);
 		}
 	}
 

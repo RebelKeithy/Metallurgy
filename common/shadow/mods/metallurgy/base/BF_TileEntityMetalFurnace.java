@@ -166,6 +166,7 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements IInventory,
         this.direction = par1NBTTagCompound.getShort("Direction");
         this.furnaceTimeBase = par1NBTTagCompound.getShort("TimeBase");
         this.currentItemBurnTime = getItemBurnTime(this.furnaceItemStacks[1]);
+        ticksSinceSync = 80;
     }
 
     /**
@@ -241,11 +242,14 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements IInventory,
     public void updateEntity()
     {
     	
-		if ((++ticksSinceSync % 80) == 0) 
+		if (++ticksSinceSync > 80) 
         {
+			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 1, direction);
 			//int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
 			//worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 11, direction);
 			sendPacket();
+			ticksSinceSync = 0;
         }
 		
         boolean var1 = this.furnaceBurnTime > 0;
