@@ -81,7 +81,7 @@ public class ConfigUtility  {
         config.load();
         
         
-    	veinID = config.getOrCreateBlockIdProperty("Utility Ore", 924).getInt(924);
+    	veinID = config.getOrCreateBlockIdProperty("Utility Ore", 923).getInt(923);
 
     	dimensionID = config.getOrCreateIntProperty("Dimension ID", "Dimension", 0).getInt(0);
     	
