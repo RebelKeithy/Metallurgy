@@ -90,7 +90,7 @@ public class NF_ContainerNetherForge extends Container
 
             if (par1 == 1)
             {
-                if (!this.mergeItemStack(var4, 3, 39, true))
+                if (!this.mergeItemStack(var4, 2, 38, true))
                 {
                     return null;
                 }
