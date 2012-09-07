@@ -117,11 +117,14 @@ public class mod_MetallurgyCore
 		
 		GameRegistry.registerWorldGenerator(new CoreWorldGen());
 		
+		/*
 		MinecraftForge.setToolClass(Item.pickaxeWood, "pickaxe", 1);
 		MinecraftForge.setToolClass(Item.pickaxeStone, "pickaxe", 2);
 		MinecraftForge.setToolClass(Item.pickaxeSteel, "pickaxe", 3);
 		MinecraftForge.setToolClass(Item.pickaxeDiamond, "pickaxe", 4);
+		*/
 		
+		/*
 		MinecraftForge.setBlockHarvestLevel(Block.oreIron, "pickaxe", 2);
 		MinecraftForge.setBlockHarvestLevel(Block.oreRedstone, "pickaxe", 3);
 		MinecraftForge.setBlockHarvestLevel(Block.oreRedstoneGlowing, "pickaxe", 3);
@@ -129,7 +132,7 @@ public class mod_MetallurgyCore
 		MinecraftForge.setBlockHarvestLevel(Block.oreDiamond, "pickaxe", 3);
 		MinecraftForge.setBlockHarvestLevel(Block.oreGold, "pickaxe", 3);
 		MinecraftForge.setBlockHarvestLevel(Block.obsidian, "pickaxe", 4);
-
+		*/
 
 		//OreDictionary.registerOre("oreGold", new ItemStack(mod_MetallurgyBaseMetals.BaseMetalsVein, 1, mod_Gold.meta));
 		OreDictionary.registerOre("dustGold", new ItemStack(mod_Gold.GoldDust, 1));
