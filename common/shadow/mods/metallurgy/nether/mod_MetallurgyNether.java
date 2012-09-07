@@ -87,8 +87,8 @@ public class mod_MetallurgyNether
 		
 		GameRegistry.registerWorldGenerator(new ObsidianSpawns());
 		
-		ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), new Object[] {ores.Dust[0], ores.Dust[0], ores.Dust[1]});
-	    ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), new Object[] {ores.Dust[3], ores.Dust[4]});
+		ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), new Object[] {ores.Dust[8], ores.Dust[1]});
+	    ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), new Object[] {ores.Dust[9], ores.Dust[4]});
 	    if(mod_MetallurgyCore.hasPrecious)
 	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[2], 1), new Object[] {new ItemStack(mod_MetallurgyPrecious.ores.Dust[2], 1), ores.Dust[5]});
 	}
