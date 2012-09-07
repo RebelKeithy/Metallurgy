@@ -38,6 +38,9 @@ public class ClientProxy extends CommonProxy{
 	public void registerRenderInformation()
 	{
 		RenderingRegistry.registerBlockHandler(new FC_ChestRenderHelper());
+		RenderingRegistry.registerBlockHandler(new FM_MintRenderHelper());
+		MinecraftForgeClient.preloadTexture("/shadow/MintHead.png");
+		MinecraftForgeClient.preloadTexture("/shadow/Mint.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyPreciousMetals.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyPreciousAlloys.png");
 	}
@@ -45,6 +48,7 @@ public class ClientProxy extends CommonProxy{
 	@Override
 	public void registerTileEntitySpecialRenderer() {
 		ClientRegistry.bindTileEntitySpecialRenderer(FC_TileEntityChest.class, new FC_TileEntityChestRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(FM_TileEntityMint.class, new FM_TileEntityMintRenderer());
 	}
 	
 	@Override

@@ -256,6 +256,7 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 1, direction);
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 2, furnaceTimeBase);
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, furnaceBurnTime);
+			ticksSinceSync = 0;
 			
 		}
 		

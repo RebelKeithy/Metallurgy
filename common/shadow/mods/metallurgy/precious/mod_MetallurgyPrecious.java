@@ -24,6 +24,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
@@ -51,7 +52,9 @@ public class mod_MetallurgyPrecious
 	public static Block PreciousMetalsBrick;
 	
 	public static Block PreciousChest;
+	public static Block Mint;
 	
+	public static Item Coin;
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
@@ -61,6 +64,8 @@ public class mod_MetallurgyPrecious
 		ores = new MetalSet(new OrePreciousEnum());
 		
 		PreciousChest = new FC_BlockChest(913).setHardness(0.5F).setResistance(.1F).setBlockName("PreciousChest");
+		Mint = new FM_BlockMint(1021).setHardness(0.5F).setResistance(.1F).setBlockName("Mint");
+		Coin = new ItemCoins(30000).setItemName("Coin").setTabToDisplayOn(CreativeTabs.tabMisc);
 	}
 
 	@Init
@@ -68,6 +73,9 @@ public class mod_MetallurgyPrecious
 	{
 		GameRegistry.registerBlock(PreciousChest, FC_ChestItemBlock.class);
 		GameRegistry.registerTileEntity(FC_TileEntityChest.class, "PreciousChest");
+		GameRegistry.registerBlock(Mint);
+		GameRegistry.registerTileEntity(FM_TileEntityMint.class, "Mint");
+		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		
 		//AlloyPrecious.load();
@@ -85,7 +93,16 @@ public class mod_MetallurgyPrecious
 	{
 		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "dustZinc", "dustCopper");
 		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[1], 1), "dustGold", "dustSilver");
+		RecipeHelper.addStorageRecipe(new ItemStack(Coin, 1, 1), new ItemStack(Coin, 1, 0));
+		RecipeHelper.addStorageRecipe(new ItemStack(Coin, 1, 2), new ItemStack(Coin, 1, 1));
+		RecipeHelper.addStorageRecipe(new ItemStack(Coin, 1, 3), new ItemStack(Coin, 1, 2));
 		addChestRecipes();
+		
+		FM_MintRecipes.minting().addMinting(ores.Bar[1].shiftedIndex, 0, 3);
+		FM_MintRecipes.minting().addMinting(ores.Bar[2].shiftedIndex, 0, 27);
+		FM_MintRecipes.minting().addMinting(alloys.Bar[0].shiftedIndex, 0, 1);
+		FM_MintRecipes.minting().addMinting(alloys.Bar[1].shiftedIndex, 0, 13);
+		FM_MintRecipes.minting().addMinting(Item.ingotGold.shiftedIndex, 0, 9);
 	}
 	
 	public void addChestRecipes()

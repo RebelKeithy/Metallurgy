@@ -154,6 +154,15 @@ public class RecipeHelper {
 		});
 	}
 	
+	public static void addStorageRecipe(ItemStack storage, ItemStack item)
+	{
+		
+		ModLoader.addShapelessRecipe(new ItemStack(item.getItem(), 9, item.getItemDamage()), new Object[] {storage});
+		ModLoader.addRecipe(new ItemStack(storage.getItem(), 1, storage.getItemDamage()), new Object[] {
+			"XXX", "XXX", "XXX", Character.valueOf('X'), item
+		});
+	}
+	
 	public static void addStorageRecipe(Item storage, Item item)
 	{
 		ModLoader.addShapelessRecipe(new ItemStack(item, 9), new Object[] {storage});
