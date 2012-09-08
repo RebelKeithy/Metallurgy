@@ -20,13 +20,14 @@ public class FM_TileEntityMint extends TileEntity
 {
     public int direction = 0;
     private int ingotId = 0;
-    private int amount = 0;
+    public int amount = 0;
     
     public int resetTime = 0;
     
     public boolean powered = false;
 
 	private int ticksSinceSync;
+	private int timeSinceSinc;
     
     public void setDirection(int par1)
     {
@@ -67,12 +68,28 @@ public class FM_TileEntityMint extends TileEntity
     	}
     }
     
+    public boolean hasIngot()
+    {
+    	if(ingotId > 0)
+    		return true;
+    	return false;
+    }
+    
     public ItemStack currentIngot()
     {
-    	if(ingotId != 0)
-    		return new ItemStack(ingotId, 1, 0);
+    	ItemStack ret = new ItemStack(ingotId, 1, 0);
+    	if(ingotId != 0 && amount == FM_MintRecipes.minting().getMintingResult(ret))
+    		return ret;
     	else
     		return null;
+    }
+    
+    public void removeIngot()
+    {
+    	ingotId = 0;
+    	amount = 0;
+		int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
+		worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, ingotId);
     }
 
     /**
@@ -84,7 +101,8 @@ public class FM_TileEntityMint extends TileEntity
 
 
         this.direction = par1NBTTagCompound.getShort("Direction");
-        ticksSinceSync = 40;
+        this.ingotId = par1NBTTagCompound.getShort("Ingot");
+        this.amount = par1NBTTagCompound.getShort("Amount");
     }
 
     /**
@@ -94,6 +112,8 @@ public class FM_TileEntityMint extends TileEntity
     {
         super.writeToNBT(par1NBTTagCompound);
         par1NBTTagCompound.setShort("Direction", (short)this.direction);
+        par1NBTTagCompound.setShort("Ingot", (short)this.ingotId);
+        par1NBTTagCompound.setShort("Amount", (short)this.amount);
     }
     
     /**
@@ -103,6 +123,17 @@ public class FM_TileEntityMint extends TileEntity
     @Override
     public void updateEntity()
     {
+    	if(timeSinceSinc-- == 0 && !worldObj.isRemote)
+    	{
+    		timeSinceSinc = 80;
+			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 2, resetTime);
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, ingotId);
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 4, amount);
+    	}
+
+    	timeSinceSinc = (timeSinceSinc < 0) ? 0 : timeSinceSinc;
+    	
     	if(resetTime > 0)
     	{
     		resetTime--;
@@ -128,6 +159,9 @@ public class FM_TileEntityMint extends TileEntity
 		} else if(i == 3)
 		{
 			ingotId = j;
+		} else if(i == 4)
+		{
+			amount = j;
 		}
         worldObj.markBlockAsNeedsUpdate(xCoord, yCoord, zCoord);
 	}
@@ -172,8 +206,61 @@ public class FM_TileEntityMint extends TileEntity
         ItemStack var7 = new ItemStack(mod_MetallurgyPrecious.Coin, 1, 0);
         Random rand = new Random();
 
-        if (!worldObj.isRemote && currentIngot() != null)
+		
+        if(--amount == 0)
         {
+        	ingotId = 0;
+			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, ingotId);
+        }
+        
+        if (!worldObj.isRemote && hasIngot())
+        {
+        	for(int x = -1; x <= 1; x+=2)
+        	{
+	        	TileEntity te = worldObj.getBlockTileEntity(xCoord + x, yCoord, zCoord);
+    			System.out.println("checking tile entity " + te + " at " + (xCoord + x) + ", " + (zCoord));
+	        	if(te instanceof IInventory)
+	        	{
+	        		IInventory tei = (IInventory)te;
+	        		for(int i = 0; i < tei.getSizeInventory(); i++)
+	        		{
+	        			ItemStack chestItem = tei.getStackInSlot(i);
+	        			if(chestItem == null)
+	        			{
+	        				tei.setInventorySlotContents(i, var7);
+	        				return;
+	        			} else if(chestItem.itemID == var7.itemID && chestItem.stackSize < 64)
+	        			{
+	        				chestItem.stackSize++;
+	        				return;
+	        			}
+	        		}
+	        	}
+        	}
+    		for(int z = -1; z <= 1; z+=2)
+    		{
+	        	TileEntity te = worldObj.getBlockTileEntity(xCoord, yCoord, zCoord + z);
+    			System.out.println("checking tile entity " + te + " at " + (xCoord) + ", " + (zCoord + z));
+	        	if(te instanceof IInventory)
+	        	{
+	        		IInventory tei = (IInventory)te;
+	        		for(int i = 0; i < tei.getSizeInventory(); i++)
+	        		{
+	        			ItemStack chestItem = tei.getStackInSlot(i);
+	        			if(chestItem == null)
+	        			{
+	        				tei.setInventorySlotContents(i, var7);
+	        				return;
+	        			} else if(chestItem.itemID == var7.itemID && chestItem.stackSize < 64)
+	        			{
+	        				chestItem.stackSize++;
+	        				return;
+	        			}
+	        		}
+	        	}
+    		}
+        	
             float var8 = rand.nextFloat() * 0.8F + 0.1F;
             float var9 = rand.nextFloat() * 0.8F + 0.1F;
             float var10 = rand.nextFloat() * 0.8F + 0.1F;
@@ -192,13 +279,6 @@ public class FM_TileEntityMint extends TileEntity
             var12.delayBeforeCanPickup = 20;
             worldObj.spawnEntityInWorld(var12);
         }
-		
-        if(--amount == 0)
-        {
-        	ingotId = 0;
-			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
-			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, ingotId);
-        }
 	}
 
 	public String getIngotImage() {
@@ -212,6 +292,6 @@ public class FM_TileEntityMint extends TileEntity
 			return "MintPlatinum.png";
 		else if(ingotId == Item.ingotGold.shiftedIndex)
 			return "MintGold.png";
-		return "";
+		return "MintBrass.png";
 	}
 }

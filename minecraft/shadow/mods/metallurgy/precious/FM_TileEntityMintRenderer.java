@@ -68,7 +68,7 @@ public class FM_TileEntityMintRenderer extends TileEntitySpecialRenderer
         	headOffset = 0.29f * (time/5f);
         }
         
-        if(par1TileEntityMint.currentIngot() != null)
+        if(par1TileEntityMint.hasIngot())
         {
         	ingotImage = par1TileEntityMint.getIngotImage();
         	ingot = true;
@@ -114,10 +114,12 @@ public class FM_TileEntityMintRenderer extends TileEntitySpecialRenderer
         var14.renderAll();
 
 
-        this.bindTextureByName("/shadow/" + ingotImage);
         if(ingot)
+        {
+            this.bindTextureByName("/shadow/" + ingotImage);
         	(new FM_ModelIngot()).renderAll();
-        
+        }
+        	
         GL11.glTranslatef(0F, headOffset + offset, 0F);
         
         this.bindTextureByName("/shadow/MintHead.png");
