@@ -21,6 +21,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.VillagerRegistry;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
@@ -79,6 +80,8 @@ public class mod_MetallurgyPrecious
 		GameRegistry.registerTileEntity(FM_TileEntityMint.class, "Mint");
 		GameRegistry.registerBlock(MintStorage);
 		GameRegistry.registerTileEntity(FM_TileEntityMintStorage.class, "MintStorage");
+		
+		VillagerRegistry.instance().registerVillageTradeHandler(2, new PreciousTradeHandler());
 		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		
