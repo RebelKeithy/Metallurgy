@@ -3,6 +3,7 @@ import java.io.File;
 import java.util.Random;
 
 import shadow.mods.metallurgy.MetalSet;
+import shadow.mods.metallurgy.MetallurgyBlock;
 import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.mod_Iron;
 import shadow.mods.metallurgy.mod_Gold;
@@ -74,6 +75,8 @@ public class mod_MetallurgyNether
 		
 		ores.load();
 		alloys.load();
+
+		((MetallurgyBlock)(ores.ore)).addCollisionListener(new VyroxeresListener());
 		
 		mod_NetherForge.load();
 		
