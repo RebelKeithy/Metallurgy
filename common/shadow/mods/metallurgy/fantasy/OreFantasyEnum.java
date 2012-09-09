@@ -32,18 +32,6 @@ public class OreFantasyEnum implements IMetalSetEnum{
 	public static EnumArmorMaterial orichalcumArmor = EnumHelper.addArmorMaterial("Orichalcum", 34, new int[] {4, 7, 6, 4}, 20);
 	public static EnumArmorMaterial adamantineArmor = EnumHelper.addArmorMaterial("Adamantine", 38, new int[] {5, 7, 6, 4}, 22);
 	public static EnumArmorMaterial atlarusArmor = EnumHelper.addArmorMaterial("Atlarus", 40, new int[] {5, 7, 6, 4}, 22);
-
-	public static List<Integer> dimList = new ArrayList<Integer>();
-	
-	static
-	{
-		System.out.println(ConfigFantasy.dimensions);
-		for(String str : ConfigFantasy.dimensions.split(",")) {
-			System.out.println(Integer.parseInt(str));
-		    dimList.add(Integer.parseInt(str));
-		}
-		
-	}
 	
 	@Override
 	public int numMetals() {
@@ -209,7 +197,20 @@ public class OreFantasyEnum implements IMetalSetEnum{
 	@Override
 	public boolean spawnsInDimension(int i)
 	{
-		return dimList.contains(i);
+		for(String str : ConfigFantasy.dimensions.split(" ")) {
+			if(str.matches("[0-9]+-[0-9]+"))
+			{
+				int start = Integer.parseInt(str.split("-")[0]);
+				int end = Integer.parseInt(str.split("-")[1]);
+				if(i >= start && i <= end)
+					return true;
+			} else {
+				if(i == Integer.parseInt(str))
+					return true;
+			}
+		}
+		
+		return false;
 	}
 
 	@Override

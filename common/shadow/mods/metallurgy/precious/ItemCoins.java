@@ -12,14 +12,14 @@ import net.minecraft.src.MathHelper;
 
 public class ItemCoins extends Item
 {
-	private String texturePath = "/shadow/Coins.png";
+	private String texturePath = "/shadow/Overrides.png";
 
     public ItemCoins(int i)
     {
         super(i);
         setMaxDamage(0);
 		setHasSubtypes(true);
-		this.iconIndex = 0;
+		this.iconIndex = 8;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class ItemCoins extends Item
     
     public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
-        for (int var4 = 0; var4 < 5; ++var4)
+        for (int var4 = 0; var4 < 4; ++var4)
         {
             par3List.add(new ItemStack(par1, 1, var4));
         }

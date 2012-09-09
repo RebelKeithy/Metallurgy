@@ -29,6 +29,11 @@ public class CommonProxy implements IGuiHandler
 			FC_TileEntityChest tec = (FC_TileEntityChest) te;
 			return new FC_ContainerChest(player.inventory, tec);
 		} 
+		else if (te != null && te instanceof FM_TileEntityMintStorage) 
+		{
+			FM_TileEntityMintStorage tec = (FM_TileEntityMintStorage) te;
+			return new FM_ContainerMintStorage(player.inventory, tec);
+		} 
 		else 
 		{
 			return null;
@@ -42,6 +47,10 @@ public class CommonProxy implements IGuiHandler
 		if (te != null && te instanceof FC_TileEntityChest) 
 		{
 			return new FC_GuiChest(player.inventory, (FC_TileEntityChest)te);
+		} 
+		else if (te != null && te instanceof FM_TileEntityMintStorage) 
+		{
+			return new FM_GuiMintStorage(player.inventory, (FM_TileEntityMintStorage)te);
 		} 
 		else
 		{

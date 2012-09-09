@@ -53,6 +53,7 @@ public class mod_MetallurgyPrecious
 	
 	public static Block PreciousChest;
 	public static Block Mint;
+	public static Block MintStorage;
 	
 	public static Item Coin;
 	
@@ -65,6 +66,7 @@ public class mod_MetallurgyPrecious
 		
 		PreciousChest = new FC_BlockChest(913).setHardness(0.5F).setResistance(.1F).setBlockName("PreciousChest");
 		Mint = new FM_BlockMint(1021).setHardness(0.5F).setResistance(.1F).setBlockName("Mint");
+		MintStorage = new FM_BlockMintStorage(1022).setHardness(0.5F).setResistance(.1F).setBlockName("MintStorage");
 		Coin = new ItemCoins(30000).setItemName("Coin").setTabToDisplayOn(CreativeTabs.tabMisc);
 	}
 
@@ -75,6 +77,8 @@ public class mod_MetallurgyPrecious
 		GameRegistry.registerTileEntity(FC_TileEntityChest.class, "PreciousChest");
 		GameRegistry.registerBlock(Mint);
 		GameRegistry.registerTileEntity(FM_TileEntityMint.class, "Mint");
+		GameRegistry.registerBlock(MintStorage);
+		GameRegistry.registerTileEntity(FM_TileEntityMintStorage.class, "MintStorage");
 		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		

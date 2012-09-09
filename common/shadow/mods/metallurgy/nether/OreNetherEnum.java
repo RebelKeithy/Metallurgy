@@ -31,15 +31,6 @@ public class OreNetherEnum implements IMetalSetEnum{
 	public static EnumArmorMaterial kalendriteArmor = EnumHelper.addArmorMaterial("Kalendrite", 28, new int[] {4, 6, 5, 4}, 20);
 	public static EnumArmorMaterial vulcaniteArmor = EnumHelper.addArmorMaterial("Vulcanite", 34, new int[] {4, 7, 5, 4}, 20);
 	public static EnumArmorMaterial sanguiniteArmor = EnumHelper.addArmorMaterial("Sanguinite", 36, new int[] {5, 7, 6, 4}, 25);
-
-	public static List<Integer> dimList = new ArrayList<Integer>();
-	
-	static
-	{
-		for(String str : ConfigNether.dimensions.split(" ")) {
-		    dimList.add(Integer.parseInt(str));
-		}
-	}
 	
 	@Override
 	public int numMetals() {
@@ -189,7 +180,20 @@ public class OreNetherEnum implements IMetalSetEnum{
 	@Override
 	public boolean spawnsInDimension(int i)
 	{
-		return dimList.contains(i);
+		for(String str : ConfigNether.dimensions.split(" ")) {
+			if(str.matches("[0-9]+-[0-9]+"))
+			{
+				int start = Integer.parseInt(str.split("-")[0]);
+				int end = Integer.parseInt(str.split("-")[1]);
+				if(i >= start && i <= end)
+					return true;
+			} else {
+				if(i == Integer.parseInt(str))
+					return true;
+			}
+		}
+		
+		return false;
 	}
 
 	@Override

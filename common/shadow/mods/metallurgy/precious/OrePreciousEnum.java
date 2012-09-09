@@ -28,16 +28,6 @@ public class OrePreciousEnum implements IMetalSetEnum{
 	public static EnumArmorMaterial silverArmor = EnumHelper.addArmorMaterial("Silver", 5, new int[] {2, 4, 3, 2}, 20);
 	public static EnumArmorMaterial platinumArmor = EnumHelper.addArmorMaterial("Platinum", 11, new int[] {3, 6, 5, 3}, 50);
 
-	public static List<Integer> dimList = new ArrayList<Integer>();
-	
-	static
-	{
-		if(ConfigPrecious.dimensions != null)
-			for(String str : ConfigPrecious.dimensions.split(" ")) {
-				dimList.add(Integer.parseInt(str));
-			}
-	}
-	
 	@Override
 	public int numMetals() {
 		return numMetals;
@@ -171,7 +161,22 @@ public class OrePreciousEnum implements IMetalSetEnum{
 	@Override
 	public boolean spawnsInDimension(int i)
 	{
-		return dimList.contains(i);
+		for(String str : ConfigPrecious.dimensions.split(" ")) {
+			if(str.matches("[0-9]+-[0-9]+"))
+			{
+				int start = Integer.parseInt(str.split("-")[0]);
+				int end = Integer.parseInt(str.split("-")[1]);
+				if(i >= start && i <= end)
+					return true;
+			} else {
+				if(i == Integer.parseInt(str))
+				{
+					return true;
+				}
+			}
+		}
+		
+		return false;
 	}
 
 	@Override

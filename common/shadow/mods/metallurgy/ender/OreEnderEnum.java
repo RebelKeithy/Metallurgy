@@ -143,7 +143,20 @@ public class OreEnderEnum implements IMetalSetEnum{
 	@Override
 	public boolean spawnsInDimension(int i)
 	{
-		return dimList.contains(i);
+		for(String str : ConfigEnder.dimensions.split(" ")) {
+			if(str.matches("[0-9]+-[0-9]+"))
+			{
+				int start = Integer.parseInt(str.split("-")[0]);
+				int end = Integer.parseInt(str.split("-")[1]);
+				if(i >= start && i <= end)
+					return true;
+			} else {
+				if(i == Integer.parseInt(str))
+					return true;
+			}
+		}
+		
+		return false;
 	}
 
 	@Override

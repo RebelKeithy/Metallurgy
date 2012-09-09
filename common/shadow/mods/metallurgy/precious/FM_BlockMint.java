@@ -103,14 +103,12 @@ public class FM_BlockMint extends BlockContainer
             FM_TileEntityMint var6 = (FM_TileEntityMint)par1World.getBlockTileEntity(par2, par3, par4);
 
             if(par5EntityPlayer.inventory.getCurrentItem() != null)// && par5EntityPlayer.inventory.getCurrentItem().itemID == mod_MetallurgyBaseMetals.ores.Bar[0].shiftedIndex)
-            	var6.setIngot(par5EntityPlayer.inventory.getCurrentItem());
+            	var6.setIngot(par5EntityPlayer.inventory.currentItem, par5EntityPlayer.inventory);
             else
             {
-            	System.out.println("a");
             	ItemStack var7 = var6.currentIngot();
             	if(var7 != null)
             	{
-                	System.out.println("b");
             		par5EntityPlayer.inventory.mainInventory[par5EntityPlayer.inventory.currentItem] = var7;
             		var6.removeIngot();
             	}

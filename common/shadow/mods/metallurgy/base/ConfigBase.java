@@ -68,7 +68,7 @@ public class ConfigBase  {
     	baseAlloysBrickID = config.getOrCreateBlockIdProperty("Alloy Brick", 903).getInt(902);
     	furnaceID = config.getOrCreateBlockIdProperty("Furnace", 904).getInt(904);
     	
-    	dimensions = config.getOrCreateProperty("Dimensions", "Dimensions", "0").value;
+    	dimensions = config.getOrCreateProperty("Dimensions", "Dimensions", "0 2-10000").value;
     	
     	furnacesEnabled = config.getOrCreateBooleanProperty("Enable Furnaces", "Machines", true).getBoolean(true);
     	railsEnabled = config.getOrCreateBooleanProperty("Enable Rail Recipes", "Machines", true).getBoolean(true);

@@ -64,40 +64,39 @@ public class CoreClientProxy extends CoreCommonProxy{
 	@Override
 	public void addTextureOverrides()
 	{
-		//Item.swordWood.setIconIndex(0).setTextureFile("/shadow/ItmWoodSword.png");
-		Item.swordWood.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmWoodSword.png"));
-		Item.pickaxeWood.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmWoodPickaxe.png"));
-		Item.axeWood.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmWoodAxe.png"));
-		Item.hoeWood.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmWoodHoe.png"));
-		Item.shovelWood.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmWoodShovel.png"));
-		Item.swordStone.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmStoneSword.png"));
-		Item.pickaxeStone.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmStonePickaxe.png"));
-		Item.axeStone.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmStoneAxe.png"));
-		Item.hoeStone.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmStoneHoe.png"));
-		Item.shovelStone.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmStoneShovel.png"));
-		Item.swordDiamond.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmDiamondSword.png"));
-		Item.pickaxeDiamond.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmDiamondPickaxe.png"));
-		Item.axeDiamond.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmDiamondAxe.png"));
-		Item.hoeDiamond.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmDiamondHoe.png"));
-		Item.shovelDiamond.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmDiamondShovel.png"));
-		Item.pickaxeGold.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldPickaxe.png"));
-		Item.shovelGold.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldShovel.png"));
-		Item.axeGold.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldAxe.png"));
-		Item.hoeGold.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldHoe.png"));
-		Item.swordGold.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldSword.png"));
-		Item.pickaxeSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronPickaxe.png"));
-		Item.shovelSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronShovel.png"));
-		Item.axeSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronAxe.png"));
-		Item.hoeSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronHoe.png"));
-		Item.swordSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronSword.png"));
-		Item.helmetSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronHelmet.png"));
-		Item.plateSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronPlate.png"));
-		Item.legsSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronLegs.png"));
-		Item.bootsSteel.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronBoots.png"));
-		Item.helmetGold.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldHelmet.png"));
-		Item.plateGold.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldPlate.png"));
-		Item.legsGold.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldLegs.png"));
-		Item.bootsGold.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldBoots.png"));
+		Item.swordWood.setIconIndex(0).setTextureFile("/shadow/Overrides.png");
+		Item.pickaxeWood.setIconIndex(16).setTextureFile("/shadow/Overrides.png");
+		Item.axeWood.setIconIndex(32).setTextureFile("/shadow/Overrides.png");
+		Item.hoeWood.setIconIndex(48).setTextureFile("/shadow/Overrides.png");
+		Item.shovelWood.setIconIndex(64).setTextureFile("/shadow/Overrides.png");
+		Item.swordStone.setIconIndex(1).setTextureFile("/shadow/Overrides.png");
+		Item.pickaxeStone.setIconIndex(17).setTextureFile("/shadow/Overrides.png");
+		Item.axeStone.setIconIndex(33).setTextureFile("/shadow/Overrides.png");
+		Item.hoeStone.setIconIndex(49).setTextureFile("/shadow/Overrides.png");
+		Item.shovelStone.setIconIndex(65).setTextureFile("/shadow/Overrides.png");
+		Item.swordSteel.setIconIndex(2).setTextureFile("/shadow/Overrides.png");
+		Item.pickaxeSteel.setIconIndex(18).setTextureFile("/shadow/Overrides.png");
+		Item.axeSteel.setIconIndex(34).setTextureFile("/shadow/Overrides.png");
+		Item.hoeSteel.setIconIndex(50).setTextureFile("/shadow/Overrides.png");
+		Item.shovelSteel.setIconIndex(66).setTextureFile("/shadow/Overrides.png");
+		Item.swordGold.setIconIndex(3).setTextureFile("/shadow/Overrides.png");
+		Item.pickaxeGold.setIconIndex(19).setTextureFile("/shadow/Overrides.png");
+		Item.axeGold.setIconIndex(35).setTextureFile("/shadow/Overrides.png");
+		Item.hoeGold.setIconIndex(51).setTextureFile("/shadow/Overrides.png");
+		Item.shovelGold.setIconIndex(67).setTextureFile("/shadow/Overrides.png");
+		Item.swordDiamond.setIconIndex(4).setTextureFile("/shadow/Overrides.png");
+		Item.pickaxeDiamond.setIconIndex(20).setTextureFile("/shadow/Overrides.png");
+		Item.axeDiamond.setIconIndex(36).setTextureFile("/shadow/Overrides.png");
+		Item.hoeDiamond.setIconIndex(52).setTextureFile("/shadow/Overrides.png");
+		Item.shovelDiamond.setIconIndex(68).setTextureFile("/shadow/Overrides.png");
+		Item.helmetSteel.setIconIndex(5).setTextureFile("/shadow/Overrides.png");
+		Item.plateSteel.setIconIndex(21).setTextureFile("/shadow/Overrides.png");
+		Item.legsSteel.setIconIndex(37).setTextureFile("/shadow/Overrides.png");
+		Item.bootsSteel.setIconIndex(53).setTextureFile("/shadow/Overrides.png");
+		Item.helmetGold.setIconIndex(6).setTextureFile("/shadow/Overrides.png");
+		Item.plateGold.setIconIndex(22).setTextureFile("/shadow/Overrides.png");
+		Item.legsGold.setIconIndex(38).setTextureFile("/shadow/Overrides.png");
+		Item.bootsGold.setIconIndex(54).setTextureFile("/shadow/Overrides.png");
 
 	}
 	
@@ -110,8 +109,7 @@ public class CoreClientProxy extends CoreCommonProxy{
 	public void registerRenderInformation()
 	{
 		RenderingRegistry.registerBlockHandler(new BC_CrusherRenderHelper());
-		mod_Gold.GoldDust.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmGoldDust.png"));
-		mod_Iron.IronDust.setIconIndex(ModLoader.addOverride("/gui/items.png", "/shadow/ItmIronDust.png"));
+		MinecraftForgeClient.preloadTexture("/shadow/Overrides.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyTerrain.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyFurnaces.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyBaseMetals.png");

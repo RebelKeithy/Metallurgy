@@ -150,7 +150,6 @@ public class mod_MetallurgyCore
 		ModLoader.registerBlock(crusher, shadow.mods.metallurgy.BC_BlockCrusherItem.class);
 		ModLoader.registerTileEntity(BC_TileEntityCrusher.class, "crusher");
 		
-		mod_MetallurgyTextureOverride.load();
 		//mod_MetallurgyzAchievements.load();
 		
 	    RecipeHelper.addBrickRecipes(vanillaBricks.blockID, 0, Item.ingotIron);

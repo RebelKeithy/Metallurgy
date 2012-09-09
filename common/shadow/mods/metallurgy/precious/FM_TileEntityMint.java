@@ -41,6 +41,50 @@ public class FM_TileEntityMint extends TileEntity
     
     public void power()
     {
+    	if(ingotId == 0)
+    	{
+        	for(int x = -1; x <= 1; x+=2)
+        	{
+	        	TileEntity te = worldObj.getBlockTileEntity(xCoord + x, yCoord, zCoord);
+	        	if(te instanceof FM_TileEntityMintStorage)
+	        	{
+	        		IInventory tei = (IInventory)te;
+	        		for(int i = 0; i < tei.getSizeInventory(); i++)
+	        		{
+	        			ItemStack chestItem = tei.getStackInSlot(i);
+	        			if(chestItem != null)
+	        			{
+	        				if(FM_MintRecipes.minting().getMintingResult(chestItem) > 0)
+	        				{
+	        					this.setIngot(i, tei);
+		        				return;
+	        				}
+	        			}
+	        		}
+	        	}
+        	}
+    		for(int z = -1; z <= 1; z+=2)
+    		{
+	        	TileEntity te = worldObj.getBlockTileEntity(xCoord, yCoord, zCoord + z);
+	        	if(te instanceof FM_TileEntityMintStorage)
+	        	{
+	        		IInventory tei = (IInventory)te;
+	        		for(int i = 0; i < tei.getSizeInventory(); i++)
+	        		{
+	        			ItemStack chestItem = tei.getStackInSlot(i);
+	        			if(chestItem != null)
+	        			{
+	        				if(FM_MintRecipes.minting().getMintingResult(chestItem) > 0)
+	        				{
+	        					this.setIngot(i, tei);
+		        				return;
+	        				}
+	        			}
+	        		}
+	        	}
+    		}
+    	}
+    	
     	if(resetTime == 0)
     	{
     		resetTime = 10;
@@ -53,17 +97,17 @@ public class FM_TileEntityMint extends TileEntity
     	powered = false;
     }
     
-    public void setIngot(ItemStack ingot)
+    public void setIngot(int index, IInventory inv)
     {
     	if(ingotId == 0 && resetTime == 0)
     	{
-	    	amount = FM_MintRecipes.minting().getMintingResult(ingot);
+	    	amount = FM_MintRecipes.minting().getMintingResult(inv.getStackInSlot(index));
 	    	if(amount != 0)
 	    	{
-	    		ingotId = ingot.itemID;
+	    		ingotId = inv.getStackInSlot(index).itemID;
+	    		inv.decrStackSize(index, 1);
 				int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
 				worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, ingotId);
-	    		ingot.stackSize--;
 	    	}
     	}
     }
@@ -176,7 +220,6 @@ public class FM_TileEntityMint extends TileEntity
     
 	public void sendPacket()
 	{
-		System.out.println("sending packet");
 		if(worldObj.isRemote)
 			return;
 		
@@ -205,22 +248,13 @@ public class FM_TileEntityMint extends TileEntity
 	public void mint() {
         ItemStack var7 = new ItemStack(mod_MetallurgyPrecious.Coin, 1, 0);
         Random rand = new Random();
-
-		
-        if(--amount == 0)
-        {
-        	ingotId = 0;
-			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
-			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, ingotId);
-        }
-        
+    
         if (!worldObj.isRemote && hasIngot())
-        {
+        {        	
         	for(int x = -1; x <= 1; x+=2)
         	{
 	        	TileEntity te = worldObj.getBlockTileEntity(xCoord + x, yCoord, zCoord);
-    			System.out.println("checking tile entity " + te + " at " + (xCoord + x) + ", " + (zCoord));
-	        	if(te instanceof IInventory)
+	        	if(te instanceof IInventory && !(te instanceof FM_TileEntityMintStorage))
 	        	{
 	        		IInventory tei = (IInventory)te;
 	        		for(int i = 0; i < tei.getSizeInventory(); i++)
@@ -229,10 +263,12 @@ public class FM_TileEntityMint extends TileEntity
 	        			if(chestItem == null)
 	        			{
 	        				tei.setInventorySlotContents(i, var7);
+	        				increaseIngotMintCount();
 	        				return;
 	        			} else if(chestItem.itemID == var7.itemID && chestItem.stackSize < 64)
 	        			{
 	        				chestItem.stackSize++;
+	        				increaseIngotMintCount();
 	        				return;
 	        			}
 	        		}
@@ -241,8 +277,7 @@ public class FM_TileEntityMint extends TileEntity
     		for(int z = -1; z <= 1; z+=2)
     		{
 	        	TileEntity te = worldObj.getBlockTileEntity(xCoord, yCoord, zCoord + z);
-    			System.out.println("checking tile entity " + te + " at " + (xCoord) + ", " + (zCoord + z));
-	        	if(te instanceof IInventory)
+	        	if(te instanceof IInventory && !(te instanceof FM_TileEntityMintStorage))
 	        	{
 	        		IInventory tei = (IInventory)te;
 	        		for(int i = 0; i < tei.getSizeInventory(); i++)
@@ -251,10 +286,12 @@ public class FM_TileEntityMint extends TileEntity
 	        			if(chestItem == null)
 	        			{
 	        				tei.setInventorySlotContents(i, var7);
+	        				increaseIngotMintCount();
 	        				return;
 	        			} else if(chestItem.itemID == var7.itemID && chestItem.stackSize < 64)
 	        			{
 	        				chestItem.stackSize++;
+	        				increaseIngotMintCount();
 	        				return;
 	        			}
 	        		}
@@ -278,6 +315,17 @@ public class FM_TileEntityMint extends TileEntity
             var12.motionZ = (double)((float)rand.nextGaussian() * var13);
             var12.delayBeforeCanPickup = 20;
             worldObj.spawnEntityInWorld(var12);
+			increaseIngotMintCount();
+        }
+	}
+	
+	public void increaseIngotMintCount()
+	{
+		if(--amount == 0)
+        {
+        	ingotId = 0;
+			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, ingotId);
         }
 	}
 

@@ -25,15 +25,6 @@ public class OreBaseEnum implements IMetalSetEnum{
 	public static int[] numRails = {4, 0, 0};
 	
 	public static EnumArmorMaterial copperArmor = EnumHelper.addArmorMaterial("Copper", 10, new int[] {2, 3, 2, 1}, 5);
-
-	public static List<Integer> dimList = new ArrayList<Integer>();
-	
-	static
-	{
-		for(String str : ConfigBase.dimensions.split(" ")) {
-		    dimList.add(Integer.parseInt(str));
-		}
-	}
 	
 	@Override
 	public int numMetals() {
@@ -145,7 +136,20 @@ public class OreBaseEnum implements IMetalSetEnum{
 	@Override
 	public boolean spawnsInDimension(int i)
 	{
-		return dimList.contains(i);
+		for(String str : ConfigBase.dimensions.split(" ")) {
+			if(str.matches("[0-9]+-[0-9]+"))
+			{
+				int start = Integer.parseInt(str.split("-")[0]);
+				int end = Integer.parseInt(str.split("-")[1]);
+				if(i >= start && i <= end)
+					return true;
+			} else {
+				if(i == Integer.parseInt(str))
+					return true;
+			}
+		}
+		
+		return false;
 	}
 
 	@Override

@@ -34,6 +34,7 @@ import shadow.mods.metallurgy.MetallurgyItemSword;
 import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.mod_MetallurgyCore;
 import shadow.mods.metallurgy.fantasy.FF_EssenceRecipes;
+import shadow.mods.metallurgy.precious.OrePreciousEnum;
 
 public class MetalSet implements IWorldGenerator {
 	
@@ -173,8 +174,6 @@ public class MetalSet implements IWorldGenerator {
 			OreDictionary.registerOre("dust" + info.name(i), new ItemStack(Dust[i], 1));
 			OreDictionary.registerOre("ingot" + info.name(i), new ItemStack(Bar[i], 1));
 			DungeonHooks.addDungeonLoot(new ItemStack(Bar[i], 1), info.dungeonLootChance(i), 1, info.dungeonLootAmount(i));
-		
-			
 		}
 		
 		if(ore != null)
@@ -253,13 +252,15 @@ public class MetalSet implements IWorldGenerator {
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(info.oreHeight(meta) - info.oreMinHeight(meta)) + info.oreMinHeight(meta);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			//System.out.println("spawning " + info.name(meta) + " " + randPosX + " " + randPosY + " " + randPosZ);
-			if(info.spawnsInDimension(-1) && world.provider.isHellWorld)
+			if(world.provider.isHellWorld)
 				(new MetallurgyWorldGenNetherMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
-			else if(info.spawnsInDimension(1) && world.provider.worldType == 1)
+			else if(world.provider.worldType == 1)
 				(new MetallurgyWorldGenEnderMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
-			else if(info.spawnsInDimension(world.provider.worldType))
+			else
+			{
 				(new MetallurgyWorldGenMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
+			}
+				
 		}
 	}
 
