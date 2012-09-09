@@ -41,7 +41,7 @@ public class CoreClientProxy extends CoreCommonProxy{
 		for(int i = 0; i < set.numMetals; i++)
 		{
 			if(!set.info.isAlloy())
-				LanguageRegistry.instance().addStringLocalization("tile." + set.setName + "Ore." + i + ".name", set.info.name(i) + " Ore");
+				LanguageRegistry.instance().addStringLocalization("tile." + set.setName + "Ore." + i + ".name", "§k" + set.info.name(i) + " Ore");
 			LanguageRegistry.instance().addStringLocalization("tile." + set.setName + "Brick." + i + ".name", set.info.name(i) + " Brick");
 			ModLoader.addName(set.Dust[i], set.info.name(i) + " Dust");
 			ModLoader.addName(set.Bar[i], set.info.name(i) + " Bar");

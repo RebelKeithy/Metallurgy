@@ -73,8 +73,8 @@ public class MetallurgyBlock extends Block
     {
     	if(collisionEffect)
     	{
-        float var5 = 0.025F;
-        return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool((double)par2, (double)par3, (double)par4, (double)(par2 + 1), (double)((float)(par3 + 1) - var5), (double)(par4 + 1));
+    		float var5 = 0.025F;
+    		return AxisAlignedBB.getAABBPool().addOrModifyAABBInPool((double)par2, (double)par3, (double)par4, (double)(par2 + 1), (double)((float)(par3 + 1) - var5), (double)(par4 + 1));
     	}
     	
     	return super.getCollisionBoundingBoxFromPool(par1World, par2, par3, par4);
@@ -85,8 +85,9 @@ public class MetallurgyBlock extends Block
      */
     public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
     {
+    	int meta = par1World.getBlockMetadata(par2, par3, par4);
         for(CollisionListener cl : clList)
-        	cl.collide(par1World, par2, par3, par4, par5Entity);
+        	cl.collide(par1World, par2, par3, par4, par5Entity, meta);
     }
 
 	@Override
