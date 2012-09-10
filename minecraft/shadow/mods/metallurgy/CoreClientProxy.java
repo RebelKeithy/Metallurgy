@@ -38,13 +38,15 @@ public class CoreClientProxy extends CoreCommonProxy{
 	public static void addNamesToSet(MetalSet set)
 	{
 		
+		String[] level = {" ", "§1", "§9", "§3", "§b", "§2", "§a", "§5", "§d", "§e", "§6", "§4", "§c"};
+		
 		for(int i = 0; i < set.numMetals; i++)
 		{
 			if(!set.info.isAlloy())
-				LanguageRegistry.instance().addStringLocalization("tile." + set.setName + "Ore." + i + ".name", "§k" + set.info.name(i) + " Ore");
-			LanguageRegistry.instance().addStringLocalization("tile." + set.setName + "Brick." + i + ".name", set.info.name(i) + " Brick");
-			ModLoader.addName(set.Dust[i], set.info.name(i) + " Dust");
-			ModLoader.addName(set.Bar[i], set.info.name(i) + " Bar");
+				LanguageRegistry.instance().addStringLocalization("tile." + set.setName + "Ore." + i + ".name", level[set.info.level(i)] + set.info.name(i) + " Ore");
+			LanguageRegistry.instance().addStringLocalization("tile." + set.setName + "Brick." + i + ".name", level[set.info.level(i)] + set.info.name(i) + " Brick");
+			ModLoader.addName(set.Dust[i], level[set.info.level(i)] + set.info.name(i) + " Dust");
+			ModLoader.addName(set.Bar[i], level[set.info.level(i)] + set.info.name(i) + " Bar");
 
 			if(!set.info.isCatalyst(i))
 			{
