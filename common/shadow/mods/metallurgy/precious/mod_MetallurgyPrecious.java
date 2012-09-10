@@ -26,6 +26,7 @@ import cpw.mods.fml.common.registry.VillagerRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
+import net.minecraft.src.EntityVillager;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
@@ -98,6 +99,9 @@ public class mod_MetallurgyPrecious
 	@PostInit
 	public void load(FMLPostInitializationEvent event) 
 	{
+		ores.registerOres();
+		alloys.registerOres();
+		
 		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "dustZinc", "dustCopper");
 		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[1], 1), "dustGold", "dustSilver");
 		RecipeHelper.addStorageRecipe(new ItemStack(Coin, 1, 1), new ItemStack(Coin, 1, 0));

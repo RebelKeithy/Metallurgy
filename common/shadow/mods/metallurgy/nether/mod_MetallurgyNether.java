@@ -128,6 +128,9 @@ public class mod_MetallurgyNether
 	@PostInit
 	public void load(FMLPostInitializationEvent event) 
 	{
+		ores.registerOres();
+		alloys.registerOres();
+		
 		/*
 		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "dustDeep Iron", "dustInfuscolium");
 		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[1], 1), "dustMithril", "dustSilver");

@@ -170,10 +170,9 @@ public class MetalSet implements IWorldGenerator {
 		for(int i = 0; i < info.numMetals(); i++)
 		{
 			if(ore != null)
-				OreDictionary.registerOre("ore" + info.name(i), new ItemStack(ore, 1, i));
-			OreDictionary.registerOre("dust" + info.name(i), new ItemStack(Dust[i], 1));
-			OreDictionary.registerOre("ingot" + info.name(i), new ItemStack(Bar[i], 1));
-			DungeonHooks.addDungeonLoot(new ItemStack(Bar[i], 1), info.dungeonLootChance(i), 1, info.dungeonLootAmount(i));
+			{
+				DungeonHooks.addDungeonLoot(new ItemStack(Bar[i], 1), info.dungeonLootChance(i), 1, info.dungeonLootAmount(i));
+			}
 		}
 		
 		if(ore != null)
@@ -188,10 +187,9 @@ public class MetalSet implements IWorldGenerator {
 
     @ForgeSubscribe
     public void oreRegistered(OreRegisterEvent event)
-    {
+    {    		
     	for(int i = 0; i < info.numMetals(); i++)
     	{
-    		//System.out.println("comparing " + event.Name + " to " + info.name(i));
     		if(event.Name.equals("ore" + info.name(i)))
     		{
     			FurnaceRecipes.smelting().addSmelting(event.Ore.itemID, i, new ItemStack(Bar[i], 1));
@@ -233,6 +231,22 @@ public class MetalSet implements IWorldGenerator {
     		}
     	}
     }
+    
+    public void registerOres()
+    {
+
+		for(int i = 0; i < info.numMetals(); i++)
+		{
+			if(ore != null)
+			{
+				OreDictionary.registerOre("ore" + info.name(i), new ItemStack(ore, 1, i));
+			}
+			OreDictionary.registerOre("dust" + info.name(i), new ItemStack(Dust[i], 1));
+			OreDictionary.registerOre("ingot" + info.name(i), new ItemStack(Bar[i], 1));
+		}
+    }
+    
+    
     
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) 

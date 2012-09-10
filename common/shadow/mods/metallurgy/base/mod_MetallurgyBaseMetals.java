@@ -80,7 +80,7 @@ public class mod_MetallurgyBaseMetals {
 		
 		alloys.load();
 		ores.load();
-		
+
 		mod_Furnace.load();
 		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
@@ -91,6 +91,9 @@ public class mod_MetallurgyBaseMetals {
 	@PostInit
 	public void load(FMLPostInitializationEvent event) 
 	{
+		ores.registerOres();
+		alloys.registerOres();
+		
 	    if(ConfigBase.alloyEnabled[0])
 	    	RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "dustCopper", "dustTin");
 	    if(ConfigBase.alloyEnabled[1])

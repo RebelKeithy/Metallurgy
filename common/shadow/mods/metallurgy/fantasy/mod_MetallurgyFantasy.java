@@ -85,6 +85,9 @@ public class mod_MetallurgyFantasy
 	@PostInit
 	public void load(FMLPostInitializationEvent event) 
 	{
+		ores.registerOres();
+		alloys.registerOres();
+		
 		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "dustDeep Iron", "dustInfuscolium");
 		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[1], 1), "dustMithril", "dustSilver");
 		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[2], 1), "dustMithril", "dustRubracium");

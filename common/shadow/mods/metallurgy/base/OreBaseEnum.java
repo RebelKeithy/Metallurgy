@@ -15,6 +15,7 @@ public class OreBaseEnum implements IMetalSetEnum{
 	private final int[] expValues = {1, 1, 3};
 	private final int[] harvestLevels = {2, 2, 3};
 	private final int[] pickLevels = {2, 0, 0};
+	private int[] metalLevels = {1, 2, 4};
 	private final int[] dungeonLootChances = {120, 100, 45};
 	private final int[] dungeonLootAmounts = {6, 4, 2};
 
@@ -165,8 +166,12 @@ public class OreBaseEnum implements IMetalSetEnum{
 
 	@Override
 	public int oreMinHeight(int i) {
-		// TODO Auto-generated method stub
 		return ConfigBase.OreMinHeight[i];
+	}
+
+	@Override
+	public int level(int i) {
+		return metalLevels[i];
 	}
 
 }

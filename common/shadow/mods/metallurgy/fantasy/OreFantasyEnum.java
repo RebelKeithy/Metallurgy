@@ -17,6 +17,7 @@ public class OreFantasyEnum implements IMetalSetEnum{
 	public static int[] expValues = {1, 2, 4, 3, 3, 11, 15, 4, 2, 5, 6, 7};
 	private final int[] harvestLevels = {2, 2, 2, 3, 3, 4, 4, 4, 4, 5, 6, 6};
 	private final int[] pickLevels = {2, 3, 0, 4, 4, 5, 5, 5, 0, 6, 7, 7};
+	private int[] metalLevels = {1, 2, 3, 5, 5, 6, 7, 8, 9, 10, 10, 11};
 
 	public static int[] defaultVeinCount = {6, 5, 5, 4, 4, 3, 3, 3, 2, 2, 1, 1};
 	public static int[] defaultOreCount = {10, 4, 3, 3, 3, 3, 2, 3, 3, 4, 4, 3};
@@ -220,8 +221,12 @@ public class OreFantasyEnum implements IMetalSetEnum{
 
 	@Override
 	public int oreMinHeight(int i) {
-		// TODO Auto-generated method stub
 		return ConfigFantasy.OreMinHeight[i];
+	}
+
+	@Override
+	public int level(int i) {
+		return metalLevels[i];
 	}
 
 }

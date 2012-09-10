@@ -15,6 +15,7 @@ public class AlloyFantasyEnum implements IMetalSetEnum{
 	private int[] expValues = {4, 9, 6, 25, 13};
 	private int[] harvestLevels = {2, 4, 4, 5, 7};
 	private int[] pickLevels = {3, 5, 5, 6, 7};
+	private int[] metalLevels = {4, 9, 9, 11, 12};
 
 	public static EnumArmorMaterial blackSteelArmor = EnumHelper.addArmorMaterial("Black Steel", 22, new int[] {3, 6, 5, 3}, 17);
 	public static EnumArmorMaterial quicksilverArmor = EnumHelper.addArmorMaterial("Quicksilver", 30, new int[] {4, 7, 5, 4}, 20);
@@ -166,8 +167,12 @@ public class AlloyFantasyEnum implements IMetalSetEnum{
 
 	@Override
 	public int oreMinHeight(int i) {
-		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int level(int i) {
+		return metalLevels[i];
 	}
 
 }

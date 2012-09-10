@@ -68,6 +68,9 @@ public class mod_MetallurgyEnder
 	@PostInit
 	public void load(FMLPostInitializationEvent event) 
 	{
+		ores.registerOres();
+		alloys.registerOres();
+		
 		if(ConfigEnder.alloyEnabled[0])
 			RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "dustEximite", "dustMeutoite");
 	}

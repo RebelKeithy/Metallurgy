@@ -17,6 +17,7 @@ public class OreEnderEnum implements IMetalSetEnum{
 	public static int[] expValues = {3, 3};
 	private final int[] harvestLevels = {2, 3};
 	private final int[] pickLevels = {2, 0};
+	private int[] metalLevels = {5, 6};
 
 	public static int[] defaultVeinCount = {12, 10};
 	public static int[] defaultOreCount = {6, 6};
@@ -172,8 +173,12 @@ public class OreEnderEnum implements IMetalSetEnum{
 
 	@Override
 	public int oreMinHeight(int i) {
-		// TODO Auto-generated method stub
 		return ConfigEnder.OreMinHeight[i];
+	}
+
+	@Override
+	public int level(int i) {
+		return metalLevels[i];
 	}
 
 }

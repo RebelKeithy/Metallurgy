@@ -15,6 +15,7 @@ public class AlloyPreciousEnum implements IMetalSetEnum{
 	private int[] pickLevels = {1, 2};
 	private int[] dungeonLootChances = {25, 10};
 	private int[] dungeonLootAmounts = {3, 2};
+	private int[] metalLevels = {2, 4};
 	
 	public static EnumArmorMaterial brassArmor = EnumHelper.addArmorMaterial("Brass", 3, new int[] {2, 5, 3, 3}, 18);
 	public static EnumArmorMaterial electrumArmor = EnumHelper.addArmorMaterial("Electrum", 9, new int[] {2, 6, 5, 2}, 30);
@@ -148,8 +149,12 @@ public class AlloyPreciousEnum implements IMetalSetEnum{
 
 	@Override
 	public int oreMinHeight(int i) {
-		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int level(int i) {
+		return metalLevels[i];
 	}
 
 }

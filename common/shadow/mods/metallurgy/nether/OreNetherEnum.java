@@ -18,6 +18,7 @@ public class OreNetherEnum implements IMetalSetEnum{
 	public static int[] expValues = {1, 2, 3, 3, 3, 4, 5, 6, 3, 4};
 	private final int[] harvestLevels = {2, 2, 3, 3, 3, 4, 5, 6, 0, 0};
 	private final int[] pickLevels = {2, 2, 4, 4, 4, 5, 6, 7, 0, 0};
+	private int[] metalLevels = {1, 2, 4, 5, 6, 8, 10, 11, 2, 6};
 
 	public static int[] defaultVeinCount = {12, 10, 6, 5, 5, 4, 3, 3, 8, 6};
 	public static int[] defaultOreCount = {6, 6, 6, 6, 4, 4, 4, 4, 6, 4};
@@ -203,8 +204,12 @@ public class OreNetherEnum implements IMetalSetEnum{
 
 	@Override
 	public int oreMinHeight(int i) {
-		// TODO Auto-generated method stub
 		return ConfigNether.OreMinHeight[i];
+	}
+
+	@Override
+	public int level(int i) {
+		return metalLevels[i];
 	}
 
 }

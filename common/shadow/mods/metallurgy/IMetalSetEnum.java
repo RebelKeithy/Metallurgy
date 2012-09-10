@@ -30,6 +30,7 @@ public interface IMetalSetEnum {
 	public boolean spawnsInDimension(int i);
 	public boolean metalEnabled(int i);
 	public EnumArmorMaterial armorEnum(int i);
+	public int level(int i);
 }
 
 

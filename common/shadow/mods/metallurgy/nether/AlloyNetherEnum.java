@@ -15,6 +15,7 @@ public class AlloyNetherEnum implements IMetalSetEnum{
 	private int[] expValues = {4, 6, 24};
 	private int[] harvestLevels = {2, 4, 4};
 	private int[] pickLevels = {3, 5, 5};
+	private int[] metalLevels = {3, 7, 9};
 
 	public static EnumArmorMaterial shadowSteelArmor = EnumHelper.addArmorMaterial("Shadow Steel", 20, new int[] {3, 6, 5, 4}, 5);
 	public static EnumArmorMaterial inolashiteArmor = EnumHelper.addArmorMaterial("Inolashite", 30, new int[] {4, 7, 5, 4}, 25);
@@ -156,8 +157,12 @@ public class AlloyNetherEnum implements IMetalSetEnum{
 
 	@Override
 	public int oreMinHeight(int i) {
-		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int level(int i) {
+		return metalLevels[i];
 	}
 
 }

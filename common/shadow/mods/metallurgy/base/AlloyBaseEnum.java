@@ -13,6 +13,7 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 	private int[] expValues = {2, 8, 5, 9, 6};
 	private int[] harvestLevels = {2, 2, 2, 2, 3};
 	private int[] pickLevels = {3, 3, 4, 3, 4};
+	private int[] metalLevels = {2, 3, 5, 5, 5};
 
 	private int[] dungeonLootChances = {80, 80, 60, 55, 45};
 	private int[] dungeonLootAmounts = {3, 3, 2, 2, 2};
@@ -169,7 +170,11 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 
 	@Override
 	public int oreMinHeight(int i) {
-		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int level(int i) {
+		return metalLevels[i];
 	}
 }

@@ -14,6 +14,7 @@ public class AlloyEnderEnum implements IMetalSetEnum{
 	private int[] expValues = {10};
 	private int[] harvestLevels = {2};
 	private int[] pickLevels = {3};
+	private int[] metalLevels = {7};
 	
 	public static EnumArmorMaterial desichalkosArmor = EnumHelper.addArmorMaterial("Desichalkos", 30, new int[] {4, 7, 5, 4}, 30);
 	
@@ -141,8 +142,12 @@ public class AlloyEnderEnum implements IMetalSetEnum{
 
 	@Override
 	public int oreMinHeight(int i) {
-		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public int level(int i) {
+		return metalLevels[i];
 	}
 
 }
