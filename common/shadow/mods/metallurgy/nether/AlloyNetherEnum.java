@@ -14,7 +14,7 @@ public class AlloyNetherEnum implements IMetalSetEnum{
 	public static String imageName = "/shadow/MetallurgyNetherAlloys.png";
 	private int[] expValues = {4, 6, 24};
 	private int[] harvestLevels = {2, 4, 4};
-	private int[] pickLevels = {3, 5, 5};
+	private int[] pickLevels = {2, 4, 4};
 	private int[] metalLevels = {3, 7, 9};
 
 	public static EnumArmorMaterial shadowSteelArmor = EnumHelper.addArmorMaterial("Shadow Steel", 20, new int[] {3, 6, 5, 4}, 5);

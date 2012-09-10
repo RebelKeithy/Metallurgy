@@ -68,6 +68,8 @@ public class mod_MetallurgyBaseMetals {
 
 		metalFurnace = new BF_BlockMetalFurnace(ConfigBase.furnaceID, false).setHardness(3.5F).setBlockName("MetalFurnace");
 		//metalLadder = new BlockMetalLadder(1020, 0).setHardness(0.4F).setStepSound(Block.soundWoodFootstep).setBlockName("MetalLadder");
+		
+		MinecraftForge.EVENT_BUS.register(new FurnaceUpgradeRecipes());
 	}
 
 	@Init
@@ -80,8 +82,6 @@ public class mod_MetallurgyBaseMetals {
 		
 		alloys.load();
 		ores.load();
-
-		mod_Furnace.load();
 		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		

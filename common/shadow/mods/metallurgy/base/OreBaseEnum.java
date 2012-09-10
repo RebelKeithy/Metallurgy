@@ -13,8 +13,8 @@ public class OreBaseEnum implements IMetalSetEnum{
 	public static final int numMetals = 3;
 	public static final String[] names = {"Copper", "Tin", "Manganese"};
 	private final int[] expValues = {1, 1, 3};
-	private final int[] harvestLevels = {2, 2, 3};
-	private final int[] pickLevels = {2, 0, 0};
+	private final int[] harvestLevels = {1, 1, 2};
+	private final int[] pickLevels = {1, 0, 0};
 	private int[] metalLevels = {1, 2, 4};
 	private final int[] dungeonLootChances = {120, 100, 45};
 	private final int[] dungeonLootAmounts = {6, 4, 2};

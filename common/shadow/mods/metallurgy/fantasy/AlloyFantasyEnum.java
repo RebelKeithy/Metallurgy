@@ -13,8 +13,8 @@ public class AlloyFantasyEnum implements IMetalSetEnum{
 	public static String[] names = {"Black Steel", "Quicksilver", "Haderoth", "Celenegil", "Tartarite"};
 	public static String imageName = "/shadow/MetallurgyFantasyAlloys.png";
 	private int[] expValues = {4, 9, 6, 25, 13};
-	private int[] harvestLevels = {2, 4, 4, 5, 7};
-	private int[] pickLevels = {3, 5, 5, 6, 7};
+	private int[] harvestLevels = {2, 4, 4, 5, 6};
+	private int[] pickLevels = {2, 4, 4, 5, 6};
 	private int[] metalLevels = {4, 9, 9, 11, 12};
 
 	public static EnumArmorMaterial blackSteelArmor = EnumHelper.addArmorMaterial("Black Steel", 22, new int[] {3, 6, 5, 3}, 17);

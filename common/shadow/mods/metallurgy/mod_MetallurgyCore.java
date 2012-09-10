@@ -3,6 +3,7 @@ import java.io.File;
 import org.lwjgl.opengl.GL11;
 
 import shadow.mods.metallurgy.*;
+import shadow.mods.metallurgy.base.FurnaceUpgradeRecipes;
 import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
 
 import cpw.mods.fml.common.Mod;
@@ -99,7 +100,8 @@ public class mod_MetallurgyCore
     	} catch(ClassNotFoundException e) {
     		System.out.println("Metallurgy Core: Fantasy not detected, reason: " + e);
     	}
-		
+
+		MinecraftForge.EVENT_BUS.register(new CrusherUpgradeRecipes());
 	}
 	
 	@Init
@@ -155,11 +157,5 @@ public class mod_MetallurgyCore
 	    RecipeHelper.addBrickRecipes(vanillaBricks.blockID, 0, Item.ingotIron);
 	    RecipeHelper.addBrickRecipes(vanillaBricks.blockID, 1, Item.ingotGold);
 
-	}
-
-	@PostInit
-	public void load(FMLPostInitializationEvent event) 
-	{
-		mod_Crusher.load();
 	}
 }

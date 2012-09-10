@@ -12,8 +12,8 @@ public class AlloyEnderEnum implements IMetalSetEnum{
 	public static String[] names = {"Desichalkos"};
 	public static String imageName = "/shadow/MetallurgyEnderAlloys.png";
 	private int[] expValues = {10};
-	private int[] harvestLevels = {2};
-	private int[] pickLevels = {3};
+	private int[] harvestLevels = {4};
+	private int[] pickLevels = {4};
 	private int[] metalLevels = {7};
 	
 	public static EnumArmorMaterial desichalkosArmor = EnumHelper.addArmorMaterial("Desichalkos", 30, new int[] {4, 7, 5, 4}, 30);

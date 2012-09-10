@@ -15,8 +15,8 @@ public class OreEnderEnum implements IMetalSetEnum{
 	public static String imageName = "/shadow/MetallurgyEnderMetals.png";
 	public static String[] names = {"Eximite", "Meutoite"};
 	public static int[] expValues = {3, 3};
-	private final int[] harvestLevels = {2, 3};
-	private final int[] pickLevels = {2, 0};
+	private final int[] harvestLevels = {3, 3};
+	private final int[] pickLevels = {3, 0};
 	private int[] metalLevels = {5, 6};
 
 	public static int[] defaultVeinCount = {12, 10};

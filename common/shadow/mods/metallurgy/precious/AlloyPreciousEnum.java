@@ -11,8 +11,8 @@ public class AlloyPreciousEnum implements IMetalSetEnum{
 
 	public static String[] name = {"Brass", "Electrum"};
 	private int[] expValues = {4, 11};
-	private int[] harvestLevels = {2, 2};
-	private int[] pickLevels = {1, 2};
+	private int[] harvestLevels = {1, 1};
+	private int[] pickLevels = {0, 1};
 	private int[] dungeonLootChances = {25, 10};
 	private int[] dungeonLootAmounts = {3, 2};
 	private int[] metalLevels = {2, 4};

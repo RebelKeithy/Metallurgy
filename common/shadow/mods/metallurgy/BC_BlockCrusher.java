@@ -42,7 +42,7 @@ public class BC_BlockCrusher extends BlockContainer
     
 	public String getTextureFile() 
 	{
-		return mod_Crusher.texturePath;
+		return "/shadow/MetallurgyFurnaces.png";
 	}
 
     /**

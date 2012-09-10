@@ -15,8 +15,8 @@ public class OreFantasyEnum implements IMetalSetEnum{
 	public static String imageName = "/shadow/MetallurgyFantasyMetals.png";
 	public static String[] names = {"Prometheum", "Deep Iron", "Infuscolium", "Oureclase", "Aredrite", "Astral Silver", "Carmot", "Mithril", "Rubracium", "Orichalcum", "Adamantine", "Atlarus"};
 	public static int[] expValues = {1, 2, 4, 3, 3, 11, 15, 4, 2, 5, 6, 7};
-	private final int[] harvestLevels = {2, 2, 2, 3, 3, 4, 4, 4, 4, 5, 6, 6};
-	private final int[] pickLevels = {2, 3, 0, 4, 4, 5, 5, 5, 0, 6, 7, 7};
+	private final int[] harvestLevels = {1, 1, 1, 2, 2, 3, 3, 3, 3, 4, 5, 5};
+	private final int[] pickLevels = {1, 2, 0, 3, 3, 4, 4, 4, 0, 5, 6, 6};
 	private int[] metalLevels = {1, 2, 3, 5, 5, 6, 7, 8, 9, 10, 10, 11};
 
 	public static int[] defaultVeinCount = {6, 5, 5, 4, 4, 3, 3, 3, 2, 2, 1, 1};

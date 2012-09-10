@@ -40,7 +40,7 @@ public class BF_BlockMetalFurnace extends BlockContainer
 
     @Override
 	public String getTextureFile() {
-		return mod_Furnace.texturePath;
+		return "/shadow/MetallurgyFurnaces.png";
 	}
 
     /**

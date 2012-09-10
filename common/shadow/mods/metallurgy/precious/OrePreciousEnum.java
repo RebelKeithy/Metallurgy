@@ -16,8 +16,8 @@ public class OrePreciousEnum implements IMetalSetEnum{
 	public static final int numMetals = 3;
 	public static final String[] name = {"Zinc", "Silver", "Platinum"};
 	private final int[] expValues = {3, 5, 20};
-	private final int[] harvestLevels = {1, 2, 3};
-	private final int[] pickLevels = {1, 1, 3};
+	private final int[] harvestLevels = {0, 1, 2};
+	private final int[] pickLevels = {0, 0, 2};
 	private int[] metalLevels = {1, 2, 5};
 	private final int[] dungeonLootChances = {40, 18, 4};
 	private final int[] dungeonLootAmounts = {4, 3, 1};
