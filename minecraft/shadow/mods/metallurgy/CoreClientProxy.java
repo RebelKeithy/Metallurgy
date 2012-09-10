@@ -38,7 +38,7 @@ public class CoreClientProxy extends CoreCommonProxy{
 	public static void addNamesToSet(MetalSet set)
 	{
 		
-		String[] level = {" ", "§1", "§9", "§3", "§b", "§2", "§a", "§5", "§d", "§e", "§6", "§4", "§c"};
+		String[] level = {" ", "\u00A71", "\u00A79", "\u00A73", "\u00A7b", "\u00A72", "\u00A7a", "\u00A75", "\u00A7d", "\u00A7e", "\u00A76", "\u00A74", "\u00A7c"};
 		
 		for(int i = 0; i < set.numMetals; i++)
 		{
