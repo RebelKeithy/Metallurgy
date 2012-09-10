@@ -63,7 +63,7 @@ public class ConfigPrecious  {
         PreciousMintID = config.getOrCreateBlockIdProperty("Mint", 914).getInt(914);
         PreciousMintLoaderID = config.getOrCreateBlockIdProperty("Mint Loader", 925).getInt(925);
 
-    	dimensions = config.getOrCreateProperty("Dimensions", "Dimensions", "0").value;
+    	dimensions = config.getOrCreateProperty("Dimensions", "Dimensions", "0 2-100000").value;
     	
     	ItemStartID = config.getOrCreateIntProperty("Item Start IDs", "Item Ids Uses next 250", 26750).getInt(26750);
     	

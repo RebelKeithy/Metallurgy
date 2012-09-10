@@ -61,7 +61,7 @@ public class ConfigFantasy  {
     	FantasyMetalsBrickID = config.getOrCreateBlockIdProperty("Metal Brick", 920).getInt(920);
     	FantasyAlloysBrickID = config.getOrCreateBlockIdProperty("Alloy Brick", 921).getInt(921);
 
-    	dimensions = config.getOrCreateProperty("Dimensions", "Dimensions", "0").value;
+    	dimensions = config.getOrCreateProperty("Dimensions", "Dimensions", "0 2-100000").value;
     	
     	extractorSpeeds[0] = config.getOrCreateIntProperty("Prometheum", "Abstractor Speeds", 22000).getInt(22000)/1000f;    	
     	extractorSpeeds[1] = config.getOrCreateIntProperty("DeepIron", "Abstractor Speeds", 20000).getInt(20000)/1000f;    	
