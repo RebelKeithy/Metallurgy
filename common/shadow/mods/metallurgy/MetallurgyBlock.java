@@ -31,6 +31,8 @@ public class MetallurgyBlock extends Block
 	public int numTypes;
 	public boolean collisionEffect;
 	public List<CollisionListener> clList = new ArrayList<CollisionListener>();
+	public boolean displayEffect;
+	public List<DisplayListener> dlList = new ArrayList<DisplayListener>();
 	
     public MetallurgyBlock(int i, String s, int numTypes, int row) {
         super(i, Material.iron);
@@ -45,6 +47,14 @@ public class MetallurgyBlock extends Block
     	collisionEffect = true;
     	clList.add(cl);
     }
+    
+    public void addDisplayListener(DisplayListener dl)
+    {
+        this.setTickRandomly(true);
+    	displayEffect = true;
+    	dlList.add(dl);
+    }
+    
 
     @Override
 	public int idDropped(int metadata, Random random, int j) {
@@ -88,6 +98,15 @@ public class MetallurgyBlock extends Block
     	int meta = par1World.getBlockMetadata(par2, par3, par4);
         for(CollisionListener cl : clList)
         	cl.collide(par1World, par2, par3, par4, par5Entity, meta);
+    }
+    
+    /**
+     * A randomly called display update to be able to add particles or other items for display
+     */
+    public void randomDisplayTick(World par1World, int par2, int par3, int par4, Random par5Random)
+    {
+        for(DisplayListener dl : dlList)
+        	dl.randomDisplayTick(par1World, par2, par3, par4, par5Random);
     }
 
 	@Override

@@ -43,14 +43,14 @@ public class FM_BlockMintStorage extends BlockContainer
     public FM_BlockMintStorage(int par1)
     {
         super(par1, Material.wood);
-        this.blockIndexInTexture = 2;
+        this.blockIndexInTexture = 1;
         this.setCreativeTab(CreativeTabs.tabDeco);
     }
 
     @Override
 	public String getTextureFile()
     {		
-		return "/shadow/MetallurgyFantasyMetals.png";
+		return "/shadow/MetallurgyCoins.png";
     }
 
     /**
@@ -100,15 +100,15 @@ public class FM_BlockMintStorage extends BlockContainer
     	
         if (par5 == 1)
         {
-            return this.blockIndexInTexture - 1;
+            return this.blockIndexInTexture;
         }
         else if (par5 == 0)
         {
-            return this.blockIndexInTexture - 1;
+            return this.blockIndexInTexture + 32;
         }
         else
         {
-        	return 3;
+        	return this.blockIndexInTexture + 16;
         }
     }
 
@@ -118,7 +118,7 @@ public class FM_BlockMintStorage extends BlockContainer
     @Override
     public int getBlockTextureFromSide(int par1)
     {
-        return par1 == 1 ? this.blockIndexInTexture - 1 : (par1 == 0 ? this.blockIndexInTexture - 1 : (par1 == 3 ? this.blockIndexInTexture + 1 : this.blockIndexInTexture));
+        return par1 == 1 ? this.blockIndexInTexture : (par1 == 0 ? this.blockIndexInTexture + 16 : (par1 == 3 ? this.blockIndexInTexture + 16 : this.blockIndexInTexture + 16));
     }
 
     /**

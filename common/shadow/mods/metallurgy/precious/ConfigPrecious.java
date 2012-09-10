@@ -15,6 +15,8 @@ public class ConfigPrecious  {
 	public static int PreciousMetalsVeinID;
 	public static int PreciousMetalsBrickID;
 	public static int PreciousAlloysBrickID;
+	public static int PreciousMintID;
+	public static int PreciousMintLoaderID;
 
 	public static boolean[] alloyEnabled = new boolean[2];
 	public static boolean[] metalEnabled = new boolean[3];
@@ -58,6 +60,8 @@ public class ConfigPrecious  {
         PreciousMetalsVeinID = config.getOrCreateBlockIdProperty("Precious Metal Ore", 910).getInt(910);
         PreciousMetalsBrickID = config.getOrCreateBlockIdProperty("Precious Metal Brick", 911).getInt(911);
         PreciousAlloysBrickID = config.getOrCreateBlockIdProperty("Precious Alloy Brick", 912).getInt(912);
+        PreciousMintID = config.getOrCreateBlockIdProperty("Mint", 914).getInt(914);
+        PreciousMintLoaderID = config.getOrCreateBlockIdProperty("Mint Loader", 925).getInt(925);
 
     	dimensions = config.getOrCreateProperty("Dimensions", "Dimensions", "0").value;
     	

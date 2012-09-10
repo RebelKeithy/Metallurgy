@@ -20,7 +20,7 @@ public class MetallurgyItemBlock extends ItemBlock{
 	@Override
     public void addInformation(ItemStack par1ItemStack, List par2List)
     {
-    	par2List.add(par1ItemStack.itemID + ":" + par1ItemStack.getItemDamage());
+    	//par2List.add(par1ItemStack.itemID + ":" + par1ItemStack.getItemDamage());
     }
 
     @Override

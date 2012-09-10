@@ -77,6 +77,7 @@ public class mod_MetallurgyNether
 		alloys.load();
 
 		((MetallurgyBlock)(ores.ore)).addCollisionListener(new VyroxeresListener());
+		((MetallurgyBlock)(ores.ore)).addDisplayListener(new VyroxeresDisplay());
 		
 		mod_NetherForge.load();
 		

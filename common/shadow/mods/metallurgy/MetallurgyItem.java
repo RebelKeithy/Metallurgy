@@ -25,7 +25,7 @@ public class MetallurgyItem extends Item
 
     public void addInformation(ItemStack par1ItemStack, List par2List)
     {
-    	par2List.add(par1ItemStack.itemID - 256 + ":" + par1ItemStack.getItemDamage());
+    	//par2List.add(par1ItemStack.itemID - 256 + ":" + par1ItemStack.getItemDamage());
     }
 
     @Override

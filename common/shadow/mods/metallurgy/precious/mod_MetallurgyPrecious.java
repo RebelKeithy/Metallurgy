@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import shadow.mods.metallurgy.MetalSet;
+import shadow.mods.metallurgy.MetallurgyItem;
 import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.mod_Gold;
 import shadow.mods.metallurgy.mod_MetallurgyCore;
 import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
+import shadow.mods.metallurgy.fantasy.mod_MetallurgyFantasy;
+import shadow.mods.metallurgy.nether.mod_MetallurgyNether;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -58,6 +61,7 @@ public class mod_MetallurgyPrecious
 	public static Block MintStorage;
 	
 	public static Item Coin;
+	public static Item GoldCog;
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
@@ -67,9 +71,10 @@ public class mod_MetallurgyPrecious
 		ores = new MetalSet(new OrePreciousEnum());
 		
 		PreciousChest = new FC_BlockChest(913).setHardness(0.5F).setResistance(.1F).setBlockName("PreciousChest");
-		Mint = new FM_BlockMint(1021).setHardness(0.5F).setResistance(.1F).setBlockName("Mint");
-		MintStorage = new FM_BlockMintStorage(1022).setHardness(0.5F).setResistance(.1F).setBlockName("MintStorage");
-		Coin = new ItemCoins(30000).setItemName("Coin").setTabToDisplayOn(CreativeTabs.tabMisc);
+		Mint = new FM_BlockMint(ConfigPrecious.PreciousMintID).setHardness(0.5F).setResistance(.1F).setBlockName("Mint");
+		MintStorage = new FM_BlockMintStorage(ConfigPrecious.PreciousMintLoaderID).setHardness(0.5F).setResistance(.1F).setBlockName("MintStorage");
+		Coin = new ItemCoins(ConfigPrecious.ItemStartID + 748).setItemName("Coin").setTabToDisplayOn(CreativeTabs.tabMisc);
+		GoldCog = new MetallurgyItem(ConfigPrecious.ItemStartID + 749, "/shadow/MetallurgyCoins.png").setIconIndex(2).setItemName("GoldCog").setTabToDisplayOn(CreativeTabs.tabMaterials);
 	}
 
 	@Init
@@ -82,14 +87,13 @@ public class mod_MetallurgyPrecious
 		GameRegistry.registerBlock(MintStorage);
 		GameRegistry.registerTileEntity(FM_TileEntityMintStorage.class, "MintStorage");
 		
-		VillagerRegistry.instance().registerVillageTradeHandler(2, new PreciousTradeHandler());
+		for(int i = 0; i < 5; i++)
+			VillagerRegistry.instance().registerVillageTradeHandler(i, new PreciousTradeHandler());
 		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		
-		//AlloyPrecious.load();
 		alloys.load();
 		ores.load();
-		
 		
 		proxy.addNames();
 		proxy.registerTileEntitySpecialRenderer();
@@ -101,6 +105,16 @@ public class mod_MetallurgyPrecious
 	{
 		ores.registerOres();
 		alloys.registerOres();
+
+		ModLoader.addRecipe(new ItemStack(GoldCog, 1), new Object[] {
+			" G ", "GIG", " G ", Character.valueOf('G'), Item.ingotGold, Character.valueOf('I'), Item.ingotIron
+		});
+		ModLoader.addRecipe(new ItemStack(MintStorage, 1), new Object[] {
+			"GBG", "PCP", "GBG", Character.valueOf('G'), GoldCog, Character.valueOf('C'), Block.chest, Character.valueOf('B'), Block.fenceIron, Character.valueOf('P'), Block.pistonBase
+		});
+		ModLoader.addRecipe(new ItemStack(Mint, 1), new Object[] {
+			"III", "SRS", "IPI", Character.valueOf('G'), GoldCog, Character.valueOf('I'), Item.ingotIron, Character.valueOf('S'), Item.stick, Character.valueOf('P'), Block.pistonBase, Character.valueOf('R'), Item.redstone
+		});
 		
 		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "dustZinc", "dustCopper");
 		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[1], 1), "dustGold", "dustSilver");
@@ -114,6 +128,22 @@ public class mod_MetallurgyPrecious
 		FM_MintRecipes.minting().addMinting(alloys.Bar[0].shiftedIndex, 0, 1);
 		FM_MintRecipes.minting().addMinting(alloys.Bar[1].shiftedIndex, 0, 13);
 		FM_MintRecipes.minting().addMinting(Item.ingotGold.shiftedIndex, 0, 9);
+		
+		if(mod_MetallurgyCore.hasBase)
+		{
+			FM_MintRecipes.minting().addMinting(mod_MetallurgyBaseMetals.alloys.Bar[1].shiftedIndex, 0, 10);
+			FM_MintRecipes.minting().addMinting(mod_MetallurgyBaseMetals.alloys.Bar[3].shiftedIndex, 0, 12);
+		}
+		if(mod_MetallurgyCore.hasNether)
+		{
+			FM_MintRecipes.minting().addMinting(mod_MetallurgyNether.alloys.Bar[2].shiftedIndex, 0, 30);
+		}
+		if(mod_MetallurgyCore.hasFantasy)
+		{
+			FM_MintRecipes.minting().addMinting(mod_MetallurgyFantasy.ores.Bar[5].shiftedIndex, 0, 10);
+			FM_MintRecipes.minting().addMinting(mod_MetallurgyFantasy.ores.Bar[6].shiftedIndex, 0, 15);
+			FM_MintRecipes.minting().addMinting(mod_MetallurgyFantasy.alloys.Bar[3].shiftedIndex, 0, 32);
+		}
 	}
 	
 	public void addChestRecipes()
