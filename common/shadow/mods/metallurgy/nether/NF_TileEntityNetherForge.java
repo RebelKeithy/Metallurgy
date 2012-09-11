@@ -4,6 +4,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import buildcraft.api.core.Orientations;
+import buildcraft.api.liquids.ILiquidTank;
+import buildcraft.api.liquids.ITankContainer;
+import buildcraft.api.liquids.LiquidStack;
+import buildcraft.api.liquids.LiquidTank;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -12,7 +18,7 @@ import net.minecraft.src.*;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.ISidedInventory;
 
-public class NF_TileEntityNetherForge extends TileEntity implements IInventory, ISidedInventory
+public class NF_TileEntityNetherForge extends TileEntity implements IInventory, ISidedInventory, ITankContainer
 {
     /**
      * The ItemStacks that hold the items currently being used in the furnace
@@ -34,7 +40,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
     public int furnaceTimeBase = 200;
     
     public int fuel = 0;
-    public int maxFuel = 100;
+    public int maxFuel = 1000;
     public boolean isBurning;
 
     public int direction = 0;
@@ -48,12 +54,12 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
     
     public void setMaxBuckets(int buckets)
     {
-    	maxFuel = buckets * 10;
+    	maxFuel = buckets * 1000;
     }
     
     public void addFuelBucket()
     {
-    	fuel += 10;
+    	fuel += 1000;
     	fuel = (fuel < maxFuel) ? fuel : maxFuel;
     	sync();
     }
@@ -264,7 +270,6 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
     {
 		if ((++ticksSinceSync % 80) == 0) 
         {
-			//sync();
 			sendPacket();
 		}
 		
@@ -395,7 +400,6 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
 	}
 
 	public int getScaledFuel(int i) {
-		// TODO Auto-generated method stub
 		int scaledFuel = MathHelper.ceiling_float_int(i * (fuel/((float)(maxFuel))));
 		return (scaledFuel >= i) ? i : scaledFuel;
 	}
@@ -426,5 +430,61 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
 		if (packet != null) {
 			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.worldType, packet);
 		}
+	}
+
+	@Override
+	public int fill(Orientations from, LiquidStack resource, boolean doFill) {
+		if(resource.itemID != Block.lavaStill.blockID)
+			return 0;
+		
+
+		System.out.println("fill1");
+		if(fuel < maxFuel)
+		{
+			System.out.println("fill2");
+			int res = 0;
+			if(fuel + resource.amount <= maxFuel)
+			{
+				System.out.println("fill3");
+				res = resource.amount;
+				fuel += resource.amount;
+			} 
+			else
+			{
+				System.out.println("fill4");
+				res = maxFuel - fuel;
+				fuel = maxFuel;
+			}
+			//sendPacket();
+			sync();
+			return res;
+		} else {
+			return 0;
+		}
+	}
+
+	@Override
+	public int fill(int tankIndex, LiquidStack resource, boolean doFill) {
+		System.out.println("fill2");
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public LiquidStack drain(Orientations from, int maxDrain, boolean doDrain) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public LiquidStack drain(int tankIndex, int maxDrain, boolean doDrain) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ILiquidTank[] getTanks() {
+		// TODO Auto-generated method stub
+		return new LiquidTank[] { new LiquidTank(Block.lavaStill.blockID, fuel, maxFuel) };
 	}
 }
