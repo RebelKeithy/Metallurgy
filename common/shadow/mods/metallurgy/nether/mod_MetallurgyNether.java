@@ -12,6 +12,7 @@ import shadow.mods.metallurgy.base.OreBaseEnum;
 import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
 import shadow.mods.metallurgy.base.AlloyBaseEnum;
 import shadow.mods.metallurgy.precious.mod_MetallurgyPrecious;
+import shadow.mods.metallurgy.MetallurgyItemSword;
 
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.Mod;
@@ -78,6 +79,15 @@ public class mod_MetallurgyNether
 
 		((MetallurgyBlock)(ores.ore)).addCollisionListener(new VyroxeresListener());
 		((MetallurgyBlock)(ores.ore)).addDisplayListener(new VyroxeresDisplay());
+		NetherSwordEffectsListener efl = new NetherSwordEffectsListener();
+		((MetallurgyItemSword)(ores.Sword[0])).addHitListener(efl);
+		((MetallurgyItemSword)(ores.Sword[1])).addHitListener(efl);
+		((MetallurgyItemSword)(ores.Sword[3])).addHitListener(efl);
+		((MetallurgyItemSword)(ores.Sword[4])).addHitListener(efl);
+		((MetallurgyItemSword)(ores.Sword[6])).addHitListener(efl);
+		((MetallurgyItemSword)(ores.Sword[7])).addHitListener(efl);
+		((MetallurgyItemSword)(alloys.Sword[0])).addHitListener(efl);
+		((MetallurgyItemSword)(alloys.Sword[1])).addHitListener(efl);
 		
 		mod_NetherForge.load();
 		

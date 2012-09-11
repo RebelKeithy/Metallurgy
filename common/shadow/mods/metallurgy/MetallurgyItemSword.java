@@ -3,15 +3,10 @@
 // Decompiler options: packimports(3) braces deadcode fieldsfirst 
 
 package shadow.mods.metallurgy;
-import net.minecraft.src.Block;
-import net.minecraft.src.Entity;
-import net.minecraft.src.EntityLiving;
-import net.minecraft.src.EntityPlayer;
-import net.minecraft.src.EnumAction;
-import net.minecraft.src.Item;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.src.*;
-import net.minecraft.src.ItemStack;
-import net.minecraft.src.World;
 
 // Referenced classes of package net.minecraft.src:
 //            Item, EnumToolMaterial, Block, ItemStack, 
@@ -23,6 +18,8 @@ public class MetallurgyItemSword extends ItemSword
 	public String texturePath;
     private int weaponDamage;
     private final MetallurgyEnumToolMaterial field_40439_b;
+    
+    private List<HitEntityListener> hlList = new ArrayList<HitEntityListener>();
 
     public MetallurgyItemSword(int i, String s, MetallurgyEnumToolMaterial metallurgyenumtoolmaterial)
     {
@@ -43,9 +40,17 @@ public class MetallurgyItemSword extends ItemSword
     {
         return block.blockID != Block.web.blockID ? 1.5F : 15F;
     }
+    
+    public void addHitListener(HitEntityListener hl)
+    {
+    	hlList.add(hl);
+    }
 
     public boolean hitEntity(ItemStack itemstack, EntityLiving entityliving, EntityLiving entityliving1)
     {
+    	for(HitEntityListener hl : hlList)
+    		hl.hitEntity(itemstack, entityliving, entityliving1);
+    	
         itemstack.damageItem(1, entityliving1);
         return true;
     }
