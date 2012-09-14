@@ -31,6 +31,7 @@ public class FC_GuiChest extends GuiContainer
         this.inventoryRows = ((FC_TileEntityChest)chestInv).getNumRows();
         this.inventoryCols = ((FC_TileEntityChest)chestInv).getNumCols();
         this.ySize = var4 + this.inventoryRows * 18;
+        this.xSize = this.inventoryCols * 18 + 20;
         
         int type = ((FC_TileEntityChest)chestInv).getType();
         
