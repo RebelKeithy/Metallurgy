@@ -32,7 +32,7 @@ public class BlockVein extends Block
 	@Override
 	public int idDropped(int metadata, Random random, int par3) {
 		if(metadata == 0)
-			return mod_Phosphorite.phosphorite.shiftedIndex;
+			return mod_Phosphorite.phosphorus.shiftedIndex;
 		if(metadata == 1)
 			return mod_Sulfur.sulfur.shiftedIndex;
 		if(metadata == 2)
