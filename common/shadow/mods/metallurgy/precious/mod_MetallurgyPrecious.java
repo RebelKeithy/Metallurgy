@@ -110,7 +110,7 @@ public class mod_MetallurgyPrecious
 			" G ", "GIG", " G ", Character.valueOf('G'), Item.ingotGold, Character.valueOf('I'), Item.ingotIron
 		});
 		ModLoader.addRecipe(new ItemStack(MintStorage, 1), new Object[] {
-			"GBG", "PCP", "GBG", Character.valueOf('G'), GoldCog, Character.valueOf('C'), Block.chest, Character.valueOf('B'), Block.fenceIron, Character.valueOf('P'), Block.pistonBase
+			"GBG", "PCP", "GBG", Character.valueOf('G'), GoldCog, Character.valueOf('C'), Block.chest, Character.valueOf('B'), Item.ingotIron, Character.valueOf('P'), Block.pistonBase
 		});
 		ModLoader.addRecipe(new ItemStack(Mint, 1), new Object[] {
 			"III", "SRS", "IPI", Character.valueOf('G'), GoldCog, Character.valueOf('I'), Item.ingotIron, Character.valueOf('S'), Item.stick, Character.valueOf('P'), Block.pistonBase, Character.valueOf('R'), Item.redstone
