@@ -3,6 +3,10 @@ package shadow.mods.metallurgy.nether;
 import java.util.List;
 import java.util.Random;
 
+import buildcraft.api.liquids.LiquidManager;
+import buildcraft.api.liquids.LiquidStack;
+import buildcraft.core.utils.Utils;
+
 import shadow.mods.metallurgy.fantasy.mod_MetallurgyFantasy;
 
 import cpw.mods.fml.common.Side;
@@ -184,18 +188,23 @@ public class NF_BlockNetherForge extends BlockContainer
         }
         else
         {
-        	int currentSlot = par5EntityPlayer.inventory.currentItem;
+    		ItemStack currentItem = par5EntityPlayer.inventory.getCurrentItem();
+    		
             NF_TileEntityNetherForge var6 = (NF_TileEntityNetherForge)par1World.getBlockTileEntity(par2, par3, par4);
-            ItemStack currentItem = par5EntityPlayer.inventory.getStackInSlot(currentSlot);
             
-        	if(currentItem != null && currentItem.itemID == Item.bucketLava.shiftedIndex)
+        	if(currentItem != null)
         	{
-                if(var6 instanceof NF_TileEntityNetherForge)
+    			LiquidStack liquid = LiquidManager.getLiquidForFilledItem(currentItem);
+    			
+                if(liquid != null)
                 {
-                	if(((NF_TileEntityNetherForge)var6).fuel == ((NF_TileEntityNetherForge)var6).maxFuel)
+                	if(var6.fuel == var6.maxFuel || liquid.itemID == Block.lavaMoving.blockID)
                 		return false;
-                	par5EntityPlayer.inventory.setInventorySlotContents(currentSlot, new ItemStack(Item.bucketEmpty, 1));
-                	((NF_TileEntityNetherForge)var6).addFuelBucket();
+                	
+                	if(!par5EntityPlayer.capabilities.isCreativeMode)
+                		par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, Utils.consumeItem(currentItem));
+                	
+                	var6.addFuelBucket();
                 	return true;
                 }
         	}

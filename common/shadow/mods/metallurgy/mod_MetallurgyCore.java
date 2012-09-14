@@ -5,6 +5,8 @@ import org.lwjgl.opengl.GL11;
 import shadow.mods.metallurgy.*;
 import shadow.mods.metallurgy.base.FurnaceUpgradeRecipes;
 import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
+import vazkii.um.common.ModConverter;
+import vazkii.um.common.UpdateManagerMod;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -58,7 +60,7 @@ public class mod_MetallurgyCore
 	public static Block smoke;
 	public static Block smokeInactive;
 	public static Block smokeEater;
-
+	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
@@ -111,35 +113,11 @@ public class mod_MetallurgyCore
 		mod_Iron.load();
 		mod_Gold.load();
 		
-		//GameRegistry.registerBlock(smoke);
-		//GameRegistry.registerBlock(smokeInactive);
-		//GameRegistry.registerBlock(smokeEater);
-		
 		GameRegistry.registerBlock(vanillaBricks, MetallurgyItemBlock.class);
 		
 		GameRegistry.registerWorldGenerator(new CoreWorldGen());
 		
-		/*
-		MinecraftForge.setToolClass(Item.pickaxeWood, "pickaxe", 1);
-		MinecraftForge.setToolClass(Item.pickaxeStone, "pickaxe", 2);
-		MinecraftForge.setToolClass(Item.pickaxeSteel, "pickaxe", 3);
-		MinecraftForge.setToolClass(Item.pickaxeDiamond, "pickaxe", 4);
-		*/
-		
-		/*
-		MinecraftForge.setBlockHarvestLevel(Block.oreIron, "pickaxe", 2);
-		MinecraftForge.setBlockHarvestLevel(Block.oreRedstone, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(Block.oreRedstoneGlowing, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(Block.oreLapis, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(Block.oreDiamond, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(Block.oreGold, "pickaxe", 3);
-		MinecraftForge.setBlockHarvestLevel(Block.obsidian, "pickaxe", 4);
-		*/
-
-		//OreDictionary.registerOre("oreGold", new ItemStack(mod_MetallurgyBaseMetals.BaseMetalsVein, 1, mod_Gold.meta));
 		OreDictionary.registerOre("dustGold", new ItemStack(mod_Gold.GoldDust, 1));
-
-		//OreDictionary.registerOre("oreIron", new ItemStack(mod_MetallurgyBaseMetals.BaseMetalsVein, 1, mod_Iron.meta));
 		OreDictionary.registerOre("dustIron", new ItemStack(mod_Iron.IronDust, 1));
 		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
@@ -156,6 +134,25 @@ public class mod_MetallurgyCore
 		
 	    RecipeHelper.addBrickRecipes(vanillaBricks.blockID, 0, Item.ingotIron);
 	    RecipeHelper.addBrickRecipes(vanillaBricks.blockID, 1, Item.ingotGold);
+	    
+	    new UpdateHandler(ModConverter.getMod(getClass()));
+	}
+	
+	public class UpdateHandler extends UpdateManagerMod{
+		public UpdateHandler(cpw.mods.fml.common.Mod m) {
+			super(m);
+		}
 
+		@Override
+		public String getModURL() {
+			return "http://metallurgy2.wikia.com/wiki/Metallurgy2_Wiki";
+		}
+
+
+
+		@Override
+		public String getUpdateURL() {
+			return "http://pastebin.com/raw.php?i=MnHBHjFy";
+		}
 	}
 }

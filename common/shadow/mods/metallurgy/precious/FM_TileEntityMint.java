@@ -288,7 +288,7 @@ public class FM_TileEntityMint extends TileEntity
 	        				tei.setInventorySlotContents(i, var7);
 	        				increaseIngotMintCount();
 	        				return;
-	        			} else if(chestItem.itemID == var7.itemID && chestItem.stackSize < 64)
+	        			} else if(e == var7.itemID && chestItem.stackSize < 64)
 	        			{
 	        				chestItem.stackSize++;
 	        				increaseIngotMintCount();

@@ -4,6 +4,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import buildcraft.api.core.Orientations;
+import buildcraft.api.inventory.ISpecialInventory;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.network.PacketDispatcher;
@@ -13,7 +16,7 @@ import net.minecraft.src.*;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.ISidedInventory;
 
-public class BF_TileEntityMetalFurnace extends TileEntity implements IInventory, ISidedInventory
+public class BF_TileEntityMetalFurnace extends TileEntity implements ISidedInventory, ISpecialInventory
 {
     /**
      * The ItemStacks that hold the items currently being used in the furnace
@@ -472,5 +475,52 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements IInventory,
 		if (packet != null) {
 			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.worldType, packet);
 		}
+	}
+
+	@Override
+	public int addItem(ItemStack stack, boolean doAdd, Orientations from) {		
+		int slot = 0;
+		if(this.getItemBurnTime(stack) > 0)
+		{
+			slot = 1;
+		}
+		
+
+		if(this.furnaceItemStacks[slot] == null)
+		{
+			if(doAdd)
+				this.furnaceItemStacks[slot] = stack;
+			return stack.stackSize;
+		} else {
+			if(this.furnaceItemStacks[slot].itemID == stack.itemID)
+			{
+				if(this.furnaceItemStacks[slot].stackSize + stack.stackSize > stack.getMaxStackSize())
+				{
+					int amount = stack.getMaxStackSize() - this.furnaceItemStacks[1].stackSize;
+					if(doAdd)
+						this.furnaceItemStacks[slot].stackSize = this.furnaceItemStacks[1].getMaxStackSize();
+					return amount;
+				} else {
+					if(doAdd)
+						this.furnaceItemStacks[slot].stackSize += stack.stackSize;
+					return stack.stackSize;
+				}
+			} else {
+				return 0;
+			}
+		}
+	}
+
+	@Override
+	public ItemStack[] extractItem(boolean doRemove, Orientations from, int maxItemCount) {
+		if(furnaceItemStacks[2] != null)
+		{
+			int amount = (furnaceItemStacks[2].stackSize < maxItemCount) ? furnaceItemStacks[2].stackSize : maxItemCount;
+			ItemStack[] returnStack = { new ItemStack(furnaceItemStacks[2].itemID, amount, furnaceItemStacks[2].getItemDamage()) };
+			if(doRemove)
+				decrStackSize(2, amount);
+			return returnStack;
+		}
+		return null;
 	}
 }

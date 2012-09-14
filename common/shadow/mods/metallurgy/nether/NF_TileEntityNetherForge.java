@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 import buildcraft.api.core.Orientations;
+import buildcraft.api.inventory.ISpecialInventory;
 import buildcraft.api.liquids.ILiquidTank;
 import buildcraft.api.liquids.ITankContainer;
 import buildcraft.api.liquids.LiquidStack;
@@ -18,7 +19,7 @@ import net.minecraft.src.*;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.ISidedInventory;
 
-public class NF_TileEntityNetherForge extends TileEntity implements IInventory, ISidedInventory, ITankContainer
+public class NF_TileEntityNetherForge extends TileEntity implements ISidedInventory, ITankContainer, ISpecialInventory
 {
     /**
      * The ItemStacks that hold the items currently being used in the furnace
@@ -486,5 +487,45 @@ public class NF_TileEntityNetherForge extends TileEntity implements IInventory, 
 	public ILiquidTank[] getTanks() {
 		// TODO Auto-generated method stub
 		return new LiquidTank[] { new LiquidTank(Block.lavaStill.blockID, fuel, maxFuel) };
+	}	@Override
+	public int addItem(ItemStack stack, boolean doAdd, Orientations from) {		
+		int slot = 0;		
+
+		if(this.furnaceItemStacks[slot] == null)
+		{
+			if(doAdd)
+				this.furnaceItemStacks[slot] = stack;
+			return stack.stackSize;
+		} else {
+			if(this.furnaceItemStacks[slot].itemID == stack.itemID)
+			{
+				if(this.furnaceItemStacks[slot].stackSize + stack.stackSize > stack.getMaxStackSize())
+				{
+					int amount = stack.getMaxStackSize() - this.furnaceItemStacks[1].stackSize;
+					if(doAdd)
+						this.furnaceItemStacks[slot].stackSize = this.furnaceItemStacks[1].getMaxStackSize();
+					return amount;
+				} else {
+					if(doAdd)
+						this.furnaceItemStacks[slot].stackSize += stack.stackSize;
+					return stack.stackSize;
+				}
+			} else {
+				return 0;
+			}
+		}
+	}
+
+	@Override
+	public ItemStack[] extractItem(boolean doRemove, Orientations from, int maxItemCount) {
+		if(furnaceItemStacks[1] != null)
+		{
+			int amount = (furnaceItemStacks[1].stackSize < maxItemCount) ? furnaceItemStacks[1].stackSize : maxItemCount;
+			ItemStack[] returnStack = { new ItemStack(furnaceItemStacks[1].itemID, amount, furnaceItemStacks[1].getItemDamage()) };
+			if(doRemove)
+				decrStackSize(1, amount);
+			return returnStack;
+		}
+		return null;
 	}
 }
