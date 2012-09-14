@@ -26,11 +26,11 @@ public class FC_ContainerChest extends Container
         
         if(numCols == 12)
         {
-        	modifier = -27;
+        	modifier = 27;
         }
         if(numCols == 10)
         {
-        	modifier = -9;
+        	modifier = 9;
         }
         
         int i = 0;
@@ -38,7 +38,7 @@ public class FC_ContainerChest extends Container
         {
             for (currCol = 0; currCol < this.numCols; ++currCol)
             {
-                this.addSlotToContainer(new Slot(chestInv, currCol + currRow * numCols, 8 + currCol * 18 + modifier, 18 + currRow * 18));
+                this.addSlotToContainer(new Slot(chestInv, currCol + currRow * numCols, 11 + currCol * 18, 18 + currRow * 18));
             }
         }
 
@@ -46,13 +46,13 @@ public class FC_ContainerChest extends Container
         {
             for (currCol = 0; currCol < 9; ++currCol)
             {
-                this.addSlotToContainer(new Slot(playerInv, currCol + currRow * 9 + 9, 8 + currCol * 18, 94 + currRow * 18 + var3));
+                this.addSlotToContainer(new Slot(playerInv, currCol + currRow * 9 + 9, 11 + currCol * 18 + modifier, 94 + currRow * 18 + var3));
             }
         }
 
         for (currRow = 0; currRow < 9; ++currRow)
         {
-            this.addSlotToContainer(new Slot(playerInv, currRow, 8 + currRow * 18, 152 + var3));
+            this.addSlotToContainer(new Slot(playerInv, currRow, 11 + currRow * 18 + modifier, 152 + var3));
         }
     }
 
