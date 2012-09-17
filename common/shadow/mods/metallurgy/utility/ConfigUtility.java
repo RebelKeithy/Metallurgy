@@ -53,7 +53,7 @@ public class ConfigUtility  {
 	public static int SulfurOreCount;
 	public static int SulfurOreHeight;
 
-	public static int dimensionID;
+	public static String dimensions;
 	
 	
 	
@@ -83,7 +83,7 @@ public class ConfigUtility  {
         
     	veinID = config.getOrCreateBlockIdProperty("Utility Ore", 923).getInt(923);
 
-    	dimensionID = config.getOrCreateIntProperty("Dimension ID", "Dimension", 0).getInt(0);
+    	dimensions = config.getOrCreateProperty("Dimensions", "Dimensions", "0 2-100000").value;
     	
     	bitumenEnabled = config.getOrCreateBooleanProperty("Enable Bitumen", "Ores", true).getBoolean(true);
     	magnesiumEnabled = config.getOrCreateBooleanProperty("Enable Magnesium", "Ores", true).getBoolean(true);

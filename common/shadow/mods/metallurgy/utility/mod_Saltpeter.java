@@ -24,6 +24,6 @@ public class mod_Saltpeter
 	//Load Recipes
 	public static void load()
 	{
-		ModLoader.addShapelessRecipe(new ItemStack(Item.gunpowder, 4), new Object[] {new ItemStack(Item.coal, 1, 1), saltpeter, mod_Sulfur.sulfur});
+		//ModLoader.addShapelessRecipe(new ItemStack(Item.gunpowder, 4), new Object[] {new ItemStack(Item.coal, 1, 1), saltpeter, mod_Sulfur.sulfur});
 	}
 }

@@ -226,7 +226,10 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
      */
     public int getCookProgressScaled(int par1)
     {
-        return this.furnaceCookTime * par1 / (furnaceTimeBase + 1);
+    	if(furnaceTimeBase == 0)
+    		return 0;
+    	
+        return furnaceCookTime * par1 / furnaceTimeBase;
     }
 
     /**
@@ -235,12 +238,12 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
      */
     public int getBurnTimeRemainingScaled(int par1)
     {
-        if (this.currentItemBurnTime == 0)
+        if (currentItemBurnTime == 0)
         {
-            this.currentItemBurnTime = furnaceTimeBase;
+            currentItemBurnTime = furnaceTimeBase;
         }
 
-        return this.furnaceBurnTime * par1 / this.currentItemBurnTime;
+        return furnaceBurnTime * par1 / currentItemBurnTime;
     }
 
     /**
@@ -261,11 +264,14 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 
 		if ((++ticksSinceSync % 80) == 0 && !worldObj.isRemote) 
         {
+			/*
 			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 1, direction);
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 2, furnaceTimeBase);
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, furnaceBurnTime);
-            //sendPacket();
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 4, furnaceCookTime);
+			*/
+            sendPacket();
 		}
 		
         boolean var1 = this.furnaceBurnTime > 0;
@@ -450,6 +456,8 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 			furnaceTimeBase = j;
 		if (i == 3)
 			furnaceBurnTime = j;
+		if (i == 4)
+			furnaceCookTime = j;
 
 		worldObj.markBlockAsNeedsUpdate(xCoord, yCoord, zCoord);
 	}
@@ -496,6 +504,7 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 			dos.writeInt(direction);
 			dos.writeInt(furnaceTimeBase);
 			dos.writeInt(furnaceBurnTime);
+			dos.writeInt(furnaceCookTime);
 		} catch (IOException e) {
 			// UNPOSSIBLE?
 		}
@@ -506,7 +515,7 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 		packet.isChunkDataPacket = true;
 		
 		if (packet != null) {
-			//PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.worldType, packet);
+			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.worldType, packet);
 		}
 	}
 

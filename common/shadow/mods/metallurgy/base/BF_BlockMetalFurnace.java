@@ -186,34 +186,16 @@ public class BF_BlockMetalFurnace extends BlockContainer
      */
     public static void updateFurnaceBlockState(boolean par0, World par1World, int x, int y, int z)
     {
-    	//System.out.println("updating furnace" + par0);
         int meta = par1World.getBlockMetadata(x, y, z);
-        //TileEntity var6 = par1World.getBlockTileEntity(x, y, z);
-        //keepFurnaceInventory = true;
 
         if (!par0 && meta >= 8)
         {
-        	//System.out.println("set furnace off");
-            //par1World.setBlockWithNotify(x, y, z, mod_Furnace.metalFurnace.blockID);
             par1World.setBlockMetadata(x, y, z, meta - 8);
         }
         else if(par0 && meta < 8)
         {
-        	//System.out.println("set furnace on");
-            //par1World.setBlockWithNotify(x, y, z, mod_Furnace.metalFurnaceOn.blockID);
             par1World.setBlockMetadata(x, y, z, meta + 8);
         }
-
-        //keepFurnaceInventory = false;
-        //par1World.setBlockMetadataWithNotify(x, y, z, meta);
-        //((TileEntityMetalFurnace)(var6)).setDirection(var5);
-        /*
-        if (var6 != null)
-        {
-            var6.validate();
-            par1World.setBlockTileEntity(x, y, z, var6);
-        }
-        */
     }
 
     /**

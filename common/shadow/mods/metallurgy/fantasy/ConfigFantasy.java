@@ -17,6 +17,7 @@ public class ConfigFantasy  {
 	public static int FantasyMetalsVeinID;
 	public static int FantasyMetalsBrickID;
 	public static int FantasyAlloysBrickID;
+	public static int furnaceID;
 
 	public static boolean[] alloyEnabled = new boolean[5];
 	public static boolean[] metalEnabled = new boolean[12];
@@ -60,6 +61,7 @@ public class ConfigFantasy  {
         FantasyMetalsVeinID = config.getOrCreateBlockIdProperty("Metal Ore", 919).getInt(919);
     	FantasyMetalsBrickID = config.getOrCreateBlockIdProperty("Metal Brick", 920).getInt(920);
     	FantasyAlloysBrickID = config.getOrCreateBlockIdProperty("Alloy Brick", 921).getInt(921);
+    	furnaceID = config.getOrCreateBlockIdProperty("Abstractor", 922).getInt(922);
 
     	dimensions = config.getOrCreateProperty("Dimensions", "Dimensions", "0 2-100000").value;
     	

@@ -2,6 +2,8 @@ package shadow.mods.metallurgy;
 
 import java.util.Random;
 
+//import ic2.api.Ic2Recipes;
+
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -111,6 +113,7 @@ public class MetalSet implements IWorldGenerator {
 		
 		for(int i = 0; i < numMetals; i++)
 		{
+			
 			if(!info.isAlloy())	
 				MinecraftForge.setBlockHarvestLevel(ore, i, "pickaxe", info.oreHarvestLevel(i));
 			
@@ -126,54 +129,6 @@ public class MetalSet implements IWorldGenerator {
 	
 	public void load()
 	{
-
-		/*
-		for(int i = 0; i < numMetals; i++)
-		{
-			//Smelting
-			if(ore != null)
-				FurnaceRecipes.smelting().addSmelting(ore.blockID, i, new ItemStack(Bar[i], 1));
-			ModLoader.addSmelting(Dust[i].shiftedIndex, new ItemStack(Bar[i], 1));
-				
-			//Crusher
-			if(ore != null)
-				BC_CrusherRecipes.smelting().addCrushing(ore.blockID, i, new ItemStack(Dust[i], 2));
-			BC_CrusherRecipes.smelting().addCrushing(Bar[i].shiftedIndex, new ItemStack(Dust[i], 1));
-
-			if(mod_MetallurgyCore.hasFantasy)
-				FF_EssenceRecipes.essence().addEssenceAmount(Bar[i].shiftedIndex, info.expValue(i));
-			 
-			//Bricks!
-			RecipeHelper.addBrickRecipes(brick.blockID, i, Bar[i], 0);
-			
-	        if(!info.isCatalyst(i))
-	        {
-				RecipeHelper.addAxeRecipe(Axe[i], Bar[i]);
-				RecipeHelper.addPickaxeRecipe(Pickaxe[i], Bar[i]);
-				RecipeHelper.addShovelRecipe(Shovel[i], Bar[i]);
-				RecipeHelper.addHoeRecipe(Hoe[i], Bar[i]);
-				RecipeHelper.addSwordRecipe(Sword[i], Bar[i]);
-				RecipeHelper.addHelmetRecipe(Helmet[i], Bar[i]);
-				RecipeHelper.addPlateRecipe(Plate[i], Bar[i]);
-				RecipeHelper.addLegsRecipe(Legs[i], Bar[i]);
-				RecipeHelper.addBootsRecipe(Boots[i], Bar[i]);
-			    
-			    //Buckets/Shears
-				RecipeHelper.addBucketRecipe(Bar[i]);
-				RecipeHelper.addShearsRecipe(Bar[i]);
-	        }
-			//ModLoader.addSmelting(Dust[i].shiftedIndex, new ItemStack(Bar[i], 1));
-		}	
-	        */
-		
-
-		for(int i = 0; i < info.numMetals(); i++)
-		{
-			if(ore != null)
-			{
-				DungeonHooks.addDungeonLoot(new ItemStack(Bar[i], 1), info.dungeonLootChance(i), 1, info.dungeonLootAmount(i));
-			}
-		}
 		
 		if(ore != null)
 		{
@@ -182,6 +137,27 @@ public class MetalSet implements IWorldGenerator {
 		}
 
 		GameRegistry.registerBlock(brick, MetallurgyItemBlock.class);
+		
+
+		for(int i = 0; i < info.numMetals(); i++)
+		{
+			if(ore != null)
+			{
+				System.out.println("in ore " + ore);
+				try {
+					System.out.println("in try");
+					Class a = Class.forName("ic2.api.Ic2Recipes");
+					System.out.println("found ic2 recipes");
+					ic2.api.Ic2Recipes.addMaceratorRecipe(new ItemStack(ore, 1, i), new ItemStack(Dust[i], 2, 0));
+				} catch(Exception e) {}
+				DungeonHooks.addDungeonLoot(new ItemStack(Bar[i], 1), info.dungeonLootChance(i), 1, info.dungeonLootAmount(i));
+			}
+
+			try {
+				Class a = Class.forName("ic2.api.Ic2Recipes");
+				ic2.api.Ic2Recipes.addMaceratorRecipe(new ItemStack(Bar[i], 1, 0), new ItemStack(Dust[i], 1, 0));
+			} catch(Exception e) {}
+		}
 	}
 	
 
@@ -226,7 +202,6 @@ public class MetalSet implements IWorldGenerator {
 
     		if(event.Name.equals("dust" + info.name(i)))
     		{
-    			//System.out.println("smelting " + event.Name + " into " + Bar[i]);
     			GameRegistry.addSmelting(event.Ore.itemID, new ItemStack(Bar[i], 1), 1);
     		}
     	}

@@ -9,6 +9,7 @@ import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import net.minecraft.src.BlockContainer;
 import net.minecraft.src.EntityPlayer;
+import net.minecraft.src.IBlockAccess;
 import net.minecraft.src.Material;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.World;
@@ -38,6 +39,7 @@ public class BC_BlockCrusher extends BlockContainer
         super(par1, Material.rock);
         this.isActive = par2;
         setRequiresSelfNotify();
+        super.setLightValue(16);
     }
     
 	public String getTextureFile() 
@@ -72,6 +74,13 @@ public class BC_BlockCrusher extends BlockContainer
     {
         return renderId;
     }
+    
+    
+    /*@Override
+    public int getLightValue(IBlockAccess world, int x, int y, int z) 
+    {
+        return 16;
+    }*/
     
     /**
      * Returns the ID of the items to drop on destruction.

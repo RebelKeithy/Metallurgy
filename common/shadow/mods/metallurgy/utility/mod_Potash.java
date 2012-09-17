@@ -25,7 +25,7 @@ public class mod_Potash
 	//Load Recipes
 	public static void load()
 	{
-		ModLoader.addShapelessRecipe(new ItemStack(fertilizer, 4), new Object[] {mod_Phosphorite.phosphorus, mod_Magnesium.magnesium, potash});
+		//ModLoader.addShapelessRecipe(new ItemStack(fertilizer, 4), new Object[] {mod_Phosphorite.phosphorus, mod_Magnesium.magnesium, potash});
 	}
 
 	

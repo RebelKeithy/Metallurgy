@@ -3,6 +3,7 @@ package shadow.mods.metallurgy.utility;
 import java.util.Random;
 
 import shadow.mods.metallurgy.MetallurgyWorldGenMinable;
+import shadow.mods.metallurgy.base.ConfigBase;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.IChunkProvider;
@@ -15,7 +16,7 @@ public class UtilityWorldGen implements IWorldGenerator
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
-		if(world.provider.worldType != ConfigUtility.dimensionID)
+		if(!spawnsInDim(world.provider.worldType))
 			return;
 		
 		if(ConfigUtility.bitumenEnabled)
@@ -31,6 +32,24 @@ public class UtilityWorldGen implements IWorldGenerator
 		if(ConfigUtility.sulfurEnabled)
 			generateSulfur(world, rand, chunkX * 16, chunkZ * 16);
 
+	}
+	
+	public boolean spawnsInDim(int id)
+	{
+		for(String str : ConfigUtility.dimensions.split(" ")) {
+			if(str.matches("[0-9]+-[0-9]+"))
+			{
+				int start = Integer.parseInt(str.split("-")[0]);
+				int end = Integer.parseInt(str.split("-")[1]);
+				if(id >= start && id <= end)
+					return true;
+			} else {
+				if(id == Integer.parseInt(str))
+					return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	public static void generateBitumen(World world, Random rand, int chunkX, int chunkZ){

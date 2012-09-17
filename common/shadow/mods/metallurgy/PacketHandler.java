@@ -22,6 +22,7 @@ public class PacketHandler implements IPacketHandler
 		int direction = dat.readInt();
 		int speed = dat.readInt();
 		int burnTime = dat.readInt();
+		int cookTime = dat.readInt();
 		
 		World world = mod_MetallurgyCore.proxy.getClientWorld();
 		TileEntity te = world.getBlockTileEntity(x, y, z);
@@ -31,6 +32,7 @@ public class PacketHandler implements IPacketHandler
 			icte.setDirection(direction);
 			icte.furnaceTimeBase = speed;
 			icte.furnaceBurnTime = burnTime;
+			icte.furnaceCookTime = cookTime;
 		}
 
 		world.markBlockNeedsUpdate(x, y, z);

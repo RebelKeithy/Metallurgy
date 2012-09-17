@@ -5,6 +5,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Random;
 
+import buildcraft.api.core.Orientations;
+import buildcraft.api.inventory.ISpecialInventory;
+
 import shadow.mods.metallurgy.base.ConfigBase;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -16,7 +19,7 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ISidedInventory;
 
-public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory, ISidedInventory
+public class FF_TileEntityMetalFurnace extends TileEntity implements ISpecialInventory, ISidedInventory
 {
     /**
      * The ItemStacks that hold the items currently being used in the furnace
@@ -256,6 +259,7 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 1, direction);
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 2, furnaceTimeBase);
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, furnaceBurnTime);
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 4, furnaceCookTime);
 			ticksSinceSync = 0;
 			
 		}
@@ -386,8 +390,8 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
             	double zMotion = 0;
             	
             	if(direction == 2) {
-            		xOffset = 1;
-            		xMotion = 0.1;
+            		zOffset = 0;
+            		zOffset = -0.1;
             	} else if(direction == 3) {
             		zOffset = 1;
             		zMotion = 0.1;
@@ -395,8 +399,8 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
             		xOffset = 0;
             		xMotion = -0.1;
             	} else if(direction == 5) {
-            		zOffset = 0;
-            		zOffset = -0.1;
+            		xOffset = 1;
+            		xMotion = 0.1;
             	}
             	
             	Random rand = new Random();
@@ -405,6 +409,7 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
             	xMotion += (rand.nextInt(11) - 5) / 100.0;
               	zMotion += (rand.nextInt(11) - 5) / 100.0;
             	
+              	mod_MetallurgyFantasy.proxy.spawnParticle("abstractorSmall",worldObj, this.xCoord + xOffset, this.yCoord + 0.5, this.zCoord + zOffset, 0, 0, 0);
                 orb = new EntityXPOrb(this.worldObj, this.xCoord + xOffset, this.yCoord + 0.5, this.zCoord + zOffset, xpPerOrb);
                 orb.motionX = xMotion;
                 orb.motionZ = zMotion;
@@ -446,6 +451,8 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
 			furnaceTimeBase = j;
 		} else if (i == 3) {
 			furnaceBurnTime = j;
+		} else if (i == 4) {
+			furnaceCookTime = j;
 		}
         worldObj.markBlockAsNeedsUpdate(xCoord, yCoord, zCoord);
 	}
@@ -491,7 +498,6 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
 	
 	public void sendPacket()
 	{
-		System.out.println("sending packet");
 		if(worldObj.isRemote)
 			return;
 		
@@ -517,5 +523,44 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements IInventory,
 		if (packet != null) {
 			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.worldType, packet);
 		}
+	}
+
+	@Override
+	public int addItem(ItemStack stack, boolean doAdd, Orientations from) {		
+		int slot = 0;
+		if(this.getItemBurnTime(stack) > 0)
+		{
+			slot = 1;
+		}
+		
+
+		if(this.furnaceItemStacks[slot] == null)
+		{
+			if(doAdd)
+				this.furnaceItemStacks[slot] = stack;
+			return stack.stackSize;
+		} else {
+			if(this.furnaceItemStacks[slot].itemID == stack.itemID)
+			{
+				if(this.furnaceItemStacks[slot].stackSize + stack.stackSize > stack.getMaxStackSize())
+				{
+					int amount = stack.getMaxStackSize() - this.furnaceItemStacks[slot].stackSize;
+					if(doAdd)
+						this.furnaceItemStacks[slot].stackSize = this.furnaceItemStacks[slot].getMaxStackSize();
+					return amount;
+				} else {
+					if(doAdd)
+						this.furnaceItemStacks[slot].stackSize += stack.stackSize;
+					return stack.stackSize;
+				}
+			} else {
+				return 0;
+			}
+		}
+	}
+
+	@Override
+	public ItemStack[] extractItem(boolean doRemove, Orientations from, int maxItemCount) {
+		return null;
 	}
 }

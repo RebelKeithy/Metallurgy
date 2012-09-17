@@ -84,6 +84,28 @@ public class mod_MetallurgyBaseMetals {
 		ores.load();
 		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
+
+		
+		try {
+			Class a = Class.forName("ic2.api.Ic2Recipes");
+			ItemStack battery = ic2.api.Items.getItem("reBattery");
+			ItemStack ingot = ic2.api.Items.getItem("refinedIronIngot");
+			ItemStack generator = ic2.api.Items.getItem("generator");
+			GameRegistry.addRecipe(generator, new Object[] {
+    			" B ", "III", " F ", Character.valueOf('B'), battery, Character.valueOf('I'), ingot, Character.valueOf('F'), new ItemStack(metalFurnace, 1, 2)
+    		});
+			GameRegistry.addRecipe(generator, new Object[] {
+    			" B ", "III", " F ", Character.valueOf('B'), battery, Character.valueOf('I'), ingot, Character.valueOf('F'), new ItemStack(metalFurnace, 1, 3)
+    		});
+			
+			battery = ic2.api.Items.getItem("chargedReBattery");
+			GameRegistry.addRecipe(generator, new Object[] {
+	    			" B ", "III", " F ", Character.valueOf('B'), battery, Character.valueOf('I'), ingot, Character.valueOf('F'), new ItemStack(metalFurnace, 1, 2)
+	    		});
+				GameRegistry.addRecipe(generator, new Object[] {
+	    			" B ", "III", " F ", Character.valueOf('B'), battery, Character.valueOf('I'), ingot, Character.valueOf('F'), new ItemStack(metalFurnace, 1, 3)
+	    		});
+		} catch(Exception e) {}
 		
 		proxy.addNames();
 	}

@@ -1,8 +1,10 @@
 package shadow.mods.metallurgy.precious;
 
+import buildcraft.api.core.Orientations;
+import buildcraft.api.inventory.ISpecialInventory;
 import net.minecraft.src.*;
 
-public class FM_TileEntityMintStorage extends TileEntity implements IInventory
+public class FM_TileEntityMintStorage extends TileEntity implements ISpecialInventory
 {
     private ItemStack[] chestContents = new ItemStack[6];
 
@@ -232,4 +234,61 @@ public class FM_TileEntityMintStorage extends TileEntity implements IInventory
         this.updateContainingBlockInfo();
         super.invalidate();
     }
+
+	@Override
+	public int addItem(ItemStack stack, boolean doAdd, Orientations from) {	
+		
+		if(FM_MintRecipes.minting().getMintingResult(stack) == 0)
+			return 0;
+		
+		int amount = stack.stackSize;
+		for(int i = 0; i < 6; i++)
+		{
+			if(chestContents[i] == null)
+			{
+				if(doAdd)
+					chestContents[i] = new ItemStack(stack.itemID, stack.stackSize, stack.getItemDamage());
+				return stack.stackSize;
+			}
+			
+			if(chestContents[i].itemID == stack.itemID && chestContents[i].stackSize < chestContents[i].getMaxStackSize())
+			{
+				int leftToFill = chestContents[i].getMaxStackSize() - chestContents[i].stackSize;
+				if(leftToFill < amount)
+				{
+					amount -= leftToFill;
+					if(doAdd)
+						chestContents[i].stackSize = chestContents[i].getMaxStackSize();
+				} else {
+					if(doAdd)
+						chestContents[i].stackSize += amount;
+					return stack.stackSize;
+				}
+			}
+		}
+		return stack.stackSize - amount;
+	}
+
+	@Override
+	public ItemStack[] extractItem(boolean doRemove, Orientations from, int maxItemCount) {
+		
+		for(int i = 0; i < 6; i++)
+		{
+			if(chestContents[i] != null)
+			{
+				if(chestContents[i].stackSize > maxItemCount)
+				{
+					if(doRemove)
+						chestContents[i].stackSize -= maxItemCount;
+					return new ItemStack[] { new ItemStack(chestContents[i].itemID, maxItemCount, chestContents[i].getItemDamage()) };
+				} else {
+					ItemStack ret = new ItemStack(chestContents[i].itemID, chestContents[i].stackSize, chestContents[i].getItemDamage());
+					if(doRemove)
+						chestContents[i] = null;
+					return new ItemStack[] { ret };
+				}
+			}
+		}
+		return null;
+	}
 }

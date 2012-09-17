@@ -15,10 +15,7 @@ public class FurnaceUpgradeRecipes {
 	
     @ForgeSubscribe
     public void oreRegistered(OreRegisterEvent event)
-    {    		
-    	System.out.println(event.Ore.itemID);
-    	
-    	
+    {    		    	
     	if(event.Name.equals("ingotCopper"))
     	{
 			ModLoader.addRecipe(new ItemStack(mod_MetallurgyBaseMetals.metalFurnace, 1, 0), new Object[] {

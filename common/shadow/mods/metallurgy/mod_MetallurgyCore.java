@@ -5,8 +5,8 @@ import org.lwjgl.opengl.GL11;
 import shadow.mods.metallurgy.*;
 import shadow.mods.metallurgy.base.FurnaceUpgradeRecipes;
 import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
-import vazkii.um.common.ModConverter;
-import vazkii.um.common.UpdateManagerMod;
+//import vazkii.um.common.ModConverter;
+//import vazkii.um.common.UpdateManagerMod;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -102,6 +102,7 @@ public class mod_MetallurgyCore
     	} catch(ClassNotFoundException e) {
     		System.out.println("Metallurgy Core: Fantasy not detected, reason: " + e);
     	}
+		
 
 		MinecraftForge.EVENT_BUS.register(new CrusherUpgradeRecipes());
 	}
@@ -135,9 +136,29 @@ public class mod_MetallurgyCore
 	    RecipeHelper.addBrickRecipes(vanillaBricks.blockID, 0, Item.ingotIron);
 	    RecipeHelper.addBrickRecipes(vanillaBricks.blockID, 1, Item.ingotGold);
 	    
-	    new UpdateHandler(ModConverter.getMod(getClass()));
+	    BC_CrusherRecipes.smelting().addCrushing(Block.cobblestone.blockID, new ItemStack(Block.sand));
+	    BC_CrusherRecipes.smelting().addCrushing(Block.gravel.blockID, new ItemStack(Item.flint));
+
+		try {
+			Class a = Class.forName("ic2.api.Ic2Recipes");
+			ItemStack circuit = ic2.api.Items.getItem("electronicCircuit");
+			ItemStack macerator = ic2.api.Items.getItem("macerator");
+			GameRegistry.addRecipe(macerator, new Object[] {
+    			"F", "C", Character.valueOf('C'), circuit, Character.valueOf('F'), new ItemStack(crusher, 1, 3)
+    		});
+			GameRegistry.addRecipe(macerator, new Object[] {
+	    		"F", "C", Character.valueOf('C'), circuit, Character.valueOf('F'), new ItemStack(crusher, 1, 4)
+    		});
+
+			ItemStack coalDust = ic2.api.Items.getItem("coalDust");
+			BC_CrusherRecipes.smelting().addCrushing(Item.coal.shiftedIndex, 0, coalDust);
+			
+		} catch(Exception e) {}
+		
+	    //new UpdateHandler(ModConverter.getMod(getClass()));
 	}
 	
+	/*
 	public class UpdateHandler extends UpdateManagerMod{
 		public UpdateHandler(cpw.mods.fml.common.Mod m) {
 			super(m);
@@ -155,4 +176,5 @@ public class mod_MetallurgyCore
 			return "http://pastebin.com/raw.php?i=MnHBHjFy";
 		}
 	}
+	*/
 }

@@ -225,32 +225,19 @@ public class NF_BlockNetherForge extends BlockContainer
      */
     public static void updateFurnaceBlockState(boolean par0, World par1World, int par2, int par3, int par4)
     {
-    	//System.out.println("changing state");
-    	//aSystem.out.println("updating furnace" + par0);
         int metadata = par1World.getBlockMetadata(par2, par3, par4);
-        //TileEntity var6 = par1World.getBlockTileEntity(par2, par3, par4);
         keepFurnaceInventory = true;
 
         if (par0 && metadata < 8)
         {
         	par1World.setBlockMetadata(par2, par3, par4, metadata + 8);
-            //par1World.setBlockWithNotify(par2, par3, par4, mod_NetherForge.metalFurnace.blockID);
         }
         else if(!par0 && metadata >= 8)
         {
         	par1World.setBlockMetadata(par2, par3, par4, metadata - 8);
-            //par1World.setBlockWithNotify(par2, par3, par4, mod_NetherForge.metalFurnaceOn.blockID);
         }
 
         keepFurnaceInventory = false;
-        //par1World.setBlockMetadataWithNotify(par2, par3, par4, metadata);
-        //((TileEntityMetalFurnace)(var6)).setDirection(var5);
-
-        //if (var6 != null)
-        //{
-            //var6.validate();
-            //par1World.setBlockTileEntity(par2, par3, par4, var6);
-        //}
     }
 
     /**

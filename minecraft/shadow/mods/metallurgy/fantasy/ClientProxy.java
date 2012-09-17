@@ -3,6 +3,7 @@ package shadow.mods.metallurgy.fantasy;
 import java.io.File;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.src.EntityFX;
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.Item;
 import net.minecraft.src.ModLoader;
@@ -42,9 +43,18 @@ public class ClientProxy extends CommonProxy{
 	@Override
 	public void registerRenderInformation()
 	{
+		MinecraftForgeClient.preloadTexture("/shadow/AbstractorParticle.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyFantasyFurnace.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyFantasyMetals.png");
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyFantasyAlloys.png");
+	}
+
+	@Override
+	public void spawnParticle(String string, World par1World, double par2, double par4, double par6, double par8, double par10, double par12) {
+		if(string.equals("abstractorLarge"))
+			Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)(new EntityAbstractorFX(par1World, par2, par4, par6, par8, par10, par12)));
+		if(string.equals("abstractorSmall"))
+			Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)(new EntitySmallAbstractorFX(par1World, par2, par4, par6, par8, par10, par12)));
 	}
 	
 	@Override

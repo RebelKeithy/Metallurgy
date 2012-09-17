@@ -321,7 +321,10 @@ public class FM_TileEntityMint extends TileEntity
 	
 	public void increaseIngotMintCount()
 	{
-		if(--amount == 0)
+		if(amount > FM_MintRecipes.minting().getMintingResult(new ItemStack(ingotId, 1, 0)))
+			amount = FM_MintRecipes.minting().getMintingResult(new ItemStack(ingotId, 1, 0));
+		
+		if(--amount <= 0)
         {
         	ingotId = 0;
 			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);

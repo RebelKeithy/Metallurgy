@@ -234,6 +234,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 2, furnaceTimeBase);
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, fuel);
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 4, maxFuel);
+			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 5, furnaceCookTime);
     	}
     }
 
@@ -378,6 +379,8 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 			fuel = j;
 		} else if (i == 4) {
 			maxFuel = j;
+		} else if (i == 5) {
+			furnaceCookTime = j;
 		}
 	}
 
@@ -419,6 +422,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 			dos.writeInt(direction);
 			dos.writeInt(furnaceTimeBase);
 			dos.writeInt(furnaceBurnTime);
+			dos.writeInt(furnaceCookTime);
 		} catch (IOException e) {
 			// UNPOSSIBLE?
 		}
@@ -439,20 +443,16 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 			return 0;
 		
 
-		System.out.println("fill1");
 		if(fuel < maxFuel)
 		{
-			System.out.println("fill2");
 			int res = 0;
 			if(fuel + resource.amount <= maxFuel)
 			{
-				System.out.println("fill3");
 				res = resource.amount;
 				fuel += resource.amount;
 			} 
 			else
 			{
-				System.out.println("fill4");
 				res = maxFuel - fuel;
 				fuel = maxFuel;
 			}
@@ -466,7 +466,6 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 
 	@Override
 	public int fill(int tankIndex, LiquidStack resource, boolean doFill) {
-		System.out.println("fill2");
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -487,7 +486,9 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 	public ILiquidTank[] getTanks() {
 		// TODO Auto-generated method stub
 		return new LiquidTank[] { new LiquidTank(Block.lavaStill.blockID, fuel, maxFuel) };
-	}	@Override
+	}	
+	
+	@Override
 	public int addItem(ItemStack stack, boolean doAdd, Orientations from) {		
 		int slot = 0;		
 

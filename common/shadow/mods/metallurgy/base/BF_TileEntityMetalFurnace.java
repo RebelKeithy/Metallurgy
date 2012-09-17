@@ -423,6 +423,8 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements ISidedInven
     {
 		if (i == 11) {
 			direction = j;
+		}if (i == 4) {
+			furnaceCookTime = j;
 		}
 	}
 
@@ -463,6 +465,7 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements ISidedInven
 			dos.writeInt(direction);
 			dos.writeInt(furnaceTimeBase);
 			dos.writeInt(furnaceBurnTime);
+			dos.writeInt(furnaceCookTime);
 		} catch (IOException e) {
 			// UNPOSSIBLE?
 		}

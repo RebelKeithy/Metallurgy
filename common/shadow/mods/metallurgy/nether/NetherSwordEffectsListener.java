@@ -9,7 +9,10 @@ public class NetherSwordEffectsListener implements HitEntityListener {
 
 	@Override
 	public boolean hitEntity(ItemStack itemstack, EntityLiving entityliving, EntityLiving player) {
-				
+			
+		if(Math.random() < 0.7)
+			return false;
+		
 		if(itemstack.getItem().shiftedIndex == mod_MetallurgyNether.ores.Sword[0].shiftedIndex)
 		{
 			entityliving.setFire(2);
