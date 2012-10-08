@@ -59,9 +59,9 @@ public class ConfigUtility  {
 	
 	public static void init()
 	{
-		File file = new File(mod_MetallurgyUtility.proxy.getMinecraftDir() + "/config/Metallurgy");
+		File file = new File(MetallurgyUtility.proxy.getMinecraftDir() + "/config/Metallurgy");
     	file.mkdir();
-    	File newFile = new File(mod_MetallurgyUtility.proxy.getMinecraftDir() + "/config/Metallurgy/MetallurgyUtility.cfg");
+    	File newFile = new File(MetallurgyUtility.proxy.getMinecraftDir() + "/config/Metallurgy/MetallurgyUtility.cfg");
     	
         try
         {

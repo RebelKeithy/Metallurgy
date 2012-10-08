@@ -29,9 +29,9 @@ public class ConfigEnder  {
 	
 	public static void init()
 	{
-		File file = new File(mod_MetallurgyEnder.proxy.getMinecraftDir() + "/config/Metallurgy");
+		File file = new File(MetallurgyEnder.proxy.getMinecraftDir() + "/config/Metallurgy");
     	file.mkdir();
-    	File newFile = new File(mod_MetallurgyEnder.proxy.getMinecraftDir() + "/config/Metallurgy/MetallurgyEnder.cfg");
+    	File newFile = new File(MetallurgyEnder.proxy.getMinecraftDir() + "/config/Metallurgy/MetallurgyEnder.cfg");
     	
         try
         {

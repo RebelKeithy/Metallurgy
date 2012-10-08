@@ -19,8 +19,8 @@ public class OreEnderEnum implements IMetalSetEnum{
 	private final int[] pickLevels = {3, 0};
 	private int[] metalLevels = {5, 6};
 
-	public static int[] defaultVeinCount = {12, 10};
-	public static int[] defaultOreCount = {6, 6};
+	public static int[] defaultVeinCount = {6, 3};
+	public static int[] defaultOreCount = {4, 2};
 	public static int[] defaultOreHeight = {128, 128};
 
 	public static EnumArmorMaterial eximiteArmor = EnumHelper.addArmorMaterial("Eximite", 24, new int[] {4, 6, 5, 4}, 25);

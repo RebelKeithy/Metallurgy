@@ -15,14 +15,14 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import shadow.mods.metallurgy.*;
 import shadow.mods.metallurgy.base.*;
-import shadow.mods.metallurgy.fantasy.mod_MetallurgyFantasy;
+import shadow.mods.metallurgy.fantasy.MetallurgyFantasy;
 
 public class ClientProxy extends CommonProxy{
 	
 	public void addNames()
 	{
-		CoreClientProxy.addNamesToSet(mod_MetallurgyBaseMetals.alloys);
-		CoreClientProxy.addNamesToSet(mod_MetallurgyBaseMetals.ores);
+		CoreClientProxy.addNamesToSet(MetallurgyBaseMetals.alloys);
+		CoreClientProxy.addNamesToSet(MetallurgyBaseMetals.ores);
 		
 		ModLoader.addName(mod_Gold.GoldDust, "Gold Dust");
 		

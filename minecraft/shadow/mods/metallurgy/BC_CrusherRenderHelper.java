@@ -39,6 +39,6 @@ public class BC_CrusherRenderHelper implements ISimpleBlockRenderingHandler
 	@Override
 	public int getRenderId() {
 		// TODO Auto-generated method stub
-		return mod_MetallurgyCore.crusher.getRenderType();
+		return MetallurgyCore.crusher.getRenderType();
 	}
 }

@@ -1,9 +1,11 @@
 package shadow.mods.metallurgy;
 
 import net.minecraft.src.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BC_CrusherRecipes
@@ -71,11 +73,46 @@ public class BC_CrusherRecipes
         {
             return null;
         }
+        
         ItemStack ret = (ItemStack)metaSmeltingList.get(Arrays.asList(item.itemID, item.getItemDamage()));
+        
         if (ret != null) 
         {
             return ret;
         }
-        return (ItemStack)smeltingList.get(Integer.valueOf(item.itemID));
+		
+		ret = (ItemStack)smeltingList.get(Integer.valueOf(item.itemID));
+		if(ret != null)
+		{
+			return ret;
+		}
+
+		for(String name : OreDictionary.getOreNames())
+		{
+			for(ItemStack oreItem : OreDictionary.getOres(name))
+			{
+				if(oreItem.itemID == item.itemID && oreItem.getItemDamage() == item.getItemDamage())
+				{
+					String replacement = "";
+					replacement = name.contains("ore") ? "ore" : replacement;
+					replacement = name.contains("ingot") ? "ingot" : replacement;
+					replacement = name.contains("item") ? "item" : replacement;
+					if(name.contains("dust"))
+						return null;
+					name = name.replace(replacement, "dust");
+					List<ItemStack> retList = OreDictionary.getOres(name);
+					System.out.println("found " + retList.size());
+					if(retList.size() > 0)
+					{
+						ret = retList.get(0).copy();
+						if(replacement.equals("ore"))
+							ret.stackSize = 2;
+						return ret;
+					}
+				}
+			}
+		}
+		
+		return null;
     }
 }

@@ -7,8 +7,8 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 
-import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
-import shadow.mods.metallurgy.fantasy.mod_MetallurgyFantasy;
+import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
+import shadow.mods.metallurgy.fantasy.MetallurgyFantasy;
 import net.minecraft.src.Block;
 import net.minecraft.src.BlockContainer;
 import net.minecraft.src.CreativeTabs;

@@ -3,7 +3,7 @@ package shadow.mods.metallurgy.fantasy;
 import java.util.Random;
 
 import shadow.mods.metallurgy.base.BF_TileEntityMetalFurnace;
-import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
+import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
@@ -35,7 +35,7 @@ public class PacketHandler implements IPacketHandler
 			int speed = dat.readInt();
 			int burnTime = dat.readInt();
 	
-			World world = mod_MetallurgyBaseMetals.proxy.getClientWorld();
+			World world = MetallurgyFantasy.proxy.getClientWorld();
 			TileEntity te = world.getBlockTileEntity(x, y, z);
 			FF_TileEntityMetalFurnace icte = null;
 			if (te instanceof FF_TileEntityMetalFurnace) {

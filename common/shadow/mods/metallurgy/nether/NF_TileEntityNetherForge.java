@@ -302,7 +302,6 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
         if(prevIsBurning != isBurning)
         {
         	checkBurning = true;
-            //NF_BlockNetherForge.updateFurnaceBlockState(this.isBurning, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
         }
 
         if (checkBurning)
@@ -423,6 +422,8 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 			dos.writeInt(furnaceTimeBase);
 			dos.writeInt(furnaceBurnTime);
 			dos.writeInt(furnaceCookTime);
+			dos.writeInt(fuel);
+			dos.writeInt(maxFuel);
 		} catch (IOException e) {
 			// UNPOSSIBLE?
 		}

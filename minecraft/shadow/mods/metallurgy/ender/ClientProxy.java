@@ -21,8 +21,8 @@ public class ClientProxy extends shadow.mods.metallurgy.ender.CommonProxy{
 	
 	public void addNames()
 	{
-		CoreClientProxy.addNamesToSet(mod_MetallurgyEnder.alloys);
-		CoreClientProxy.addNamesToSet(mod_MetallurgyEnder.ores);
+		CoreClientProxy.addNamesToSet(MetallurgyEnder.alloys);
+		CoreClientProxy.addNamesToSet(MetallurgyEnder.ores);
 	}
 	
 	@Override

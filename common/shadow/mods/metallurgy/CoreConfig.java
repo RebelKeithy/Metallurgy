@@ -4,7 +4,7 @@ package shadow.mods.metallurgy;
 import java.io.File;
 import java.io.IOException;
 
-import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
+import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
@@ -58,9 +58,9 @@ public class CoreConfig  {
 	
 	public static void init()
 	{
-		File file = new File(mod_MetallurgyCore.proxy.getMinecraftDir() + "/config/Metallurgy");
+		File file = new File(MetallurgyCore.proxy.getMinecraftDir() + "/config/Metallurgy");
     	file.mkdir();
-    	File newFile = new File(mod_MetallurgyCore.proxy.getMinecraftDir() + "/config/Metallurgy/MetallurgyCore.cfg");
+    	File newFile = new File(MetallurgyCore.proxy.getMinecraftDir() + "/config/Metallurgy/MetallurgyCore.cfg");
     	
         try
         {
@@ -112,7 +112,7 @@ public class CoreConfig  {
     	GoldOreHeight = config.getOrCreateIntProperty("Gold Ore Height", "Ore Generation", 128).getInt(128);
     	
     	// Iron Generation
-    	IronVeinCount = config.getOrCreateIntProperty("Iron Vein Count", "Ore Generation", 9).getInt(9);
+    	IronVeinCount = config.getOrCreateIntProperty("Iron Vein Count", "Ore Generation", 10).getInt(10);
     	IronOreCount = config.getOrCreateIntProperty("Iron Ore Count", "Ore Generation", 5).getInt(5);
     	IronOreHeight = config.getOrCreateIntProperty("Iron Ore Height", "Ore Generation", 128).getInt(128);
 
@@ -120,11 +120,11 @@ public class CoreConfig  {
     	vanillaBrickID = config.getOrCreateBlockIdProperty("Bricks", 905).getInt(905);
     	crushersEnabled = config.getOrCreateBooleanProperty("Enable Crushers", "Machines", true).getBoolean(true);
 
-    	stoneCrusherSpeed = config.getOrCreateIntProperty("Stone Speed", "Crushers", 32000).getInt(32000)/1000f;
+    	stoneCrusherSpeed = config.getOrCreateIntProperty("Stone Speed", "Crushers", 60000).getInt(60000)/1000f;
     	copperCrusherSpeed = config.getOrCreateIntProperty("Copper Speed", "Crushers", 30000).getInt(30000)/1000f;
-    	bronzeCrusherSpeed = config.getOrCreateIntProperty("Bronze Speed", "Crushers", 28000).getInt(28000)/1000f;
-    	ironCrusherSpeed = config.getOrCreateIntProperty("Iron Speed", "Crushers", 25000).getInt(25000)/1000f;
-    	steelCrusherSpeed = config.getOrCreateIntProperty("Steel Speed", "Crushers", 21000).getInt(21000)/1000f;
+    	bronzeCrusherSpeed = config.getOrCreateIntProperty("Bronze Speed", "Crushers", 20000).getInt(20000)/1000f;
+    	ironCrusherSpeed = config.getOrCreateIntProperty("Iron Speed", "Crushers", 15000).getInt(15000)/1000f;
+    	steelCrusherSpeed = config.getOrCreateIntProperty("Steel Speed", "Crushers", 10000).getInt(10000)/1000f;
     	config.save();
 	}
 	

@@ -6,7 +6,7 @@ import java.util.Random;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 
-import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
+import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 import net.minecraft.src.BlockContainer;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EntityXPOrb;
@@ -42,7 +42,7 @@ public class FF_BlockMetalFurnace extends BlockContainer
     }
     
 	public String getTextureFile() {
-		return mod_FantasyFurnace.texturePath;
+		return FantasyFurnace.texturePath;
 	}
 
     /**
@@ -50,7 +50,7 @@ public class FF_BlockMetalFurnace extends BlockContainer
      */
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return mod_FantasyFurnace.furnaceID;
+        return FantasyFurnace.furnaceID;
     }
     
     @Override
@@ -129,31 +129,31 @@ public class FF_BlockMetalFurnace extends BlockContainer
             
         	if (var6 == 4)
             {
-        		mod_MetallurgyFantasy.proxy.spawnParticle("abstractorLarge", par1World, (double)(var7 - var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
+        		MetallurgyFantasy.proxy.spawnParticle("abstractorLarge", par1World, (double)(var7 - var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
                 var8 = (float)par3 + 0.0F + par5Random.nextFloat() * 6.0F / 16.0F + 0.5F;
                 var11 = par5Random.nextFloat() * 0.6F - 0.3F;
-            	mod_MetallurgyFantasy.proxy.spawnParticle("abstractorSmall", par1World, (double)(var7 - var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
+            	MetallurgyFantasy.proxy.spawnParticle("abstractorSmall", par1World, (double)(var7 - var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
             }
             else if (var6 == 5)
             {
-        		mod_MetallurgyFantasy.proxy.spawnParticle("abstractorLarge", par1World, (double)(var7 + var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
+        		MetallurgyFantasy.proxy.spawnParticle("abstractorLarge", par1World, (double)(var7 + var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
                 var8 = (float)par3 + 0.0F + par5Random.nextFloat() * 6.0F / 16.0F + 0.5F;
                 var11 = par5Random.nextFloat() * 0.6F - 0.3F;
-            	mod_MetallurgyFantasy.proxy.spawnParticle("abstractorSmall", par1World, (double)(var7 + var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
+            	MetallurgyFantasy.proxy.spawnParticle("abstractorSmall", par1World, (double)(var7 + var10), (double)var8, (double)(var9 + var11), 0.0D, 0.0D, 0.0D);
             }
             else if (var6 == 2)
             {
-        		mod_MetallurgyFantasy.proxy.spawnParticle("abstractorLarge", par1World, (double)(var7 + var11), (double)var8, (double)(var9 - var10), 0.0D, 0.0D, 0.0D);
+        		MetallurgyFantasy.proxy.spawnParticle("abstractorLarge", par1World, (double)(var7 + var11), (double)var8, (double)(var9 - var10), 0.0D, 0.0D, 0.0D);
                 var8 = (float)par3 + 0.0F + par5Random.nextFloat() * 6.0F / 16.0F + 0.5F;
                 var11 = par5Random.nextFloat() * 0.6F - 0.3F;
-            	mod_MetallurgyFantasy.proxy.spawnParticle("abstractorSmall", par1World, (double)(var7 + var11), (double)var8, (double)(var9 - var10), 0.0D, 0.0D, 0.0D);
+            	MetallurgyFantasy.proxy.spawnParticle("abstractorSmall", par1World, (double)(var7 + var11), (double)var8, (double)(var9 - var10), 0.0D, 0.0D, 0.0D);
             }
             else if (var6 == 3)
             {
-        		mod_MetallurgyFantasy.proxy.spawnParticle("abstractorLarge", par1World, (double)(var7 + var11), (double)var8, (double)(var9 + var10), 0.0D, 0.0D, 0.0D);
+        		MetallurgyFantasy.proxy.spawnParticle("abstractorLarge", par1World, (double)(var7 + var11), (double)var8, (double)(var9 + var10), 0.0D, 0.0D, 0.0D);
                 var8 = (float)par3 + 0.0F + par5Random.nextFloat() * 6.0F / 16.0F + 0.5F;
                 var11 = par5Random.nextFloat() * 0.6F - 0.3F;
-            	mod_MetallurgyFantasy.proxy.spawnParticle("abstractorSmall", par1World, (double)(var7 + var11), (double)var8, (double)(var9 + var10), 0.0D, 0.0D, 0.0D);
+            	MetallurgyFantasy.proxy.spawnParticle("abstractorSmall", par1World, (double)(var7 + var11), (double)var8, (double)(var9 + var10), 0.0D, 0.0D, 0.0D);
             }
         }
     }
@@ -178,17 +178,21 @@ public class FF_BlockMetalFurnace extends BlockContainer
         {
             return true;
         }
-        else
+
+        if(par5EntityPlayer.isSneaking())
         {
-            FF_TileEntityMetalFurnace var6 = (FF_TileEntityMetalFurnace)par1World.getBlockTileEntity(par2, par3, par4);
-
-            if (var6 != null)
-            {
-                par5EntityPlayer.openGui(mod_MetallurgyFantasy.instance, 0, par1World, par2, par3, par4);
-            }
-
-            return true;
+        	return false;
         }
+
+        FF_TileEntityMetalFurnace var6 = (FF_TileEntityMetalFurnace)par1World.getBlockTileEntity(par2, par3, par4);
+
+        if (var6 != null)
+        {
+            par5EntityPlayer.openGui(MetallurgyFantasy.instance, 0, par1World, par2, par3, par4);
+        }
+
+        return true;
+
     }
 
     /**

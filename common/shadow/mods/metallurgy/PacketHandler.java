@@ -24,7 +24,7 @@ public class PacketHandler implements IPacketHandler
 		int burnTime = dat.readInt();
 		int cookTime = dat.readInt();
 		
-		World world = mod_MetallurgyCore.proxy.getClientWorld();
+		World world = MetallurgyCore.proxy.getClientWorld();
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		BC_TileEntityCrusher icte = null;
 		if (te instanceof BC_TileEntityCrusher) {

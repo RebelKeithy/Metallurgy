@@ -41,9 +41,9 @@ public class ConfigBase  {
 	
 	public static void init()
 	{
-		File file = new File(mod_MetallurgyBaseMetals.proxy.getMinecraftDir() + "/config/Metallurgy");
+		File file = new File(MetallurgyBaseMetals.proxy.getMinecraftDir() + "/config/Metallurgy");
     	file.mkdir();
-    	File newFile = new File(mod_MetallurgyBaseMetals.proxy.getMinecraftDir() + "/config/Metallurgy/MetallurgyBase.cfg");
+    	File newFile = new File(MetallurgyBaseMetals.proxy.getMinecraftDir() + "/config/Metallurgy/MetallurgyBase.cfg");
     	
         try
         {

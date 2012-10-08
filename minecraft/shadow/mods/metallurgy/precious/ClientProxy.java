@@ -17,15 +17,15 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import shadow.mods.metallurgy.CoreClientProxy;
 import shadow.mods.metallurgy.MetallurgyArmor;
-import shadow.mods.metallurgy.fantasy.mod_MetallurgyFantasy;
+import shadow.mods.metallurgy.fantasy.MetallurgyFantasy;
 import shadow.mods.metallurgy.precious.*;
 
 public class ClientProxy extends CommonProxy{
 
 	public void addNames()
 	{
-		CoreClientProxy.addNamesToSet(mod_MetallurgyPrecious.alloys);
-		CoreClientProxy.addNamesToSet(mod_MetallurgyPrecious.ores);
+		CoreClientProxy.addNamesToSet(MetallurgyPrecious.alloys);
+		CoreClientProxy.addNamesToSet(MetallurgyPrecious.ores);
 
 		LanguageRegistry.instance().addStringLocalization("tile.PreciousChest.BrassChest.name", "Brass Chest");
 		LanguageRegistry.instance().addStringLocalization("tile.PreciousChest.SilverChest.name", "Silver Chest");

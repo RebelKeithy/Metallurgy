@@ -14,14 +14,14 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import shadow.mods.metallurgy.*;
-import shadow.mods.metallurgy.precious.mod_MetallurgyPrecious;
+import shadow.mods.metallurgy.precious.MetallurgyPrecious;
 
 public class ClientProxy extends shadow.mods.metallurgy.nether.CommonProxy{
 	
 	public void addNames()
 	{
-		CoreClientProxy.addNamesToSet(mod_MetallurgyNether.alloys);
-		CoreClientProxy.addNamesToSet(mod_MetallurgyNether.ores);
+		CoreClientProxy.addNamesToSet(MetallurgyNether.alloys);
+		CoreClientProxy.addNamesToSet(MetallurgyNether.ores);
 		
 		
 		for(String name : NF_GuiNetherForge.names)

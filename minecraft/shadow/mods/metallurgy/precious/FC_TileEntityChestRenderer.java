@@ -83,7 +83,6 @@ public class FC_TileEntityChestRenderer extends TileEntitySpecialRenderer
         {
             Block var10 = par1TileEntityChest.getBlockType();
             var9 = par1TileEntityChest.getDirection();
-
         }
 
         ModelChest var14;

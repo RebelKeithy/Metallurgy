@@ -58,7 +58,7 @@ public class UtilityWorldGen implements IWorldGenerator
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(ConfigUtility.BitumenOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Bitumen.meta, ConfigUtility.BitumenOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new MetallurgyWorldGenMinable(MetallurgyUtility.vein.blockID, 4, ConfigUtility.BitumenOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 
@@ -69,7 +69,7 @@ public class UtilityWorldGen implements IWorldGenerator
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(ConfigUtility.MagnesiumOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Magnesium.meta, ConfigUtility.MagnesiumOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new MetallurgyWorldGenMinable(MetallurgyUtility.vein.blockID, 3, ConfigUtility.MagnesiumOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 	
@@ -79,7 +79,7 @@ public class UtilityWorldGen implements IWorldGenerator
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(ConfigUtility.PhosphoriteOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Phosphorite.meta, ConfigUtility.PhosphoriteOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new MetallurgyWorldGenMinable(MetallurgyUtility.vein.blockID, 0, ConfigUtility.PhosphoriteOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 
@@ -89,7 +89,7 @@ public class UtilityWorldGen implements IWorldGenerator
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(ConfigUtility.PotashOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Potash.meta, ConfigUtility.PotashOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new MetallurgyWorldGenMinable(MetallurgyUtility.vein.blockID, 5, ConfigUtility.PotashOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 
@@ -99,7 +99,7 @@ public class UtilityWorldGen implements IWorldGenerator
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(ConfigUtility.SaltpeterOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Saltpeter.meta, ConfigUtility.SaltpeterOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new MetallurgyWorldGenMinable(MetallurgyUtility.vein.blockID, 2, ConfigUtility.SaltpeterOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 
@@ -109,7 +109,7 @@ public class UtilityWorldGen implements IWorldGenerator
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(ConfigUtility.SulfurOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new MetallurgyWorldGenMinable(mod_MetallurgyUtility.vein.blockID, mod_Sulfur.meta, ConfigUtility.SulfurOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
+			(new MetallurgyWorldGenMinable(MetallurgyUtility.vein.blockID, 1, ConfigUtility.SulfurOreCount)).generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
 }

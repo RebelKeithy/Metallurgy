@@ -37,6 +37,6 @@ public class FC_ChestRenderHelper implements ISimpleBlockRenderingHandler
 	@Override
 	public int getRenderId() {
 		// TODO Auto-generated method stub
-		return mod_MetallurgyPrecious.PreciousChest.getRenderType();
+		return MetallurgyPrecious.PreciousChest.getRenderType();
 	}
 }

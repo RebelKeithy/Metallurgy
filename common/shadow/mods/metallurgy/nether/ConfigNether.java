@@ -20,6 +20,7 @@ public class ConfigNether  {
 	public static boolean[] alloyEnabled = new boolean[3];
 	public static boolean[] metalEnabled = new boolean[10];
 	public static boolean furnaceEnabled;
+	public static boolean midasiumEnabled;
 
 	public static float[] speeds = new float[8];
 	public static int[] buckets = new int[8];
@@ -42,9 +43,9 @@ public class ConfigNether  {
 	
 	public static void init()
 	{
-		File file = new File(mod_MetallurgyNether.proxy.getMinecraftDir() + "/config/Metallurgy");
+		File file = new File(MetallurgyNether.proxy.getMinecraftDir() + "/config/Metallurgy");
     	file.mkdir();
-    	File newFile = new File(mod_MetallurgyNether.proxy.getMinecraftDir() + "/config/Metallurgy/MetallurgyNether.cfg");
+    	File newFile = new File(MetallurgyNether.proxy.getMinecraftDir() + "/config/Metallurgy/MetallurgyNether.cfg");
     	
         try
         {
@@ -78,6 +79,8 @@ public class ConfigNether  {
     	for(int i = 0; i < 10; i++)
     		metalEnabled[i] = config.getOrCreateBooleanProperty(OreNetherEnum.names[i] + " Enabled", "Ores", true).getBoolean(true);
 
+    	furnaceEnabled = config.getOrCreateBooleanProperty("Enable Smelters", "Options", true).getBoolean(true);
+    	midasiumEnabled = config.getOrCreateBooleanProperty("Enable Midasium Recipes", "Options", true).getBoolean(true);
 
     	
     	speeds[0] = config.getOrCreateIntProperty("Ignatius", "Furnace Speed", 6000).getInt(6000)/1000f;

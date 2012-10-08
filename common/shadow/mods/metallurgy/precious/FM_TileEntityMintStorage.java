@@ -195,7 +195,7 @@ public class FM_TileEntityMintStorage extends TileEntity implements ISpecialInve
 
         if (++this.ticksSinceSync % 20 * 4 == 0)
         {
-            this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, mod_MetallurgyPrecious.PreciousChest.blockID, 2, this.direction);
+            this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, MetallurgyPrecious.PreciousChest.blockID, 2, this.direction);
         }
     }
 
@@ -217,13 +217,13 @@ public class FM_TileEntityMintStorage extends TileEntity implements ISpecialInve
     public void openChest()
     {
         ++this.numUsingPlayers;
-        this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, mod_MetallurgyPrecious.PreciousChest.blockID, 1, this.numUsingPlayers);
+        this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, MetallurgyPrecious.PreciousChest.blockID, 1, this.numUsingPlayers);
     }
 
     public void closeChest()
     {
         --this.numUsingPlayers;
-        this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, mod_MetallurgyPrecious.PreciousChest.blockID, 1, this.numUsingPlayers);
+        this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, MetallurgyPrecious.PreciousChest.blockID, 1, this.numUsingPlayers);
     }
 
     /**

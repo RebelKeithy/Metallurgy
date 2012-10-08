@@ -21,15 +21,15 @@ public class ClientProxy extends shadow.mods.metallurgy.utility.CommonProxy{
 		ModLoader.addLocalization("tile.UtilityVein.BitumenOre.name", "Bitumen Ore");
 		ModLoader.addLocalization("tile.UtilityVein.PotashOre.name", "Potash Ore");
 
-		ModLoader.addName(mod_Bitumen.bitumen, "Bitumen");
-		ModLoader.addName(mod_Bitumen.tar, "Tar");
-		ModLoader.addName(mod_Saltpeter.saltpeter, "Saltpeter");
-		ModLoader.addName(mod_Potash.potash, "Potash");
-		ModLoader.addName(mod_Potash.fertilizer, "Fertilizer");
-		ModLoader.addName(mod_Magnesium.magnesium, "Magnesium");
-		ModLoader.addName(mod_Phosphorite.phosphorite, "Phosphorite");
-		ModLoader.addName(mod_Phosphorite.phosphorus, "Phosphorous");
-		ModLoader.addName(mod_Sulfur.sulfur, "Sulfur");
+		ModLoader.addName(MetallurgyUtility.bitumen, "Bitumen");
+		ModLoader.addName(MetallurgyUtility.tar, "Tar");
+		ModLoader.addName(MetallurgyUtility.saltpeter, "Saltpeter");
+		ModLoader.addName(MetallurgyUtility.potash, "Potash");
+		ModLoader.addName(MetallurgyUtility.fertilizer, "Fertilizer");
+		ModLoader.addName(MetallurgyUtility.magnesium, "Magnesium");
+		ModLoader.addName(MetallurgyUtility.phosphorite, "Phosphorite");
+		ModLoader.addName(MetallurgyUtility.phosphorus, "Phosphorous");
+		ModLoader.addName(MetallurgyUtility.sulfur, "Sulfur");
 	}
 	
 	@Override

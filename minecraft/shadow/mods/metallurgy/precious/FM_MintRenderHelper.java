@@ -36,6 +36,6 @@ public class FM_MintRenderHelper implements ISimpleBlockRenderingHandler
 	@Override
 	public int getRenderId() {
 		// TODO Auto-generated method stub
-		return mod_MetallurgyPrecious.Mint.getRenderType();
+		return MetallurgyPrecious.Mint.getRenderType();
 	}
 }

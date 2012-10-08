@@ -33,7 +33,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 
-import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
+import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 
 public class FM_BlockMintStorage extends BlockContainer
 {
@@ -190,7 +190,7 @@ public class FM_BlockMintStorage extends BlockContainer
             }
             else
             {
-                par5EntityPlayer.openGui(mod_MetallurgyPrecious.instance, 2, par1World, x, y, z);
+                par5EntityPlayer.openGui(MetallurgyPrecious.instance, 2, par1World, x, y, z);
                 return true;
             }
         }

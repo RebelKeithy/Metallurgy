@@ -22,8 +22,8 @@ public class ClientProxy extends CommonProxy{
 
 	public void addNames()
 	{
-		CoreClientProxy.addNamesToSet(mod_MetallurgyFantasy.alloys);
-		CoreClientProxy.addNamesToSet(mod_MetallurgyFantasy.ores);
+		CoreClientProxy.addNamesToSet(MetallurgyFantasy.alloys);
+		CoreClientProxy.addNamesToSet(MetallurgyFantasy.ores);
 		
 		ModLoader.addLocalization("tile.MetalFantasyFurnace.PrometheumFurnace.name", "Prometheum Abstractor");
 		ModLoader.addLocalization("tile.MetalFantasyFurnace.DeepIronFurnace.name", "Deep Iron Abstractor");
@@ -55,6 +55,12 @@ public class ClientProxy extends CommonProxy{
 			Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)(new EntityAbstractorFX(par1World, par2, par4, par6, par8, par10, par12)));
 		if(string.equals("abstractorSmall"))
 			Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)(new EntitySmallAbstractorFX(par1World, par2, par4, par6, par8, par10, par12)));
+		if(string.equals("fantasyOre"))
+		{
+			EntityOreFX entity = new EntityOreFX(par1World, par2, par4, par6, (float)par8, (float)par10, (float)par12);
+			Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)(entity));
+            ((EntityFX)entity).setRBGColorF((float)par8, (float)par10, (float)par12);
+		}
 	}
 	
 	@Override

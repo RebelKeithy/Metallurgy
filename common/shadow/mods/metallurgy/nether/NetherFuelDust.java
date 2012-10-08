@@ -9,9 +9,9 @@ public class NetherFuelDust implements IFuelHandler{
 
 	@Override
 	public int getBurnTime(ItemStack stack) {
-		if(stack.itemID == mod_MetallurgyNether.ores.Dust[0].shiftedIndex)
+		if(stack.itemID == MetallurgyNether.ores.Dust[0].shiftedIndex)
 			return 3200;
-		if(stack.itemID == mod_MetallurgyNether.ores.Dust[6].shiftedIndex)
+		if(stack.itemID == MetallurgyNether.ores.Dust[6].shiftedIndex)
 			return 25600;
 		return 0;
 	}

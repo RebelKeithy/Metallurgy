@@ -3,7 +3,7 @@ package shadow.mods.metallurgy.precious;
 import java.io.File;
 import java.io.IOException;
 
-import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
+import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
@@ -21,6 +21,9 @@ public class ConfigPrecious  {
 
 	public static boolean[] alloyEnabled = new boolean[2];
 	public static boolean[] metalEnabled = new boolean[3];
+	public static boolean chestsEnabled;
+	public static boolean tradesEnabled;
+	public static boolean mintEnabled;
 
 	public static int ItemStartID;
 
@@ -32,9 +35,9 @@ public class ConfigPrecious  {
 	
 	public static void init()
 	{
-		File file = new File(mod_MetallurgyPrecious.proxy.getMinecraftDir() + "/config/Metallurgy");
+		File file = new File(MetallurgyPrecious.proxy.getMinecraftDir() + "/config/Metallurgy");
     	file.mkdir();
-    	File newFile = new File(mod_MetallurgyPrecious.proxy.getMinecraftDir() + "/config/Metallurgy/MetallurgyPrecious.cfg");
+    	File newFile = new File(MetallurgyPrecious.proxy.getMinecraftDir() + "/config/Metallurgy/MetallurgyPrecious.cfg");
     	
         try
         {
@@ -64,6 +67,10 @@ public class ConfigPrecious  {
         PreciousChestID = config.getOrCreateBlockIdProperty("Chest", 913).getInt(913);
         PreciousMintID = config.getOrCreateBlockIdProperty("Mint", 914).getInt(914);
         PreciousMintLoaderID = config.getOrCreateBlockIdProperty("Mint Loader", 925).getInt(925);
+        
+    	chestsEnabled = config.getOrCreateBooleanProperty("Enable Chests", "Options", true).getBoolean(true);
+    	tradesEnabled = config.getOrCreateBooleanProperty("Enable Trades", "Options", true).getBoolean(true);
+    	mintEnabled = config.getOrCreateBooleanProperty("Enable Mint", "Options", true).getBoolean(true);
 
     	dimensions = config.getOrCreateProperty("Dimensions", "Dimensions", "0 2-100000").value;
     	

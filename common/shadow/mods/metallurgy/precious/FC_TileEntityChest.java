@@ -244,8 +244,8 @@ public class FC_TileEntityChest extends TileEntity implements IInventory
 
         if (++this.ticksSinceSync % 20 * 4 == 0)
         {
-            this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, mod_MetallurgyPrecious.PreciousChest.blockID, 2, this.direction);
-            this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, mod_MetallurgyPrecious.PreciousChest.blockID, 3, this.type);
+            this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, MetallurgyPrecious.PreciousChest.blockID, 2, this.direction);
+            this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, MetallurgyPrecious.PreciousChest.blockID, 3, this.type);
         }
 
         this.prevLidAngle = this.lidAngle;
@@ -317,13 +317,13 @@ public class FC_TileEntityChest extends TileEntity implements IInventory
     public void openChest()
     {
         ++this.numUsingPlayers;
-        this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, mod_MetallurgyPrecious.PreciousChest.blockID, 1, this.numUsingPlayers);
+        this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, MetallurgyPrecious.PreciousChest.blockID, 1, this.numUsingPlayers);
     }
 
     public void closeChest()
     {
         --this.numUsingPlayers;
-        this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, mod_MetallurgyPrecious.PreciousChest.blockID, 1, this.numUsingPlayers);
+        this.worldObj.addBlockEvent(this.xCoord, this.yCoord, this.zCoord, MetallurgyPrecious.PreciousChest.blockID, 1, this.numUsingPlayers);
     }
 
     /**

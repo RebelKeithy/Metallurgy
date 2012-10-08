@@ -7,7 +7,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import shadow.mods.metallurgy.*;
 import shadow.mods.metallurgy.base.ConfigBase;
-import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
+import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 import shadow.mods.metallurgy.fantasy.FF_EssenceRecipes;
 
 import net.minecraft.client.Minecraft;
@@ -39,7 +39,7 @@ public class mod_Gold
 		BC_CrusherRecipes.smelting().addCrushing(Block.oreGold.blockID, 0, new ItemStack(GoldDust, 2));
 		BC_CrusherRecipes.smelting().addCrushing(Item.ingotGold.shiftedIndex, new ItemStack(GoldDust, 1));
 
-		if(mod_MetallurgyCore.hasFantasy)
+		if(MetallurgyCore.hasFantasy)
 			FF_EssenceRecipes.essence().addEssenceAmount(Item.ingotGold.shiftedIndex, 6);
 		 
 		//RecipeHelper.addBrickRecipes(mod_MetallurgyBaseMetals.BaseMetalsBrick.blockID, meta, Item.ingotGold);

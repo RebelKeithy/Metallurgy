@@ -1,7 +1,7 @@
 package shadow.mods.metallurgy.base;
 
 import shadow.mods.metallurgy.BC_TileEntityCrusher;
-import shadow.mods.metallurgy.mod_MetallurgyCore;
+import shadow.mods.metallurgy.MetallurgyCore;
 
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
@@ -27,7 +27,7 @@ public class PacketHandler implements IPacketHandler
 		int burnTime = dat.readInt();
 		int cookTime = dat.readInt();
 		
-		World world = mod_MetallurgyBaseMetals.proxy.getClientWorld();
+		World world = MetallurgyBaseMetals.proxy.getClientWorld();
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		BF_TileEntityMetalFurnace icte = null;
 		if (te instanceof BF_TileEntityMetalFurnace) {

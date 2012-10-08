@@ -1,7 +1,7 @@
 package shadow.mods.metallurgy.nether;
 
 import shadow.mods.metallurgy.BC_TileEntityCrusher;
-import shadow.mods.metallurgy.mod_MetallurgyCore;
+import shadow.mods.metallurgy.MetallurgyCore;
 
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;
@@ -24,8 +24,11 @@ public class PacketHandler implements IPacketHandler
 		int direction = dat.readInt();
 		int speed = dat.readInt();
 		int burnTime = dat.readInt();
+		int cookTime = dat.readInt();
+		int fuel = dat.readInt();
+		int maxFuel = dat.readInt();
 		
-		World world = mod_MetallurgyCore.proxy.getClientWorld();
+		World world = MetallurgyCore.proxy.getClientWorld();
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		NF_TileEntityNetherForge icte = null;
 		if (te instanceof NF_TileEntityNetherForge) {
@@ -33,6 +36,9 @@ public class PacketHandler implements IPacketHandler
 			icte.setDirection(direction);
 			icte.furnaceTimeBase = speed;
 			icte.furnaceBurnTime = burnTime;
+			icte.furnaceCookTime = cookTime;
+			icte.fuel = fuel;
+			icte.maxFuel= maxFuel;
 		}
 
 		world.markBlockNeedsUpdate(x, y, z);	}}

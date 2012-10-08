@@ -3,7 +3,7 @@ package shadow.mods.metallurgy.fantasy;
 import java.io.File;
 import java.io.IOException;
 
-import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
+import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 import shadow.mods.metallurgy.nether.AlloyNetherEnum;
 import shadow.mods.metallurgy.nether.OreNetherEnum;
 
@@ -37,9 +37,9 @@ public class ConfigFantasy  {
 	
 	public static void init()
 	{
-		File file = new File(mod_MetallurgyFantasy.proxy.getMinecraftDir() + "/config/Metallurgy");
+		File file = new File(MetallurgyFantasy.proxy.getMinecraftDir() + "/config/Metallurgy");
     	file.mkdir();
-    	File newFile = new File(mod_MetallurgyFantasy.proxy.getMinecraftDir() + "/config/Metallurgy/MetallurgyFantasy.cfg");
+    	File newFile = new File(MetallurgyFantasy.proxy.getMinecraftDir() + "/config/Metallurgy/MetallurgyFantasy.cfg");
     	
         try
         {
@@ -57,6 +57,8 @@ public class ConfigFantasy  {
 
         /* Load the configuration file */
         config.load();
+        
+        furnaceEnabled = config.getOrCreateBooleanProperty("Enable Abstractors", "Machines", true).getBoolean(true);
         
         FantasyMetalsVeinID = config.getOrCreateBlockIdProperty("Metal Ore", 919).getInt(919);
     	FantasyMetalsBrickID = config.getOrCreateBlockIdProperty("Metal Brick", 920).getInt(920);

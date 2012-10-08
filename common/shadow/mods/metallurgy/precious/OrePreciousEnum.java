@@ -22,8 +22,8 @@ public class OrePreciousEnum implements IMetalSetEnum{
 	private final int[] dungeonLootChances = {40, 18, 4};
 	private final int[] dungeonLootAmounts = {4, 3, 1};
 
-	public static int[] defaultVeinCount = {8, 6, 3};
-	public static int[] defaultOreCount = {6, 6, 3};
+	public static int[] defaultVeinCount = {6, 5, 3};
+	public static int[] defaultOreCount = {5, 5, 3};
 	public static int[] defaultOreHeight = {128, 128, 128};
 
 	public static EnumArmorMaterial silverArmor = EnumHelper.addArmorMaterial("Silver", 5, new int[] {2, 4, 3, 2}, 20);

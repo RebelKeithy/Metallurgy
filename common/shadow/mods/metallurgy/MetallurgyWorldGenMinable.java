@@ -2,7 +2,7 @@ package shadow.mods.metallurgy;
 
 import java.util.Random;
 
-import shadow.mods.metallurgy.precious.mod_MetallurgyPrecious;
+import shadow.mods.metallurgy.precious.MetallurgyPrecious;
 
 import net.minecraft.src.Block;
 import net.minecraft.src.MathHelper;
@@ -69,6 +69,7 @@ public class MetallurgyWorldGenMinable extends WorldGenerator
 
                                 if (var39 * var39 + var42 * var42 + var45 * var45 < 1.0D && par1World.getBlockId(var38, var41, var44) == Block.stone.blockID)
                                 {
+                                	MetalSet.oreSpawnCount++;
                                     par1World.setBlock(var38, var41, var44, this.minableBlockId);
                                     par1World.setBlockMetadata(var38, var41, var44, this.metadata);
                                 }

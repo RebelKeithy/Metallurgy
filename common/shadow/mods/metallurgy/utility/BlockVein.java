@@ -32,17 +32,17 @@ public class BlockVein extends Block
 	@Override
 	public int idDropped(int metadata, Random random, int par3) {
 		if(metadata == 0)
-			return mod_Phosphorite.phosphorus.shiftedIndex;
+			return MetallurgyUtility.phosphorus.shiftedIndex;
 		if(metadata == 1)
-			return mod_Sulfur.sulfur.shiftedIndex;
+			return MetallurgyUtility.sulfur.shiftedIndex;
 		if(metadata == 2)
-			return mod_Saltpeter.saltpeter.shiftedIndex;
+			return MetallurgyUtility.saltpeter.shiftedIndex;
 		if(metadata == 3)
-			return mod_Magnesium.magnesium.shiftedIndex;
+			return MetallurgyUtility.magnesium.shiftedIndex;
 		if(metadata == 4)
-			return mod_Bitumen.bitumen.shiftedIndex;
+			return MetallurgyUtility.bitumen.shiftedIndex;
 		if(metadata == 5)
-			return mod_Potash.potash.shiftedIndex;
+			return MetallurgyUtility.potash.shiftedIndex;
 		return blockID;
 	}
 
@@ -67,7 +67,7 @@ public class BlockVein extends Block
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
-		for (int n = 0; n < 5; n++) {
+		for (int n = 0; n < 6; n++) {
 			par3List.add(new ItemStack(this, 1, n));
 		}
 	}

@@ -168,17 +168,20 @@ public class BF_BlockMetalFurnace extends BlockContainer
         {
             return true;
         }
-        else
+
+        if(par5EntityPlayer.isSneaking())
         {
-            BF_TileEntityMetalFurnace var6 = (BF_TileEntityMetalFurnace)par1World.getBlockTileEntity(par2, par3, par4);
-
-            if (var6 != null)
-            {
-                par5EntityPlayer.openGui(mod_MetallurgyBaseMetals.instance, 0, par1World, par2, par3, par4);
-            }
-
-            return true;
+        	return false;
         }
+
+        BF_TileEntityMetalFurnace var6 = (BF_TileEntityMetalFurnace)par1World.getBlockTileEntity(par2, par3, par4);
+
+        if (var6 != null)
+        {
+            par5EntityPlayer.openGui(MetallurgyBaseMetals.instance, 0, par1World, par2, par3, par4);
+        }
+
+        return true;
     }
 
     /**

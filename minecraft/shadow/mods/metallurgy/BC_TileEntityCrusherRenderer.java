@@ -16,19 +16,19 @@ public class BC_TileEntityCrusherRenderer extends TileEntitySpecialRenderer
     /**
      * Renders the TileEntity for the chest at a position.
      */
-    public void renderTileEntityChestAt(BC_TileEntityCrusher par1TileEntityChest, double par2, double par4, double par6, float par8)
+    public void renderTileEntityCrusherAt(BC_TileEntityCrusher par1TileEntityCrusher, double par2, double par4, double par6, float par8)
     {
         int var9;
         float offset = 0;
         
-        if (par1TileEntityChest.worldObj == null)
+        if (par1TileEntityCrusher.worldObj == null)
         {
             var9 = 5;
             offset = 0.1f;
         }
         else
         {
-            var9 = par1TileEntityChest.direction;
+            var9 = par1TileEntityCrusher.direction;
         }
 
         BC_ModelCrusher var14;
@@ -37,16 +37,16 @@ public class BC_TileEntityCrusherRenderer extends TileEntitySpecialRenderer
         
         String type = "";
         
-        if(par1TileEntityChest.getType() == 1)
+        if(par1TileEntityCrusher.getType() == 1)
         	type = "Copper";
-        else if(par1TileEntityChest.getType() == 2)
+        else if(par1TileEntityCrusher.getType() == 2)
         	type = "Bronze";
-        else if(par1TileEntityChest.getType() == 3)
+        else if(par1TileEntityCrusher.getType() == 3)
         	type = "Iron";
-        else if(par1TileEntityChest.getType() == 4)
+        else if(par1TileEntityCrusher.getType() == 4)
         	type = "Steel";
         
-        if(par1TileEntityChest.isBurning())
+        if(par1TileEntityCrusher.isBurning())
         	this.bindTextureByName("/shadow/ModelCrusher" + type + "Burning.png");
         else
             this.bindTextureByName("/shadow/ModelCrusher" + type + ".png");
@@ -91,6 +91,6 @@ public class BC_TileEntityCrusherRenderer extends TileEntitySpecialRenderer
 
     public void renderTileEntityAt(TileEntity par1TileEntity, double par2, double par4, double par6, float par8)
     {
-        this.renderTileEntityChestAt((BC_TileEntityCrusher)par1TileEntity, par2, par4, par6, par8);
+        this.renderTileEntityCrusherAt((BC_TileEntityCrusher)par1TileEntity, par2, par4, par6, par8);
     }
 }

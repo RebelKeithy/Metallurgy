@@ -1,5 +1,6 @@
 package shadow.mods.metallurgy;
 
+import java.util.HashMap;
 import java.util.Random;
 
 //import ic2.api.Ic2Recipes;
@@ -34,7 +35,7 @@ import shadow.mods.metallurgy.MetallurgyItemPickaxe;
 import shadow.mods.metallurgy.MetallurgyItemSpade;
 import shadow.mods.metallurgy.MetallurgyItemSword;
 import shadow.mods.metallurgy.RecipeHelper;
-import shadow.mods.metallurgy.mod_MetallurgyCore;
+import shadow.mods.metallurgy.MetallurgyCore;
 import shadow.mods.metallurgy.fantasy.FF_EssenceRecipes;
 import shadow.mods.metallurgy.precious.OrePreciousEnum;
 
@@ -61,6 +62,8 @@ public class MetalSet implements IWorldGenerator {
 	public Item[] Plate;
 	public Item[] Legs;
 	public Item[] Boots;
+
+	public static int oreSpawnCount;
 	
 	public MetalSet(IMetalSetEnum info)
 	{
@@ -141,15 +144,27 @@ public class MetalSet implements IWorldGenerator {
 
 		for(int i = 0; i < info.numMetals(); i++)
 		{
+			GameRegistry.addSmelting(Dust[i].shiftedIndex, new ItemStack(Bar[i], 1), 1);
+			
 			if(ore != null)
 			{
-				System.out.println("in ore " + ore);
+    			FurnaceRecipes.smelting().addSmelting(ore.blockID, i, new ItemStack(Bar[i], 1));
+    			
+    			// RAILCRAFT COMPATIBILITY
 				try {
-					System.out.println("in try");
+					Class a = Class.forName("railcraft.common.api.crafting.RailcraftCraftingManager");
+					
+					HashMap<ItemStack, Float> rockCrusherRecipe = new HashMap<ItemStack, Float>();
+					rockCrusherRecipe.put(new ItemStack(Dust[i], 2), 1.0F);
+					railcraft.common.api.crafting.RailcraftCraftingManager.rockCrusher.addRecipe(new ItemStack(ore, 1, i), rockCrusherRecipe);
+				} catch(Exception e) {}
+
+				// IC2 COMPATIBILITY
+				try {
 					Class a = Class.forName("ic2.api.Ic2Recipes");
-					System.out.println("found ic2 recipes");
 					ic2.api.Ic2Recipes.addMaceratorRecipe(new ItemStack(ore, 1, i), new ItemStack(Dust[i], 2, 0));
 				} catch(Exception e) {}
+				
 				DungeonHooks.addDungeonLoot(new ItemStack(Bar[i], 1), info.dungeonLootChance(i), 1, info.dungeonLootAmount(i));
 			}
 
@@ -168,13 +183,12 @@ public class MetalSet implements IWorldGenerator {
     	{
     		if(event.Name.equals("ore" + info.name(i)))
     		{
-    			FurnaceRecipes.smelting().addSmelting(event.Ore.itemID, i, new ItemStack(Bar[i], 1));
-    			BC_CrusherRecipes.smelting().addCrushing(event.Ore.itemID, event.Ore.getItemDamage(), new ItemStack(Dust[i], 2));
+    			//BC_CrusherRecipes.smelting().addCrushing(event.Ore.itemID, event.Ore.getItemDamage(), new ItemStack(Dust[i], 2));
     		}
 
     		if(event.Name.equals("ingot" + info.name(i)))
     		{
-    			if(mod_MetallurgyCore.hasFantasy)
+    			if(MetallurgyCore.hasFantasy)
     				FF_EssenceRecipes.essence().addEssenceAmount(event.Ore.itemID, info.expValue(i));
 
     			BC_CrusherRecipes.smelting().addCrushing(event.Ore.itemID, new ItemStack(Dust[i], 1));
@@ -199,11 +213,6 @@ public class MetalSet implements IWorldGenerator {
     				RecipeHelper.addShearsRecipe(event.Ore.getItem());
     	        }
     		}
-
-    		if(event.Name.equals("dust" + info.name(i)))
-    		{
-    			GameRegistry.addSmelting(event.Ore.itemID, new ItemStack(Bar[i], 1), 1);
-    		}
     	}
     }
     
@@ -216,7 +225,7 @@ public class MetalSet implements IWorldGenerator {
 			{
 				OreDictionary.registerOre("ore" + info.name(i), new ItemStack(ore, 1, i));
 			}
-			OreDictionary.registerOre("dust" + info.name(i), new ItemStack(Dust[i], 1));
+			OreDictionary.registerOre("itemDust" + info.name(i), new ItemStack(Dust[i], 1));
 			OreDictionary.registerOre("ingot" + info.name(i), new ItemStack(Bar[i], 1));
 		}
     }
@@ -236,6 +245,8 @@ public class MetalSet implements IWorldGenerator {
 
 	public void generateOre(World world, Random rand, int chunkX, int chunkZ, int meta)
 	{
+		oreSpawnCount = 0;
+		
 		for(int i = 0; i < info.veinCount(meta); i++)
 		{
 			int randPosX = chunkX + rand.nextInt(16);
@@ -249,8 +260,9 @@ public class MetalSet implements IWorldGenerator {
 			{
 				(new MetallurgyWorldGenMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
 			}
-				
 		}
+		
+		//System.out.println("Spawned " + oreSpawnCount + " " + info.name(meta));
 	}
 
 }

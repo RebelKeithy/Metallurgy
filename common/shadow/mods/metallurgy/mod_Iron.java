@@ -5,7 +5,7 @@ import java.io.File;
 
 import shadow.mods.metallurgy.*;
 import shadow.mods.metallurgy.base.ConfigBase;
-import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
+import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 import shadow.mods.metallurgy.fantasy.FF_EssenceRecipes;
 
 import net.minecraft.src.BaseMod;
@@ -35,7 +35,7 @@ public class mod_Iron
 		BC_CrusherRecipes.smelting().addCrushing(Block.oreIron.blockID, new ItemStack(IronDust, 2));
 		BC_CrusherRecipes.smelting().addCrushing(Item.ingotIron.shiftedIndex, new ItemStack(IronDust, 1));
 
-		if(mod_MetallurgyCore.hasFantasy)
+		if(MetallurgyCore.hasFantasy)
 			FF_EssenceRecipes.essence().addEssenceAmount(Item.ingotIron.shiftedIndex, 3);
 		 
 		//Bricks!

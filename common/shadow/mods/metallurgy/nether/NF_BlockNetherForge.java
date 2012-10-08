@@ -7,7 +7,7 @@ import buildcraft.api.liquids.LiquidManager;
 import buildcraft.api.liquids.LiquidStack;
 import buildcraft.core.utils.Utils;
 
-import shadow.mods.metallurgy.fantasy.mod_MetallurgyFantasy;
+import shadow.mods.metallurgy.fantasy.MetallurgyFantasy;
 
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
@@ -186,38 +186,51 @@ public class NF_BlockNetherForge extends BlockContainer
         {
             return true;
         }
-        else
+
+        if(par5EntityPlayer.isSneaking())
         {
-    		ItemStack currentItem = par5EntityPlayer.inventory.getCurrentItem();
-    		
-            NF_TileEntityNetherForge var6 = (NF_TileEntityNetherForge)par1World.getBlockTileEntity(par2, par3, par4);
-            
-        	if(currentItem != null)
-        	{
-    			LiquidStack liquid = LiquidManager.getLiquidForFilledItem(currentItem);
-    			
-                if(liquid != null)
-                {
-                	if(var6.fuel == var6.maxFuel || liquid.itemID == Block.lavaMoving.blockID)
-                		return false;
-                	
-                	if(!par5EntityPlayer.capabilities.isCreativeMode)
-                		par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, Utils.consumeItem(currentItem));
-                	
-                	var6.addFuelBucket();
-                	return true;
-                }
-        	}
-
-            if (var6 != null)
-            {
-                //par5EntityPlayer.displayGUIFurnace(var6);
-                //ModLoader.openGUI(par5EntityPlayer, new NF_GuiNetherForge(par5EntityPlayer.inventory, var6));
-                par5EntityPlayer.openGui(mod_MetallurgyNether.instance, 0, par1World, par2, par3, par4);
-            }
-
-            return true;
+        	return false;
         }
+        
+		ItemStack currentItem = par5EntityPlayer.inventory.getCurrentItem();
+		
+        NF_TileEntityNetherForge var6 = (NF_TileEntityNetherForge)par1World.getBlockTileEntity(par2, par3, par4);
+        
+    	if(currentItem != null)
+    	{
+    		if(currentItem.itemID == Item.bucketLava.shiftedIndex)
+    		{
+            	if(var6.fuel == var6.maxFuel)
+            		return false;
+            	
+    			var6.addFuelBucket();
+    			par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, new ItemStack(Item.bucketEmpty, 1));
+    			return true;
+    		}
+    		
+			LiquidStack liquid = LiquidManager.getLiquidForFilledItem(currentItem);
+			
+            if(liquid != null)
+            {
+            	if(var6.fuel == var6.maxFuel || liquid.itemID == Block.lavaMoving.blockID)
+            		return false;
+            	
+            	if(!par5EntityPlayer.capabilities.isCreativeMode)
+            		par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, Utils.consumeItem(currentItem));
+            	
+            	var6.addFuelBucket();
+            	return true;
+            }
+    	}
+
+        if (var6 != null)
+        {
+            //par5EntityPlayer.displayGUIFurnace(var6);
+            //ModLoader.openGUI(par5EntityPlayer, new NF_GuiNetherForge(par5EntityPlayer.inventory, var6));
+            par5EntityPlayer.openGui(MetallurgyNether.instance, 0, par1World, par2, par3, par4);
+        }
+
+        return true;
     }
 
     /**

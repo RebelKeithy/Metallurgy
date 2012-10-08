@@ -246,7 +246,7 @@ public class FM_TileEntityMint extends TileEntity
 	}
 
 	public void mint() {
-        ItemStack var7 = new ItemStack(mod_MetallurgyPrecious.Coin, 1, 0);
+        ItemStack var7 = new ItemStack(MetallurgyPrecious.Coin, 1, 0);
         Random rand = new Random();
     
         if (!worldObj.isRemote && hasIngot())
@@ -333,13 +333,13 @@ public class FM_TileEntityMint extends TileEntity
 	}
 
 	public String getIngotImage() {
-		if(ingotId == mod_MetallurgyPrecious.ores.Bar[1].shiftedIndex)
+		if(ingotId == MetallurgyPrecious.ores.Bar[1].shiftedIndex)
 			return "MintSilver.png";
-		else if(ingotId == mod_MetallurgyPrecious.alloys.Bar[0].shiftedIndex)
+		else if(ingotId == MetallurgyPrecious.alloys.Bar[0].shiftedIndex)
 			return "MintBrass.png";
-		else if(ingotId == mod_MetallurgyPrecious.alloys.Bar[1].shiftedIndex)
+		else if(ingotId == MetallurgyPrecious.alloys.Bar[1].shiftedIndex)
 			return "MintElectrum.png";
-		else if(ingotId == mod_MetallurgyPrecious.ores.Bar[2].shiftedIndex)
+		else if(ingotId == MetallurgyPrecious.ores.Bar[2].shiftedIndex)
 			return "MintPlatinum.png";
 		else if(ingotId == Item.ingotGold.shiftedIndex)
 			return "MintGold.png";

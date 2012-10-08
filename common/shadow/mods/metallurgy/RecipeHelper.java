@@ -3,12 +3,15 @@ package shadow.mods.metallurgy;
 import java.util.ArrayList;
 
 import shadow.mods.metallurgy.base.ConfigBase;
-import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
+import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 import net.minecraft.src.Block;
+import net.minecraft.src.CraftingManager;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.ModLoader;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class RecipeHelper {
@@ -154,6 +157,20 @@ public class RecipeHelper {
 		});
 	}
 	
+	public static void addPoweredRailsRecipe(Item ingot, int amount)
+	{
+		ModLoader.addRecipe(new ItemStack(Block.railPowered, amount), new Object[] {
+			"X X", "X|X", "X X", Character.valueOf('X'), ingot, Character.valueOf('|'), Item.stick
+		});
+	}
+	
+	public static void addPoweredRailsRecipe(String ingot, int amount)
+	{
+		CraftingManager.getInstance().getRecipeList().add(
+			new ShapedOreRecipe(new ItemStack(Block.railPowered, amount),
+					"X X", "X|X", "X X", Character.valueOf('X'), ingot, Character.valueOf('|'), Item.stick));
+	}
+	
 	public static void addStorageRecipe(ItemStack storage, ItemStack item)
 	{
 		
@@ -173,11 +190,8 @@ public class RecipeHelper {
 	
 	public static void addAlloyRecipe(ItemStack alloy, String dust1, String dust2)
 	{
-	    	ArrayList<ItemStack> dustList1 = OreDictionary.getOres(dust1);
-	    	ArrayList<ItemStack> dustList2 = OreDictionary.getOres(dust2);
-	    	for(ItemStack copper : dustList1)
-	    		for(ItemStack tin : dustList2)
-	    			ModLoader.addShapelessRecipe(alloy, new Object[] {copper, tin});
+		ShapelessOreRecipe alloyRecipe = new ShapelessOreRecipe(alloy, dust1, dust2);
+		CraftingManager.getInstance().getRecipeList().add(alloyRecipe);
 	}
 
 }

@@ -123,7 +123,7 @@ public class BlockSmoke extends Block
     			
     			if(count > 0)
     			{
-        			world.setBlock(x, y, z, mod_MetallurgyCore.smokeInactive.blockID);
+        			world.setBlock(x, y, z, MetallurgyCore.smokeInactive.blockID);
     			}
     	        world.scheduleBlockUpdate(x, y, z, this.blockID, this.tickRate());
     		}

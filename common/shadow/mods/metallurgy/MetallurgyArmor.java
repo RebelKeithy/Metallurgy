@@ -3,7 +3,7 @@
 // Decompiler options: packimports(3) braces deadcode fieldsfirst 
 
 package shadow.mods.metallurgy;
-import shadow.mods.metallurgy.base.mod_MetallurgyBaseMetals;
+import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
 import net.minecraft.src.EnumArmorMaterial;

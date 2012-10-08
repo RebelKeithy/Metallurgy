@@ -1,7 +1,7 @@
 package shadow.mods.metallurgy.ender;
 
 import shadow.mods.metallurgy.BC_TileEntityCrusher;
-import shadow.mods.metallurgy.mod_MetallurgyCore;
+import shadow.mods.metallurgy.MetallurgyCore;
 
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteStreams;

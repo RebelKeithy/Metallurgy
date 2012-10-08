@@ -39,7 +39,6 @@ public class BC_BlockCrusher extends BlockContainer
         super(par1, Material.rock);
         this.isActive = par2;
         setRequiresSelfNotify();
-        super.setLightValue(16);
     }
     
 	public String getTextureFile() 
@@ -88,7 +87,7 @@ public class BC_BlockCrusher extends BlockContainer
     @Override
     public int idDropped(int par1, Random par2Random, int par3)
     {
-        return mod_MetallurgyCore.crusher.blockID;
+        return MetallurgyCore.crusher.blockID;
     }
     
     @Override
@@ -217,11 +216,16 @@ public class BC_BlockCrusher extends BlockContainer
             return true;
         }
 
+        if(par5EntityPlayer.isSneaking())
+        {
+        	return false;
+        }
+        
     	BC_TileEntityCrusher var6 = (BC_TileEntityCrusher)par1World.getBlockTileEntity(x, y, z);
     	int type = par1World.getBlockMetadata(x, y, z);
         if (var6 != null)
         {
-            par5EntityPlayer.openGui(mod_MetallurgyCore.instance, type, par1World, x, y, z);
+            par5EntityPlayer.openGui(MetallurgyCore.instance, type, par1World, x, y, z);
         }
 
         return true;

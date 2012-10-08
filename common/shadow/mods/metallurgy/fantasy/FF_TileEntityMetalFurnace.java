@@ -1,8 +1,10 @@
 package shadow.mods.metallurgy.fantasy;
 
+import java.awt.List;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 import buildcraft.api.core.Orientations;
@@ -404,17 +406,21 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements ISpecialInv
             	}
             	
             	Random rand = new Random();
-            	xOffset += (rand.nextInt(31) - 15) / 100.0;
-              	zOffset += (rand.nextInt(31) - 15) / 100.0;
+            	xOffset += (rand.nextInt(21) - 10) / 100.0;
+              	zOffset += (rand.nextInt(21) - 10) / 100.0;
             	xMotion += (rand.nextInt(11) - 5) / 100.0;
               	zMotion += (rand.nextInt(11) - 5) / 100.0;
+              	double yMotion  = (rand.nextInt(11) - 5) / 200.0;
             	
-              	mod_MetallurgyFantasy.proxy.spawnParticle("abstractorSmall",worldObj, this.xCoord + xOffset, this.yCoord + 0.5, this.zCoord + zOffset, 0, 0, 0);
-                orb = new EntityXPOrb(this.worldObj, this.xCoord + xOffset, this.yCoord + 0.5, this.zCoord + zOffset, xpPerOrb);
+              	MetallurgyFantasy.proxy.spawnParticle("abstractorSmall",worldObj, this.xCoord + xOffset, this.yCoord + 0.75, this.zCoord + zOffset, xMotion*0.7f, yMotion, zMotion*0.7f);
+                orb = new EntityXPOrb(this.worldObj, this.xCoord + xOffset, this.yCoord + 0.5f, this.zCoord + zOffset, xpPerOrb);
                 orb.motionX = xMotion;
                 orb.motionZ = zMotion;
-                this.worldObj.spawnEntityInWorld(orb);
-                this.worldObj.updateEntities();
+                if(!worldObj.isRemote)
+                {
+                	this.worldObj.spawnEntityInWorld(orb);
+                	this.worldObj.updateEntity(orb);
+                }
             }
             sendPacket();
         }
@@ -435,9 +441,9 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements ISpecialInv
             int var1 = par0ItemStack.getItem().shiftedIndex;
             Item var2 = par0ItemStack.getItem();
 
-            if (var1 == mod_MetallurgyFantasy.ores.Dust[0].shiftedIndex) return 1760;
-            if (var1 == mod_MetallurgyFantasy.ores.Dust[5].shiftedIndex) return 7040;
-            if (var1 == mod_MetallurgyFantasy.ores.Dust[6].shiftedIndex) return 14080;
+            if (var1 == MetallurgyFantasy.ores.Dust[0].shiftedIndex) return 1760;
+            if (var1 == MetallurgyFantasy.ores.Dust[5].shiftedIndex) return 7040;
+            if (var1 == MetallurgyFantasy.ores.Dust[6].shiftedIndex) return 14080;
             return 0;
         }
     }

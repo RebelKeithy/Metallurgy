@@ -411,23 +411,23 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 
                 if (var3 == Block.woodSingleSlab)
                 {
-                    return 150;
+                    return 113;
                 }
 
                 if (var3.blockMaterial == Material.wood)
                 {
-                    return 300;
+                    return 225;
                 }
             }
-            if (var2 instanceof ItemTool && ((ItemTool) var2).func_77861_e().equals("WOOD")) return 200;
-            if (var2 instanceof ItemSword && ((ItemSword) var2).func_77825_f().equals("WOOD")) return 200;
-            if (var2 instanceof ItemHoe && ((ItemHoe) var2).func_77842_f().equals("WOOD")) return 200;
-            if (var1 == Item.stick.shiftedIndex) return 100;
-            if (var1 == Item.coal.shiftedIndex) return 1600;
-            if (var1 == Item.bucketLava.shiftedIndex) return 20000;
-            if (var1 == Block.sapling.blockID) return 100;
-            if (var1 == Item.blazeRod.shiftedIndex) return 2400;
-            return GameRegistry.getFuelValue(par1ItemStack);
+            if (var2 instanceof ItemTool && ((ItemTool) var2).func_77861_e().equals("WOOD")) return 150;
+            if (var2 instanceof ItemSword && ((ItemSword) var2).func_77825_f().equals("WOOD")) return 150;
+            if (var2 instanceof ItemHoe && ((ItemHoe) var2).func_77842_f().equals("WOOD")) return 150;
+            if (var1 == Item.stick.shiftedIndex) return 75;
+            if (var1 == Item.coal.shiftedIndex) return 1200;
+            if (var1 == Item.bucketLava.shiftedIndex) return 15000;
+            if (var1 == Block.sapling.blockID) return 75;
+            if (var1 == Item.blazeRod.shiftedIndex) return 1800;
+            return (int) Math.ceil(GameRegistry.getFuelValue(par1ItemStack) * 0.75);
         }
     }
 

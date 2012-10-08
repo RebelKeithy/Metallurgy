@@ -19,8 +19,8 @@ public class OreFantasyEnum implements IMetalSetEnum{
 	private final int[] pickLevels = {1, 2, 0, 3, 3, 4, 4, 4, 0, 5, 6, 6};
 	private int[] metalLevels = {1, 2, 3, 5, 5, 6, 7, 8, 9, 10, 10, 11};
 
-	public static int[] defaultVeinCount = {6, 5, 5, 4, 4, 3, 3, 3, 2, 2, 1, 1};
-	public static int[] defaultOreCount = {8, 4, 3, 3, 3, 3, 2, 3, 3, 4, 4, 3};
+	public static int[] defaultVeinCount = {5, 5, 5, 4, 4, 3, 3, 3, 2, 2, 1, 1};
+	public static int[] defaultOreCount = {6, 4, 3, 3, 3, 3, 2, 3, 3, 4, 4, 3};
 	public static int[] defaultOreHeight = {128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128, 128};
 
 	public static EnumArmorMaterial prometheumArmor = EnumHelper.addArmorMaterial("Prometheum", 9, new int[] {2, 3, 2, 1}, 16);

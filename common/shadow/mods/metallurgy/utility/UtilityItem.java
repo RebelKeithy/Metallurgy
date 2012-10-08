@@ -18,4 +18,10 @@ public class UtilityItem extends Item
 		return texturePath;
     }
 
+	public String toString()
+	{
+		return this.getItemName();
+		
+		//return super.toString();
+	}
 }
