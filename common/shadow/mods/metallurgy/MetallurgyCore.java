@@ -100,7 +100,7 @@ public class MetallurgyCore
     		System.out.println("Metallurgy Core: Fantasy not detected, reason: " + e);
     	}
 		try {
-			Class a = Class.forName("shadow.mods.metallurgy.fantasy.MetallurgyEnder");
+			Class a = Class.forName("shadow.mods.metallurgy.ender.MetallurgyEnder");
 	    	hasEnder = true;
     		System.out.println("Metallurgy Core: Ender detected, comapatibility added");
     	} catch(ClassNotFoundException e) {
