@@ -23,7 +23,7 @@ public class mod_Iron
 {	
 	public static final int meta = 2;
 
-	public static Item IronDust = (new MetallurgyItem(CoreConfig.ItemIronDustID, "/shadow/Overrides.png")).setIconIndex(69).setItemName("IronDust").setTabToDisplayOn(CreativeTabs.tabMaterials);
+	public static Item IronDust = (new MetallurgyItem(CoreConfig.ItemIronDustID, "/shadow/Overrides.png")).setIconIndex(69).setItemName("IronDust").setCreativeTab(CreativeTabs.tabMaterials);
 
 	public static void load()
 	{

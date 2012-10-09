@@ -60,14 +60,14 @@ public class MetallurgyUtility
 		vein = new BlockVein(ConfigUtility.veinID, "/shadow/MetallurgyUtilityOres.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("UtilityVein");
 
 		phosphorite = (new UtilityItem(ConfigUtility.itemPhosphoriteID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(0,1).setItemName("Phosphorite");
-		phosphorus = (new UtilityItem(ConfigUtility.itemPhosphorousID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(0,2).setItemName("Phosphorous").setTabToDisplayOn(CreativeTabs.tabMaterials);
-		sulfur = (new UtilityItem(ConfigUtility.itemSulfurID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(1,1).setItemName("Sulfur").setTabToDisplayOn(CreativeTabs.tabMaterials);
-		saltpeter = (new UtilityItem(ConfigUtility.itemSaltpeterID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(2,1).setItemName("Saltpeter").setTabToDisplayOn(CreativeTabs.tabMaterials);
-		magnesium = (new UtilityItem(ConfigUtility.itemMagnesiumID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(3,1).setItemName("Magnesium").setTabToDisplayOn(CreativeTabs.tabMaterials);
-		bitumen = (new UtilityItem(ConfigUtility.itemBitumenID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(4,1).setItemName("Bitumen").setTabToDisplayOn(CreativeTabs.tabMaterials);
-		tar = (new UtilityItem(ConfigUtility.itemTarID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(4,2).setItemName("Tar").setTabToDisplayOn(CreativeTabs.tabMaterials);
-		potash = (new UtilityItem(ConfigUtility.itemPotashID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(5,1).setItemName("Potash").setTabToDisplayOn(CreativeTabs.tabMaterials);
-		fertilizer = (new UtilityItemFertilizer(ConfigUtility.itemFertilizerID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(1,2).setItemName("Fertilizer").setTabToDisplayOn(CreativeTabs.tabMaterials);
+		phosphorus = (new UtilityItem(ConfigUtility.itemPhosphorousID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(0,2).setItemName("Phosphorous").setCreativeTab(CreativeTabs.tabMaterials);
+		sulfur = (new UtilityItem(ConfigUtility.itemSulfurID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(1,1).setItemName("Sulfur").setCreativeTab(CreativeTabs.tabMaterials);
+		saltpeter = (new UtilityItem(ConfigUtility.itemSaltpeterID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(2,1).setItemName("Saltpeter").setCreativeTab(CreativeTabs.tabMaterials);
+		magnesium = (new UtilityItem(ConfigUtility.itemMagnesiumID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(3,1).setItemName("Magnesium").setCreativeTab(CreativeTabs.tabMaterials);
+		bitumen = (new UtilityItem(ConfigUtility.itemBitumenID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(4,1).setItemName("Bitumen").setCreativeTab(CreativeTabs.tabMaterials);
+		tar = (new UtilityItem(ConfigUtility.itemTarID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(4,2).setItemName("Tar").setCreativeTab(CreativeTabs.tabMaterials);
+		potash = (new UtilityItem(ConfigUtility.itemPotashID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(5,1).setItemName("Potash").setCreativeTab(CreativeTabs.tabMaterials);
+		fertilizer = (new UtilityItemFertilizer(ConfigUtility.itemFertilizerID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(1,2).setItemName("Fertilizer").setCreativeTab(CreativeTabs.tabMaterials);
 	}
 
 	@Init

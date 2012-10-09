@@ -39,7 +39,7 @@ public class FM_BlockMint extends BlockContainer
     {
         super(par1, Material.rock);
         setRequiresSelfNotify();
-        this.setCreativeTab(CreativeTabs.tabDeco);
+        this.setCreativeTab(CreativeTabs.tabDecorations);
     }
     
     /**

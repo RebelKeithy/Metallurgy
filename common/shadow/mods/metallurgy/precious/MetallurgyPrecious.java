@@ -76,8 +76,8 @@ public class MetallurgyPrecious
 		PreciousChest = new FC_BlockChest(ConfigPrecious.PreciousChestID).setHardness(0.5F).setResistance(.1F).setBlockName("PreciousChest");
 		Mint = new FM_BlockMint(ConfigPrecious.PreciousMintID).setHardness(0.5F).setResistance(.1F).setBlockName("Mint");
 		MintStorage = new FM_BlockMintStorage(ConfigPrecious.PreciousMintLoaderID).setHardness(0.5F).setResistance(.1F).setBlockName("MintStorage");
-		Coin = new ItemCoins(ConfigPrecious.ItemStartID + 248).setItemName("Coin").setTabToDisplayOn(CreativeTabs.tabMisc);
-		GoldCog = new MetallurgyItem(ConfigPrecious.ItemStartID + 249, "/shadow/MetallurgyCoins.png").setIconIndex(2).setItemName("GoldCog").setTabToDisplayOn(CreativeTabs.tabMaterials);
+		Coin = new ItemCoins(ConfigPrecious.ItemStartID + 248).setItemName("Coin").setCreativeTab(CreativeTabs.tabMisc);
+		GoldCog = new MetallurgyItem(ConfigPrecious.ItemStartID + 249, "/shadow/MetallurgyCoins.png").setIconIndex(2).setItemName("GoldCog").setCreativeTab(CreativeTabs.tabMaterials);
 		
 		MinecraftForge.EVENT_BUS.register(new AlloyRecipes());
 	}

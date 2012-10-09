@@ -99,7 +99,7 @@ public class BC_CrusherRecipes
 					replacement = name.contains("item") ? "item" : replacement;
 					if(name.contains("dust"))
 						return null;
-					name = name.replace(replacement, "dust");
+					name = name.replace(replacement, "itemDust");
 					List<ItemStack> retList = OreDictionary.getOres(name);
 					System.out.println("found " + retList.size());
 					if(retList.size() > 0)

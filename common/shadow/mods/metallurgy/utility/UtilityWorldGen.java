@@ -16,7 +16,7 @@ public class UtilityWorldGen implements IWorldGenerator
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 
-		if(!spawnsInDim(world.provider.worldType))
+		if(!spawnsInDim(world.provider.dimensionId))
 			return;
 		
 		if(ConfigUtility.bitumenEnabled)

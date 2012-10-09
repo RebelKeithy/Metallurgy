@@ -22,6 +22,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Random;
 
@@ -37,7 +38,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyCore", name = "Metallurgy Core", version = "2.0.7.1")
+@Mod(modid = "MetallurgyCore", name = "Metallurgy Core", version = "2.1.0.2")
 @NetworkMod(channels = { "MetallurgyCore" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyCore
 {
@@ -66,7 +67,7 @@ public class MetallurgyCore
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		config.init();
-		crusher = new BC_BlockCrusher(CoreConfig.crusherID, false).setHardness(3.5F).setBlockName("Crusher").setCreativeTab(CreativeTabs.tabDeco);
+		crusher = new BC_BlockCrusher(CoreConfig.crusherID, false).setHardness(3.5F).setBlockName("Crusher").setCreativeTab(CreativeTabs.tabDecorations);
 		vanillaBricks = new MetallurgyBlock(CoreConfig.vanillaBrickID, "/shadow/VanillaBricks.png", 2, 1).setHardness(2F).setResistance(.1F).setBlockName("VanillaBrick");
 		
 		proxy.registerRenderInformation();
@@ -119,8 +120,8 @@ public class MetallurgyCore
 		
 		GameRegistry.registerWorldGenerator(new CoreWorldGen());
 		
-		OreDictionary.registerOre("dustGold", new ItemStack(mod_Gold.GoldDust, 1));
-		OreDictionary.registerOre("dustIron", new ItemStack(mod_Iron.IronDust, 1));
+		OreDictionary.registerOre("itemDustGold", new ItemStack(mod_Gold.GoldDust, 1));
+		OreDictionary.registerOre("itemDustIron", new ItemStack(mod_Iron.IronDust, 1));
 		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 
@@ -163,6 +164,17 @@ public class MetallurgyCore
 			ItemStack coalDust = ic2.api.Items.getItem("coalDust");
 			if(coalDust != null)
 				BC_CrusherRecipes.smelting().addCrushing(Item.coal.shiftedIndex, 0, coalDust);
+		} catch(Exception e) {}
+		
+		try {
+			Class a = Class.forName("railcraft.common.api.crafting.RailcraftCraftingManager");
+			
+			HashMap<ItemStack, Float> rockCrusherRecipe = new HashMap<ItemStack, Float>();
+			rockCrusherRecipe.put(new ItemStack(mod_Iron.IronDust, 2), 1.0F);
+			railcraft.common.api.crafting.RailcraftCraftingManager.rockCrusher.addRecipe(new ItemStack(Block.oreIron, 1), rockCrusherRecipe);
+			rockCrusherRecipe = new HashMap<ItemStack, Float>();
+			rockCrusherRecipe.put(new ItemStack(mod_Gold.GoldDust, 2), 1.0F);
+			railcraft.common.api.crafting.RailcraftCraftingManager.rockCrusher.addRecipe(new ItemStack(Block.oreGold, 1), rockCrusherRecipe);
 		} catch(Exception e) {}
 		
 	}

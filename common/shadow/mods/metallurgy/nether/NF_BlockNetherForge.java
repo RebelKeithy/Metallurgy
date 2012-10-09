@@ -41,7 +41,7 @@ public class NF_BlockNetherForge extends BlockContainer
         super(par1, Material.rock);
         this.isActive = par2;
         setRequiresSelfNotify();
-        this.setCreativeTab(CreativeTabs.tabDeco);
+        this.setCreativeTab(CreativeTabs.tabDecorations);
     }
     
     @Override

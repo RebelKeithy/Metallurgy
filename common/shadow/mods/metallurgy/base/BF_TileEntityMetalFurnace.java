@@ -476,7 +476,7 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements ISidedInven
 		packet.isChunkDataPacket = true;
 		
 		if (packet != null) {
-			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.worldType, packet);
+			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.dimensionId, packet);
 		}
 	}
 

@@ -241,7 +241,7 @@ public class FM_TileEntityMint extends TileEntity
 		packet.isChunkDataPacket = true;
 		
 		if (packet != null) {
-			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.worldType, packet);
+			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.dimensionId, packet);
 		}
 	}
 

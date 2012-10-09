@@ -94,7 +94,7 @@ public class UtilityItemFertilizer extends UtilityItem
                 return true;
             }
 
-            if (var11 == Block.cocoa.blockID)
+            if (var11 == Block.cocoaPlant.blockID)
             {
                 if (!par3World.isRemote)
                 {

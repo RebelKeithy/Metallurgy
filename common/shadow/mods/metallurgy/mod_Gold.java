@@ -27,7 +27,7 @@ public class mod_Gold
 	
 	public static final int meta = 4;
 		
-	public static Item GoldDust = (new MetallurgyItem(CoreConfig.ItemGoldDustID, "/shadow/Overrides.png")).setIconIndex(70).setItemName("GoldDust").setTabToDisplayOn(CreativeTabs.tabMaterials);
+	public static Item GoldDust = (new MetallurgyItem(CoreConfig.ItemGoldDustID, "/shadow/Overrides.png")).setIconIndex(70).setItemName("GoldDust").setCreativeTab(CreativeTabs.tabMaterials);
 
 	
 	public static void load()

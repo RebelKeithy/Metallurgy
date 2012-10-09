@@ -7,6 +7,7 @@ import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.MetallurgyBlock;
 import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.MetallurgyCore;
+import shadow.mods.metallurgy.mod_Iron;
 import shadow.mods.metallurgy.ender.ConfigEnder;
 import shadow.mods.metallurgy.nether.VyroxeresDisplay;
 import shadow.mods.metallurgy.precious.MetallurgyPrecious;
@@ -36,7 +37,7 @@ import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyFantasy", name = "Metallurgy Fantasy", dependencies = "after:MetallurgyCore", version = "2.0.7.1")
+@Mod(modid = "MetallurgyFantasy", name = "Metallurgy Fantasy", dependencies = "after:MetallurgyCore", version = "2.1.0.1")
 @NetworkMod(channels = { "MetallurgyFantas" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyFantasy
 {
@@ -77,7 +78,7 @@ public class MetallurgyFantasy
 
 		((MetallurgyBlock)(ores.ore)).addDisplayListener(new OreParticleSpawner());
 
-		ModLoader.addShapelessRecipe(new ItemStack(Item.ingotIron, 1), ores.Dust[0], ores.Dust[1]);
+		ModLoader.addShapelessRecipe(new ItemStack(mod_Iron.IronDust, 1), ores.Dust[0], ores.Dust[1]);
 		ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), new Object[] {ores.Dust[1], ores.Dust[2]});
 		if(MetallurgyCore.hasPrecious)
 			ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), new Object[] {ores.Dust[7], new ItemStack(MetallurgyPrecious.ores.Dust[1], 1)});

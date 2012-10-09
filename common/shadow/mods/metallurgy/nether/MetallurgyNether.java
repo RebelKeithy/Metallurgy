@@ -41,7 +41,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyNether", name = "Metallurgy Nether", dependencies = "after:MetallurgyCore", version = "2.0.7.1")
+@Mod(modid = "MetallurgyNether", name = "Metallurgy Nether", dependencies = "after:MetallurgyCore", version = "2.1.0.1")
 @NetworkMod(channels = { "MetallurgyNether" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyNether
 {
@@ -104,7 +104,7 @@ public class MetallurgyNether
 		
 		GameRegistry.registerWorldGenerator(new ObsidianSpawns());
 		
-		ModLoader.addShapelessRecipe(new ItemStack(Item.ingotIron, 1), ores.Dust[0], ores.Dust[1]);
+		ModLoader.addShapelessRecipe(new ItemStack(mod_Iron.IronDust, 1), ores.Dust[0], ores.Dust[1]);
 		ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[0], 1), ores.Dust[8], ores.Dust[1]);
 	    ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), ores.Dust[9], ores.Dust[4]);
 	    if(MetallurgyCore.hasPrecious)

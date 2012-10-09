@@ -110,7 +110,7 @@ public class CoreWorldGen implements IWorldGenerator
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(CoreConfig.IronOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new WorldGenMinable(Block.oreIron.blockID, CoreConfig.IronOreCount))
+			(new MetallurgyWorldGenMinable(Block.oreIron.blockID, 0, CoreConfig.IronOreCount))
 					.generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}
@@ -120,7 +120,7 @@ public class CoreWorldGen implements IWorldGenerator
 			int randPosX = chunkX + rand.nextInt(16);
 			int randPosY = rand.nextInt(CoreConfig.GoldOreHeight);
 			int randPosZ = chunkZ + rand.nextInt(16);
-			(new WorldGenMinable(Block.oreGold.blockID, CoreConfig.GoldOreCount))
+			(new MetallurgyWorldGenMinable(Block.oreGold.blockID, 0, CoreConfig.GoldOreCount))
 					.generate(world, rand, randPosX, randPosY, randPosZ);
 		}
 	}

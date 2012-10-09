@@ -20,7 +20,7 @@ public class BlockMetalLadder extends BlockLadder
     {
         super(par1, par2);
         this.setRequiresSelfNotify();
-        this.setCreativeTab(CreativeTabs.tabDeco);
+        this.setCreativeTab(CreativeTabs.tabDecorations);
     }
 
 	@Override

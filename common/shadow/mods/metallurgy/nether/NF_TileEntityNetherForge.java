@@ -41,7 +41,8 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
     public int furnaceTimeBase = 200;
     
     public int fuel = 0;
-    public int maxFuel = 1000;
+    public int maxFuel = 10000;
+    public int fuelPerItem = 100;
     public boolean isBurning;
 
     public int direction = 0;
@@ -62,12 +63,19 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
     {
     	fuel += 1000;
     	fuel = (fuel < maxFuel) ? fuel : maxFuel;
-    	sync();
+    	//sync();
+    	if(!worldObj.isRemote)
+    		sendPacket();
     }
     
     public int getFuelScaled(int scale)
     {
-        return this.fuel * scale / maxFuel;
+    	int retValue = fuel * scale / maxFuel;
+    	if(retValue > scale)
+    		return scale;
+    	else
+    		return retValue;
+        //return fuel * scale / maxFuel;
     }
     
     /**
@@ -75,7 +83,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
      */
     public int getSizeInventory()
     {
-        return this.furnaceItemStacks.length;
+        return furnaceItemStacks.length;
     }
 
     /**
@@ -83,7 +91,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
      */
     public ItemStack getStackInSlot(int par1)
     {
-        return this.furnaceItemStacks[par1];
+        return furnaceItemStacks[par1];
     }
     
     public void setDirection(int par1)
@@ -102,23 +110,23 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
      */
     public ItemStack decrStackSize(int par1, int par2)
     {
-        if (this.furnaceItemStacks[par1] != null)
+        if (furnaceItemStacks[par1] != null)
         {
             ItemStack var3;
 
-            if (this.furnaceItemStacks[par1].stackSize <= par2)
+            if (furnaceItemStacks[par1].stackSize <= par2)
             {
-                var3 = this.furnaceItemStacks[par1];
-                this.furnaceItemStacks[par1] = null;
+                var3 = furnaceItemStacks[par1];
+                furnaceItemStacks[par1] = null;
                 return var3;
             }
             else
             {
-                var3 = this.furnaceItemStacks[par1].splitStack(par2);
+                var3 = furnaceItemStacks[par1].splitStack(par2);
 
-                if (this.furnaceItemStacks[par1].stackSize == 0)
+                if (furnaceItemStacks[par1].stackSize == 0)
                 {
-                    this.furnaceItemStacks[par1] = null;
+                    furnaceItemStacks[par1] = null;
                 }
 
                 return var3;
@@ -136,10 +144,10 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
      */
     public ItemStack getStackInSlotOnClosing(int par1)
     {
-        if (this.furnaceItemStacks[par1] != null)
+        if (furnaceItemStacks[par1] != null)
         {
-            ItemStack var2 = this.furnaceItemStacks[par1];
-            this.furnaceItemStacks[par1] = null;
+            ItemStack var2 = furnaceItemStacks[par1];
+            furnaceItemStacks[par1] = null;
             return var2;
         }
         else
@@ -153,11 +161,11 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
      */
     public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
     {
-        this.furnaceItemStacks[par1] = par2ItemStack;
+        furnaceItemStacks[par1] = par2ItemStack;
 
-        if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
+        if (par2ItemStack != null && par2ItemStack.stackSize > getInventoryStackLimit())
         {
-            par2ItemStack.stackSize = this.getInventoryStackLimit();
+            par2ItemStack.stackSize = getInventoryStackLimit();
         }
     }
 
@@ -176,24 +184,24 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
     {
         super.readFromNBT(par1NBTTagCompound);
         NBTTagList var2 = par1NBTTagCompound.getTagList("Items");
-        this.furnaceItemStacks = new ItemStack[this.getSizeInventory()];
+        furnaceItemStacks = new ItemStack[getSizeInventory()];
 
         for (int var3 = 0; var3 < var2.tagCount(); ++var3)
         {
             NBTTagCompound var4 = (NBTTagCompound)var2.tagAt(var3);
             byte var5 = var4.getByte("Slot");
 
-            if (var5 >= 0 && var5 < this.furnaceItemStacks.length)
+            if (var5 >= 0 && var5 < furnaceItemStacks.length)
             {
-                this.furnaceItemStacks[var5] = ItemStack.loadItemStackFromNBT(var4);
+                furnaceItemStacks[var5] = ItemStack.loadItemStackFromNBT(var4);
             }
         }
 
-        this.fuel = par1NBTTagCompound.getShort("Fuel");
-        this.furnaceCookTime = par1NBTTagCompound.getShort("CookTime");
-        this.direction = par1NBTTagCompound.getShort("Direction");
-        this.furnaceTimeBase = par1NBTTagCompound.getShort("TimeBase");
-        this.maxFuel = par1NBTTagCompound.getShort("MaxFuel");
+        fuel = par1NBTTagCompound.getShort("Fuel");
+        furnaceCookTime = par1NBTTagCompound.getShort("CookTime");
+        direction = par1NBTTagCompound.getShort("Direction");
+        furnaceTimeBase = par1NBTTagCompound.getShort("TimeBase");
+        maxFuel = par1NBTTagCompound.getShort("MaxFuel");
         sync();
     }
 
@@ -203,20 +211,20 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
     public void writeToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setShort("Fuel", (short)this.fuel);
-        par1NBTTagCompound.setShort("CookTime", (short)this.furnaceCookTime);
-        par1NBTTagCompound.setShort("Direction", (short)this.direction);
-        par1NBTTagCompound.setShort("TimeBase", (short)this.furnaceTimeBase);
-        par1NBTTagCompound.setShort("MaxFuel", (short)this.maxFuel);
+        par1NBTTagCompound.setShort("Fuel", (short)fuel);
+        par1NBTTagCompound.setShort("CookTime", (short)furnaceCookTime);
+        par1NBTTagCompound.setShort("Direction", (short)direction);
+        par1NBTTagCompound.setShort("TimeBase", (short)furnaceTimeBase);
+        par1NBTTagCompound.setShort("MaxFuel", (short)maxFuel);
         NBTTagList var2 = new NBTTagList();
 
-        for (int var3 = 0; var3 < this.furnaceItemStacks.length; ++var3)
+        for (int var3 = 0; var3 < furnaceItemStacks.length; ++var3)
         {
-            if (this.furnaceItemStacks[var3] != null)
+            if (furnaceItemStacks[var3] != null)
             {
                 NBTTagCompound var4 = new NBTTagCompound();
                 var4.setByte("Slot", (byte)var3);
-                this.furnaceItemStacks[var3].writeToNBT(var4);
+                furnaceItemStacks[var3].writeToNBT(var4);
                 var2.appendTag(var4);
             }
         }
@@ -253,7 +261,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
      */
     public int getCookProgressScaled(int par1)
     {
-        return this.furnaceCookTime * par1 / furnaceTimeBase;
+        return furnaceCookTime * par1 / furnaceTimeBase;
     }
 
     /**
@@ -261,7 +269,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
      */
     public boolean isBurning()
     {
-        return this.fuel > 0 && this.canSmelt();
+        return fuel > 0 && canSmelt();
     }
 
     /**
@@ -275,26 +283,26 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 			sendPacket();
 		}
 		
-        boolean var1 = this.furnaceBurnTime > 0;
+        boolean var1 = furnaceBurnTime > 0;
         boolean checkBurning = false;
         boolean prevIsBurning = isBurning;
 
-        if(this.canSmelt() && this.fuel > 0)
+        if(canSmelt() && fuel > 0)
         {
-			++this.furnaceCookTime;
+			++furnaceCookTime;
 			isBurning = true;
 
-			if (this.furnaceCookTime == furnaceTimeBase) 
+			if (furnaceCookTime == furnaceTimeBase) 
 			{
-				this.furnaceCookTime = 0;
-				--this.fuel;
-				this.smeltItem();
+				furnaceCookTime = 0;
+				fuel -= fuelPerItem;
+				smeltItem();
 				checkBurning = true;
 			}
         }
         else
         {
-            this.furnaceCookTime = 0;
+            furnaceCookTime = 0;
             isBurning = false;
         }
         
@@ -306,7 +314,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 
         if (checkBurning)
         {
-            this.onInventoryChanged();
+            onInventoryChanged();
 			//int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
 			//sync();
 			sendPacket();
@@ -318,10 +326,10 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
      */
     private boolean canSmelt()
     {
-        ItemStack var1 = FurnaceRecipes.smelting().getSmeltingResult(this.furnaceItemStacks[0]);
+        ItemStack var1 = FurnaceRecipes.smelting().getSmeltingResult(furnaceItemStacks[0]);
         if (var1 == null) return false;
-        if (this.furnaceItemStacks[1] == null) return true;
-        if (!this.furnaceItemStacks[1].isItemEqual(var1)) return false;
+        if (furnaceItemStacks[1] == null) return true;
+        if (!furnaceItemStacks[1].isItemEqual(var1)) return false;
         int result = furnaceItemStacks[1].stackSize + var1.stackSize;
         return (result <= getInventoryStackLimit() && result <= var1.getMaxStackSize());
     }
@@ -331,24 +339,24 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
      */
     public void smeltItem()
     {
-        if (this.canSmelt())
+        if (canSmelt())
         {
-            ItemStack var1 = FurnaceRecipes.smelting().getSmeltingResult(this.furnaceItemStacks[0]);
+            ItemStack var1 = FurnaceRecipes.smelting().getSmeltingResult(furnaceItemStacks[0]);
 
-            if (this.furnaceItemStacks[1] == null)
+            if (furnaceItemStacks[1] == null)
             {
-                this.furnaceItemStacks[1] = var1.copy();
+                furnaceItemStacks[1] = var1.copy();
             }
-            else if (this.furnaceItemStacks[1].isItemEqual(var1))
+            else if (furnaceItemStacks[1].isItemEqual(var1))
             {
-                ++this.furnaceItemStacks[1].stackSize;
+                ++furnaceItemStacks[1].stackSize;
             }
 
-            --this.furnaceItemStacks[0].stackSize;
+            --furnaceItemStacks[0].stackSize;
 
-            if (this.furnaceItemStacks[0].stackSize <= 0)
+            if (furnaceItemStacks[0].stackSize <= 0)
             {
-                this.furnaceItemStacks[0] = null;
+                furnaceItemStacks[0] = null;
             }
         }
     }
@@ -359,7 +367,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer)
     {
-        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq((double)this.xCoord + 0.5D, (double)this.yCoord + 0.5D, (double)this.zCoord + 0.5D) <= 64.0D;
+        return worldObj.getBlockTileEntity(xCoord, yCoord, zCoord) != this ? false : par1EntityPlayer.getDistanceSq((double)xCoord + 0.5D, (double)yCoord + 0.5D, (double)zCoord + 0.5D) <= 64.0D;
     }
 
     public void openChest() {}
@@ -370,6 +378,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
     @Override
 	public void receiveClientEvent(int i, int j) 
     {
+    	/*
 		if (i == 1) {
 			direction = j;
 		} else if (i == 2) {
@@ -381,6 +390,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 		} else if (i == 5) {
 			furnaceCookTime = j;
 		}
+		*/
 	}
 
     @Override
@@ -412,7 +422,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 		if(worldObj.isRemote)
 			return;
 		
-		ByteArrayOutputStream bos = new ByteArrayOutputStream(140);
+		ByteArrayOutputStream bos = new ByteArrayOutputStream();
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {
 			dos.writeInt(xCoord);
@@ -434,7 +444,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 		packet.isChunkDataPacket = true;
 		
 		if (packet != null) {
-			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.worldType, packet);
+			PacketDispatcher.sendPacketToAllAround(xCoord, yCoord, zCoord, 16, worldObj.provider.dimensionId, packet);
 		}
 	}
 
@@ -493,23 +503,23 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 	public int addItem(ItemStack stack, boolean doAdd, Orientations from) {		
 		int slot = 0;		
 
-		if(this.furnaceItemStacks[slot] == null)
+		if(furnaceItemStacks[slot] == null)
 		{
 			if(doAdd)
-				this.furnaceItemStacks[slot] = stack;
+				furnaceItemStacks[slot] = stack;
 			return stack.stackSize;
 		} else {
-			if(this.furnaceItemStacks[slot].itemID == stack.itemID)
+			if(furnaceItemStacks[slot].itemID == stack.itemID)
 			{
-				if(this.furnaceItemStacks[slot].stackSize + stack.stackSize > stack.getMaxStackSize())
+				if(furnaceItemStacks[slot].stackSize + stack.stackSize > stack.getMaxStackSize())
 				{
-					int amount = stack.getMaxStackSize() - this.furnaceItemStacks[1].stackSize;
+					int amount = stack.getMaxStackSize() - furnaceItemStacks[1].stackSize;
 					if(doAdd)
-						this.furnaceItemStacks[slot].stackSize = this.furnaceItemStacks[1].getMaxStackSize();
+						furnaceItemStacks[slot].stackSize = furnaceItemStacks[1].getMaxStackSize();
 					return amount;
 				} else {
 					if(doAdd)
-						this.furnaceItemStacks[slot].stackSize += stack.stackSize;
+						furnaceItemStacks[slot].stackSize += stack.stackSize;
 					return stack.stackSize;
 				}
 			} else {

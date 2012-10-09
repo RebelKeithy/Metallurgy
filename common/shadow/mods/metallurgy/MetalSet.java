@@ -89,8 +89,8 @@ public class MetalSet implements IWorldGenerator {
 		for(int i = 0; i < numMetals; i++)
 		{
 			int startID = info.startID(i);
-			Dust[i] = (new MetallurgyItem(startID, info.image())).setIconCoord(i,3).setItemName(info.name(i) + "Dust").setTabToDisplayOn(CreativeTabs.tabMaterials);
-			Bar[i] = (new MetallurgyItem(startID+1, info.image())).setIconCoord(i,4).setItemName(info.name(i) + "Bar").setTabToDisplayOn(CreativeTabs.tabMaterials);
+			Dust[i] = (new MetallurgyItem(startID, info.image())).setIconCoord(i,3).setItemName(info.name(i) + "Dust").setCreativeTab(CreativeTabs.tabMaterials);
+			Bar[i] = (new MetallurgyItem(startID+1, info.image())).setIconCoord(i,4).setItemName(info.name(i) + "Bar").setCreativeTab(CreativeTabs.tabMaterials);
 			
 			if(info.isCatalyst(i))
 				continue;
@@ -235,7 +235,7 @@ public class MetalSet implements IWorldGenerator {
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) 
 	{
-		if(!info.spawnsInDimension(world.provider.worldType))
+		if(!info.spawnsInDimension(world.provider.dimensionId))
 			return;
 
 		for(int i = 0; i < numMetals; i++)
@@ -254,7 +254,7 @@ public class MetalSet implements IWorldGenerator {
 			int randPosZ = chunkZ + rand.nextInt(16);
 			if(world.provider.isHellWorld)
 				(new MetallurgyWorldGenNetherMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
-			else if(world.provider.worldType == 1)
+			else if(world.provider.dimensionId == 1)
 				(new MetallurgyWorldGenEnderMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
 			else
 			{
