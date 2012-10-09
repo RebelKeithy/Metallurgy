@@ -4,6 +4,7 @@ import java.util.Random;
 
 import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.MetallurgyBlock;
+import shadow.mods.metallurgy.MetallurgyItems;
 import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.mod_Iron;
 import shadow.mods.metallurgy.mod_Gold;
@@ -41,7 +42,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyNether", name = "Metallurgy Nether", dependencies = "after:MetallurgyCore", version = "2.1.0.1")
+@Mod(modid = "MetallurgyNether", name = "Metallurgy Nether", dependencies = "after:MetallurgyCore", version = "2.1.0.2")
 @NetworkMod(channels = { "MetallurgyNether" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyNether
 {
@@ -64,6 +65,7 @@ public class MetallurgyNether
 		ores = new MetalSet(new OreNetherEnum());
 		
 		NetherForge.init();
+		registerWithApi();
 	}
 
 	@Init
@@ -164,13 +166,17 @@ public class MetallurgyNether
 	{
 		ores.registerOres();
 		alloys.registerOres();
-		
-		/*
-		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "dustDeep Iron", "dustInfuscolium");
-		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[1], 1), "dustMithril", "dustSilver");
-		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[2], 1), "dustMithril", "dustRubracium");
-		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[3], 1), "dustOrichalcum", "dustPlatinum");
-		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[4], 1), "dustAdamantine", "dustAtlarus");
-		*/
+	}
+	
+	public void registerWithApi()
+	{
+		MetallurgyItems.registerItem("ignatiusSmelter", new ItemStack(NetherForge.metalFurnace, 1, 0));
+		MetallurgyItems.registerItem("shadowIronSmelter", new ItemStack(NetherForge.metalFurnace, 1, 1));
+		MetallurgyItems.registerItem("shadowSteelSmelter", new ItemStack(NetherForge.metalFurnace, 1, 2));
+		MetallurgyItems.registerItem("vyroxeresSmelter", new ItemStack(NetherForge.metalFurnace, 1, 3));
+		MetallurgyItems.registerItem("inolashiteSmelter", new ItemStack(NetherForge.metalFurnace, 1, 4));
+		MetallurgyItems.registerItem("kalendriteSmelter", new ItemStack(NetherForge.metalFurnace, 1, 5));
+		MetallurgyItems.registerItem("vulcaniteSmelter", new ItemStack(NetherForge.metalFurnace, 1, 6));
+		MetallurgyItems.registerItem("sanguiniteSmelter", new ItemStack(NetherForge.metalFurnace, 1, 7));
 	}
 }

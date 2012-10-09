@@ -127,6 +127,7 @@ public class MetalSet implements IWorldGenerator {
 			
 		}
 		
+		registerWithApi();
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 	
@@ -172,6 +173,32 @@ public class MetalSet implements IWorldGenerator {
 				Class a = Class.forName("ic2.api.Ic2Recipes");
 				ic2.api.Ic2Recipes.addMaceratorRecipe(new ItemStack(Bar[i], 1, 0), new ItemStack(Dust[i], 1, 0));
 			} catch(Exception e) {}
+		}
+	}
+	
+	public void registerWithApi()
+	{
+		for(int n = 0; n < numMetals; n++)
+		{
+			if(ore != null)
+				MetallurgyItems.registerItem("ore" + info.name(n), new ItemStack(ore, 1, n));
+			MetallurgyItems.registerItem("brick" + info.name(n), new ItemStack(brick, 1, n));
+			MetallurgyItems.registerItem("dust" + info.name(n), new ItemStack(Dust[n]));
+			MetallurgyItems.registerItem("ingot" + info.name(n), new ItemStack(Bar[n]));
+			
+			if(info.isCatalyst(n))
+				continue;
+			
+			MetallurgyItems.registerItem("sword" + info.name(n), new ItemStack(Sword[n]));
+			MetallurgyItems.registerItem("pickaxe" + info.name(n), new ItemStack(Pickaxe[n]));
+			MetallurgyItems.registerItem("axe" + info.name(n), new ItemStack(Axe[n]));
+			MetallurgyItems.registerItem("shovel" + info.name(n), new ItemStack(Shovel[n]));
+			MetallurgyItems.registerItem("hoe" + info.name(n), new ItemStack(Hoe[n]));
+			
+			MetallurgyItems.registerItem("helmet" + info.name(n), new ItemStack(Helmet[n]));
+			MetallurgyItems.registerItem("plate" + info.name(n), new ItemStack(Plate[n]));
+			MetallurgyItems.registerItem("legs" + info.name(n), new ItemStack(Legs[n]));
+			MetallurgyItems.registerItem("boots" + info.name(n), new ItemStack(Boots[n]));
 		}
 	}
 	

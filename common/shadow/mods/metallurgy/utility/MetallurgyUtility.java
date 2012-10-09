@@ -3,6 +3,8 @@ package shadow.mods.metallurgy.utility;
 import java.io.File;
 import java.util.Random;
 
+import shadow.mods.metallurgy.MetallurgyItems;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.Mod.Init;
@@ -29,7 +31,7 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreDictionary.OreRegisterEvent;
 
-@Mod(modid = "MetallurgyUtility", name = "Metallurgy Utility", dependencies = "after:MetallurgyCore", version = "2.0.7.1")
+@Mod(modid = "MetallurgyUtility", name = "Metallurgy Utility", dependencies = "after:MetallurgyCore", version = "2.1.0.1")
 @NetworkMod(channels = { "MetallurgyUtilit" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyUtility
 {
@@ -117,6 +119,30 @@ public class MetallurgyUtility
 		OreDictionary.registerOre("itemPotash", potash);
 		OreDictionary.registerOre("itemSaltpeter", saltpeter);
 		OreDictionary.registerOre("itemSulfur", sulfur);
+		
+		OreDictionary.registerOre("orePhosphorite", new ItemStack(vein, 1, 0));
+		OreDictionary.registerOre("oreSulfur", new ItemStack(vein, 1, 1));
+		OreDictionary.registerOre("oreSaltpeter", new ItemStack(vein, 1, 2));
+		OreDictionary.registerOre("oreMagnesium", new ItemStack(vein, 1, 3));
+		OreDictionary.registerOre("oreBitumen", new ItemStack(vein, 1, 4));
+		OreDictionary.registerOre("orePotash", new ItemStack(vein, 1, 5));
+	}
+	
+	public void registerWithApi()
+	{
+		MetallurgyItems.registerItem("bitumen", new ItemStack(bitumen, 1));
+		MetallurgyItems.registerItem("magnesium", new ItemStack(magnesium, 1));
+		MetallurgyItems.registerItem("phosphorite", new ItemStack(phosphorite, 1));
+		MetallurgyItems.registerItem("potash", new ItemStack(potash, 1));
+		MetallurgyItems.registerItem("saltpeter", new ItemStack(saltpeter, 1));
+		MetallurgyItems.registerItem("sulfur", new ItemStack(sulfur, 1));
+		
+		MetallurgyItems.registerItem("orePhosphorite", new ItemStack(vein, 1, 0));
+		MetallurgyItems.registerItem("oreSulfur", new ItemStack(vein, 1, 1));
+		MetallurgyItems.registerItem("oreSaltpeter", new ItemStack(vein, 1, 2));
+		MetallurgyItems.registerItem("oreMagnesium", new ItemStack(vein, 1, 3));
+		MetallurgyItems.registerItem("oreBitumen", new ItemStack(vein, 1, 4));
+		MetallurgyItems.registerItem("orePotash", new ItemStack(vein, 1, 5));
 	}
 	
 }

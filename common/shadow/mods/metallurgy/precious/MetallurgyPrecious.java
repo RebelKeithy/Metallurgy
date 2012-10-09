@@ -5,6 +5,7 @@ import java.util.Random;
 
 import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.MetallurgyItem;
+import shadow.mods.metallurgy.MetallurgyItems;
 import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.mod_Gold;
 import shadow.mods.metallurgy.MetallurgyCore;
@@ -104,6 +105,7 @@ public class MetallurgyPrecious
 		proxy.addNames();
 		proxy.registerTileEntitySpecialRenderer();
 		proxy.registerRenderInformation();
+		registerWithApi();
 	}
 
 	@PostInit
@@ -186,5 +188,22 @@ public class MetallurgyPrecious
     	cm.getRecipeList().add(silverChestRecipe);
     	cm.getRecipeList().add(electrumChestRecipe);
     	cm.getRecipeList().add(platinumChestRecipe);
+	}
+	
+	private void registerWithApi()
+	{
+		MetallurgyItems.registerItem("brassChest", new ItemStack(PreciousChest, 1, 0));
+		MetallurgyItems.registerItem("silverChest", new ItemStack(PreciousChest, 1, 1));
+		MetallurgyItems.registerItem("goldChest", new ItemStack(PreciousChest, 1, 2));
+		MetallurgyItems.registerItem("electrumChest", new ItemStack(PreciousChest, 1, 3));
+		MetallurgyItems.registerItem("platinumChest", new ItemStack(PreciousChest, 1, 4));
+		MetallurgyItems.registerItem("mint", new ItemStack(Mint, 1, 0));
+		MetallurgyItems.registerItem("mintStorage", new ItemStack(MintStorage, 1, 0));
+		MetallurgyItems.registerItem("mint", new ItemStack(PreciousChest, 1, 0));
+		MetallurgyItems.registerItem("goldCog", new ItemStack(GoldCog, 1, 0));
+		MetallurgyItems.registerItem("coin", new ItemStack(Coin, 1, 0));
+		MetallurgyItems.registerItem("stack", new ItemStack(Coin, 1, 1));
+		MetallurgyItems.registerItem("bag", new ItemStack(Coin, 1, 2));
+		MetallurgyItems.registerItem("bullion", new ItemStack(Coin, 1, 3));
 	}
 }

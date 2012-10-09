@@ -5,6 +5,7 @@ import java.util.Random;
 
 import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.MetallurgyBlock;
+import shadow.mods.metallurgy.MetallurgyItems;
 import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.MetallurgyCore;
 import shadow.mods.metallurgy.mod_Iron;
@@ -37,7 +38,7 @@ import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyFantasy", name = "Metallurgy Fantasy", dependencies = "after:MetallurgyCore", version = "2.1.0.1")
+@Mod(modid = "MetallurgyFantasy", name = "Metallurgy Fantasy", dependencies = "after:MetallurgyCore", version = "2.1.0.2")
 @NetworkMod(channels = { "MetallurgyFantas" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyFantasy
 {
@@ -60,7 +61,7 @@ public class MetallurgyFantasy
 		ores = new MetalSet(new OreFantasyEnum());
 		
 		proxy.registerRenderInformation();
-		
+		registerWithApi();
 	}
 	
 	@Init
@@ -99,5 +100,20 @@ public class MetallurgyFantasy
 		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[2], 1), "itemDustMithril", "itemDustRubracium");
 		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[3], 1), "itemDustOrichalcum", "itemDustPlatinum");
 		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[4], 1), "itemDustAdamantine", "itemDustAtlarus");
+	}
+	
+	public void registerWithApi()
+	{
+		MetallurgyItems.registerItem("prometheumAbstractor", new ItemStack(FantasyFurnace.metalFurnace, 1, 0));
+		MetallurgyItems.registerItem("deepIronAbstractor", new ItemStack(FantasyFurnace.metalFurnace, 1, 1));
+		MetallurgyItems.registerItem("blackSteelAbstractor", new ItemStack(FantasyFurnace.metalFurnace, 1, 2));
+		MetallurgyItems.registerItem("oureclaseAbstractor", new ItemStack(FantasyFurnace.metalFurnace, 1, 3));
+		MetallurgyItems.registerItem("aredriteAbstractor", new ItemStack(FantasyFurnace.metalFurnace, 1, 4));
+		MetallurgyItems.registerItem("mithrilAbstractor", new ItemStack(FantasyFurnace.metalFurnace, 1, 5));
+		MetallurgyItems.registerItem("haderothAbstractor", new ItemStack(FantasyFurnace.metalFurnace, 1, 6));
+		MetallurgyItems.registerItem("orichalcumAbstractor", new ItemStack(FantasyFurnace.metalFurnace, 1, 7));
+		MetallurgyItems.registerItem("adamantineAbstractor", new ItemStack(FantasyFurnace.metalFurnace, 1, 8));
+		MetallurgyItems.registerItem("atlarusAbstractor", new ItemStack(FantasyFurnace.metalFurnace, 1, 9));
+		MetallurgyItems.registerItem("tartariteAbstractor", new ItemStack(FantasyFurnace.metalFurnace, 1, 10));
 	}
 }

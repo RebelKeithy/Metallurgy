@@ -38,7 +38,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyCore", name = "Metallurgy Core", version = "2.1.0.2")
+@Mod(modid = "MetallurgyCore", name = "Metallurgy Core", version = "2.1.0.3")
 @NetworkMod(channels = { "MetallurgyCore" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyCore
 {
@@ -112,7 +112,6 @@ public class MetallurgyCore
 	@Init
 	public void load(FMLInitializationEvent event) 
 	{
-		
 		mod_Iron.load();
 		mod_Gold.load();
 		

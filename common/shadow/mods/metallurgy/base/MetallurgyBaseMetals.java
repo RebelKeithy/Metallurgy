@@ -8,6 +8,7 @@ import java.util.Random;
 import org.lwjgl.opengl.GL11;
 
 import shadow.mods.metallurgy.MetalSet;
+import shadow.mods.metallurgy.MetallurgyItems;
 import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.mod_Gold;
 import shadow.mods.metallurgy.mod_Iron;
@@ -40,7 +41,7 @@ import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyBase", name = "Metallurgy Base", dependencies = "after:MetallurgyCore", version = "2.0.7.1")
+@Mod(modid = "MetallurgyBase", name = "Metallurgy Base", dependencies = "after:MetallurgyCore", version = "2.1.0.1")
 @NetworkMod(channels = { "MetallurgyBase" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyBaseMetals {
 	
@@ -68,6 +69,7 @@ public class MetallurgyBaseMetals {
 		metalFurnace = new BF_BlockMetalFurnace(ConfigBase.furnaceID, false).setHardness(3.5F).setBlockName("MetalFurnace");
 		
 		MinecraftForge.EVENT_BUS.register(new FurnaceUpgradeRecipes());
+		registerWithApi();
 	}
 
 	@Init
@@ -110,6 +112,14 @@ public class MetallurgyBaseMetals {
 		proxy.addNames();
 	}
 
+	public void registerWithApi()
+	{
+		MetallurgyItems.registerItem("copperFurnace", new ItemStack(metalFurnace, 1, 0));
+		MetallurgyItems.registerItem("bronzeFurnace", new ItemStack(metalFurnace, 1, 1));
+		MetallurgyItems.registerItem("ironFurnace", new ItemStack(metalFurnace, 1, 2));
+		MetallurgyItems.registerItem("steelFurnace", new ItemStack(metalFurnace, 1, 3));
+	}
+	
 	@PostInit
 	public void load(FMLPostInitializationEvent event) 
 	{
