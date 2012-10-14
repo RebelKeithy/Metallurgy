@@ -11,7 +11,9 @@ import shadow.mods.metallurgy.mod_Gold;
 import shadow.mods.metallurgy.MetallurgyCore;
 import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 import shadow.mods.metallurgy.fantasy.MetallurgyFantasy;
+import shadow.mods.metallurgy.mystcraft.OreSymbol;
 import shadow.mods.metallurgy.nether.MetallurgyNether;
+import xcompwiz.mystcraft.api.APICallHandler;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -86,6 +88,7 @@ public class MetallurgyPrecious
 	@Init
 	public void init(FMLInitializationEvent event) 
 	{
+		
 		GameRegistry.registerBlock(PreciousChest, FC_ChestItemBlock.class);
 		GameRegistry.registerTileEntity(FC_TileEntityChest.class, "PreciousChest");
 		GameRegistry.registerBlock(Mint);
@@ -113,6 +116,9 @@ public class MetallurgyPrecious
 	{
 		ores.registerOres();
 		alloys.registerOres();
+		
+		OreSymbol oreSymbol = new OreSymbol(ores);
+		APICallHandler.registerSymbol(oreSymbol);
 		
     	RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0]), "itemDustZinc", "itemDustCopper");
     	RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[1]), "itemDustGold", "itemDustSilver");

@@ -13,8 +13,8 @@ public class BC_CrusherRecipes
     private static final BC_CrusherRecipes smeltingBase = new BC_CrusherRecipes();
 
     /** The list of smelting results. */
-    private Map smeltingList = new HashMap();
-    private Map metaSmeltingList = new HashMap();
+    private static Map smeltingList = new HashMap();
+    private static Map metaSmeltingList = new HashMap();
 
     /**
      * Used to call methods addSmelting and getSmeltingResult.
@@ -57,7 +57,7 @@ public class BC_CrusherRecipes
      * @param metadata The Item Metadata
      * @param itemstack The ItemStack for the result
      */
-    public void addCrushing(int itemID, int metadata, ItemStack itemstack)
+    public static void addCrushing(int itemID, int metadata, ItemStack itemstack)
     {
         metaSmeltingList.put(Arrays.asList(itemID, metadata), itemstack);
     }

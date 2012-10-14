@@ -19,6 +19,11 @@ public class UtilityWorldGen implements IWorldGenerator
 		if(!spawnsInDim(world.provider.dimensionId))
 			return;
 		
+		generateAllOres(rand, chunkX, chunkZ, world);
+	}
+	
+	public static void generateAllOres(Random rand, int chunkX, int chunkZ, World world)
+	{
 		if(ConfigUtility.bitumenEnabled)
 			generateBitumen(world, rand, chunkX * 16, chunkZ * 16);
 		if(ConfigUtility.magnesiumEnabled)
@@ -31,7 +36,7 @@ public class UtilityWorldGen implements IWorldGenerator
 			generateSaltpeter(world, rand, chunkX * 16, chunkZ * 16);
 		if(ConfigUtility.sulfurEnabled)
 			generateSulfur(world, rand, chunkX * 16, chunkZ * 16);
-
+		
 	}
 	
 	public boolean spawnsInDim(int id)

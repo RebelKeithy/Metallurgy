@@ -444,7 +444,7 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements ISpecialInv
             if (var1 == MetallurgyFantasy.ores.Dust[0].shiftedIndex) return 1760;
             if (var1 == MetallurgyFantasy.ores.Dust[5].shiftedIndex) return 7040;
             if (var1 == MetallurgyFantasy.ores.Dust[6].shiftedIndex) return 14080;
-            return 0;
+            return FF_EssenceRecipes.getFuelAmount(par0ItemStack);
         }
     }
 
@@ -546,7 +546,7 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements ISpecialInv
 				this.furnaceItemStacks[slot] = stack;
 			return stack.stackSize;
 		} else {
-			if(this.furnaceItemStacks[slot].itemID == stack.itemID)
+			if(this.furnaceItemStacks[slot].itemID == stack.itemID && furnaceItemStacks[slot].getItemDamage() == stack.getItemDamage())
 			{
 				if(this.furnaceItemStacks[slot].stackSize + stack.stackSize > stack.getMaxStackSize())
 				{

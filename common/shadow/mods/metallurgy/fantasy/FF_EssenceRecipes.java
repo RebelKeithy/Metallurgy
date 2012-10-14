@@ -11,8 +11,9 @@ public class FF_EssenceRecipes
     private static final FF_EssenceRecipes smeltingBase = new FF_EssenceRecipes();
 
     /** The list of smelting results. */
-    private Map smeltingList = new HashMap();
-    private Map metaSmeltingList = new HashMap();
+    private static Map smeltingList = new HashMap();
+    private static Map metaSmeltingList = new HashMap();
+    private static Map fuelList = new HashMap();
 
     /**
      * Used to call methods addSmelting and getSmeltingResult.
@@ -55,7 +56,7 @@ public class FF_EssenceRecipes
      * @param metadata The Item Metadata
      * @param itemstack The ItemStack for the result
      */
-    public void addEssence(int itemID, int metadata, int amount)
+    public static void addEssence(int itemID, int metadata, int amount)
     {
         metaSmeltingList.put(Arrays.asList(itemID, metadata), amount);
     }
@@ -84,4 +85,16 @@ public class FF_EssenceRecipes
         
         return 0;
     }
+    
+    public static void addFuel(int itemID, int metadata, int amount)
+    {
+        fuelList.put(Arrays.asList(itemID, metadata), amount);
+    }
+
+	public static int getFuelAmount(ItemStack itemStack) {
+		if(fuelList.containsKey(Arrays.asList(itemStack.itemID, itemStack.getItemDamage())))
+			return (Integer) fuelList.get(Arrays.asList(itemStack.itemID, itemStack.getItemDamage()));
+		else
+			return 0;
+	}
 }

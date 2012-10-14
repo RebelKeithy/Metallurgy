@@ -334,15 +334,19 @@ public class FM_TileEntityMint extends TileEntity
 
 	public String getIngotImage() {
 		if(ingotId == MetallurgyPrecious.ores.Bar[1].shiftedIndex)
-			return "MintSilver.png";
+			return "/shadow/MintSilver.png";
 		else if(ingotId == MetallurgyPrecious.alloys.Bar[0].shiftedIndex)
-			return "MintBrass.png";
+			return "/shadow/MintBrass.png";
 		else if(ingotId == MetallurgyPrecious.alloys.Bar[1].shiftedIndex)
-			return "MintElectrum.png";
+			return "/shadow/MintElectrum.png";
 		else if(ingotId == MetallurgyPrecious.ores.Bar[2].shiftedIndex)
-			return "MintPlatinum.png";
+			return "/shadow/MintPlatinum.png";
 		else if(ingotId == Item.ingotGold.shiftedIndex)
-			return "MintGold.png";
-		return "MintBrass.png";
+			return "/shadow/MintGold.png";
+		
+		if(!FM_MintRecipes.minting().getImage(ingotId).equals(""))
+			return FM_MintRecipes.minting().getImage(ingotId);
+		else
+			return "/shadow/MintBrass.png";
 	}
 }

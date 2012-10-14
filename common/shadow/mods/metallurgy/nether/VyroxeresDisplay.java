@@ -49,7 +49,6 @@ public class VyroxeresDisplay implements DisplayListener {
 
             if (var8 == 1 && !par1World.isBlockOpaqueCube(par2, par3 - 1, par4))
             {
-            	System.out.println("bottom?");
                 var11 = (double)(par3 + 0) - var6;
             }
 

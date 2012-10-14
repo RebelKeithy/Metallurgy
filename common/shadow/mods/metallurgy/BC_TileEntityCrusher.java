@@ -538,7 +538,7 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 				this.furnaceItemStacks[slot] = stack;
 			return stack.stackSize;
 		} else {
-			if(this.furnaceItemStacks[slot].itemID == stack.itemID)
+			if(this.furnaceItemStacks[slot].itemID == stack.itemID && furnaceItemStacks[slot].getItemDamage() == stack.getItemDamage())
 			{
 				if(this.furnaceItemStacks[slot].stackSize + stack.stackSize > stack.getMaxStackSize())
 				{

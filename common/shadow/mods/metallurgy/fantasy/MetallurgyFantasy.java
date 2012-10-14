@@ -10,8 +10,10 @@ import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.MetallurgyCore;
 import shadow.mods.metallurgy.mod_Iron;
 import shadow.mods.metallurgy.ender.ConfigEnder;
+import shadow.mods.metallurgy.mystcraft.OreSymbol;
 import shadow.mods.metallurgy.nether.VyroxeresDisplay;
 import shadow.mods.metallurgy.precious.MetallurgyPrecious;
+import xcompwiz.mystcraft.api.APICallHandler;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -67,6 +69,10 @@ public class MetallurgyFantasy
 	@Init
 	public void load(FMLInitializationEvent event) 
 	{		
+
+		OreSymbol oreSymbol = new OreSymbol(ores);
+		APICallHandler.registerSymbol(oreSymbol);
+		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		
 		proxy.registerRenderInformation();

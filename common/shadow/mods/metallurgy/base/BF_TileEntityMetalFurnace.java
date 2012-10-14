@@ -495,7 +495,7 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements ISidedInven
 				this.furnaceItemStacks[slot] = stack;
 			return stack.stackSize;
 		} else {
-			if(this.furnaceItemStacks[slot].itemID == stack.itemID)
+			if(this.furnaceItemStacks[slot].itemID == stack.itemID && furnaceItemStacks[slot].getItemDamage() == stack.getItemDamage())
 			{
 				if(this.furnaceItemStacks[slot].stackSize + stack.stackSize > stack.getMaxStackSize())
 				{

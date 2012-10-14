@@ -509,7 +509,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 				furnaceItemStacks[slot] = stack;
 			return stack.stackSize;
 		} else {
-			if(furnaceItemStacks[slot].itemID == stack.itemID)
+			if(furnaceItemStacks[slot].itemID == stack.itemID && furnaceItemStacks[slot].getItemDamage() == stack.getItemDamage())
 			{
 				if(furnaceItemStacks[slot].stackSize + stack.stackSize > stack.getMaxStackSize())
 				{

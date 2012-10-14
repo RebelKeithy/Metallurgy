@@ -20,6 +20,7 @@ import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.ModLoader;
 import net.minecraft.src.World;
+import net.minecraft.src.WorldGenMinable;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -264,7 +265,12 @@ public class MetalSet implements IWorldGenerator {
 	{
 		if(!info.spawnsInDimension(world.provider.dimensionId))
 			return;
-
+		
+		generateAllOres(rand, chunkX, chunkZ, world);
+	}
+	
+	public void generateAllOres(Random rand, int chunkX, int chunkZ, World world)
+	{
 		for(int i = 0; i < numMetals; i++)
 			if(info.metalEnabled(i))
 				generateOre(world, rand, chunkX * 16, chunkZ * 16, i);
@@ -285,7 +291,7 @@ public class MetalSet implements IWorldGenerator {
 				(new MetallurgyWorldGenEnderMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
 			else
 			{
-				(new MetallurgyWorldGenMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
+				(new WorldGenMinable(ore.blockID, meta, info.oreCount(meta))).generate(world, rand, randPosX, randPosY, randPosZ);
 			}
 		}
 		

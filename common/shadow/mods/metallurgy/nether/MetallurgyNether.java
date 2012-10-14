@@ -14,8 +14,10 @@ import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 import shadow.mods.metallurgy.base.AlloyBaseEnum;
 import shadow.mods.metallurgy.ender.MetallurgyEnder;
 import shadow.mods.metallurgy.fantasy.MetallurgyFantasy;
+import shadow.mods.metallurgy.mystcraft.OreSymbol;
 import shadow.mods.metallurgy.precious.MetallurgyPrecious;
 import shadow.mods.metallurgy.MetallurgyItemSword;
+import xcompwiz.mystcraft.api.APICallHandler;
 
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.Mod;
@@ -111,6 +113,9 @@ public class MetallurgyNether
 	    ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), ores.Dust[9], ores.Dust[4]);
 	    if(MetallurgyCore.hasPrecious)
 	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[2], 1), new ItemStack(MetallurgyPrecious.ores.Dust[2], 1), ores.Dust[5]);
+
+		OreSymbol oreSymbol = new OreSymbol(ores);
+		APICallHandler.registerSymbol(oreSymbol);
 	}
 	
 	public static void addMidasiumRecipes()

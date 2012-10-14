@@ -12,6 +12,9 @@ import shadow.mods.metallurgy.MetallurgyItems;
 import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.mod_Gold;
 import shadow.mods.metallurgy.mod_Iron;
+import shadow.mods.metallurgy.api.MetallurgyAPI;
+import shadow.mods.metallurgy.mystcraft.OreSymbol;
+import xcompwiz.mystcraft.api.APICallHandler;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -70,11 +73,18 @@ public class MetallurgyBaseMetals {
 		
 		MinecraftForge.EVENT_BUS.register(new FurnaceUpgradeRecipes());
 		registerWithApi();
+		
+		
+		IClassTransformer
+
 	}
 
 	@Init
 	public void load(FMLInitializationEvent event) 
 	{
+		OreSymbol oreSymbol = new OreSymbol(ores);
+		APICallHandler.registerSymbol(oreSymbol);
+		
 		GameRegistry.registerBlock(metalFurnace, shadow.mods.metallurgy.base.BF_BlockMetalFurnaceItem.class);
 
 		ModLoader.registerTileEntity(BF_TileEntityMetalFurnace.class, "metalFurnace");
@@ -86,6 +96,7 @@ public class MetallurgyBaseMetals {
 
 		if(ConfigBase.furnacesEnabled)
 			FurnaceUpgradeRecipes.load();
+		
 		
 		try {
 			Class a = Class.forName("ic2.api.Ic2Recipes");
@@ -110,6 +121,11 @@ public class MetallurgyBaseMetals {
 		} catch(Exception e) {}
 		
 		proxy.addNames();
+		
+		MetallurgyAPI.addCrusherRecipe(Item.appleRed.shiftedIndex, 0, new ItemStack(Block.dirt));
+		MetallurgyAPI.addAbstractorRecipe(Item.appleRed.shiftedIndex, 0, 50);
+		MetallurgyAPI.addAbstractorFuel(Item.appleRed.shiftedIndex, 0, 40);
+		MetallurgyAPI.addMintingIngot(Block.cobblestone.blockID, 3, "/shadow/MintGold.png");
 	}
 
 	public void registerWithApi()

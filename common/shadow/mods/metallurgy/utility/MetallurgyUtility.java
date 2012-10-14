@@ -4,6 +4,9 @@ import java.io.File;
 import java.util.Random;
 
 import shadow.mods.metallurgy.MetallurgyItems;
+import shadow.mods.metallurgy.mystcraft.OreSymbol;
+import shadow.mods.metallurgy.mystcraft.OreSymbolUtility;
+import xcompwiz.mystcraft.api.APICallHandler;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -75,7 +78,10 @@ public class MetallurgyUtility
 	@Init
 	public void load(FMLInitializationEvent event) 
 	{
-
+		try {
+			APICallHandler.registerSymbol(new OreSymbolUtility());
+		} catch(Exception e){}
+		
 		proxy.registerRenderInformation();
 		proxy.addNames();
 
