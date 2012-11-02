@@ -19,7 +19,7 @@ public class BC_GuiCrusher extends GuiContainer
      * Draw the foreground layer for the GuiContainer (everythin in front of the items)
      */
     @Override
-    protected void drawGuiContainerForegroundLayer()
+    protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
         this.fontRenderer.drawString(StatCollector.translateToLocal(names[type] + " Crusher"), this.xSize/2 - ((names[type] + " Crusher").length()*5)/2, 6, 4210752);
         this.fontRenderer.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);

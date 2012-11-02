@@ -46,6 +46,7 @@ public class FM_ContainerMintStorage extends Container
         }
     }
 
+    @Override
     public boolean canInteractWith(EntityPlayer par1EntityPlayer)
     {
         return this.lowerChestInventory.isUseableByPlayer(par1EntityPlayer);
@@ -54,7 +55,8 @@ public class FM_ContainerMintStorage extends Container
     /**
      * Called to transfer a stack from one inventory to the other eg. when shift clicking.
      */
-    public ItemStack transferStackInSlot(int par1)
+    @Override
+    public ItemStack func_82846_b(EntityPlayer par1EntityPlayer, int par1)
     {
         ItemStack var2 = null;
         Slot var3 = (Slot)this.inventorySlots.get(par1);
@@ -92,6 +94,7 @@ public class FM_ContainerMintStorage extends Container
     /**
      * Callback for when the crafting gui is closed.
      */
+    @Override
     public void onCraftGuiClosed(EntityPlayer par1EntityPlayer)
     {
         super.onCraftGuiClosed(par1EntityPlayer);

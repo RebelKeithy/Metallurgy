@@ -22,8 +22,8 @@ public class BC_SlotCrusher extends Slot
      }
 
      @Override
-     public void onPickupFromSlot(ItemStack itemstack)
+     public void func_82870_a(EntityPlayer par1, ItemStack itemstack)
      {
-             super.onPickupFromSlot(itemstack);
+             super.func_82870_a(par1, itemstack);
      }
 }

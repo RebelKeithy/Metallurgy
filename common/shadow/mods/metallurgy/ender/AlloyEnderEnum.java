@@ -1,12 +1,14 @@
 package shadow.mods.metallurgy.ender;
 
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 import shadow.mods.metallurgy.base.ConfigBase;
+import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 
-public class AlloyEnderEnum implements IMetalSetEnum{
+public class AlloyEnderEnum extends IMetalSetEnum{
 
 	public static int numMetals = 1;
 	public static String[] names = {"Desichalkos"};
@@ -148,6 +150,11 @@ public class AlloyEnderEnum implements IMetalSetEnum{
 	@Override
 	public int level(int i) {
 		return metalLevels[i];
+	}
+
+	@Override
+	public CreativeTabs getCreativeTab() {
+		return MetallurgyEnder.creativeTab;
 	}
 
 }

@@ -1,6 +1,8 @@
 package shadow.mods.metallurgy.fantasy;
 
 import java.io.File;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.Random;
 
 import shadow.mods.metallurgy.MetalSet;
@@ -8,12 +10,14 @@ import shadow.mods.metallurgy.MetallurgyBlock;
 import shadow.mods.metallurgy.MetallurgyItems;
 import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.MetallurgyCore;
+import shadow.mods.metallurgy.UpdateManager;
 import shadow.mods.metallurgy.mod_Iron;
+import shadow.mods.metallurgy.base.ConfigBase;
 import shadow.mods.metallurgy.ender.ConfigEnder;
 import shadow.mods.metallurgy.mystcraft.OreSymbol;
 import shadow.mods.metallurgy.nether.VyroxeresDisplay;
+import shadow.mods.metallurgy.precious.ConfigPrecious;
 import shadow.mods.metallurgy.precious.MetallurgyPrecious;
-import xcompwiz.mystcraft.api.APICallHandler;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -30,6 +34,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
@@ -40,7 +45,7 @@ import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyFantasy", name = "Metallurgy Fantasy", dependencies = "after:MetallurgyCore", version = "2.1.0.2")
+@Mod(modid = "MetallurgyFantasy", name = "Metallurgy Fantasy", dependencies = "after:MetallurgyCore", version = "2.2")
 @NetworkMod(channels = { "MetallurgyFantas" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyFantasy
 {
@@ -53,12 +58,17 @@ public class MetallurgyFantasy
 	
 	public static MetalSet alloys;
 	public static MetalSet ores;
+
+	public static CreativeTabs creativeTab;
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		ConfigFantasy.init();
 
+		//creativeTab = MetallurgyCore.getNewCreativeTab("Fantasy Metals", ConfigFantasy.ItemStartID);
+		creativeTab = MetallurgyCore.getNewCreativeTab("Fantasy Metals", ConfigFantasy.ItemStartID + 256 + 600 + 7 + 50 * 4);
+		
 		alloys = new MetalSet(new AlloyFantasyEnum());
 		ores = new MetalSet(new OreFantasyEnum());
 		
@@ -69,9 +79,14 @@ public class MetallurgyFantasy
 	@Init
 	public void load(FMLInitializationEvent event) 
 	{		
-
-		OreSymbol oreSymbol = new OreSymbol(ores);
-		APICallHandler.registerSymbol(oreSymbol);
+		try {
+			Class mystcraftApi = Class.forName("xcompwiz.mystcraft.api.APICallHandler");
+			Class ageSymbol = Class.forName("xcompwiz.mystcraft.api.symbol.AgeSymbol");
+			Class oreSymbol = Class.forName("shadow.mods.metallurgy.mystcraft.OreSymbol");
+			Constructor constructor = oreSymbol.getConstructor(new Class[]{MetalSet.class});
+			Method registerSymbol = mystcraftApi.getMethod("registerSymbol", new Class[]{ageSymbol});
+			registerSymbol.invoke(mystcraftApi, constructor.newInstance(ores));
+		} catch(Exception e) {}
 		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		
@@ -93,6 +108,8 @@ public class MetallurgyFantasy
 		if(MetallurgyCore.hasPrecious)
 			ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[3], 1), new Object[] {ores.Dust[9], new ItemStack(MetallurgyPrecious.ores.Dust[2], 1)});
 		ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[4], 1), new Object[] {ores.Dust[10], ores.Dust[11]});
+		
+		new UpdateManager("2.2.3", "Fantasy", "http://ladadeda.info/FantasyVersion.txt");
 	}
 
 	@PostInit
@@ -101,11 +118,11 @@ public class MetallurgyFantasy
 		ores.registerOres();
 		alloys.registerOres();
 		
-		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "itemDustDeep Iron", "itemDustInfuscolium");
-		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[1], 1), "itemDustMithril", "itemDustSilver");
-		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[2], 1), "itemDustMithril", "itemDustRubracium");
-		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[3], 1), "itemDustOrichalcum", "itemDustPlatinum");
-		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[4], 1), "itemDustAdamantine", "itemDustAtlarus");
+		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "dustDeep Iron", "dustInfuscolium");
+		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[1], 1), "dustMithril", "dustSilver");
+		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[2], 1), "dustMithril", "dustRubracium");
+		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[3], 1), "dustOrichalcum", "dustPlatinum");
+		RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[4], 1), "dustAdamantine", "dustAtlarus");
 	}
 	
 	public void registerWithApi()

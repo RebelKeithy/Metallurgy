@@ -78,7 +78,7 @@ public class FM_TileEntityMintRenderer extends TileEntitySpecialRenderer
 
         var14 = this.mintModel;
         FM_ModelMintHead mintHead = new FM_ModelMintHead();
-        this.bindTextureByName(imageName);
+        this.bindTextureByName("/shadow/Mint.png");
         
 
         GL11.glPushMatrix();
@@ -116,7 +116,7 @@ public class FM_TileEntityMintRenderer extends TileEntitySpecialRenderer
 
         if(ingot)
         {
-            this.bindTextureByName("/shadow/" + ingotImage);
+            this.bindTextureByName(ingotImage);
         	(new FM_ModelIngot()).renderAll();
         }
         	

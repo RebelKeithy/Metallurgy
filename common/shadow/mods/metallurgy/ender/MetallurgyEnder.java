@@ -1,11 +1,16 @@
 package shadow.mods.metallurgy.ender;
 import java.io.File;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.Random;
 
 import shadow.mods.metallurgy.MetalSet;
+import shadow.mods.metallurgy.MetallurgyCore;
 import shadow.mods.metallurgy.RecipeHelper;
+import shadow.mods.metallurgy.UpdateManager;
+import shadow.mods.metallurgy.base.ConfigBase;
 import shadow.mods.metallurgy.mystcraft.OreSymbol;
-import xcompwiz.mystcraft.api.APICallHandler;
+import shadow.mods.metallurgy.precious.ConfigPrecious;
 
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.Mod;
@@ -23,6 +28,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
@@ -32,7 +38,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyEnder", name = "Metallurgy Ender", dependencies = "after:MetallurgyCore", version = "2.1.0.1")
+@Mod(modid = "MetallurgyEnder", name = "Metallurgy Ender", dependencies = "after:MetallurgyCore", version = "2.2")
 @NetworkMod(channels = { "MetallurgyNether" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyEnder
 {
@@ -45,13 +51,16 @@ public class MetallurgyEnder
 	public static MetalSet alloys;
 	public static MetalSet ores;	
 	
-
+	public static CreativeTabs creativeTab;
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		ConfigEnder.init();
 
+		//creativeTab = MetallurgyCore.getNewCreativeTab("Ender Metals", ConfigEnder.alloyItemIds[0]);
+		creativeTab = MetallurgyCore.getNewCreativeTab("Ender Metals", ConfigEnder.alloyItemIds[0] + 256 + 7);
+		
 		alloys = new MetalSet(new AlloyEnderEnum());
 		ores = new MetalSet(new OreEnderEnum());
 	}
@@ -59,9 +68,17 @@ public class MetallurgyEnder
 	@Init
 	public void load(FMLInitializationEvent event) 
 	{
-		
-		OreSymbol oreSymbol = new OreSymbol(ores);
-		APICallHandler.registerSymbol(oreSymbol);
+		try {
+			Class mystcraftApi = Class.forName("xcompwiz.mystcraft.api.APICallHandler");
+			Class ageSymbol = Class.forName("xcompwiz.mystcraft.api.symbol.AgeSymbol");
+			Class oreSymbol = Class.forName("shadow.mods.metallurgy.mystcraft.OreSymbol");
+			Constructor constructor = oreSymbol.getConstructor(new Class[]{MetalSet.class});
+			Method registerSymbol = mystcraftApi.getMethod("registerSymbol", new Class[]{ageSymbol});
+			registerSymbol.invoke(mystcraftApi, constructor.newInstance(ores));
+			System.out.println("Metallurgy is adding symbols ");
+		} catch(Exception e) {
+			System.out.println("Metallurgy not adding symbols " + e);
+		}
 		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		proxy.registerRenderInformation();
@@ -69,6 +86,8 @@ public class MetallurgyEnder
 
 		ores.load();
 		alloys.load();
+		
+		new UpdateManager("2.2.3", "Ender", "http://ladadeda.info/EnderVersion.txt");
 	}
 
 	@PostInit
@@ -78,6 +97,6 @@ public class MetallurgyEnder
 		alloys.registerOres();
 		
 		if(ConfigEnder.alloyEnabled[0])
-			RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "itemDustEximite", "itemDustMeutoite");
+			RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0], 1), "dustEximite", "dustMeutoite");
 	}
 }

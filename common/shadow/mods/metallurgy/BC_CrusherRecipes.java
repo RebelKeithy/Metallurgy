@@ -101,7 +101,6 @@ public class BC_CrusherRecipes
 						return null;
 					name = name.replace(replacement, "itemDust");
 					List<ItemStack> retList = OreDictionary.getOres(name);
-					System.out.println("found " + retList.size());
 					if(retList.size() > 0)
 					{
 						ret = retList.get(0).copy();

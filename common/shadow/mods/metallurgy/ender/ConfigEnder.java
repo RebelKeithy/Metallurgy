@@ -51,33 +51,33 @@ public class ConfigEnder  {
         config.load();
         
         
-    	EnderMetalsVeinID = config.getOrCreateBlockIdProperty("Metal Ore", 924).getInt(924);
-    	EnderMetalsBrickID = config.getOrCreateBlockIdProperty("Metal Brick", 925).getInt(925);
-    	EnderAlloysBrickID = config.getOrCreateBlockIdProperty("Alloy Brick", 926).getInt(926);
+    	EnderMetalsVeinID = config.getBlock("Metal Ore", 924).getInt(924);
+    	EnderMetalsBrickID = config.getBlock("Metal Brick", 925).getInt(925);
+    	EnderAlloysBrickID = config.getBlock("Alloy Brick", 926).getInt(926);
 
-    	dimensions = config.getOrCreateProperty("Dimensions", "Dimensions", "1").value;
+    	dimensions = config.get("Dimensions", "Dimensions", "1").value;
     	
     	for(int i = 0; i < 1; i++)
-    		alloyEnabled[i] = config.getOrCreateBooleanProperty(AlloyEnderEnum.names[i] + " Enabled", "Ores", true).getBoolean(true);
+    		alloyEnabled[i] = config.get("Ores", AlloyEnderEnum.names[i] + " Enabled", true).getBoolean(true);
     	for(int i = 0; i < 2; i++)
-    		metalEnabled[i] = config.getOrCreateBooleanProperty(OreEnderEnum.names[i] + " Enabled", "Ores", true).getBoolean(true);
+    		metalEnabled[i] = config.get("Ores", OreEnderEnum.names[i] + " Enabled", true).getBoolean(true);
 
     	for(int i = 0; i < 2; i++)
     	{
-    		metalItemIds[i] = config.getOrCreateIntProperty(OreEnderEnum.names[i] + " item ids", "Item Ids uses next 50", 28500 + (i * 50)).getInt(28500 + (i * 50));
+    		metalItemIds[i] = config.get("Item Ids uses next 50", OreEnderEnum.names[i] + " item ids", 28500 + (i * 50)).getInt(28500 + (i * 50));
     	}
     	
     	for(int i = 0; i < 1; i++)
     	{
-    		alloyItemIds[i] = config.getOrCreateIntProperty(AlloyEnderEnum.names[i] + " item ids", "Item Ids uses next 50", 28600 + (i * 50)).getInt(28600 + (i * 50));
+    		alloyItemIds[i] = config.get("Item Ids uses next 50", AlloyEnderEnum.names[i] + " item ids", 28600 + (i * 50)).getInt(28600 + (i * 50));
     	}
     	
     	for(int i = 0; i < 2; i++)
     	{
-	    	VeinCount[i] = config.getOrCreateIntProperty(OreEnderEnum.names[i] + " Vein Count", "Ore Generation", OreEnderEnum.defaultVeinCount[i]).getInt(OreEnderEnum.defaultVeinCount[i]);
-	    	OreCount[i] = config.getOrCreateIntProperty(OreEnderEnum.names[i] + " Ore Count", "Ore Generation", OreEnderEnum.defaultOreCount[i]).getInt(OreEnderEnum.defaultOreCount[i]);
-	    	OreHeight[i] = config.getOrCreateIntProperty(OreEnderEnum.names[i] + " Height", "Ore Generation", OreEnderEnum.defaultOreHeight[i]).getInt(OreEnderEnum.defaultOreHeight[i]);
-	    	OreMinHeight[i] = config.getOrCreateIntProperty(OreEnderEnum.names[i] + " Minimum Height", "Ore Generation", 0).getInt(0);
+	    	VeinCount[i] = config.get("Ore Generation", OreEnderEnum.names[i] + " Vein Count", OreEnderEnum.defaultVeinCount[i]).getInt(OreEnderEnum.defaultVeinCount[i]);
+	    	OreCount[i] = config.get("Ore Generation", OreEnderEnum.names[i] + " Ore Count", OreEnderEnum.defaultOreCount[i]).getInt(OreEnderEnum.defaultOreCount[i]);
+	    	OreHeight[i] = config.get("Ore Generation", OreEnderEnum.names[i] + " Height", OreEnderEnum.defaultOreHeight[i]).getInt(OreEnderEnum.defaultOreHeight[i]);
+	    	OreMinHeight[i] = config.get("Ore Generation", OreEnderEnum.names[i] + " Minimum Height", 0).getInt(0);
     	}
     
     	config.save();

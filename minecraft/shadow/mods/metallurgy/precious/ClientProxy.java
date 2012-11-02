@@ -36,10 +36,10 @@ public class ClientProxy extends CommonProxy{
 		LanguageRegistry.instance().addStringLocalization("tile.Mint.name", "Mint");
 		LanguageRegistry.instance().addStringLocalization("tile.MintStorage.name", "Mint Storage");
 
-		LanguageRegistry.instance().addStringLocalization("item.Coin.0.name", "Coin");
-		LanguageRegistry.instance().addStringLocalization("item.Coin.1.name", "Stack");
-		LanguageRegistry.instance().addStringLocalization("item.Coin.2.name", "Bag");
-		LanguageRegistry.instance().addStringLocalization("item.Coin.3.name", "Bullion");
+		LanguageRegistry.instance().addStringLocalization("item.Coin.name", "Coin");
+		LanguageRegistry.instance().addStringLocalization("item.Stack.name", "Stack");
+		LanguageRegistry.instance().addStringLocalization("item.Bag.name", "Bag");
+		LanguageRegistry.instance().addStringLocalization("item.Bullion.name", "Bullion");
 		LanguageRegistry.instance().addStringLocalization("item.GoldCog.name", "Gold Cog");
 	}
 	

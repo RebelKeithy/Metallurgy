@@ -1,13 +1,15 @@
 package shadow.mods.metallurgy.nether;
 
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
+import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 import shadow.mods.metallurgy.ender.ConfigEnder;
 import shadow.mods.metallurgy.fantasy.ConfigFantasy;
 
-public class AlloyNetherEnum implements IMetalSetEnum{
+public class AlloyNetherEnum extends IMetalSetEnum{
 
 	public static int numMetals = 3;
 	public static String[] names = {"Shadow Steel", "Inolashite", "Amordrine"};
@@ -163,6 +165,11 @@ public class AlloyNetherEnum implements IMetalSetEnum{
 	@Override
 	public int level(int i) {
 		return metalLevels[i];
+	}
+
+	@Override
+	public CreativeTabs getCreativeTab() {
+		return MetallurgyNether.creativeTab;
 	}
 
 }

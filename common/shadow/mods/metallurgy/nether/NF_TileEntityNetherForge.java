@@ -197,11 +197,11 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
             }
         }
 
-        fuel = par1NBTTagCompound.getShort("Fuel");
+        fuel = par1NBTTagCompound.getInteger("Fuel");
         furnaceCookTime = par1NBTTagCompound.getShort("CookTime");
         direction = par1NBTTagCompound.getShort("Direction");
         furnaceTimeBase = par1NBTTagCompound.getShort("TimeBase");
-        maxFuel = par1NBTTagCompound.getShort("MaxFuel");
+        maxFuel = par1NBTTagCompound.getInteger("MaxFuel");
         sync();
     }
 
@@ -211,11 +211,11 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
     public void writeToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setShort("Fuel", (short)fuel);
+        par1NBTTagCompound.setInteger("Fuel", (short)fuel);
         par1NBTTagCompound.setShort("CookTime", (short)furnaceCookTime);
         par1NBTTagCompound.setShort("Direction", (short)direction);
         par1NBTTagCompound.setShort("TimeBase", (short)furnaceTimeBase);
-        par1NBTTagCompound.setShort("MaxFuel", (short)maxFuel);
+        par1NBTTagCompound.setInteger("MaxFuel", (short)maxFuel);
         NBTTagList var2 = new NBTTagList();
 
         for (int var3 = 0; var3 < furnaceItemStacks.length; ++var3)

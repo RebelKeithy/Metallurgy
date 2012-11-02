@@ -33,6 +33,7 @@ public class MetallurgyBlock extends Block
 	public List<CollisionListener> clList = new ArrayList<CollisionListener>();
 	public boolean displayEffect;
 	public List<DisplayListener> dlList = new ArrayList<DisplayListener>();
+	public boolean isMetalBlock = false;
 	
     public MetallurgyBlock(int i, String s, int numTypes, int row) {
         super(i, Material.iron);
@@ -63,7 +64,10 @@ public class MetallurgyBlock extends Block
     
     @Override
 	public int getBlockTextureFromSideAndMetadata(int i, int j) {
-		return j + (row * 16);
+    	if(isMetalBlock)
+    		return (16 * j) + 15;
+    	else
+    		return j + (row * 16);
 	}
 	
 	public String getTextureFile()
@@ -71,7 +75,7 @@ public class MetallurgyBlock extends Block
 		return texturePath;
     }
 	
-    protected int damageDropped(int metadata) {
+    public int damageDropped(int metadata) {
         return metadata;
     }
     

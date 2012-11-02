@@ -44,7 +44,7 @@ public class FC_BlockChest extends BlockContainer
     {
         super(par1, Material.wood);
         this.blockIndexInTexture = 2;
-        this.setCreativeTab(CreativeTabs.tabDecorations);
+        this.setCreativeTab(MetallurgyPrecious.creativeTab);
     }
     
 
@@ -59,7 +59,7 @@ public class FC_BlockChest extends BlockContainer
     }
     
     @Override
-    protected int damageDropped(int metadata)
+	public int damageDropped(int metadata)
     {
     	return metadata;
     }

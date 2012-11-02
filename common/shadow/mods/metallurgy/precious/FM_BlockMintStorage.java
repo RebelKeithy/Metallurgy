@@ -44,7 +44,7 @@ public class FM_BlockMintStorage extends BlockContainer
     {
         super(par1, Material.wood);
         this.blockIndexInTexture = 1;
-        this.setCreativeTab(CreativeTabs.tabDecorations);
+        this.setCreativeTab(MetallurgyPrecious.creativeTab);
     }
 
     @Override

@@ -5,7 +5,7 @@ import java.util.Random;
 
 import buildcraft.api.liquids.LiquidManager;
 import buildcraft.api.liquids.LiquidStack;
-import buildcraft.core.utils.Utils;
+//import buildcraft.core.utils.Utils;
 
 import shadow.mods.metallurgy.fantasy.MetallurgyFantasy;
 
@@ -41,7 +41,7 @@ public class NF_BlockNetherForge extends BlockContainer
         super(par1, Material.rock);
         this.isActive = par2;
         setRequiresSelfNotify();
-        this.setCreativeTab(CreativeTabs.tabDecorations);
+        this.setCreativeTab(MetallurgyNether.creativeTab);
     }
     
     @Override
@@ -59,7 +59,7 @@ public class NF_BlockNetherForge extends BlockContainer
     }
     
     @Override
-    protected int damageDropped(int metadata)
+	public int damageDropped(int metadata)
     {
     	return (metadata < 8) ? metadata : metadata - 8;
     }
@@ -208,6 +208,7 @@ public class NF_BlockNetherForge extends BlockContainer
     			return true;
     		}
     		
+    		/*
 			LiquidStack liquid = LiquidManager.getLiquidForFilledItem(currentItem);
 			
             if(liquid != null)
@@ -221,12 +222,11 @@ public class NF_BlockNetherForge extends BlockContainer
             	var6.addFuelBucket();
             	return true;
             }
+            */
     	}
 
         if (var6 != null)
         {
-            //par5EntityPlayer.displayGUIFurnace(var6);
-            //ModLoader.openGUI(par5EntityPlayer, new NF_GuiNetherForge(par5EntityPlayer.inventory, var6));
             par5EntityPlayer.openGui(MetallurgyNether.instance, 0, par1World, par2, par3, par4);
         }
 

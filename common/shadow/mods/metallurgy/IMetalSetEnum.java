@@ -2,35 +2,80 @@ package shadow.mods.metallurgy;
 
 import java.util.List;
 
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumArmorMaterial;
 
-public interface IMetalSetEnum {
+public abstract class IMetalSetEnum {
 	
-	public int numMetals();
-	public int startID(int i);
-	public String name(int i);
-	public int expValue(int i);
-	public int oreHarvestLevel(int i);
-	public int brickHarvestLevel(int i);
-	public int pickLevel(int i);
-	public int dungeonLootChance(int i);
-	public int dungeonLootAmount(int i);
-	public String image();
-	public boolean isAlloy();
-	public int veinCount(int i);
-	public int oreCount(int i);
-	public int oreHeight(int i);
-	public int oreMinHeight(int i);
-	public int oreID();
-	public int brickID();
-	public String getSetName();
-	public MetallurgyEnumToolMaterial toolEnum(int i);
-	public boolean isCatalyst(int i);
-	public int numRails(int i);
-	public boolean spawnsInDimension(int i);
-	public boolean metalEnabled(int i);
-	public EnumArmorMaterial armorEnum(int i);
-	public int level(int i);
+	public abstract int numMetals();
+	public abstract int startID(int i);
+	public abstract String name(int i);
+	public abstract int expValue(int i);
+	public abstract int oreHarvestLevel(int i);
+	public abstract int brickHarvestLevel(int i);
+	public abstract int pickLevel(int i);
+	public int dungeonLootChance(int i)
+	{
+		return 0;
+	}
+	
+	public int dungeonLootAmount(int i)
+	{
+		return 0;
+	}
+	
+	public abstract String image();
+	
+	public boolean isAlloy()
+	{
+		return false;
+	}
+	
+	public int veinCount(int i)
+	{
+		return 0;
+	}
+	
+	public int oreCount(int i)
+	{
+		return 0;
+	}
+	
+	public int oreHeight(int i)
+	{
+		return 0;
+	}
+	
+	public int oreMinHeight(int i)
+	{
+		return 0;
+	}
+	
+	public abstract int oreID();
+	public abstract int brickID();
+	public abstract String getSetName();
+	public abstract MetallurgyEnumToolMaterial toolEnum(int i);
+	public abstract boolean isCatalyst(int i);
+	
+	public int numRails(int i)
+	{
+		return 0;
+	}
+	
+	public abstract boolean spawnsInDimension(int i);
+	public abstract boolean metalEnabled(int i);
+	public abstract EnumArmorMaterial armorEnum(int i);
+	public abstract int level(int i);
+	
+	public boolean hasMetalBlock() 
+	{
+		return false;
+	}
+	public int blockID() 
+	{
+		return 0;
+	}
+	public abstract CreativeTabs getCreativeTab();
 }
 
 

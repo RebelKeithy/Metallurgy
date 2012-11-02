@@ -2,6 +2,7 @@ package shadow.mods.metallurgy;
 
 import java.util.List;
 
+import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.ItemBlock;
 import net.minecraft.src.ItemStack;
 
@@ -18,7 +19,7 @@ public class MetallurgyItemBlock extends ItemBlock{
 	}
 	
 	@Override
-    public void addInformation(ItemStack par1ItemStack, List par2List)
+	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
     {
     	//par2List.add(par1ItemStack.itemID + ":" + par1ItemStack.getItemDamage());
     }

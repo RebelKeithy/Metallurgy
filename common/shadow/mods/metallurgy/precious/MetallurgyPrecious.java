@@ -1,5 +1,7 @@
 package shadow.mods.metallurgy.precious;
 import java.io.File;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -7,13 +9,15 @@ import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.MetallurgyItem;
 import shadow.mods.metallurgy.MetallurgyItems;
 import shadow.mods.metallurgy.RecipeHelper;
+import shadow.mods.metallurgy.UpdateManager;
 import shadow.mods.metallurgy.mod_Gold;
 import shadow.mods.metallurgy.MetallurgyCore;
+import shadow.mods.metallurgy.base.ConfigBase;
 import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 import shadow.mods.metallurgy.fantasy.MetallurgyFantasy;
 import shadow.mods.metallurgy.mystcraft.OreSymbol;
+import shadow.mods.metallurgy.nether.ConfigNether;
 import shadow.mods.metallurgy.nether.MetallurgyNether;
-import xcompwiz.mystcraft.api.APICallHandler;
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -46,7 +50,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-@Mod(modid = "MetallurgyPrecious", name = "Metallurgy Precious", dependencies = "after:MetallurgyCore", version = "2.0.7.1")
+@Mod(modid = "MetallurgyPrecious", name = "Metallurgy Precious", dependencies = "after:MetallurgyCore", version = "2.2")
 @NetworkMod(channels = { "MetallurgyPrecio" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyPrecious
 {
@@ -67,20 +71,32 @@ public class MetallurgyPrecious
 	public static Block MintStorage;
 	
 	public static Item Coin;
+	public static Item Stack;
+	public static Item Bag;
+	public static Item Bullion;
 	public static Item GoldCog;
+
+	public static CreativeTabs creativeTab;
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		ConfigPrecious.init();
+		
+		//creativeTab = MetallurgyCore.getNewCreativeTab("Precious Metals", ConfigPrecious.ItemStartID);
+		creativeTab = MetallurgyCore.getNewCreativeTab("Precious Metals", ConfigPrecious.ItemStartID + 256 + 7 + 50 * 2);
+		
 		alloys = new MetalSet(new AlloyPreciousEnum());
 		ores = new MetalSet(new OrePreciousEnum());
 		
 		PreciousChest = new FC_BlockChest(ConfigPrecious.PreciousChestID).setHardness(0.5F).setResistance(.1F).setBlockName("PreciousChest");
 		Mint = new FM_BlockMint(ConfigPrecious.PreciousMintID).setHardness(0.5F).setResistance(.1F).setBlockName("Mint");
 		MintStorage = new FM_BlockMintStorage(ConfigPrecious.PreciousMintLoaderID).setHardness(0.5F).setResistance(.1F).setBlockName("MintStorage");
-		Coin = new ItemCoins(ConfigPrecious.ItemStartID + 248).setItemName("Coin").setCreativeTab(CreativeTabs.tabMisc);
-		GoldCog = new MetallurgyItem(ConfigPrecious.ItemStartID + 249, "/shadow/MetallurgyCoins.png").setIconIndex(2).setItemName("GoldCog").setCreativeTab(CreativeTabs.tabMaterials);
+		Coin = new ItemCoins(ConfigPrecious.ItemStartID + 248).setItemName("Coin").setCreativeTab(MetallurgyPrecious.creativeTab).setIconIndex(8);
+		Stack = new ItemCoins(ConfigPrecious.ItemStartID + 247).setItemName("Stack").setCreativeTab(MetallurgyPrecious.creativeTab).setIconIndex(24);
+		Bag = new ItemCoins(ConfigPrecious.ItemStartID + 246).setItemName("Bag").setCreativeTab(MetallurgyPrecious.creativeTab).setIconIndex(40);
+		Bullion = new ItemCoins(ConfigPrecious.ItemStartID + 245).setItemName("Bullion").setCreativeTab(MetallurgyPrecious.creativeTab).setIconIndex(56);
+		GoldCog = new MetallurgyItem(ConfigPrecious.ItemStartID + 249, "/shadow/MetallurgyCoins.png").setIconIndex(2).setItemName("GoldCog").setCreativeTab(MetallurgyPrecious.creativeTab);
 		
 		MinecraftForge.EVENT_BUS.register(new AlloyRecipes());
 	}
@@ -88,6 +104,14 @@ public class MetallurgyPrecious
 	@Init
 	public void init(FMLInitializationEvent event) 
 	{
+		try {
+			Class mystcraftApi = Class.forName("xcompwiz.mystcraft.api.APICallHandler");
+			Class ageSymbol = Class.forName("xcompwiz.mystcraft.api.symbol.AgeSymbol");
+			Class oreSymbol = Class.forName("shadow.mods.metallurgy.mystcraft.OreSymbol");
+			Constructor constructor = oreSymbol.getConstructor(new Class[]{MetalSet.class});
+			Method registerSymbol = mystcraftApi.getMethod("registerSymbol", new Class[]{ageSymbol});
+			registerSymbol.invoke(mystcraftApi, constructor.newInstance(ores));
+		} catch(Exception e) {}
 		
 		GameRegistry.registerBlock(PreciousChest, FC_ChestItemBlock.class);
 		GameRegistry.registerTileEntity(FC_TileEntityChest.class, "PreciousChest");
@@ -114,14 +138,13 @@ public class MetallurgyPrecious
 	@PostInit
 	public void load(FMLPostInitializationEvent event) 
 	{
+
+		
 		ores.registerOres();
 		alloys.registerOres();
 		
-		OreSymbol oreSymbol = new OreSymbol(ores);
-		APICallHandler.registerSymbol(oreSymbol);
-		
-    	RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0]), "itemDustZinc", "itemDustCopper");
-    	RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[1]), "itemDustGold", "itemDustSilver");
+    	RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[0]), "dustZinc", "dustCopper");
+    	RecipeHelper.addAlloyRecipe(new ItemStack(alloys.Dust[1]), "dustGold", "dustSilver");
 
     	if(ConfigPrecious.mintEnabled)
     	{
@@ -141,9 +164,9 @@ public class MetallurgyPrecious
 		RecipeHelper.addPoweredRailsRecipe("ingotSilver", 3);
 		RecipeHelper.addPoweredRailsRecipe(ores.Bar[2], 24);
 
-		RecipeHelper.addStorageRecipe(new ItemStack(Coin, 1, 1), new ItemStack(Coin, 1, 0));
-		RecipeHelper.addStorageRecipe(new ItemStack(Coin, 1, 2), new ItemStack(Coin, 1, 1));
-		RecipeHelper.addStorageRecipe(new ItemStack(Coin, 1, 3), new ItemStack(Coin, 1, 2));
+		RecipeHelper.addStorageRecipe(new ItemStack(Stack, 1), new ItemStack(Coin, 1));
+		RecipeHelper.addStorageRecipe(new ItemStack(Bag, 1), new ItemStack(Stack, 1));
+		RecipeHelper.addStorageRecipe(new ItemStack(Bullion, 1), new ItemStack(Bag, 1));
 		
 		if(ConfigPrecious.chestsEnabled)
 			addChestRecipes();
@@ -169,6 +192,8 @@ public class MetallurgyPrecious
 			FM_MintRecipes.minting().addMinting(MetallurgyFantasy.ores.Bar[6].shiftedIndex, 0, 15);
 			FM_MintRecipes.minting().addMinting(MetallurgyFantasy.alloys.Bar[3].shiftedIndex, 0, 32);
 		}
+		
+		new UpdateManager("2.2.3", "Precious", "http://ladadeda.info/PreciousVersion.txt");
 	}
 	
 	public void addChestRecipes()
@@ -205,11 +230,10 @@ public class MetallurgyPrecious
 		MetallurgyItems.registerItem("platinumChest", new ItemStack(PreciousChest, 1, 4));
 		MetallurgyItems.registerItem("mint", new ItemStack(Mint, 1, 0));
 		MetallurgyItems.registerItem("mintStorage", new ItemStack(MintStorage, 1, 0));
-		MetallurgyItems.registerItem("mint", new ItemStack(PreciousChest, 1, 0));
 		MetallurgyItems.registerItem("goldCog", new ItemStack(GoldCog, 1, 0));
-		MetallurgyItems.registerItem("coin", new ItemStack(Coin, 1, 0));
-		MetallurgyItems.registerItem("stack", new ItemStack(Coin, 1, 1));
-		MetallurgyItems.registerItem("bag", new ItemStack(Coin, 1, 2));
-		MetallurgyItems.registerItem("bullion", new ItemStack(Coin, 1, 3));
+		MetallurgyItems.registerItem("coin", new ItemStack(Coin, 1));
+		MetallurgyItems.registerItem("stack", new ItemStack(Stack, 1));
+		MetallurgyItems.registerItem("bag", new ItemStack(Bag, 1));
+		MetallurgyItems.registerItem("bullion", new ItemStack(Bullion, 1));
 	}
 }

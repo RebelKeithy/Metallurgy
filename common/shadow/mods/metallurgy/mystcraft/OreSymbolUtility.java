@@ -16,16 +16,25 @@ import shadow.mods.metallurgy.utility.UtilityWorldGen;
 
 public class OreSymbolUtility  extends AgeSymbol 
 {	
-	public void instantiate(IAgeController controller) {
+	@Override
+	public void registerLogic(IAgeController controller) {
 		controller.registerInterface(this, new Populator());
 	}
 
+	@Override
 	public String identifier() {
 		return "Utility Ores";
 	}
+	
 	@Override
 	public Category getCategory() {
 		return AgeSymbol.Category.WorldModifier;
+	}
+
+	public int instabilityModifier(int count) {
+		if(count > 2)
+			return (count - 2)*100;
+		return 0;
 	}
 
 	private class Populator implements IPopulate {

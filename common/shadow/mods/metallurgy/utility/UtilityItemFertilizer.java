@@ -3,6 +3,7 @@ package shadow.mods.metallurgy.utility;
 import net.minecraft.src.*;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 
 public class UtilityItemFertilizer extends UtilityItem
@@ -13,9 +14,10 @@ public class UtilityItemFertilizer extends UtilityItem
 		super(par1, s);
 	}
 	
-    public boolean tryPlaceIntoWorld(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
+	@Override
+    public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
     {
-        if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6))
+        if (!par2EntityPlayer.func_82247_a(par4, par5, par6, par7, par1ItemStack))
         {
             return false;
         }
@@ -32,7 +34,7 @@ public class UtilityItemFertilizer extends UtilityItem
                 return false;
             }
 
-            if (event.isHandeled())
+            if (event.getResult() == Result.ALLOW)
             {
                if (!par3World.isRemote)
                 {

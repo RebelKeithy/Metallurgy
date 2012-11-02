@@ -15,13 +15,15 @@ public class FF_SlotMetalFurnace extends Slot
              super(iinventory, i, j, k);
      }
 
+     @Override
      public boolean isItemValid(ItemStack itemstack)
      {
              return false;
      }
 
-     public void onPickupFromSlot(ItemStack itemstack)
+     @Override
+     public void func_82870_a(EntityPlayer par1, ItemStack itemstack)
      {
-             super.onPickupFromSlot(itemstack);
+             super.func_82870_a(par1, itemstack);
      }
 }

@@ -1,13 +1,15 @@
 package shadow.mods.metallurgy.fantasy;
 
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 import shadow.mods.metallurgy.base.ConfigBase;
+import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 import shadow.mods.metallurgy.ender.ConfigEnder;
 
-public class AlloyFantasyEnum implements IMetalSetEnum{
+public class AlloyFantasyEnum extends IMetalSetEnum{
 
 	public static int numMetals = 5;
 	public static String[] names = {"Black Steel", "Quicksilver", "Haderoth", "Celenegil", "Tartarite"};
@@ -173,6 +175,11 @@ public class AlloyFantasyEnum implements IMetalSetEnum{
 	@Override
 	public int level(int i) {
 		return metalLevels[i];
+	}
+
+	@Override
+	public CreativeTabs getCreativeTab() {
+		return MetallurgyFantasy.creativeTab;
 	}
 
 }

@@ -11,7 +11,8 @@ import net.minecraft.src.ItemStack;
 import net.minecraft.src.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.UseHoeEvent;
+import net.minecraftforge.event.Event.Result;
+import net.minecraftforge.event.entity.player.UseHoeEvent;
 
 // Referenced classes of package net.minecraft.src:
 //            Item, EnumToolMaterial, EntityPlayer, World, 
@@ -40,7 +41,7 @@ public class MetallurgyItemHoe extends Item
     @Override    
     public boolean onItemUse(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, World par3World, int par4, int par5, int par6, int par7, float par8, float par9, float par10)
     {
-        if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6))
+        if (!par2EntityPlayer.func_82247_a(par4, par5, par6, par7, par1ItemStack))
         {
             return false;
         }
@@ -51,7 +52,7 @@ public class MetallurgyItemHoe extends Item
             {
                 return false;
             }
-            if (event.isHandeled())
+            if (event.getResult() == Result.ALLOW)
             {
                 par1ItemStack.damageItem(1, par2EntityPlayer);
                 return true;

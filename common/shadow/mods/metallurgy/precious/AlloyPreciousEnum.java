@@ -1,13 +1,15 @@
 package shadow.mods.metallurgy.precious;
 
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 import shadow.mods.metallurgy.ender.ConfigEnder;
 import shadow.mods.metallurgy.nether.ConfigNether;
+import shadow.mods.metallurgy.nether.MetallurgyNether;
 
-public class AlloyPreciousEnum implements IMetalSetEnum{
+public class AlloyPreciousEnum extends IMetalSetEnum{
 
 	public static String[] name = {"Brass", "Electrum"};
 	private int[] expValues = {4, 11};
@@ -155,6 +157,11 @@ public class AlloyPreciousEnum implements IMetalSetEnum{
 	@Override
 	public int level(int i) {
 		return metalLevels[i];
+	}
+
+	@Override
+	public CreativeTabs getCreativeTab() {
+		return MetallurgyPrecious.creativeTab;
 	}
 
 }

@@ -57,31 +57,31 @@ public class ConfigPrecious  {
         config.load();
 
     	for(int i = 0; i < 2; i++)
-    		alloyEnabled[i] = config.getOrCreateBooleanProperty(AlloyPreciousEnum.name[i] + " Enabled", "Ores", true).getBoolean(true);
+    		alloyEnabled[i] = config.get(AlloyPreciousEnum.name[i] + " Enabled", "Ores", true).getBoolean(true);
     	for(int i = 0; i < 3; i++)
-    		metalEnabled[i] = config.getOrCreateBooleanProperty(OrePreciousEnum.name[i] + " Enabled", "Ores", true).getBoolean(true);
+    		metalEnabled[i] = config.get(OrePreciousEnum.name[i] + " Enabled", "Ores", true).getBoolean(true);
         
-        PreciousMetalsVeinID = config.getOrCreateBlockIdProperty("Precious Metal Ore", 910).getInt(910);
-        PreciousMetalsBrickID = config.getOrCreateBlockIdProperty("Precious Metal Brick", 911).getInt(911);
-        PreciousAlloysBrickID = config.getOrCreateBlockIdProperty("Precious Alloy Brick", 912).getInt(912);
-        PreciousChestID = config.getOrCreateBlockIdProperty("Chest", 913).getInt(913);
-        PreciousMintID = config.getOrCreateBlockIdProperty("Mint", 914).getInt(914);
-        PreciousMintLoaderID = config.getOrCreateBlockIdProperty("Mint Loader", 925).getInt(925);
+        PreciousMetalsVeinID = config.getBlock("Precious Metal Ore", 910).getInt(910);
+        PreciousMetalsBrickID = config.getBlock("Precious Metal Brick", 911).getInt(911);
+        PreciousAlloysBrickID = config.getBlock("Precious Alloy Brick", 912).getInt(912);
+        PreciousChestID = config.getBlock("Chest", 913).getInt(913);
+        PreciousMintID = config.getBlock("Mint", 914).getInt(914);
+        PreciousMintLoaderID = config.getBlock("Mint Loader", 925).getInt(925);
         
-    	chestsEnabled = config.getOrCreateBooleanProperty("Enable Chests", "Options", true).getBoolean(true);
-    	tradesEnabled = config.getOrCreateBooleanProperty("Enable Trades", "Options", true).getBoolean(true);
-    	mintEnabled = config.getOrCreateBooleanProperty("Enable Mint", "Options", true).getBoolean(true);
+    	chestsEnabled = config.get("Options", "Enable Chests", true).getBoolean(true);
+    	tradesEnabled = config.get("Options", "Enable Trades", true).getBoolean(true);
+    	mintEnabled = config.get("Options", "Enable Mint", true).getBoolean(true);
 
-    	dimensions = config.getOrCreateProperty("Dimensions", "Dimensions", "0 2-100000").value;
+    	dimensions = config.get("Dimensions", "Dimensions", "0 2-100000").value;
     	
-    	ItemStartID = config.getOrCreateIntProperty("Item Start IDs", "Item Ids Uses next 250", 26750).getInt(26750);
+    	ItemStartID = config.get("Item Ids Uses next 250", "Item Start IDs", 26750).getInt(26750);
     	
     	for(int i = 0; i < 3; i++)
     	{
-	    	VeinCount[i] = config.getOrCreateIntProperty(OrePreciousEnum.name[i] + " Vein Count", "Ore Generation", OrePreciousEnum.defaultVeinCount[i]).getInt(OrePreciousEnum.defaultVeinCount[i]);
-	    	OreCount[i] = config.getOrCreateIntProperty(OrePreciousEnum.name[i] + " Ore Count", "Ore Generation", OrePreciousEnum.defaultOreCount[i]).getInt(OrePreciousEnum.defaultOreCount[i]);
-	    	OreHeight[i] = config.getOrCreateIntProperty(OrePreciousEnum.name[i] + " Height", "Ore Generation", OrePreciousEnum.defaultOreHeight[i]).getInt(OrePreciousEnum.defaultOreHeight[i]);
-	    	OreMinHeight[i] = config.getOrCreateIntProperty(OrePreciousEnum.name[i] + " Minimum Height", "Ore Generation", 0).getInt(0);
+	    	VeinCount[i] = config.get("Ore Generation", OrePreciousEnum.name[i] + " Vein Count", OrePreciousEnum.defaultVeinCount[i]).getInt(OrePreciousEnum.defaultVeinCount[i]);
+	    	OreCount[i] = config.get("Ore Generation", OrePreciousEnum.name[i] + " Ore Count", OrePreciousEnum.defaultOreCount[i]).getInt(OrePreciousEnum.defaultOreCount[i]);
+	    	OreHeight[i] = config.get("Ore Generation", OrePreciousEnum.name[i] + " Height", OrePreciousEnum.defaultOreHeight[i]).getInt(OrePreciousEnum.defaultOreHeight[i]);
+	    	OreMinHeight[i] = config.get("Ore Generation", OrePreciousEnum.name[i] + " Minimum Height", 0).getInt(0);
     	}
         
     	config.save();

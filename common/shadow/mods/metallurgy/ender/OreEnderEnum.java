@@ -3,13 +3,14 @@ package shadow.mods.metallurgy.ender;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 import shadow.mods.metallurgy.base.ConfigBase;
 
-public class OreEnderEnum implements IMetalSetEnum{
+public class OreEnderEnum extends IMetalSetEnum{
 
 	public static final int numMetals = 2;	
 	public static String imageName = "/shadow/MetallurgyEnderMetals.png";
@@ -20,7 +21,7 @@ public class OreEnderEnum implements IMetalSetEnum{
 	private int[] metalLevels = {5, 6};
 
 	public static int[] defaultVeinCount = {6, 3};
-	public static int[] defaultOreCount = {4, 2};
+	public static int[] defaultOreCount = {4, 3};
 	public static int[] defaultOreHeight = {128, 128};
 
 	public static EnumArmorMaterial eximiteArmor = EnumHelper.addArmorMaterial("Eximite", 24, new int[] {4, 6, 5, 4}, 25);
@@ -181,4 +182,8 @@ public class OreEnderEnum implements IMetalSetEnum{
 		return metalLevels[i];
 	}
 
+	@Override
+	public CreativeTabs getCreativeTab() {
+		return MetallurgyEnder.creativeTab;
+	}
 }

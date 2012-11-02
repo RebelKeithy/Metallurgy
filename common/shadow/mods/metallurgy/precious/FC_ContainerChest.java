@@ -64,7 +64,8 @@ public class FC_ContainerChest extends Container
     /**
      * Called to transfer a stack from one inventory to the other eg. when shift clicking.
      */
-    public ItemStack transferStackInSlot(int par1)
+    @Override
+    public ItemStack func_82846_b(EntityPlayer par1EntityPlayer, int par1)
     {
         ItemStack var2 = null;
         Slot var3 = (Slot)this.inventorySlots.get(par1);

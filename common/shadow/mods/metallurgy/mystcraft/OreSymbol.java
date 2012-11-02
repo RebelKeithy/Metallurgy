@@ -24,17 +24,25 @@ public class OreSymbol  extends AgeSymbol
 		this.ores = ores;
 	}
 	
-	public void instantiate(IAgeController controller) {
+	@Override
+	public void registerLogic(IAgeController controller) {
 		controller.registerInterface(this, populator);
 	}
 
+	@Override
 	public String identifier() {
-		System.out.println("setting name " + ores.info.getSetName().replace("Metal", "") + " Ores");
 		return ores.info.getSetName().replace("Metal", "") + " Ores";
 	}
+	
 	@Override
 	public Category getCategory() {
 		return AgeSymbol.Category.WorldModifier;
+	}
+
+	public int instabilityModifier(int count) {
+		if(count > 2)
+			return (count - 2)*50;
+		return 0;
 	}
 
 	private class Populator implements IPopulate {

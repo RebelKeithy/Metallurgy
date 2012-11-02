@@ -14,13 +14,13 @@ public class FertilizerRecipes
 {
 	public static void load()
 	{
-		ShapelessOreRecipe fert1 = new ShapelessOreRecipe(new ItemStack(MetallurgyUtility.fertilizer, 4),
+		ShapelessOreRecipe fert1 = new ShapelessOreRecipe(new ItemStack(MetallurgyUtility.fertilizer, 8),
 				"itemPhosphorus", "itemMagnesium", "itemPotash");
-		ShapelessOreRecipe fert2 = new ShapelessOreRecipe(new ItemStack(MetallurgyUtility.fertilizer, 4),
+		ShapelessOreRecipe fert2 = new ShapelessOreRecipe(new ItemStack(MetallurgyUtility.fertilizer, 8),
 				"itemPhosphorus", "itemMagnesium", "itemSaltpeter");
-		ShapelessOreRecipe fert3 = new ShapelessOreRecipe(new ItemStack(MetallurgyUtility.fertilizer, 4),
+		ShapelessOreRecipe fert3 = new ShapelessOreRecipe(new ItemStack(MetallurgyUtility.fertilizer, 8),
 				"itemPhosphorus", "itemSaltpeter", "itemPotash");
-		ShapelessOreRecipe fert4 = new ShapelessOreRecipe(new ItemStack(MetallurgyUtility.fertilizer, 4),
+		ShapelessOreRecipe fert4 = new ShapelessOreRecipe(new ItemStack(MetallurgyUtility.fertilizer, 8),
 				"itemSaltpeter", "itemMagnesium", "itemPotash");
 
 		ShapelessOreRecipe gunpowder1 = new ShapelessOreRecipe(new ItemStack(Item.gunpowder, 4),
@@ -40,8 +40,6 @@ public class FertilizerRecipes
 		ModLoader.addRecipe(new ItemStack(Item.magmaCream, 1), new Object[] {
 			"X", "|", Character.valueOf('X'), MetallurgyUtility.tar, Character.valueOf('|'), Item.blazePowder
 		});
-
-		ModLoader.addShapelessRecipe(new ItemStack(MetallurgyUtility.phosphorus, 1), new Object[] {MetallurgyUtility.phosphorite});
 		
 	}
 }

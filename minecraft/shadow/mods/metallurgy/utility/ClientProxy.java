@@ -4,9 +4,11 @@ import java.io.File;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.ModLoader;
+import net.minecraft.src.RenderTNTPrimed;
 import net.minecraft.src.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.client.registry.RenderingRegistry;
 
 
 public class ClientProxy extends shadow.mods.metallurgy.utility.CommonProxy{
@@ -27,9 +29,10 @@ public class ClientProxy extends shadow.mods.metallurgy.utility.CommonProxy{
 		ModLoader.addName(MetallurgyUtility.potash, "Potash");
 		ModLoader.addName(MetallurgyUtility.fertilizer, "Fertilizer");
 		ModLoader.addName(MetallurgyUtility.magnesium, "Magnesium");
-		ModLoader.addName(MetallurgyUtility.phosphorite, "Phosphorite");
 		ModLoader.addName(MetallurgyUtility.phosphorus, "Phosphorous");
 		ModLoader.addName(MetallurgyUtility.sulfur, "Sulfur");
+		ModLoader.addName(MetallurgyUtility.largeTNT, "HE TNT");
+		ModLoader.addName(MetallurgyUtility.minersTNT, "LE TNT");
 	}
 	
 	@Override
@@ -37,6 +40,9 @@ public class ClientProxy extends shadow.mods.metallurgy.utility.CommonProxy{
 	{
 		MinecraftForgeClient.preloadTexture("/shadow/MetallurgyUtilityOres.png");
 		//MinecraftForgeClient.preloadTexture("");
+		
+		RenderingRegistry.registerEntityRenderingHandler(shadow.mods.metallurgy.utility.EntityMinersTNTPrimed.class, new RenderMinersTNTPrimed());
+		RenderingRegistry.registerEntityRenderingHandler(shadow.mods.metallurgy.utility.EntityLargeTNTPrimed.class, new RenderLargeTNTPrimed());
 	}
 	
 	@Override

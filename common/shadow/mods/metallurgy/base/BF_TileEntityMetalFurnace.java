@@ -459,6 +459,7 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements ISidedInven
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(140);
 		DataOutputStream dos = new DataOutputStream(bos);
 		try {
+			dos.writeShort(1);
 			dos.writeInt(xCoord);
 			dos.writeInt(yCoord);
 			dos.writeInt(zCoord);

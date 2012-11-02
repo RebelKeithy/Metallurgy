@@ -3,6 +3,7 @@ package shadow.mods.metallurgy.nether;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
@@ -10,7 +11,7 @@ import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 import shadow.mods.metallurgy.base.ConfigBase;
 import shadow.mods.metallurgy.ender.ConfigEnder;
 
-public class OreNetherEnum implements IMetalSetEnum{
+public class OreNetherEnum extends IMetalSetEnum{
 
 	public static final int numMetals = 10;	
 	public static String imageName = "/shadow/MetallurgyNetherMetals.png";
@@ -210,6 +211,11 @@ public class OreNetherEnum implements IMetalSetEnum{
 	@Override
 	public int level(int i) {
 		return metalLevels[i];
+	}
+
+	@Override
+	public CreativeTabs getCreativeTab() {
+		return MetallurgyNether.creativeTab;
 	}
 
 }

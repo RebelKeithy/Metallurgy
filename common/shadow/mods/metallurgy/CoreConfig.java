@@ -78,53 +78,53 @@ public class CoreConfig  {
 
         config.load();
 
-    	enableTextureOverrides = config.getOrCreateBooleanProperty("Enable", "Texture Override", true).getBoolean(true);
+    	enableTextureOverrides = config.get("Enable", "Texture Override", true).getBoolean(true);
     	
-    	ItemGoldDustID = config.getOrCreateIntProperty("Gold Dust ID", "Item Ids", 26200).getInt(26200);
-    	ItemIronDustID = config.getOrCreateIntProperty("Iron Dust ID", "Item Ids", 26201).getInt(26201);
+    	ItemGoldDustID = config.get("Item Ids", "Gold Dust ID", 26200).getInt(26200);
+    	ItemIronDustID = config.get("Item Ids", "Iron Dust ID", 26201).getInt(26201);
     	
-    	DiamondEnabled = config.getOrCreateBooleanProperty("Enable Diamond", "Ores", true).getBoolean(true);
-    	EmeraldEnabled = config.getOrCreateBooleanProperty("Enable Emerald", "Ores", true).getBoolean(true);
-    	LapisLazuliEnabled = config.getOrCreateBooleanProperty("Enable Lapis Lazuli", "Ores", true).getBoolean(true);
-    	RedstoneEnabled = config.getOrCreateBooleanProperty("Enable Redstone", "Ores", true).getBoolean(true);
-    	goldEnabled = config.getOrCreateBooleanProperty("Enable Gold", "Ores", true).getBoolean(true);
-    	ironEnabled = config.getOrCreateBooleanProperty("Enable Iron", "Ores", true).getBoolean(true);
+    	DiamondEnabled = config.get("Ores", "Enable Diamond", true).getBoolean(true);
+    	EmeraldEnabled = config.get("Ores", "Enable Emerald", true).getBoolean(true);
+    	LapisLazuliEnabled = config.get("Ores", "Enable Lapis Lazuli", true).getBoolean(true);
+    	RedstoneEnabled = config.get("Ores", "Enable Redstone", true).getBoolean(true);
+    	goldEnabled = config.get("Ores", "Enable Gold", true).getBoolean(true);
+    	ironEnabled = config.get("Ores", "Enable Iron", true).getBoolean(true);
 
-    	DiamondVeinCount = config.getOrCreateIntProperty("Diamond Vein Count", "Ore Generation", 2).getInt(2);
-    	DiamondOreCount = config.getOrCreateIntProperty("Diamond Ore Count", "Ore Generation", 3).getInt(3);
-    	DiamondOreHeight = config.getOrCreateIntProperty("Diamond Ore Height", "Ore Generation", 128).getInt(128);
+    	DiamondVeinCount = config.get("Ore Generation", "Diamond Vein Count", 3).getInt(3);
+    	DiamondOreCount = config.get("Ore Generation", "Diamond Ore Count", 3).getInt(3);
+    	DiamondOreHeight = config.get("Ore Generation", "Diamond Ore Height", 128).getInt(128);
     	
-    	EmeraldVeinCount = config.getOrCreateIntProperty("Emerald Vein Count", "Ore Generation", 4).getInt(4);
-    	EmeraldOreCount = config.getOrCreateIntProperty("Emerald Ore Count", "Ore Generation", 1).getInt(1);
-    	EmeraldOreHeight = config.getOrCreateIntProperty("Emerald Ore Height", "Ore Generation", 128).getInt(128);
+    	EmeraldVeinCount = config.get("Ore Generation", "Emerald Vein Count", 2).getInt(2);
+    	EmeraldOreCount = config.get("Ore Generation", "Emerald Ore Count", 3).getInt(3);
+    	EmeraldOreHeight = config.get("Ore Generation", "Emerald Ore Height", 128).getInt(128);
 
-    	LapisLazuliVeinCount = config.getOrCreateIntProperty("LapisLazuili Vein Count", "Ore Generation", 4).getInt(4);
-    	LapisLazuliOreCount = config.getOrCreateIntProperty("LapisLazuili Ore Count", "Ore Generation", 4).getInt(4);
-    	LapisLazuliOreHeight = config.getOrCreateIntProperty("LapisLazuili Ore Height", "Ore Generation", 128).getInt(128);
+    	LapisLazuliVeinCount = config.get("Ore Generation", "LapisLazuili Vein Count", 4).getInt(4);
+    	LapisLazuliOreCount = config.get("Ore Generation", "LapisLazuili Ore Count", 4).getInt(4);
+    	LapisLazuliOreHeight = config.get("Ore Generation", "LapisLazuili Ore Height", 128).getInt(128);
 
-    	RedstoneVeinCount = config.getOrCreateIntProperty("Redstone Vein Count", "Ore Generation", 6).getInt(6);
-    	RedstoneOreCount = config.getOrCreateIntProperty("Redstone Ore Count", "Ore Generation", 6).getInt(6);
-    	RedstoneOreHeight = config.getOrCreateIntProperty("Redstone Ore Height", "Ore Generation", 128).getInt(128);
+    	RedstoneVeinCount = config.get("Ore Generation", "Redstone Vein Count", 6).getInt(6);
+    	RedstoneOreCount = config.get("Ore Generation", "Redstone Ore Count", 6).getInt(6);
+    	RedstoneOreHeight = config.get("Ore Generation", "Redstone Ore Height", 128).getInt(128);
     	
     	// Gold Generation
-    	GoldVeinCount = config.getOrCreateIntProperty("Gold Vein Count", "Ore Generation", 4).getInt(4);
-    	GoldOreCount = config.getOrCreateIntProperty("Gold Ore Count", "Ore Generation", 4).getInt(4);
-    	GoldOreHeight = config.getOrCreateIntProperty("Gold Ore Height", "Ore Generation", 128).getInt(128);
+    	GoldVeinCount = config.get("Ore Generation", "Gold Vein Count", 4).getInt(4);
+    	GoldOreCount = config.get("Ore Generation", "Gold Ore Count", 4).getInt(4);
+    	GoldOreHeight = config.get("Ore Generation", "Gold Ore Height", 128).getInt(128);
     	
     	// Iron Generation
-    	IronVeinCount = config.getOrCreateIntProperty("Iron Vein Count", "Ore Generation", 10).getInt(10);
-    	IronOreCount = config.getOrCreateIntProperty("Iron Ore Count", "Ore Generation", 5).getInt(5);
-    	IronOreHeight = config.getOrCreateIntProperty("Iron Ore Height", "Ore Generation", 128).getInt(128);
+    	IronVeinCount = config.get("Ore Generation", "Iron Vein Count", 11).getInt(11);
+    	IronOreCount = config.get("Ore Generation", "Iron Ore Count", 5).getInt(5);
+    	IronOreHeight = config.get("Ore Generation", "Iron Ore Height", 128).getInt(128);
 
-    	crusherID = config.getOrCreateBlockIdProperty("Crusher", 900).getInt(900);
-    	vanillaBrickID = config.getOrCreateBlockIdProperty("Bricks", 905).getInt(905);
-    	crushersEnabled = config.getOrCreateBooleanProperty("Enable Crushers", "Machines", true).getBoolean(true);
+    	crusherID = config.getBlock("Crusher", 900).getInt(900);
+    	vanillaBrickID = config.getBlock("Bricks", 905).getInt(905);
+    	crushersEnabled = config.get("Machines", "Enable Crushers", true).getBoolean(true);
 
-    	stoneCrusherSpeed = config.getOrCreateIntProperty("Stone Speed", "Crushers", 60000).getInt(60000)/1000f;
-    	copperCrusherSpeed = config.getOrCreateIntProperty("Copper Speed", "Crushers", 30000).getInt(30000)/1000f;
-    	bronzeCrusherSpeed = config.getOrCreateIntProperty("Bronze Speed", "Crushers", 20000).getInt(20000)/1000f;
-    	ironCrusherSpeed = config.getOrCreateIntProperty("Iron Speed", "Crushers", 15000).getInt(15000)/1000f;
-    	steelCrusherSpeed = config.getOrCreateIntProperty("Steel Speed", "Crushers", 10000).getInt(10000)/1000f;
+    	stoneCrusherSpeed = config.get("Crushers", "Stone Speed", 60000).getInt(60000)/1000f;
+    	copperCrusherSpeed = config.get("Crushers", "Copper Speed", 30000).getInt(30000)/1000f;
+    	bronzeCrusherSpeed = config.get("Crushers", "Bronze Speed", 20000).getInt(20000)/1000f;
+    	ironCrusherSpeed = config.get("Crushers", "Iron Speed", 15000).getInt(15000)/1000f;
+    	steelCrusherSpeed = config.get("Crushers", "Steel Speed", 10000).getInt(10000)/1000f;
     	config.save();
 	}
 	

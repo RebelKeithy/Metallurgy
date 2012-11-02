@@ -3,6 +3,7 @@ package shadow.mods.metallurgy.precious;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
@@ -11,7 +12,7 @@ import shadow.mods.metallurgy.base.ConfigBase;
 import shadow.mods.metallurgy.ender.ConfigEnder;
 import shadow.mods.metallurgy.nether.ConfigNether;
 
-public class OrePreciousEnum implements IMetalSetEnum{
+public class OrePreciousEnum extends IMetalSetEnum{
 
 	public static final int numMetals = 3;
 	public static final String[] name = {"Zinc", "Silver", "Platinum"};
@@ -189,5 +190,11 @@ public class OrePreciousEnum implements IMetalSetEnum{
 	public int level(int i) {
 		return metalLevels[i];
 	}
+
+	@Override
+	public CreativeTabs getCreativeTab() {
+		return MetallurgyPrecious.creativeTab;
+	}
+
 
 }

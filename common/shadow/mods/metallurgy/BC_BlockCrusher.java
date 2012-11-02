@@ -91,66 +91,9 @@ public class BC_BlockCrusher extends BlockContainer
     }
     
     @Override
-    protected int damageDropped(int metadata)
+	public int damageDropped(int metadata)
     {
     	return (metadata < 8) ? metadata : metadata - 8;
-    }
-    
-    /**
-     * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
-     */
-    @Override
-    public int getBlockTextureFromSideAndMetadata(int side, int metadata)
-    {
-    	int type = (metadata < 8) ? metadata : metadata - 8;
-        if (side == 1 || side == 0)
-        {
-            return 6 + (type * 16);
-        } else if(side == 0)
-        	return 7 + (type * 16);
-        else
-        {
-            if(side != 3)
-            	return 5 + (type * 16);
-            else
-            	return 4 + (type * 16);
-        }
-    }
-
-    /**
-     * Retrieves the block texture to use based on the display side. Args: iBlockAccess, x, y, z, side
-     */
-    @Override
-    public int getBlockTexture(IBlockAccess par1IBlockAccess, int x, int y, int z, int side)
-    {    	
-    	TileEntity tileEntity = par1IBlockAccess.getBlockTileEntity(x, y, z);
-    	if(!(tileEntity instanceof BC_TileEntityCrusher))
-    		return 0;
-    	
-    	int metadata = par1IBlockAccess.getBlockMetadata(x, y, z);
-    	int type = (metadata < 8) ? metadata : metadata - 8;
-    	int	direction = ((BC_TileEntityCrusher)tileEntity).getDirection();
-    	boolean burning = ((BC_TileEntityCrusher)tileEntity).isBurning();
-    	
-        if (side == 1 || side == 0)
-        {
-            return 6 + (type * 16);
-        } else if(side == 0) {
-            return 7 + (type * 16);
-        }
-        else
-        {
-            if(side != direction)
-            	return 5 + (type * 16);
-            else if(burning)
-            {
-            	return 8 + (type * 16);
-            }
-            else
-            {
-            	return 4 + (type * 16);
-            }
-        }
     }
 
     /**
@@ -193,15 +136,6 @@ public class BC_BlockCrusher extends BlockContainer
                 par1World.spawnParticle("flame", (double)(var7 + var11), (double)var8, (double)(var9 + var10), 0.0D, 0.0D, 0.0D);
             }
         }
-    }
-
-    /**
-     * Returns the block texture based on the side being looked at.  Args: side
-     */
-    @Override
-    public int getBlockTextureFromSide(int par1)
-    {
-        return par1 == 1 ? this.blockIndexInTexture + 17 : (par1 == 0 ? this.blockIndexInTexture + 17 : (par1 == 3 ? this.blockIndexInTexture - 1 : this.blockIndexInTexture));
     }
 
     /**

@@ -8,27 +8,36 @@ import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 //import vazkii.um.common.ModConverter;
 //import vazkii.um.common.UpdateManagerMod;
 
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.Mod.Init;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
+import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
 
 
+import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
+import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
@@ -38,9 +47,9 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyCore", name = "Metallurgy Core", version = "2.1.0.3")
+@Mod(modid = "MetallurgyCore", name = "Metallurgy Core", version = "2.2")
 @NetworkMod(channels = { "MetallurgyCore" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
-public class MetallurgyCore
+public class MetallurgyCore implements ITickHandler
 {
 	@SidedProxy(clientSide = "shadow.mods.metallurgy.CoreClientProxy", serverSide = "shadow.mods.metallurgy.CoreCommonProxy")
 	public static CoreCommonProxy proxy;
@@ -63,12 +72,16 @@ public class MetallurgyCore
 	public static Block smokeInactive;
 	public static Block smokeEater;
 	
+	public static List<String> updateNeeded = new ArrayList<String>();
+	public static boolean sentUpdateMessage = false;
+	
+	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		config.init();
 		crusher = new BC_BlockCrusher(CoreConfig.crusherID, false).setHardness(3.5F).setBlockName("Crusher").setCreativeTab(CreativeTabs.tabDecorations);
-		vanillaBricks = new MetallurgyBlock(CoreConfig.vanillaBrickID, "/shadow/VanillaBricks.png", 2, 1).setHardness(2F).setResistance(.1F).setBlockName("VanillaBrick");
+		vanillaBricks = new MetallurgyBlock(CoreConfig.vanillaBrickID, "/shadow/Overrides.png", 2, 5).setHardness(2F).setResistance(.1F).setBlockName("VanillaBrick");
 		
 		proxy.registerRenderInformation();
 
@@ -176,5 +189,56 @@ public class MetallurgyCore
 			railcraft.common.api.crafting.RailcraftCraftingManager.rockCrusher.addRecipe(new ItemStack(Block.oreGold, 1), rockCrusherRecipe);
 		} catch(Exception e) {}
 		
+		new UpdateManager("2.3", "Core", "http://ladadeda.info/CoreVersion.txt");
+		TickRegistry.registerTickHandler(this, Side.CLIENT);
+	}
+	
+	public static CreativeTabs getNewCreativeTab(String name, int iconID)
+	{
+		int tabID = CreativeTabs.getNextID();
+		CreativeTabs[] temp = new CreativeTabs[tabID + 1];
+		System.arraycopy(CreativeTabs.creativeTabArray, 0, temp, 0, tabID);
+		CreativeTabs metallurgyTab = new CreativeTabMetallurgy(tabID, name, iconID);
+		temp[tabID] = metallurgyTab;
+		CreativeTabs.creativeTabArray = temp;
+		
+		proxy.addCreativeTabName(name);
+		
+		return metallurgyTab;
+	}
+
+	public static void needsUpdate(String name, String latest) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void tickStart(EnumSet<TickType> type, Object... tickData) {
+	}
+
+	@Override
+	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
+		if(type.equals(EnumSet.of(TickType.PLAYER)) && !sentUpdateMessage)
+		{
+			String updateMessage = "";
+			for(String name : updateNeeded)
+				updateMessage += name + ", ";
+			updateMessage = updateMessage.substring(0, updateMessage.length() - 2);
+			System.out.println(updateMessage);
+			EntityPlayer player = (EntityPlayer)tickData[0];
+			player.sendChatToPlayer("Metallurgy: Updates avaliable for " + updateMessage);
+			sentUpdateMessage = true;
+		}
+	}
+
+	@Override
+	public EnumSet<TickType> ticks() {
+        return EnumSet.of(TickType.PLAYER);
+	}
+
+	@Override
+	public String getLabel() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

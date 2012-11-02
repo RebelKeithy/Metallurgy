@@ -16,6 +16,10 @@ public class ConfigBase  {
 	public static int baseMetalsVeinID;
 	public static int baseMetalsBrickID;
 	public static int baseAlloysBrickID;
+	public static int baseMetalsBlockID;
+	public static int baseAlloysBlockID;
+	public static int itemDoorID;
+	public static int doorID;
 	public static int furnaceID;
 
 	public static boolean[] alloyEnabled = new boolean[5];
@@ -63,35 +67,39 @@ public class ConfigBase  {
         config.load();
         
         
-    	baseMetalsVeinID = config.getOrCreateBlockIdProperty("Metal Ore", 901).getInt(900);
-    	baseMetalsBrickID = config.getOrCreateBlockIdProperty("Metal Brick", 902).getInt(901);
-    	baseAlloysBrickID = config.getOrCreateBlockIdProperty("Alloy Brick", 903).getInt(902);
-    	furnaceID = config.getOrCreateBlockIdProperty("Furnace", 904).getInt(904);
+    	baseMetalsVeinID = config.getBlock("Metal Ore", 901).getInt(900);
+    	baseMetalsBrickID = config.getBlock("Metal Brick", 902).getInt(901);
+    	baseAlloysBrickID = config.getBlock("Alloy Brick", 903).getInt(902);
+    	baseMetalsBlockID = config.getBlock("Metal Block", 927).getInt(927);
+    	baseAlloysBlockID = config.getBlock("Alloy Block", 928).getInt(928);
+    	doorID = config.getBlock("Copper Door", 935).getInt(935);
+    	furnaceID = config.getBlock("Furnace", 904).getInt(904);
+    	itemDoorID = config.getItem("Copper Door", 9350).getInt(9350);
     	
-    	dimensions = config.getOrCreateProperty("Dimensions", "Dimensions", "0 2-10000").value;
+    	dimensions = config.get("Dimensions", "Dimensions", "0 2-10000").value;
     	
-    	furnacesEnabled = config.getOrCreateBooleanProperty("Enable Furnaces", "Machines", true).getBoolean(true);
-    	railsEnabled = config.getOrCreateBooleanProperty("Enable Rail Recipes", "Machines", true).getBoolean(true);
+    	furnacesEnabled = config.get("Machines", "Enable Furnaces", true).getBoolean(true);
+    	railsEnabled = config.get("Machines", "Enable Rail Recipes", true).getBoolean(true);
         
-    	copperSpeed = config.getOrCreateIntProperty("Copper Speed", "Furnaces", 9500).getInt(9500)/1000f;
-    	bronzeSpeed = config.getOrCreateIntProperty("Bronze Speed", "Furnaces", 9000).getInt(9000)/1000f;
-    	ironSpeed = config.getOrCreateIntProperty("Iron Speed", "Furnaces", 8000).getInt(8000)/1000f;
-    	steelSpeed = config.getOrCreateIntProperty("Steel Speed", "Furnaces", 7000).getInt(7000)/1000f;
+    	copperSpeed = config.get("Furnaces", "Copper Speed", 9500).getInt(9500)/1000f;
+    	bronzeSpeed = config.get("Furnaces", "Bronze Speed", 9000).getInt(9000)/1000f;
+    	ironSpeed = config.get("Furnaces", "Iron Speed", 8000).getInt(8000)/1000f;
+    	steelSpeed = config.get("Furnaces", "Steel Speed", 7000).getInt(7000)/1000f;
     	
 
     	for(int i = 0; i < 5; i++)
-    		alloyEnabled[i] = config.getOrCreateBooleanProperty(AlloyBaseEnum.names[i] + " Enabled", "Ores", true).getBoolean(true);
+    		alloyEnabled[i] = config.get("Ores", AlloyBaseEnum.names[i] + " Enabled", true).getBoolean(true);
     	for(int i = 0; i < 3; i++)
-    		metalEnabled[i] = config.getOrCreateBooleanProperty(OreBaseEnum.names[i] + " Enabled", "Ores", true).getBoolean(true);
+    		metalEnabled[i] = config.get("Ores", OreBaseEnum.names[i] + " Enabled", true).getBoolean(true);
         
-    	ItemStartID = config.getOrCreateIntProperty("Item Start IDs", "Item Ids Uses next 250", 26250).getInt(26250);
+    	ItemStartID = config.get("Item Ids Uses next 250", "Item Start IDs", 26250).getInt(26250);
     	
     	for(int i = 0; i < 3; i++)
     	{
-	    	VeinCount[i] = config.getOrCreateIntProperty(OreBaseEnum.names[i] + " Vein Count", "Ore Generation", OreBaseEnum.defaultVeinCount[i]).getInt(OreBaseEnum.defaultVeinCount[i]);
-	    	OreCount[i] = config.getOrCreateIntProperty(OreBaseEnum.names[i] + " Ore Count", "Ore Generation", OreBaseEnum.defaultOreCount[i]).getInt(OreBaseEnum.defaultOreCount[i]);
-	    	OreHeight[i] = config.getOrCreateIntProperty(OreBaseEnum.names[i] + " Height", "Ore Generation", OreBaseEnum.defaultOreHeight[i]).getInt(OreBaseEnum.defaultOreHeight[i]);
-	    	OreMinHeight[i] = config.getOrCreateIntProperty(OreBaseEnum.names[i] + " Minimum Height", "Ore Generation", 0).getInt(0);
+	    	VeinCount[i] = config.get("Ore Generation", OreBaseEnum.names[i] + " Vein Count", OreBaseEnum.defaultVeinCount[i]).getInt(OreBaseEnum.defaultVeinCount[i]);
+	    	OreCount[i] = config.get("Ore Generation", OreBaseEnum.names[i] + " Ore Count", OreBaseEnum.defaultOreCount[i]).getInt(OreBaseEnum.defaultOreCount[i]);
+	    	OreHeight[i] = config.get("Ore Generation", OreBaseEnum.names[i] + " Height", OreBaseEnum.defaultOreHeight[i]).getInt(OreBaseEnum.defaultOreHeight[i]);
+	    	OreMinHeight[i] = config.get("Ore Generation", OreBaseEnum.names[i] + " Minimum Height", 0).getInt(0);
     	}
         
     	

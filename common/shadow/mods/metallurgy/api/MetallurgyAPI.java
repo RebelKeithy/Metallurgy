@@ -2,6 +2,10 @@ package shadow.mods.metallurgy.api;
 
 import java.lang.reflect.Method;
 
+import shadow.mods.metallurgy.MetallurgyItems;
+import shadow.mods.metallurgy.fantasy.FantasyFurnace;
+import shadow.mods.metallurgy.nether.NetherForge;
+
 import net.minecraft.src.ItemStack;
 
 public class MetallurgyAPI
@@ -101,4 +105,75 @@ public class MetallurgyAPI
 			System.out.println("Metallurgy API: Failed to add minting recipe" + e);
 		}
 	}
+	
+	/* ITEMS
+	 * Tools and Armor are all of this form
+	 * "oreMetal"
+	 * "brickMetal"
+	 * "dustMetal"
+	 * "ingotMetal"
+	 * 
+	 * "swordMetal"
+	 * "axeMetal"
+	 * "pickaxeMetal"
+	 * "shovelMetal"
+	 * "hoeMetal"
+	 * 
+	 * "helmetMetal"
+	 * "plateMetal"
+	 * "legsMetal"
+	 * "bootsMetal"
+	 * 
+	 * BASE
+	 * "copperFurnace"
+	 * "bronzeFurnace"
+	 * "ironFurnace"
+	 * "steelFurnace"
+	 * 
+	 * FANTASY
+	 * "prometheumAbstractor"
+	 * "deepIronAbstractor"
+	 * "blackSteelAbstractor"
+	 * "oureclaseAbstractor"
+	 * "aredriteAbstractor"
+	 * "mithrilAbstractor"
+	 * "haderothAbstractor"
+	 * "orichalcumAbstractor"
+	 * "adamantineAbstractor"
+	 * "atlarusAbstractor"
+	 * "tartariteAbstractor"
+	 * 
+	 * NETHER
+	 * "ignatiusSmelter"
+	 * "shadowIronSmelter"
+	 * "shadowSteelSmelter"
+	 * "vyroxeresSmelter"
+	 * "inolashiteSmelter"
+	 * "kalendriteSmelter"
+	 * "vulcaniteSmelter"
+	 * "sanguiniteSmelter"
+	 * 
+	 * PRECIOUS
+	 * "brassChest"
+	 * "silverChest"
+	 * "goldChest"
+	 * "electrumChest"
+	 * "platinumChest"
+	 * "mint"
+	 * "mintStorage"
+	 * "goldCog"
+	 * "coin"
+	 * "stack"
+	 * "bag"
+	 * "bullion"
+	 * 
+	 * UTLITY
+	 *  "bitumen"
+	 *  "magnesium"
+	 *  "phosphorite"
+	 *  "potash"
+	 *  "saltpeter"
+	 *  "sulfur"
+	 * 
+	 */
 }

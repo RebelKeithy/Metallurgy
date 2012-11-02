@@ -1,7 +1,10 @@
 package shadow.mods.metallurgy.base;
 
+import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Side;
 import cpw.mods.fml.common.asm.SideOnly;
+
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.src.AxisAlignedBB;
@@ -9,24 +12,58 @@ import net.minecraft.src.Block;
 import net.minecraft.src.BlockLadder;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Entity;
+import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
 import net.minecraft.src.World;
 import net.minecraftforge.common.ForgeDirection;
 import static net.minecraftforge.common.ForgeDirection.*;
 
-public class BlockMetalLadder extends BlockLadder
+public class BlockMetalLadder extends Block
 {
+	static int renderType = RenderingRegistry.getNextAvailableRenderId();
+	
     protected BlockMetalLadder(int par1, int par2)
     {
-        super(par1, par2);
+        super(par1,Material.wood);
+        this.blockIndexInTexture = par2;
         this.setRequiresSelfNotify();
         this.setCreativeTab(CreativeTabs.tabDecorations);
     }
 
-	@Override
-	public String getTextureFile()
-    {		
-		return "/shadow/MetallurgyFurnaces.png";
+    /**
+     * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
+     */
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    /**
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
+     */
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+
+    /**
+     * The type of render function that is called for this block
+     */
+    public int getRenderType()
+    {
+        return renderType;
+    }
+
+    /**
+     * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
+     */
+    public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
+    {
+        return par1World.isBlockSolidOnSide(par2 - 1, par3, par4, EAST ) ||
+               par1World.isBlockSolidOnSide(par2 + 1, par3, par4, WEST ) ||
+               par1World.isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH) ||
+               par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH);
     }
 
     /**
@@ -38,22 +75,22 @@ public class BlockMetalLadder extends BlockLadder
         int var5 = par1World.getBlockMetadata(par2, par3, par4);
         float var6 = 0.125F;
 
-        if (var5 == 2)
+        if (var5 == 0)
         {
             this.setBlockBounds(0.0F, 0.0F, 1.0F - var6, 1.0F, 1.0F, 1.0F);
         }
 
-        if (var5 == 3)
+        if (var5 == 1)
         {
             this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, var6);
         }
 
-        if (var5 == 4)
+        if (var5 == 2)
         {
             this.setBlockBounds(1.0F - var6, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         }
 
-        if (var5 == 5)
+        if (var5 == 3)
         {
             this.setBlockBounds(0.0F, 0.0F, 0.0F, var6, 1.0F, 1.0F);
         }
@@ -68,25 +105,25 @@ public class BlockMetalLadder extends BlockLadder
      */
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
     {
-        int var5 = par1World.getBlockMetadata(par2, par3, par4) / 4;
+        int var5 = par1World.getBlockMetadata(par2, par3, par4) % 4;
         float var6 = 0.125F;
 
-        if (var5 == 2)
+        if (var5 == 0)
         {
             this.setBlockBounds(0.0F, 0.0F, 1.0F - var6, 1.0F, 1.0F, 1.0F);
         }
 
-        if (var5 == 3)
+        if (var5 == 1)
         {
             this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, var6);
         }
 
-        if (var5 == 4)
+        if (var5 == 2)
         {
             this.setBlockBounds(1.0F - var6, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         }
 
-        if (var5 == 5)
+        if (var5 == 3)
         {
             this.setBlockBounds(0.0F, 0.0F, 0.0F, var6, 1.0F, 1.0F);
         }
@@ -99,30 +136,30 @@ public class BlockMetalLadder extends BlockLadder
      */
     public void updateBlockMetadata(World par1World, int par2, int par3, int par4, int par5, float par6, float par7, float par8)
     {
-        int var9 = par1World.getBlockMetadata(par2, par3, par4) / 4;
-        int type = par1World.getBlockMetadata(par2, par3, par4) - (var9 * 4);
+        int var9 = par1World.getBlockMetadata(par2, par3, par4) % 4;
+        int type = par1World.getBlockMetadata(par2, par3, par4) / 4;
 
-        if ((var9 == 0 || par5 == 2) && par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH))
+        if ((var9 == 0 || par5 == 0) && par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH))
+        {
+            var9 = 0;
+        }
+
+        else if ((var9 == 0 || par5 == 1) && par1World.isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH))
+        {
+            var9 = 1;
+        }
+
+        else if ((var9 == 0 || par5 == 2) && par1World.isBlockSolidOnSide(par2 + 1, par3, par4, WEST))
         {
             var9 = 2;
         }
 
-        if ((var9 == 0 || par5 == 3) && par1World.isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH))
+        else if ((var9 == 0 || par5 == 3) && par1World.isBlockSolidOnSide(par2 - 1, par3, par4, EAST))
         {
             var9 = 3;
         }
 
-        if ((var9 == 0 || par5 == 4) && par1World.isBlockSolidOnSide(par2 + 1, par3, par4, WEST))
-        {
-            var9 = 4;
-        }
-
-        if ((var9 == 0 || par5 == 5) && par1World.isBlockSolidOnSide(par2 - 1, par3, par4, EAST))
-        {
-            var9 = 5;
-        }
-
-        par1World.setBlockMetadataWithNotify(par2, par3, par4, var9 + type);
+        par1World.setBlockMetadataWithNotify(par2, par3, par4, type * 4 + var9);
     }
 
     /**
@@ -131,25 +168,25 @@ public class BlockMetalLadder extends BlockLadder
      */
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5)
     {
-        int var6 = par1World.getBlockMetadata(par2, par3, par4);
+        int var6 = par1World.getBlockMetadata(par2, par3, par4) % 4;
         boolean var7 = false;
 
-        if (var6 == 2 && par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH))
+        if (var6 == 0 && par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH))
         {
             var7 = true;
         }
 
-        if (var6 == 3 && par1World.isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH))
+        if (var6 == 1 && par1World.isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH))
         {
             var7 = true;
         }
 
-        if (var6 == 4 && par1World.isBlockSolidOnSide(par2 + 1, par3, par4, WEST))
+        if (var6 == 2 && par1World.isBlockSolidOnSide(par2 + 1, par3, par4, WEST))
         {
             var7 = true;
         }
 
-        if (var6 == 5 && par1World.isBlockSolidOnSide(par2 - 1, par3, par4, EAST))
+        if (var6 == 3 && par1World.isBlockSolidOnSide(par2 - 1, par3, par4, EAST))
         {
             var7 = true;
         }
@@ -164,10 +201,60 @@ public class BlockMetalLadder extends BlockLadder
     }
 
     /**
+     * Returns the quantity of items to drop on block destruction.
+     */
+    public int quantityDropped(Random par1Random)
+    {
+        return 1;
+    }
+    
+
+
+    @Override
+    public boolean isLadder(World world, int x, int y, int z)
+    {
+        return true;
+    }
+    
+    @Override
+    public String getTextureFile()
+    {
+    	return "/shadow/deco.png";
+    }
+    
+    @Override
+	public int damageDropped(int metadata)
+    {
+    	return 0;
+    }
+
+    /**
+     * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
+     */
+    public int getBlockTextureFromSideAndMetadata(int side, int metadata)
+    {
+        return blockIndexInTexture + metadata / 4;
+    }
+
+    /**
      * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
      */
     public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
     {
-        par5Entity.motionY *= 1.4D;
+    	int meta = par1World.getBlockMetadata(par2, par3, par4) / 4;
+    	float movement = meta * 0.015F + 0.015F;
+    	
+    	if(par5Entity.motionY >= 0.1)
+    		par5Entity.setPosition(par5Entity.posX, par5Entity.posY + movement, par5Entity.posZ);
+    	//par5Entity.moveEntity(0, 0.1, 0);
     }
+
+	@Override
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List) {
+		for (int n = 0; n < 4; n++) {
+			par3List.add(new ItemStack(this, 1, n));
+		}
+	}
 }

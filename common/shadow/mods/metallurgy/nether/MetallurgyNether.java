@@ -1,11 +1,14 @@
 package shadow.mods.metallurgy.nether;
 import java.io.File;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.util.Random;
 
 import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.MetallurgyBlock;
 import shadow.mods.metallurgy.MetallurgyItems;
 import shadow.mods.metallurgy.RecipeHelper;
+import shadow.mods.metallurgy.UpdateManager;
 import shadow.mods.metallurgy.mod_Iron;
 import shadow.mods.metallurgy.mod_Gold;
 import shadow.mods.metallurgy.MetallurgyCore;
@@ -13,11 +16,12 @@ import shadow.mods.metallurgy.base.OreBaseEnum;
 import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 import shadow.mods.metallurgy.base.AlloyBaseEnum;
 import shadow.mods.metallurgy.ender.MetallurgyEnder;
+import shadow.mods.metallurgy.fantasy.ConfigFantasy;
 import shadow.mods.metallurgy.fantasy.MetallurgyFantasy;
 import shadow.mods.metallurgy.mystcraft.OreSymbol;
+import shadow.mods.metallurgy.precious.ConfigPrecious;
 import shadow.mods.metallurgy.precious.MetallurgyPrecious;
 import shadow.mods.metallurgy.MetallurgyItemSword;
-import xcompwiz.mystcraft.api.APICallHandler;
 
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.Mod;
@@ -35,6 +39,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
@@ -44,7 +49,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyNether", name = "Metallurgy Nether", dependencies = "after:MetallurgyCore", version = "2.1.0.2")
+@Mod(modid = "MetallurgyNether", name = "Metallurgy Nether", dependencies = "after:MetallurgyCore", version = "2.2")
 @NetworkMod(channels = { "MetallurgyNether" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyNether
 {
@@ -56,6 +61,8 @@ public class MetallurgyNether
 	
 	public static MetalSet alloys;
 	public static MetalSet ores;	
+
+	public static CreativeTabs creativeTab;
 	
 	
 	@PreInit
@@ -63,6 +70,9 @@ public class MetallurgyNether
 	{
 		ConfigNether.init();
 
+		//creativeTab = MetallurgyCore.getNewCreativeTab("Nether Metals", ConfigNether.ItemStartID);
+		creativeTab = MetallurgyCore.getNewCreativeTab("Nether Metals", ConfigNether.ItemStartID + 256 + 7 + 50 * 7);
+		
 		alloys = new MetalSet(new AlloyNetherEnum());
 		ores = new MetalSet(new OreNetherEnum());
 		
@@ -73,6 +83,15 @@ public class MetallurgyNether
 	@Init
 	public void load(FMLInitializationEvent event) 
 	{
+		try {
+			Class mystcraftApi = Class.forName("xcompwiz.mystcraft.api.APICallHandler");
+			Class ageSymbol = Class.forName("xcompwiz.mystcraft.api.symbol.AgeSymbol");
+			Class oreSymbol = Class.forName("shadow.mods.metallurgy.mystcraft.OreSymbol");
+			Constructor constructor = oreSymbol.getConstructor(new Class[]{MetalSet.class});
+			Method registerSymbol = mystcraftApi.getMethod("registerSymbol", new Class[]{ageSymbol});
+			registerSymbol.invoke(mystcraftApi, constructor.newInstance(ores));
+		} catch(Exception e) {}
+		
 		GameRegistry.registerBlock(NetherForge.metalFurnace, NF_BlockNetherForgeItem.class);
 		GameRegistry.registerTileEntity(NF_TileEntityNetherForge.class, "netherFurnace");
 	
@@ -113,9 +132,8 @@ public class MetallurgyNether
 	    ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[1], 1), ores.Dust[9], ores.Dust[4]);
 	    if(MetallurgyCore.hasPrecious)
 	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[2], 1), new ItemStack(MetallurgyPrecious.ores.Dust[2], 1), ores.Dust[5]);
-
-		OreSymbol oreSymbol = new OreSymbol(ores);
-		APICallHandler.registerSymbol(oreSymbol);
+	    
+		new UpdateManager("2.2.3", "Nether", "http://ladadeda.info/NetherVersion.txt");
 	}
 	
 	public static void addMidasiumRecipes()

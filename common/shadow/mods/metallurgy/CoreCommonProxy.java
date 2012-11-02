@@ -34,6 +34,12 @@ public class CoreCommonProxy implements IGuiHandler
 	{
 		return new File(".");
 	}
+	
+
+	public void addCreativeTabName(String name)
+	{
+		
+	}
 
 
 	@Override

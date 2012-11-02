@@ -34,6 +34,7 @@ public class FF_ContainerMetalFurnace extends Container
     /**
      * Updates crafting matrix; called from onCraftMatrixChanged. Args: none
      */
+    @Override
     public void updateCraftingResults()
     {
         super.updateCraftingResults();
@@ -63,6 +64,7 @@ public class FF_ContainerMetalFurnace extends Container
         this.lastItemBurnTime = this.furnace.currentItemBurnTime;
     }
 
+    @Override
     public void updateProgressBar(int par1, int par2)
     {
         if (par1 == 0)
@@ -81,6 +83,7 @@ public class FF_ContainerMetalFurnace extends Container
         }
     }
 
+    @Override
     public boolean canInteractWith(EntityPlayer par1EntityPlayer)
     {
         return this.furnace.isUseableByPlayer(par1EntityPlayer);
@@ -89,7 +92,8 @@ public class FF_ContainerMetalFurnace extends Container
     /**
      * Called to transfer a stack from one inventory to the other eg. when shift clicking.
      */
-    public ItemStack transferStackInSlot(int par1)
+    @Override
+    public ItemStack func_82846_b(EntityPlayer par1EntityPlayer, int par1)
     {
         ItemStack var2 = null;
         Slot var3 = (Slot)this.inventorySlots.get(par1);
@@ -155,7 +159,7 @@ public class FF_ContainerMetalFurnace extends Container
                 return null;
             }
 
-            var3.onPickupFromSlot(var4);
+            var3.func_82870_a(par1EntityPlayer, var4);
         }
 
         return var2;

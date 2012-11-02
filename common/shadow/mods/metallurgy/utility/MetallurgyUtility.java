@@ -1,12 +1,19 @@
 package shadow.mods.metallurgy.utility;
 
 import java.io.File;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import shadow.mods.metallurgy.MetalSet;
+import shadow.mods.metallurgy.MetallurgyCore;
 import shadow.mods.metallurgy.MetallurgyItems;
+import shadow.mods.metallurgy.UpdateManager;
 import shadow.mods.metallurgy.mystcraft.OreSymbol;
 import shadow.mods.metallurgy.mystcraft.OreSymbolUtility;
-import xcompwiz.mystcraft.api.APICallHandler;
+import shadow.mods.metallurgy.precious.ConfigPrecious;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -18,11 +25,13 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
+import net.minecraft.src.EntityList;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
@@ -34,7 +43,7 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreDictionary.OreRegisterEvent;
 
-@Mod(modid = "MetallurgyUtility", name = "Metallurgy Utility", dependencies = "after:MetallurgyCore", version = "2.1.0.1")
+@Mod(modid = "MetallurgyUtility", name = "Metallurgy Utility", dependencies = "after:MetallurgyCore", version = "2.2")
 @NetworkMod(channels = { "MetallurgyUtilit" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyUtility
 {
@@ -45,8 +54,9 @@ public class MetallurgyUtility
 	public static MetallurgyUtility instance;
 
 	public static Block vein;
+	public static Block minersTNT;
+	public static Block largeTNT;
 	
-	public static Item phosphorite;
 	public static Item phosphorus;
 	public static Item sulfur;
 	public static Item saltpeter;
@@ -56,41 +66,65 @@ public class MetallurgyUtility
 	public static Item potash;
 	public static Item fertilizer;
 	
+	public static CreativeTabs creativeTab;
+	
+	public static List oreBlockIDs;
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		ConfigUtility.init();
-	
-		vein = new BlockVein(ConfigUtility.veinID, "/shadow/MetallurgyUtilityOres.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("UtilityVein");
 
-		phosphorite = (new UtilityItem(ConfigUtility.itemPhosphoriteID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(0,1).setItemName("Phosphorite");
-		phosphorus = (new UtilityItem(ConfigUtility.itemPhosphorousID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(0,2).setItemName("Phosphorous").setCreativeTab(CreativeTabs.tabMaterials);
-		sulfur = (new UtilityItem(ConfigUtility.itemSulfurID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(1,1).setItemName("Sulfur").setCreativeTab(CreativeTabs.tabMaterials);
-		saltpeter = (new UtilityItem(ConfigUtility.itemSaltpeterID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(2,1).setItemName("Saltpeter").setCreativeTab(CreativeTabs.tabMaterials);
-		magnesium = (new UtilityItem(ConfigUtility.itemMagnesiumID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(3,1).setItemName("Magnesium").setCreativeTab(CreativeTabs.tabMaterials);
-		bitumen = (new UtilityItem(ConfigUtility.itemBitumenID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(4,1).setItemName("Bitumen").setCreativeTab(CreativeTabs.tabMaterials);
-		tar = (new UtilityItem(ConfigUtility.itemTarID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(4,2).setItemName("Tar").setCreativeTab(CreativeTabs.tabMaterials);
-		potash = (new UtilityItem(ConfigUtility.itemPotashID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(5,1).setItemName("Potash").setCreativeTab(CreativeTabs.tabMaterials);
-		fertilizer = (new UtilityItemFertilizer(ConfigUtility.itemFertilizerID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(1,2).setItemName("Fertilizer").setCreativeTab(CreativeTabs.tabMaterials);
+		creativeTab = MetallurgyCore.getNewCreativeTab("Utility Ores", ConfigUtility.itemMagnesiumID + 256);
+		
+		vein = new BlockVein(ConfigUtility.veinID, "/shadow/MetallurgyUtilityOres.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("UtilityVein").setCreativeTab(creativeTab);
+		minersTNT = new MinersTNT(3000, 64).setBlockName("MinersTNT").setCreativeTab(creativeTab);
+		largeTNT = new LargeTNT(3001, 48).setBlockName("largeTNT").setCreativeTab(creativeTab);
+		
+		minersTNT.setTextureFile("/shadow/MetallurgyUtilityOres.png");
+		largeTNT.setTextureFile("/shadow/MetallurgyUtilityOres.png");
+		
+		phosphorus = (new UtilityItem(ConfigUtility.itemPhosphorousID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(0,2).setItemName("Phosphorous").setCreativeTab(creativeTab);
+		sulfur = (new UtilityItem(ConfigUtility.itemSulfurID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(1,1).setItemName("Sulfur").setCreativeTab(creativeTab);
+		saltpeter = (new UtilityItem(ConfigUtility.itemSaltpeterID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(2,1).setItemName("Saltpeter").setCreativeTab(creativeTab);
+		magnesium = (new UtilityItem(ConfigUtility.itemMagnesiumID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(3,1).setItemName("Magnesium").setCreativeTab(creativeTab);
+		bitumen = (new UtilityItem(ConfigUtility.itemBitumenID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(4,1).setItemName("Bitumen").setCreativeTab(creativeTab);
+		tar = (new UtilityItem(ConfigUtility.itemTarID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(4,2).setItemName("Tar").setCreativeTab(creativeTab);
+		potash = (new UtilityItem(ConfigUtility.itemPotashID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(5,1).setItemName("Potash").setCreativeTab(creativeTab);
+		fertilizer = (new UtilityItemFertilizer(ConfigUtility.itemFertilizerID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(1,2).setItemName("Fertilizer").setCreativeTab(creativeTab);
 	}
 
 	@Init
 	public void load(FMLInitializationEvent event) 
 	{
 		try {
-			APICallHandler.registerSymbol(new OreSymbolUtility());
-		} catch(Exception e){}
+			Class mystcraftApi = Class.forName("xcompwiz.mystcraft.api.APICallHandler");
+			Class ageSymbol = Class.forName("xcompwiz.mystcraft.api.symbol.AgeSymbol");
+			Class oreSymbol = Class.forName("shadow.mods.metallurgy.mystcraft.OreSymbolUtility");
+			Constructor constructor = oreSymbol.getConstructor();
+			Method registerSymbol = mystcraftApi.getMethod("registerSymbol", new Class[]{ageSymbol});
+			registerSymbol.invoke(mystcraftApi, constructor.newInstance());
+		} catch(Exception e) {}
 		
-		proxy.registerRenderInformation();
-		proxy.addNames();
 
 		GameRegistry.registerWorldGenerator(new UtilityWorldGen());
 		GameRegistry.registerBlock(vein, BlockVeinItem.class);
+		GameRegistry.registerBlock(minersTNT);
+		GameRegistry.registerBlock(largeTNT);
+		
+		//EntityList.addMapping(EntityMinersTNTPrimed.class, "MinersTNTEntity", 112);
+		EntityRegistry.registerModEntity(shadow.mods.metallurgy.utility.EntityMinersTNTPrimed.class, "MinersTNTEntity", 112, this, 64, 10, true);
+		//EntityList.addMapping(EntityLargeTNTPrimed.class, "LargeTNTEntity", 113);
+		EntityRegistry.registerModEntity(shadow.mods.metallurgy.utility.EntityLargeTNTPrimed.class, "LargeTNTEntity", 113, this, 64, 10, true);
+
+		proxy.registerRenderInformation();
+		proxy.addNames();
 		
 		FertilizerRecipes.load();
 		
 		setBlockLevels();
+		
+		new UpdateManager("2.2.3", "Utility", "http://ladadeda.info/UtilityVersion.txt");
 	}
 	
 	@PostInit
@@ -113,7 +147,6 @@ public class MetallurgyUtility
 	{
 		OreDictionary.registerOre("bitumen", new ItemStack(bitumen, 1));
 		OreDictionary.registerOre("magnesium", new ItemStack(magnesium, 1));
-		OreDictionary.registerOre("phosphorite", new ItemStack(phosphorite, 1));
 		OreDictionary.registerOre("potash", new ItemStack(potash, 1));
 		OreDictionary.registerOre("saltpeter", new ItemStack(saltpeter, 1));
 		OreDictionary.registerOre("sulfur", new ItemStack(sulfur, 1));
@@ -138,7 +171,6 @@ public class MetallurgyUtility
 	{
 		MetallurgyItems.registerItem("bitumen", new ItemStack(bitumen, 1));
 		MetallurgyItems.registerItem("magnesium", new ItemStack(magnesium, 1));
-		MetallurgyItems.registerItem("phosphorite", new ItemStack(phosphorite, 1));
 		MetallurgyItems.registerItem("potash", new ItemStack(potash, 1));
 		MetallurgyItems.registerItem("saltpeter", new ItemStack(saltpeter, 1));
 		MetallurgyItems.registerItem("sulfur", new ItemStack(sulfur, 1));
@@ -149,6 +181,39 @@ public class MetallurgyUtility
 		MetallurgyItems.registerItem("oreMagnesium", new ItemStack(vein, 1, 3));
 		MetallurgyItems.registerItem("oreBitumen", new ItemStack(vein, 1, 4));
 		MetallurgyItems.registerItem("orePotash", new ItemStack(vein, 1, 5));
+	}
+	
+	public static void initializeOreList()
+	{
+		oreBlockIDs = new ArrayList();
+		oreBlockIDs.add(Block.oreCoal.blockID);
+		oreBlockIDs.add(Block.oreIron.blockID);
+		oreBlockIDs.add(Block.oreGold.blockID);
+		oreBlockIDs.add(Block.oreDiamond.blockID);
+		oreBlockIDs.add(Block.oreRedstone.blockID);
+		oreBlockIDs.add(Block.oreLapis.blockID);
+		
+		String[] names = OreDictionary.getOreNames();
+		
+		for(String name : names)
+		{
+			if(name.contains("ore"))
+			{
+				List<ItemStack> ores = OreDictionary.getOres(name);
+				
+				for(ItemStack ore : ores)
+				{
+					oreBlockIDs.add(ore.itemID);
+				}
+			}
+		}
+	}
+
+	public static boolean isOre(int var25) {
+		if(oreBlockIDs == null)
+			initializeOreList();
+		
+		return oreBlockIDs.contains(var25);
 	}
 	
 }

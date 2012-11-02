@@ -3,12 +3,13 @@ package shadow.mods.metallurgy.base;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 
-public class OreBaseEnum implements IMetalSetEnum{
+public class OreBaseEnum extends IMetalSetEnum{
 
 	public static final int numMetals = 3;
 	public static final String[] names = {"Copper", "Tin", "Manganese"};
@@ -172,6 +173,20 @@ public class OreBaseEnum implements IMetalSetEnum{
 	@Override
 	public int level(int i) {
 		return metalLevels[i];
+	}
+	
+	public boolean hasMetalBlock() 
+	{
+		return true;
+	}
+	public int blockID() 
+	{
+		return ConfigBase.baseMetalsBlockID;
+	}
+
+	@Override
+	public CreativeTabs getCreativeTab() {
+		return MetallurgyBaseMetals.baseTab;
 	}
 
 }

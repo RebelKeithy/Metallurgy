@@ -33,6 +33,13 @@ public class CoreClientProxy extends CoreCommonProxy{
 
 		LanguageRegistry.instance().addStringLocalization("tile.VanillaBrick.0.name", "Iron Bricks");
 		LanguageRegistry.instance().addStringLocalization("tile.VanillaBrick.1.name", "Gold Bricks");
+		
+		LanguageRegistry.instance().addStringLocalization("itemGroup.Metallurgy 2", "Metallurgy 2");
+	}
+	
+	public void addCreativeTabName(String name)
+	{
+		LanguageRegistry.instance().addStringLocalization("itemGroup." + name, "M2: " + name);
 	}
 	
 	public static void addNamesToSet(MetalSet set)
@@ -44,6 +51,8 @@ public class CoreClientProxy extends CoreCommonProxy{
 		{
 			if(!set.info.isAlloy())
 				LanguageRegistry.instance().addStringLocalization("tile." + set.setName + "Ore." + i + ".name", level[set.info.level(i)] + set.info.name(i) + " Ore");
+			if(set.info.hasMetalBlock())
+				LanguageRegistry.instance().addStringLocalization("tile." + set.setName + "Block." + i + ".name", level[set.info.level(i)] + set.info.name(i) + " Block");
 			LanguageRegistry.instance().addStringLocalization("tile." + set.setName + "Brick." + i + ".name", level[set.info.level(i)] + set.info.name(i) + " Brick");
 			ModLoader.addName(set.Dust[i], level[set.info.level(i)] + set.info.name(i) + " Dust");
 			ModLoader.addName(set.Bar[i], level[set.info.level(i)] + set.info.name(i) + " Bar");
@@ -99,6 +108,10 @@ public class CoreClientProxy extends CoreCommonProxy{
 		Item.plateGold.setIconIndex(22).setTextureFile("/shadow/Overrides.png");
 		Item.legsGold.setIconIndex(38).setTextureFile("/shadow/Overrides.png");
 		Item.bootsGold.setIconIndex(54).setTextureFile("/shadow/Overrides.png");
+		Item.helmetDiamond.setIconIndex(7).setTextureFile("/shadow/Overrides.png");
+		Item.plateDiamond.setIconIndex(23).setTextureFile("/shadow/Overrides.png");
+		Item.legsDiamond.setIconIndex(39).setTextureFile("/shadow/Overrides.png");
+		Item.bootsDiamond.setIconIndex(55).setTextureFile("/shadow/Overrides.png");
 
 	}
 	

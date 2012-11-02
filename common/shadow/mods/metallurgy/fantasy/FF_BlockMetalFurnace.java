@@ -38,7 +38,7 @@ public class FF_BlockMetalFurnace extends BlockContainer
         super(par1, Material.rock);
         this.isActive = par2;
         setRequiresSelfNotify();
-        this.setCreativeTab(CreativeTabs.tabDecorations);
+        this.setCreativeTab(MetallurgyFantasy.creativeTab);
     }
     
 	public String getTextureFile() {
@@ -54,7 +54,7 @@ public class FF_BlockMetalFurnace extends BlockContainer
     }
     
     @Override
-    protected int damageDropped(int metadata)
+	public int damageDropped(int metadata)
     {
     	return metadata;
     }

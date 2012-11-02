@@ -1,11 +1,12 @@
 package shadow.mods.metallurgy.base;
 
+import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EnumArmorMaterial;
 import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 
-public class AlloyBaseEnum implements IMetalSetEnum{
+public class AlloyBaseEnum extends IMetalSetEnum{
 
 	public static int numMetals = 5;
 	public static String[] names = {"Bronze", "Hepatizon", "Damascus Steel", "Angmallen", "Steel"};
@@ -176,5 +177,19 @@ public class AlloyBaseEnum implements IMetalSetEnum{
 	@Override
 	public int level(int i) {
 		return metalLevels[i];
+	}
+	
+	public boolean hasMetalBlock() 
+	{
+		return true;
+	}
+	public int blockID() 
+	{
+		return ConfigBase.baseAlloysBlockID;
+	}
+
+	@Override
+	public CreativeTabs getCreativeTab() {
+		return MetallurgyBaseMetals.baseTab;
 	}
 }

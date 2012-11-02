@@ -18,8 +18,8 @@ public class RecipeHelper {
 
 	public static void addBrickRecipes(int blockID, int meta, Item ingot, int Itemmeta)
 	{
-		ModLoader.addShapelessRecipe(new ItemStack(ingot, 4, Itemmeta), new Object[] {new ItemStack(blockID, 1, meta)});
-		ModLoader.addRecipe(new ItemStack(blockID, 1, meta), new Object[]
+		ModLoader.addShapelessRecipe(new ItemStack(ingot, 1, Itemmeta), new Object[] {new ItemStack(blockID, 1, meta)});
+		ModLoader.addRecipe(new ItemStack(blockID, 4, meta), new Object[]
         {
             "##", "##", Character.valueOf('#'), new ItemStack(ingot, 1, Itemmeta)
         });

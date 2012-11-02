@@ -47,7 +47,7 @@ public class BlockVein extends Block
 	}
 
 	@Override
-	protected int damageDropped(int metadata) {
+	public int damageDropped(int metadata) {
 		return 0;
 	}
 

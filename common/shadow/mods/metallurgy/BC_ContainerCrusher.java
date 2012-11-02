@@ -93,17 +93,17 @@ public class BC_ContainerCrusher extends Container
      * Called to transfer a stack from one inventory to the other eg. when shift clicking.
      */
     @Override
-    public ItemStack transferStackInSlot(int par1)
+    public ItemStack func_82846_b(EntityPlayer par1EntityPlayer, int par2)
     {
         ItemStack var2 = null;
-        Slot var3 = (Slot)this.inventorySlots.get(par1);
+        Slot var3 = (Slot)this.inventorySlots.get(par2);
 
         if (var3 != null && var3.getHasStack())
         {
             ItemStack var4 = var3.getStack();
             var2 = var4.copy();
 
-            if (par1 == 2)
+            if (par2 == 2)
             {
                 if (!this.mergeItemStack(var4, 3, 39, true))
                 {
@@ -112,7 +112,7 @@ public class BC_ContainerCrusher extends Container
 
                 var3.onSlotChange(var4, var2);
             }
-            else if (par1 != 1 && par1 != 0)
+            else if (par2 != 1 && par2 != 0)
             {
                 if (BC_CrusherRecipes.smelting().getCrushingResult(var4) != null)
                 {
@@ -128,14 +128,14 @@ public class BC_ContainerCrusher extends Container
                         return null;
                     }
                 }
-                else if (par1 >= 3 && par1 < 30)
+                else if (par2 >= 3 && par2 < 30)
                 {
                     if (!this.mergeItemStack(var4, 30, 39, false))
                     {
                         return null;
                     }
                 }
-                else if (par1 >= 30 && par1 < 39 && !this.mergeItemStack(var4, 3, 30, false))
+                else if (par2 >= 30 && par2 < 39 && !this.mergeItemStack(var4, 3, 30, false))
                 {
                     return null;
                 }
@@ -159,7 +159,7 @@ public class BC_ContainerCrusher extends Container
                 return null;
             }
 
-            var3.onPickupFromSlot(var4);
+            var3.func_82870_a(par1EntityPlayer, var4);
         }
 
         return var2;
