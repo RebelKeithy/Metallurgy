@@ -95,6 +95,24 @@ public class BC_BlockCrusher extends BlockContainer
     {
     	return (metadata < 8) ? metadata : metadata - 8;
     }
+    
+    /**
+     * Get a light value for this block, normal ranges are between 0 and 15
+     * 
+     * @param world The current world
+     * @param x X Position
+     * @param y Y position
+     * @param z Z position
+     * @return The light value
+     */
+    public int getLightValue(IBlockAccess world, int x, int y, int z) 
+    {
+    	BC_TileEntityCrusher var6 = ((BC_TileEntityCrusher)(world.getBlockTileEntity(x, y, z)));
+        if(var6.isBurning())
+        	return 12;
+        else
+        	return 0;
+    }
 
     /**
      * A randomly called display update to be able to add particles or other items for display

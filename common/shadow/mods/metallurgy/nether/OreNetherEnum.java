@@ -21,8 +21,8 @@ public class OreNetherEnum extends IMetalSetEnum{
 	private final int[] pickLevels = {1, 1, 3, 3, 3, 4, 5, 6, 0, 0};
 	private int[] metalLevels = {1, 2, 4, 5, 6, 8, 10, 11, 2, 6};
 
-	public static int[] defaultVeinCount = {12, 10, 6, 5, 5, 4, 3, 3, 8, 6};
-	public static int[] defaultOreCount = {6, 6, 6, 6, 4, 4, 4, 4, 6, 4};
+	public static int[] defaultVeinCount = {9, 7, 5, 4, 4, 3, 2, 2, 6, 3};
+	public static int[] defaultOreCount = {6, 6, 6, 7, 4, 4, 3, 3, 6, 4};
 	public static int[] defaultOreHeight = {128, 128, 128, 128, 128, 128, 128, 128, 128, 128};
 
 	public static EnumArmorMaterial ignatiusArmor = EnumHelper.addArmorMaterial("Ignatius", 15, new int[] {2, 6, 5, 2}, 15);
@@ -213,6 +213,15 @@ public class OreNetherEnum extends IMetalSetEnum{
 		return metalLevels[i];
 	}
 
+	public boolean hasMetalBlock() 
+	{
+		return true;
+	}
+	public int blockID() 
+	{
+		return ConfigNether.oresBlockID;
+	}
+	
 	@Override
 	public CreativeTabs getCreativeTab() {
 		return MetallurgyNether.creativeTab;

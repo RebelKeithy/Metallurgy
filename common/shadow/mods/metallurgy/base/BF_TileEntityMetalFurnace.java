@@ -279,7 +279,7 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements ISidedInven
 
                         if (this.furnaceItemStacks[1].stackSize == 0)
                         {
-                            this.furnaceItemStacks[1] = null;
+                            this.furnaceItemStacks[1] = this.furnaceItemStacks[1].getItem().getContainerItemStack(furnaceItemStacks[1]);
                         }
                     }
                 }
@@ -390,7 +390,7 @@ public class BF_TileEntityMetalFurnace extends TileEntity implements ISidedInven
                     return 300;
                 }
             }
-            if (var2 instanceof ItemTool && ((ItemTool) var2).func_77861_e().equals("WOOD")) return 200;
+            if (var2 instanceof ItemTool && ((ItemTool) var2).getToolMaterialName().equals("WOOD")) return 200;
             if (var2 instanceof ItemSword && ((ItemSword) var2).func_77825_f().equals("WOOD")) return 200;
             if (var2 instanceof ItemHoe && ((ItemHoe) var2).func_77842_f().equals("WOOD")) return 200;
             if (var1 == Item.stick.shiftedIndex) return 100;

@@ -2,6 +2,7 @@ package shadow.mods.metallurgy.base;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Map;
@@ -9,11 +10,13 @@ import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
 
+import shadow.mods.metallurgy.BC_CrusherRecipes;
 import shadow.mods.metallurgy.BlockDoorMetal;
 import shadow.mods.metallurgy.ItemDoorMetal;
 import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.MetallurgyCore;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
+import shadow.mods.metallurgy.MetallurgyItem;
 import shadow.mods.metallurgy.MetallurgyItems;
 import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.UpdateManager;
@@ -22,6 +25,8 @@ import shadow.mods.metallurgy.mod_Iron;
 import shadow.mods.metallurgy.api.MetallurgyAPI;
 import shadow.mods.metallurgy.mystcraft.TerrainSymbol;
 import shadow.mods.metallurgy.precious.ConfigPrecious;
+import shadow.mods.metallurgy.storage.BlockAccessor;
+import shadow.mods.metallurgy.storage.BlockStorage;
 import shadow.mods.metallurgy.MetallurgyEnums;
 import xcompwiz.mystcraft.api.APICallHandler;
 /*
@@ -51,10 +56,13 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
+import net.minecraft.src.CraftingManager;
 import net.minecraft.src.CreativeTabs;
 import net.minecraft.src.EntityLiving;
 import net.minecraft.src.EntityZombie;
 import net.minecraft.src.EnumToolMaterial;
+import net.minecraft.src.FurnaceRecipes;
+import net.minecraft.src.IRecipe;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.Material;
@@ -67,6 +75,7 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.living.LivingSpecialSpawnEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 @Mod(modid = "MetallurgyBase", name = "Metallurgy Base", dependencies = "after:MetallurgyCore", version = "2.2.3")
 @NetworkMod(channels = { "MetallurgyBase" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
@@ -84,6 +93,7 @@ public class MetallurgyBaseMetals {
 	public static Block metalFurnace;
 	public static Block lantern;
 	public static Block ladder;
+	public static Block coloredGlass;
 	
 	public static Item spear[] = new Item[7];
 	public static Item halberd[] = new Item[7];
@@ -92,10 +102,16 @@ public class MetallurgyBaseMetals {
 	public static Item warhammer[] = new Item[7];
 	public static Item flail[] = new Item[7];
 	
+	public static Item glassDust;
+	
 	public static Item copperItemDoor;
 	public static Block copperDoor;
 	
 	public static CreativeTabs baseTab;
+	
+	// Storage Structure Stuff
+	public static Block storage;
+	public static Block accessor;
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
@@ -117,9 +133,14 @@ public class MetallurgyBaseMetals {
 		
 
 		metalFurnace = new BF_BlockMetalFurnace(ConfigBase.furnaceID, false).setHardness(3.5F).setBlockName("MetalFurnace");
-		lantern = new BlockLantern(3010).setHardness(0.1F).setLightValue(0.9375F).setBlockName("Lantern").setCreativeTab(baseTab);
+		lantern = new BlockLantern(3010).setHardness(0.1F).setLightValue(1F).setBlockName("lantern").setCreativeTab(baseTab);
 		ladder = new BlockMetalLadder(2011, 48).setBlockName("MetalLadder").setCreativeTab(baseTab);
+		glassDust = new ItemGlassDust(2012, "/shadow/MetallurgyGlassLanterns.png").setItemName("glassDust").setIconIndex(68).setCreativeTab(baseTab);
+		coloredGlass = new BlockColoredGlass(2013, "/shadow/MetallurgyGlass.png").setHardness(0.3F).setStepSound(Block.soundGlassFootstep).setBlockName("coloredGlass").setCreativeTab(baseTab);
 		
+		// Storage Structure Stuff
+		storage = new BlockStorage(2014);
+		accessor = new BlockAccessor(2015);
 		
 		proxy.registerRenderInformation();
 		
@@ -146,9 +167,14 @@ public class MetallurgyBaseMetals {
 		GameRegistry.registerBlock(lantern, shadow.mods.metallurgy.base.ItemBlockLantern.class);
 		GameRegistry.registerBlock(copperDoor);
 		GameRegistry.registerBlock(ladder, shadow.mods.metallurgy.base.ItemBlockMetalLadder.class);
+		GameRegistry.registerBlock(coloredGlass, shadow.mods.metallurgy.base.ItemBlockColoredGlass.class);
 		
 		GameRegistry.registerTileEntity(shadow.mods.metallurgy.base.TileEntityLantern.class, "Lantern");
 		GameRegistry.registerTileEntity(BF_TileEntityMetalFurnace.class, "metalFurnace");
+		
+		GameRegistry.registerBlock(storage);
+		GameRegistry.registerBlock(accessor);
+		GameRegistry.registerTileEntity(shadow.mods.metallurgy.storage.TileEntityStorage.class, "Storage");
 		
 		alloys.load();
 		ores.load();
@@ -183,16 +209,102 @@ public class MetallurgyBaseMetals {
 		
 		addBalkonsWeapons();
 		
+
+		IRecipe recipe = new ShapedOreRecipe(new ItemStack(Block.pistonBase, 1),
+				"PPP", "SIS", "SRS", 'I', "ingotBronze", 'P', new ItemStack(Block.planks, 1, -1), 'S', Block.cobblestone, 'R', Item.redstone);
+		CraftingManager.getInstance().getRecipeList().add(recipe);
+		recipe = new ShapedOreRecipe(new ItemStack(Block.pistonBase, 1),
+				"PPP", "SIS", "SRS", 'I', "ingotHepatizon", 'P', new ItemStack(Block.planks, 1, -1), 'S', Block.cobblestone, 'R', Item.redstone);
+		CraftingManager.getInstance().getRecipeList().add(recipe);
+		recipe = new ShapedOreRecipe(new ItemStack(Block.pistonBase, 1),
+				"PPP", "SIS", "SRS", 'I', "ingotDamascus Steel", 'P', new ItemStack(Block.planks, 1, -1), 'S', Block.cobblestone, 'R', Item.redstone);
+		CraftingManager.getInstance().getRecipeList().add(recipe);
+		recipe = new ShapedOreRecipe(new ItemStack(Block.pistonBase, 2),
+				"PPP", "SIS", "SRS", 'I', "ingotAngmallen", 'P', new ItemStack(Block.planks, 1, -1), 'S', Block.cobblestone, 'R', Item.redstone);
+		CraftingManager.getInstance().getRecipeList().add(recipe);
+		recipe = new ShapedOreRecipe(new ItemStack(Block.pistonBase, 2),
+				"PPP", "SIS", "SRS", 'I', "ingotSteel", 'P', new ItemStack(Block.planks, 1, -1), 'S', Block.cobblestone, 'R', Item.redstone);
+		CraftingManager.getInstance().getRecipeList().add(recipe);
+		recipe = new ShapelessOreRecipe(new ItemStack(glassDust, 1, 1), new ItemStack(glassDust, 1, 0), new ItemStack(glassDust, 1, 0));
+		CraftingManager.getInstance().getRecipeList().add(recipe);
 		
 		
 		proxy.addNames();
+		
+		BC_CrusherRecipes.smelting().addCrushing(Block.glass.blockID, new ItemStack(glassDust, 1));
 		
 		MetallurgyAPI.addCrusherRecipe(Item.appleRed.shiftedIndex, 0, new ItemStack(Block.dirt));
 		MetallurgyAPI.addAbstractorRecipe(Item.appleRed.shiftedIndex, 0, 50);
 		MetallurgyAPI.addAbstractorFuel(Item.appleRed.shiftedIndex, 0, 40);
 		MetallurgyAPI.addMintingIngot(Block.cobblestone.blockID, 3, "/shadow/MintGold.png");
 		
+		for(int n = 0; n < 8; n++)
+			FurnaceRecipes.smelting().addSmelting(glassDust.shiftedIndex, n+1, new ItemStack(coloredGlass, 1, n), 0);
+		
+		for(int n = 0; n < 8; n++)
+			ModLoader.addRecipe(new ItemStack(lantern, 1, n), "SSS", "GTG", "SSS", 'S', Block.cobblestone, 'T', Block.torchWood, 'G', new ItemStack(coloredGlass, 1, n));
+		
+		recipe = new ShapelessOreRecipe(new ItemStack(glassDust, 1, 1), new ItemStack(glassDust, 1, 0), "dustIron");
+		GameRegistry.addRecipe(recipe);
+		recipe = new ShapelessOreRecipe(new ItemStack(glassDust, 1, 2), new ItemStack(glassDust, 1, 0), "dustBronze");
+		GameRegistry.addRecipe(recipe);
+		recipe = new ShapelessOreRecipe(new ItemStack(glassDust, 1, 3), new ItemStack(glassDust, 1, 0), "dustCopper");
+		GameRegistry.addRecipe(recipe);
+		recipe = new ShapelessOreRecipe(new ItemStack(glassDust, 1, 4), new ItemStack(glassDust, 1, 0), "dustAngmallen");
+		GameRegistry.addRecipe(recipe);
+		recipe = new ShapelessOreRecipe(new ItemStack(glassDust, 1, 5), new ItemStack(glassDust, 1, 0), "dustGold");
+		GameRegistry.addRecipe(recipe);
+		recipe = new ShapelessOreRecipe(new ItemStack(glassDust, 1, 6), new ItemStack(glassDust, 1, 0), "dustManganese");
+		GameRegistry.addRecipe(recipe);
+		recipe = new ShapelessOreRecipe(new ItemStack(glassDust, 1, 7), new ItemStack(glassDust, 1, 0), "dustHepatizon");
+		GameRegistry.addRecipe(recipe);
+		recipe = new ShapelessOreRecipe(new ItemStack(glassDust, 1, 8), new ItemStack(glassDust, 1, 0), "dustSteel");
+		GameRegistry.addRecipe(recipe);
+		
 		new UpdateManager("2.2.3", "Base", "http://ladadeda.info/BaseVersion.txt");
+	}
+	
+	@PostInit
+	public void postInit(FMLPostInitializationEvent event)
+	{
+		ArrayList<Integer> swordIds = new ArrayList<Integer>();
+		
+		for(int n = 0; n < ores.numMetals; n++)		
+		{
+			if(ores.Sword[n] != null)
+				swordIds.add(ores.Sword[n].shiftedIndex);
+		}
+		for(int n = 0; n < alloys.numMetals; n++)		
+		{
+			if(alloys.Sword[n] != null)
+				swordIds.add(alloys.Sword[n].shiftedIndex);
+		}
+		int[] list = new int[swordIds.size()];
+		for(int n = 0; n < list.length; n++)
+			list[n] = swordIds.get(n);
+
+		try {
+			Class c = Class.forName("me.Golui.SwordPedestal.common.SwordPedestalMain");
+			c.getDeclaredMethod("addItems", int[].class).invoke(this, list);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void addBalkonsWeapons() 

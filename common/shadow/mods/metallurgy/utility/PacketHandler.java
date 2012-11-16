@@ -59,7 +59,7 @@ public class PacketHandler implements IPacketHandler
         
         World world = MetallurgyCore.proxy.getClientWorld();
         Explosion explosion = new Explosion(world, (Entity)null, explosionX, explosionY, explosionZ, explosionSize);
-        explosion.field_77281_g = chunkPositionRecords;
+        explosion.affectedBlockPositions = chunkPositionRecords;
         explosion.doExplosionB(true);
         //player.motionX += (double)par1Packet60Explosion.func_73607_d();
         //player.motionY += (double)par1Packet60Explosion.func_73609_f();
@@ -91,7 +91,7 @@ public class PacketHandler implements IPacketHandler
         
         World world = MetallurgyCore.proxy.getClientWorld();
         ExplosionMiners explosion = new ExplosionMiners(world, (Entity)null, explosionX, explosionY, explosionZ, explosionSize);
-        explosion.field_77281_g = chunkPositionRecords;
+        explosion.affectedBlockPositions = chunkPositionRecords;
         explosion.doExplosionB(true);
         //player.motionX += (double)par1Packet60Explosion.func_73607_d();
         //player.motionY += (double)par1Packet60Explosion.func_73609_f();

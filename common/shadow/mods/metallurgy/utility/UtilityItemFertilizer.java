@@ -25,7 +25,7 @@ public class UtilityItemFertilizer extends UtilityItem
         {
             int var11;
             int var12;
-
+            
             var11 = par3World.getBlockId(par4, par5, par6);
 
             BonemealEvent event = new BonemealEvent(par2EntityPlayer, par3World, var11, par4, par5, par6);
@@ -36,7 +36,7 @@ public class UtilityItemFertilizer extends UtilityItem
 
             if (event.getResult() == Result.ALLOW)
             {
-               if (!par3World.isRemote)
+                if (!par3World.isRemote)
                 {
                     par1ItemStack.stackSize--;
                 }
@@ -80,7 +80,7 @@ public class UtilityItemFertilizer extends UtilityItem
                 return true;
             }
 
-            if (var11 == Block.crops.blockID)
+            if (var11 > 0 && Block.blocksList[var11] instanceof BlockCrops)
             {
                 if (par3World.getBlockMetadata(par4, par5, par6) == 7)
                 {
@@ -89,7 +89,7 @@ public class UtilityItemFertilizer extends UtilityItem
 
                 if (!par3World.isRemote)
                 {
-                    ((BlockCrops)Block.crops).fertilize(par3World, par4, par5, par6);
+                    ((BlockCrops)Block.blocksList[var11]).fertilize(par3World, par4, par5, par6);
                     --par1ItemStack.stackSize;
                 }
 
@@ -112,7 +112,7 @@ public class UtilityItemFertilizer extends UtilityItem
                 if (!par3World.isRemote)
                 {
                     --par1ItemStack.stackSize;
-                    label135:
+                    label137:
 
                     for (var12 = 0; var12 < 128; ++var12)
                     {
@@ -128,7 +128,7 @@ public class UtilityItemFertilizer extends UtilityItem
 
                             if (par3World.getBlockId(var13, var14 - 1, var15) != Block.grass.blockID || par3World.isBlockNormalCube(var13, var14, var15))
                             {
-                                continue label135;
+                                continue label137;
                             }
                         }
 
@@ -150,6 +150,7 @@ public class UtilityItemFertilizer extends UtilityItem
                 }
 
                 return true;
+                
             }
 
             return false;

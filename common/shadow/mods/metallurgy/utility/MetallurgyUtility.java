@@ -65,6 +65,8 @@ public class MetallurgyUtility
 	public static Item tar;
 	public static Item potash;
 	public static Item fertilizer;
+	public static Item igniter;
+	public static Item match;
 	
 	public static CreativeTabs creativeTab;
 	
@@ -92,6 +94,9 @@ public class MetallurgyUtility
 		tar = (new UtilityItem(ConfigUtility.itemTarID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(4,2).setItemName("Tar").setCreativeTab(creativeTab);
 		potash = (new UtilityItem(ConfigUtility.itemPotashID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(5,1).setItemName("Potash").setCreativeTab(creativeTab);
 		fertilizer = (new UtilityItemFertilizer(ConfigUtility.itemFertilizerID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(1,2).setItemName("Fertilizer").setCreativeTab(creativeTab);
+		igniter = (new ItemIgniter(ConfigUtility.itemIgniterID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(4, 3).setItemName("Igniter").setCreativeTab(creativeTab);
+		match = (new ItemMatch(ConfigUtility.itemMatchID,  "/shadow/MetallurgyUtilityOres.png")).setIconCoord(3, 3).setItemName("Match").setCreativeTab(creativeTab);
+	
 	}
 
 	@Init

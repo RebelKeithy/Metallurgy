@@ -298,10 +298,12 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 
                         if (this.furnaceItemStacks[1].stackSize == 0)
                         {
-                            this.furnaceItemStacks[1] = null;
+                            this.furnaceItemStacks[1] = this.furnaceItemStacks[1].getItem().getContainerItemStack(furnaceItemStacks[1]);
                         }
                     }
                 }
+                
+                this.worldObj.updateAllLightTypes(xCoord, yCoord, zCoord);
             }
 
             if (this.isBurning() && this.canSmelt())
@@ -419,7 +421,7 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
                     return 225;
                 }
             }
-            if (var2 instanceof ItemTool && ((ItemTool) var2).func_77861_e().equals("WOOD")) return 150;
+            if (var2 instanceof ItemTool && ((ItemTool) var2).getToolMaterialName().equals("WOOD")) return 150;
             if (var2 instanceof ItemSword && ((ItemSword) var2).func_77825_f().equals("WOOD")) return 150;
             if (var2 instanceof ItemHoe && ((ItemHoe) var2).func_77842_f().equals("WOOD")) return 150;
             if (var1 == Item.stick.shiftedIndex) return 75;

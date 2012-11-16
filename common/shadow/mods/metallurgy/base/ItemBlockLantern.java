@@ -51,23 +51,39 @@ public class ItemBlockLantern extends ItemBlock
 		String name = "";
 		switch (itemstack.getItemDamage()) {
 		case 0: {
-			name = "Red";
+			name = "red";
 			break;
 		}
 		case 1: {
-			name = "Blue";
+			name = "green";
 			break;
 		}
 		case 2: {
-			name = "Green";
+			name = "blue";
 			break;
 		}
 		case 3: {
-			name = "Yellow";
+			name = "orange";
+			break;
+		}
+		case 4: {
+			name = "yellow";
+			break;
+		}
+		case 5: {
+			name = "purple";
+			break;
+		}
+		case 6: {
+			name = "grey";
+			break;
+		}
+		case 7: {
+			name = "white";
 			break;
 		}
 		default:
-			name = "Red";
+			name = "red";
 		}
 		return getItemName() + "." + name;
 	}

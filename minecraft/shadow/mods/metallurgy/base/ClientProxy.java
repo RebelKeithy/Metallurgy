@@ -39,6 +39,34 @@ public class ClientProxy extends CommonProxy{
 		LanguageRegistry.instance().addStringLocalization("tile.MetalLadder.Bronze.name", "Bronze Ladder");
 		LanguageRegistry.instance().addStringLocalization("tile.MetalLadder.Iron.name", "Iron Ladder");
 		LanguageRegistry.instance().addStringLocalization("tile.MetalLadder.Steel.name", "Steel Ladder");
+
+		LanguageRegistry.instance().addStringLocalization("item.glassDust.glass.name", "Glass Dust");
+		LanguageRegistry.instance().addStringLocalization("item.glassDust.red.name", "Red Glass Dust");
+		LanguageRegistry.instance().addStringLocalization("item.glassDust.green.name", "Green Glass Dust");
+		LanguageRegistry.instance().addStringLocalization("item.glassDust.blue.name", "Blue Glass Dust");
+		LanguageRegistry.instance().addStringLocalization("item.glassDust.orange.name", "Orange Glass Dust");
+		LanguageRegistry.instance().addStringLocalization("item.glassDust.yellow.name", "Yellow Glass Dust");
+		LanguageRegistry.instance().addStringLocalization("item.glassDust.purple.name", "Purple Glass Dust");
+		LanguageRegistry.instance().addStringLocalization("item.glassDust.grey.name", "Grey Glass Dust");
+		LanguageRegistry.instance().addStringLocalization("item.glassDust.white.name", "White Glass Dust");
+		
+		LanguageRegistry.instance().addStringLocalization("tile.lantern.red.name", "Red Lantern");
+		LanguageRegistry.instance().addStringLocalization("tile.lantern.green.name", "Green Lantern");
+		LanguageRegistry.instance().addStringLocalization("tile.lantern.blue.name", "Blue Lantern");
+		LanguageRegistry.instance().addStringLocalization("tile.lantern.orange.name", "Orange Lantern");
+		LanguageRegistry.instance().addStringLocalization("tile.lantern.yellow.name", "Yellow Lantern");
+		LanguageRegistry.instance().addStringLocalization("tile.lantern.purple.name", "Purple Lantern");
+		LanguageRegistry.instance().addStringLocalization("tile.lantern.grey.name", "Grey Lantern");
+		LanguageRegistry.instance().addStringLocalization("tile.lantern.white.name", "White Lantern");
+		
+		LanguageRegistry.instance().addStringLocalization("tile.coloredGlass.red.name", "Red Glass");
+		LanguageRegistry.instance().addStringLocalization("tile.coloredGlass.green.name", "Green Glass");
+		LanguageRegistry.instance().addStringLocalization("tile.coloredGlass.blue.name", "Blue Glass");
+		LanguageRegistry.instance().addStringLocalization("tile.coloredGlass.orange.name", "Orange Glass");
+		LanguageRegistry.instance().addStringLocalization("tile.coloredGlass.yellow.name", "Yellow Glass");
+		LanguageRegistry.instance().addStringLocalization("tile.coloredGlass.purple.name", "Purple Glass");
+		LanguageRegistry.instance().addStringLocalization("tile.coloredGlass.grey.name", "Grey Glass");
+		LanguageRegistry.instance().addStringLocalization("tile.coloredGlass.white.name", "White Glass");
 	}
 	
 	@Override

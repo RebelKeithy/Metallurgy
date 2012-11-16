@@ -70,11 +70,11 @@ public class ConfigBase  {
     	baseMetalsVeinID = config.getBlock("Metal Ore", 901).getInt(900);
     	baseMetalsBrickID = config.getBlock("Metal Brick", 902).getInt(901);
     	baseAlloysBrickID = config.getBlock("Alloy Brick", 903).getInt(902);
-    	baseMetalsBlockID = config.getBlock("Metal Block", 927).getInt(927);
-    	baseAlloysBlockID = config.getBlock("Alloy Block", 928).getInt(928);
+    	baseMetalsBlockID = config.getBlock("Metal Block", 929).getInt(929);
+    	baseAlloysBlockID = config.getBlock("Alloy Block", 930).getInt(930);
     	doorID = config.getBlock("Copper Door", 935).getInt(935);
     	furnaceID = config.getBlock("Furnace", 904).getInt(904);
-    	itemDoorID = config.getItem("Copper Door", 9350).getInt(9350);
+    	itemDoorID = config.getItem("Copper Door", 926).getInt(9350);
     	
     	dimensions = config.get("Dimensions", "Dimensions", "0 2-10000").value;
     	

@@ -38,7 +38,7 @@ import shadow.mods.metallurgy.base.MetallurgyBaseMetals;
 public class FM_BlockMintStorage extends BlockContainer
 {
     private Random random = new Random();
-    private int renderId = RenderingRegistry.getNextAvailableRenderId();
+    //private int renderId = RenderingRegistry.getNextAvailableRenderId();
 
     public FM_BlockMintStorage(int par1)
     {

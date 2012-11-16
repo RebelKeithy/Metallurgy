@@ -115,11 +115,11 @@ public class MetalSet implements IWorldGenerator {
 		if(!info.isAlloy())			
 			ore = new MetallurgyBlock(info.oreID(), info.image(), numMetals, 0).setHardness(2F).setResistance(.1F).setBlockName(setName + "Ore").setCreativeTab(info.getCreativeTab());
 		
-		brick = new MetallurgyBlock(info.brickID(), info.image(), numMetals, 1).setHardness(2F).setResistance(.1F).setBlockName(setName + "Brick").setCreativeTab(info.getCreativeTab());
+		brick = new MetallurgyBlock(info.brickID(), info.image(), numMetals, 1).setHardness(5F).setResistance(10F).setBlockName(setName + "Brick").setCreativeTab(info.getCreativeTab());
 		
 		if(info.hasMetalBlock())
 		{
-			block = new MetallurgyBlock(info.blockID(), info.image(), numMetals, 0).setHardness(2F).setResistance(.1F).setBlockName(setName + "Block").setCreativeTab(info.getCreativeTab());
+			block = new MetallurgyBlock(info.blockID(), info.image(), numMetals, 0).setHardness(5F).setResistance(.1F).setBlockName(setName + "Block").setCreativeTab(info.getCreativeTab());
 			((MetallurgyBlock)block).isMetalBlock = true;
 		}
 		
@@ -274,9 +274,9 @@ public class MetalSet implements IWorldGenerator {
 		for(int i = 0; i < info.numMetals(); i++)
 		{
 			if(ore != null)
-			{
 				OreDictionary.registerOre("ore" + info.name(i), new ItemStack(ore, 1, i));
-			}
+			if(block != null)
+				OreDictionary.registerOre("block" + info.name(i), new ItemStack(block, 1, i));
 			OreDictionary.registerOre("dust" + info.name(i), new ItemStack(Dust[i], 1));
 			OreDictionary.registerOre("ingot" + info.name(i), new ItemStack(Bar[i], 1));
 		}

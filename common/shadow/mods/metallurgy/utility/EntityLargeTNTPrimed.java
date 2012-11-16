@@ -109,7 +109,7 @@ public class EntityLargeTNTPrimed extends Entity {
         float strength = 20.0F;
         Explosion explosion = new Explosion(worldObj, null, this.posX, this.posY, this.posZ, strength);
         explosion.isFlaming = false;
-        explosion.field_82755_b = true;
+        explosion.isSmoking = true;
         explosion.doExplosionA();
         explosion.doExplosionB(true);
         
@@ -123,8 +123,8 @@ public class EntityLargeTNTPrimed extends Entity {
 
 	            if (player.getDistanceSq(this.posX, this.posY, this.posZ) < 4096.0D)
 	            {
-	                ((EntityPlayerMP)player).playerNetServerHandler.sendPacketToPlayer(new Packet60Explosion(this.posX, this.posY, this.posZ, strength, explosion.field_77281_g, (Vec3)explosion.func_77277_b().get(player)));
-	                sendPacket(this.posX, this.posY, this.posZ, strength, explosion.field_77281_g, (Vec3)explosion.func_77277_b().get(player));
+	                ((EntityPlayerMP)player).playerNetServerHandler.sendPacketToPlayer(new Packet60Explosion(this.posX, this.posY, this.posZ, strength, explosion.affectedBlockPositions, (Vec3)explosion.func_77277_b().get(player)));
+	                sendPacket(this.posX, this.posY, this.posZ, strength, explosion.affectedBlockPositions, (Vec3)explosion.func_77277_b().get(player));
 	            }
 	        }
 		}

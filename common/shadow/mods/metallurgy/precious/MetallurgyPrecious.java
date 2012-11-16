@@ -1,6 +1,7 @@
 package shadow.mods.metallurgy.precious;
 import java.io.File;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Random;
@@ -194,6 +195,45 @@ public class MetallurgyPrecious
 		}
 		
 		new UpdateManager("2.2.3", "Precious", "http://ladadeda.info/PreciousVersion.txt");
+
+		ArrayList<Integer> swordIds = new ArrayList<Integer>();
+		
+		for(int n = 0; n < ores.numMetals; n++)		
+		{
+			if(ores.Sword[n] != null)
+				swordIds.add(ores.Sword[n].shiftedIndex);
+		}
+		for(int n = 0; n < alloys.numMetals; n++)		
+		{
+			if(alloys.Sword[n] != null)
+				swordIds.add(alloys.Sword[n].shiftedIndex);
+		}
+		int[] list = new int[swordIds.size()];
+		for(int n = 0; n < list.length; n++)
+			list[n] = swordIds.get(n);
+
+		try {
+			Class c = Class.forName("me.Golui.SwordPedestal.common.SwordPedestalMain");
+			c.getDeclaredMethod("addItems", int[].class).invoke(this, list);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void addChestRecipes()

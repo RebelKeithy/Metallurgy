@@ -57,9 +57,9 @@ public class EntityOreFX extends EntityFX
 	    
 	    GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/, ModLoader.getMinecraftInstance().renderEngine.getTexture("/shadow/FantasyMetalsParticle.png"));
 	    float f0 = (float)(getParticleTextureIndex() % 16) / 16F;
-	    float f7 = f0 + 0.0624375F;
+	    float f7 = f0 + 1/16F;
 	    float f8 = (float)(getParticleTextureIndex() / 16) / 16F;
-	    float f9 = f8 + 0.0624375F;
+	    float f9 = f8 + 1/16F;
 	    float f10 = 0.1F * particleScale;
 	    float f11 = (float)((prevPosX + (posX - prevPosX) * (double)f) - interpPosX);
 	    float f12 = (float)((prevPosY + (posY - prevPosY) * (double)f) - interpPosY);

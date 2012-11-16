@@ -181,6 +181,15 @@ public class OreEnderEnum extends IMetalSetEnum{
 	public int level(int i) {
 		return metalLevels[i];
 	}
+	
+	public boolean hasMetalBlock() 
+	{
+		return true;
+	}
+	public int blockID() 
+	{
+		return ConfigEnder.oresBlockID;
+	}
 
 	@Override
 	public CreativeTabs getCreativeTab() {

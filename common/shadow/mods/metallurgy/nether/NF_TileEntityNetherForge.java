@@ -67,6 +67,14 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
     	if(!worldObj.isRemote)
     		sendPacket();
     }
+
+	public void addTakeBucket() 
+	{
+		if(fuel >= 1000)
+			fuel -= 1000;
+    	if(!worldObj.isRemote)
+    		sendPacket();
+	}
     
     public int getFuelScaled(int scale)
     {
@@ -211,11 +219,11 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
     public void writeToNBT(NBTTagCompound par1NBTTagCompound)
     {
         super.writeToNBT(par1NBTTagCompound);
-        par1NBTTagCompound.setInteger("Fuel", (short)fuel);
+        par1NBTTagCompound.setInteger("Fuel", fuel);
         par1NBTTagCompound.setShort("CookTime", (short)furnaceCookTime);
         par1NBTTagCompound.setShort("Direction", (short)direction);
         par1NBTTagCompound.setShort("TimeBase", (short)furnaceTimeBase);
-        par1NBTTagCompound.setInteger("MaxFuel", (short)maxFuel);
+        par1NBTTagCompound.setInteger("MaxFuel", maxFuel);
         NBTTagList var2 = new NBTTagList();
 
         for (int var3 = 0; var3 < furnaceItemStacks.length; ++var3)

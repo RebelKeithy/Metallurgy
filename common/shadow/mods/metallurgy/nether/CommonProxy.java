@@ -61,4 +61,9 @@ public class CommonProxy implements IGuiHandler
 		return new File(".");
 	}
 
+	public void spawnParticle(String particle, World par1World, double var9,
+			double var11, double var13, double d, double e, double f) {
+		
+	}
+
 }

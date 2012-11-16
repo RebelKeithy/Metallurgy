@@ -2,6 +2,10 @@ package shadow.mods.metallurgy.base;
 
 import java.io.File;
 
+import shadow.mods.metallurgy.storage.ContainerStorage;
+import shadow.mods.metallurgy.storage.GuiStorage;
+import shadow.mods.metallurgy.storage.TileEntityStorage;
+
 import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.TileEntity;
 import net.minecraft.src.World;
@@ -26,9 +30,12 @@ public class CommonProxy implements IGuiHandler
 		TileEntity te = world.getBlockTileEntity(x, y, z);
 		if (te != null && te instanceof BF_TileEntityMetalFurnace) 
 		{
-				BF_TileEntityMetalFurnace tef = (BF_TileEntityMetalFurnace)te;
-				return new BF_ContainerMetalFurnace(player.inventory, tef);
+			return new BF_ContainerMetalFurnace(player.inventory, (BF_TileEntityMetalFurnace)te);
 		} 
+		else if(te != null && te instanceof TileEntityStorage)
+		{
+			return new ContainerStorage(player.inventory, (TileEntityStorage)te);
+		}
 		else 
 		{
 			return null;
@@ -43,6 +50,10 @@ public class CommonProxy implements IGuiHandler
 		{
 			return new BF_GuiMetalFurnace(player.inventory, (BF_TileEntityMetalFurnace)te);
 		}  
+		else if(te != null && te instanceof TileEntityStorage)
+		{
+			return new GuiStorage(player.inventory, (TileEntityStorage)te);
+		}
 		else
 		{
 			return null;

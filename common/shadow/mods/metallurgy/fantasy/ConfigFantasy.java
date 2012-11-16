@@ -17,6 +17,8 @@ public class ConfigFantasy  {
 	public static int FantasyMetalsVeinID;
 	public static int FantasyMetalsBrickID;
 	public static int FantasyAlloysBrickID;
+	public static int oresBlockID;
+	public static int alloysBlockID;
 	public static int furnaceID;
 
 	public static boolean[] alloyEnabled = new boolean[5];
@@ -63,6 +65,8 @@ public class ConfigFantasy  {
         FantasyMetalsVeinID = config.getBlock("Metal Ore", 919).getInt(919);
     	FantasyMetalsBrickID = config.getBlock("Metal Brick", 920).getInt(920);
     	FantasyAlloysBrickID = config.getBlock("Alloy Brick", 921).getInt(921);
+    	oresBlockID = config.getBlock("Metal Block", 933).getInt(933);
+    	alloysBlockID = config.getBlock("Alloy Block", 934).getInt(934);
     	furnaceID = config.getBlock("Abstractor", 922).getInt(922);
 
     	dimensions = config.get("Dimensions", "Dimensions", "0 2-100000").value;

@@ -90,7 +90,7 @@ public class CoreConfig  {
     	goldEnabled = config.get("Ores", "Enable Gold", true).getBoolean(true);
     	ironEnabled = config.get("Ores", "Enable Iron", true).getBoolean(true);
 
-    	DiamondVeinCount = config.get("Ore Generation", "Diamond Vein Count", 3).getInt(3);
+    	DiamondVeinCount = config.get("Ore Generation", "Diamond Vein Count", 4).getInt(4);
     	DiamondOreCount = config.get("Ore Generation", "Diamond Ore Count", 3).getInt(3);
     	DiamondOreHeight = config.get("Ore Generation", "Diamond Ore Height", 128).getInt(128);
     	
@@ -98,22 +98,22 @@ public class CoreConfig  {
     	EmeraldOreCount = config.get("Ore Generation", "Emerald Ore Count", 3).getInt(3);
     	EmeraldOreHeight = config.get("Ore Generation", "Emerald Ore Height", 128).getInt(128);
 
-    	LapisLazuliVeinCount = config.get("Ore Generation", "LapisLazuili Vein Count", 4).getInt(4);
+    	LapisLazuliVeinCount = config.get("Ore Generation", "LapisLazuili Vein Count", 5).getInt(5);
     	LapisLazuliOreCount = config.get("Ore Generation", "LapisLazuili Ore Count", 4).getInt(4);
     	LapisLazuliOreHeight = config.get("Ore Generation", "LapisLazuili Ore Height", 128).getInt(128);
 
-    	RedstoneVeinCount = config.get("Ore Generation", "Redstone Vein Count", 6).getInt(6);
+    	RedstoneVeinCount = config.get("Ore Generation", "Redstone Vein Count", 8).getInt(8);
     	RedstoneOreCount = config.get("Ore Generation", "Redstone Ore Count", 6).getInt(6);
     	RedstoneOreHeight = config.get("Ore Generation", "Redstone Ore Height", 128).getInt(128);
     	
     	// Gold Generation
     	GoldVeinCount = config.get("Ore Generation", "Gold Vein Count", 4).getInt(4);
-    	GoldOreCount = config.get("Ore Generation", "Gold Ore Count", 4).getInt(4);
+    	GoldOreCount = config.get("Ore Generation", "Gold Ore Count", 5).getInt(5);
     	GoldOreHeight = config.get("Ore Generation", "Gold Ore Height", 128).getInt(128);
     	
     	// Iron Generation
-    	IronVeinCount = config.get("Ore Generation", "Iron Vein Count", 11).getInt(11);
-    	IronOreCount = config.get("Ore Generation", "Iron Ore Count", 5).getInt(5);
+    	IronVeinCount = config.get("Ore Generation", "Iron Vein Count", 10).getInt(10);
+    	IronOreCount = config.get("Ore Generation", "Iron Ore Count", 7).getInt(7);
     	IronOreHeight = config.get("Ore Generation", "Iron Ore Height", 128).getInt(128);
 
     	crusherID = config.getBlock("Crusher", 900).getInt(900);

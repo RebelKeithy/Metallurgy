@@ -20,10 +20,4 @@ public class BF_SlotMetalFurnace extends Slot
      {
              return false;
      }
-
-     @Override
-     public void func_82870_a(EntityPlayer par1, ItemStack itemstack)
-     {
-             super.func_82870_a(par1, itemstack);
-     }
 }

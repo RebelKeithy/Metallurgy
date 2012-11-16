@@ -14,6 +14,8 @@ public class ConfigNether  {
 	public static int NetherMetalsBrickID;
 	public static int NetherCatalystVeinID;
 	public static int NetherCatalystBrickID;
+	public static int oresBlockID;
+	public static int alloysBlockID;
 	public static int NetherAlloysBrickID;
 	public static int furnaceID;
 	
@@ -39,6 +41,7 @@ public class ConfigNether  {
 	public static int[] alloyItemIds = new int[3];
 	public static int[] metalItemIds = new int [10];
 	public static String dimensions;
+	public static boolean smelterDropsLava;
 	
 	
 	public static void init()
@@ -69,6 +72,8 @@ public class ConfigNether  {
     	NetherMetalsBrickID = config.getBlock("Metal Brick", 916).getInt(916);
     	NetherCatalystVeinID = config.getBlock("Catalyst Ore", 924).getInt(924);
     	NetherCatalystBrickID = config.getBlock("Catalyst Brick", 925).getInt(925);
+    	oresBlockID = config.getBlock("Metal Block", 931).getInt(931);
+    	alloysBlockID = config.getBlock("Alloy Block", 932).getInt(931);
     	NetherAlloysBrickID = config.getBlock("Alloy Brick", 917).getInt(917);
     	furnaceID = config.getBlock("Nether Smelter", 918).getInt(918);
 
@@ -102,6 +107,7 @@ public class ConfigNether  {
     	buckets[7] = config.get("Furnace Buckets", "Sanguinite", 100).getInt(100);
 
     	ItemStartID = config.get("Item Ids Uses next 550", "Item Start IDs", 27000).getInt(27000);
+    	smelterDropsLava = config.get("Options", "Smelters leave lava", false).getBoolean(false);
 
     	for(int i = 0; i < 8; i++)
     	{

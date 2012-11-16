@@ -190,6 +190,15 @@ public class OrePreciousEnum extends IMetalSetEnum{
 	public int level(int i) {
 		return metalLevels[i];
 	}
+	
+	public boolean hasMetalBlock() 
+	{
+		return true;
+	}
+	public int blockID() 
+	{
+		return ConfigPrecious.oresBlockID;
+	}
 
 	@Override
 	public CreativeTabs getCreativeTab() {

@@ -176,6 +176,15 @@ public class AlloyFantasyEnum extends IMetalSetEnum{
 	public int level(int i) {
 		return metalLevels[i];
 	}
+	
+	public boolean hasMetalBlock() 
+	{
+		return true;
+	}
+	public int blockID() 
+	{
+		return ConfigFantasy.alloysBlockID;
+	}
 
 	@Override
 	public CreativeTabs getCreativeTab() {

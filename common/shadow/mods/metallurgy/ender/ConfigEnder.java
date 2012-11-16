@@ -13,6 +13,8 @@ public class ConfigEnder  {
 	public static int EnderMetalsVeinID;
 	public static int EnderMetalsBrickID;
 	public static int EnderAlloysBrickID;
+	public static int oresBlockID;
+	public static int alloysBlockID;
 	
 	public static boolean[] alloyEnabled = new boolean[1];
 	public static boolean[] metalEnabled = new boolean[2];
@@ -54,6 +56,8 @@ public class ConfigEnder  {
     	EnderMetalsVeinID = config.getBlock("Metal Ore", 924).getInt(924);
     	EnderMetalsBrickID = config.getBlock("Metal Brick", 925).getInt(925);
     	EnderAlloysBrickID = config.getBlock("Alloy Brick", 926).getInt(926);
+    	oresBlockID = config.getBlock("Metal Block", 937).getInt(937);
+    	alloysBlockID = config.getBlock("Alloy Block", 938).getInt(938);
 
     	dimensions = config.get("Dimensions", "Dimensions", "1").value;
     	

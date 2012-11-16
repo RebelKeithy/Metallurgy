@@ -15,6 +15,8 @@ public class ConfigPrecious  {
 	public static int PreciousMetalsVeinID;
 	public static int PreciousMetalsBrickID;
 	public static int PreciousAlloysBrickID;
+	public static int oresBlockID;
+	public static int alloysBlockID;
 	public static int PreciousChestID;
 	public static int PreciousMintID;
 	public static int PreciousMintLoaderID;
@@ -64,6 +66,8 @@ public class ConfigPrecious  {
         PreciousMetalsVeinID = config.getBlock("Precious Metal Ore", 910).getInt(910);
         PreciousMetalsBrickID = config.getBlock("Precious Metal Brick", 911).getInt(911);
         PreciousAlloysBrickID = config.getBlock("Precious Alloy Brick", 912).getInt(912);
+    	oresBlockID = config.getBlock("Metal Block", 935).getInt(935);
+    	alloysBlockID = config.getBlock("Alloy Block", 936).getInt(936);
         PreciousChestID = config.getBlock("Chest", 913).getInt(913);
         PreciousMintID = config.getBlock("Mint", 914).getInt(914);
         PreciousMintLoaderID = config.getBlock("Mint Loader", 925).getInt(925);

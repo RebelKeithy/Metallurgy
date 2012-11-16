@@ -25,9 +25,25 @@ public class VyroxeresDisplay implements DisplayListener {
 			chance = 0.3;
 			particle = "flame";
 		}
-		else
+		else if(meta == 2)
 		{
-			return;
+			particle = "nether2";
+		}
+		else if(meta == 4)
+		{
+			particle = "nether4";
+		}
+		else if(meta == 5)
+		{
+			particle = "nether5";
+		}
+		else if(meta == 6)
+		{
+			particle = "nether6";
+		}
+		else if(meta == 7)
+		{
+			particle = "nether7";
 		}
 		
 		Random var5 = par1World.rand;
@@ -74,7 +90,10 @@ public class VyroxeresDisplay implements DisplayListener {
 
             if (var9 < (double)par2 || var9 > (double)(par2 + 1) || var11 < 0.0D || var11 > (double)(par3 + 1) || var13 < (double)par4 || var13 > (double)(par4 + 1))
             {
-                par1World.spawnParticle(particle, var9, var11, var13, 0.0D, g, 0.0D);
+            	if(particle.contains("nether"))
+                    MetallurgyNether.proxy.spawnParticle(particle, par1World, var9, var11, var13, 0.0D, 0.0D, 0.0D);
+            	else
+            		par1World.spawnParticle(particle, var9, var11, var13, 0.0D, g, 0.0D);
             }
         }
 		

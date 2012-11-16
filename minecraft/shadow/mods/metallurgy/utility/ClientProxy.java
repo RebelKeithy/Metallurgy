@@ -33,6 +33,8 @@ public class ClientProxy extends shadow.mods.metallurgy.utility.CommonProxy{
 		ModLoader.addName(MetallurgyUtility.sulfur, "Sulfur");
 		ModLoader.addName(MetallurgyUtility.largeTNT, "HE TNT");
 		ModLoader.addName(MetallurgyUtility.minersTNT, "LE TNT");
+		ModLoader.addName(MetallurgyUtility.igniter, "Igniter");
+		ModLoader.addName(MetallurgyUtility.match, "Match");
 	}
 	
 	@Override

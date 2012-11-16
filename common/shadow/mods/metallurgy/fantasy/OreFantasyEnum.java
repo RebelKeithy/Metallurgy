@@ -9,6 +9,7 @@ import net.minecraftforge.common.EnumHelper;
 import shadow.mods.metallurgy.IMetalSetEnum;
 import shadow.mods.metallurgy.MetallurgyEnumToolMaterial;
 import shadow.mods.metallurgy.base.ConfigBase;
+import shadow.mods.metallurgy.ender.ConfigEnder;
 
 public class OreFantasyEnum extends IMetalSetEnum{
 
@@ -228,6 +229,15 @@ public class OreFantasyEnum extends IMetalSetEnum{
 	@Override
 	public int level(int i) {
 		return metalLevels[i];
+	}
+	
+	public boolean hasMetalBlock() 
+	{
+		return true;
+	}
+	public int blockID() 
+	{
+		return ConfigFantasy.oresBlockID;
 	}
 
 	@Override

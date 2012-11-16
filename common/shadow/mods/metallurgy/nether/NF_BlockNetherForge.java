@@ -195,7 +195,10 @@ public class NF_BlockNetherForge extends BlockContainer
 		ItemStack currentItem = par5EntityPlayer.inventory.getCurrentItem();
 		
         NF_TileEntityNetherForge var6 = (NF_TileEntityNetherForge)par1World.getBlockTileEntity(par2, par3, par4);
-        
+
+    	par5EntityPlayer.sendChatToPlayer("Fuel: " + var6.fuel);
+    	par5EntityPlayer.sendChatToPlayer("MaxFuel: " + var6.maxFuel);
+    	
     	if(currentItem != null)
     	{
     		if(currentItem.itemID == Item.bucketLava.shiftedIndex)
@@ -205,6 +208,15 @@ public class NF_BlockNetherForge extends BlockContainer
             	
     			var6.addFuelBucket();
     			par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, new ItemStack(Item.bucketEmpty, 1));
+    			return true;
+    		}
+    		if(currentItem.itemID == Item.bucketEmpty.shiftedIndex)
+    		{
+            	if(var6.fuel < 1000)
+            		return false;
+            	
+    			var6.addTakeBucket();
+    			par5EntityPlayer.inventory.setInventorySlotContents(par5EntityPlayer.inventory.currentItem, new ItemStack(Item.bucketLava, 1));
     			return true;
     		}
     		
@@ -315,11 +327,11 @@ public class NF_BlockNetherForge extends BlockContainer
      */
     @Override
     public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
-    {
+    {        	
     	boolean spawnLava = false;
         if(((NF_TileEntityNetherForge)par1World.getBlockTileEntity(par2, par3, par4)).getFuelScaled(2) > 0)
         	spawnLava = true;
-        	
+        
         if (!keepFurnaceInventory)
         {
             NF_TileEntityNetherForge var5 = (NF_TileEntityNetherForge)par1World.getBlockTileEntity(par2, par3, par4);
@@ -366,7 +378,7 @@ public class NF_BlockNetherForge extends BlockContainer
     
 
         super.breakBlock(par1World, par2, par3, par4, par5, par6);
-        if(spawnLava)	
+        if(ConfigNether.smelterDropsLava && spawnLava)	
         	par1World.setBlockWithNotify(par2, par3, par4, Block.lavaMoving.blockID);
     }
 

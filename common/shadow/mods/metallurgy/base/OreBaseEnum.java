@@ -21,7 +21,7 @@ public class OreBaseEnum extends IMetalSetEnum{
 	private final int[] dungeonLootAmounts = {6, 4, 2};
 
 	public static int[] defaultVeinCount = {12, 10, 4};
-	public static int[] defaultOreCount = {6, 6, 4};
+	public static int[] defaultOreCount = {6, 7, 4};
 	public static int[] defaultOreHeight = {128, 128, 128};
 	
 	public static int[] numRails = {4, 0, 0};

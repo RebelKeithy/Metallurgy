@@ -1,5 +1,7 @@
 package shadow.mods.metallurgy;
 import java.io.File;
+import java.io.FilenameFilter;
+
 import org.lwjgl.opengl.GL11;
 
 import shadow.mods.metallurgy.*;
@@ -25,9 +27,11 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.FMLRelaunchLog;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -78,7 +82,7 @@ public class MetallurgyCore implements ITickHandler
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent event)
-	{
+	{        
 		config.init();
 		crusher = new BC_BlockCrusher(CoreConfig.crusherID, false).setHardness(3.5F).setBlockName("Crusher").setCreativeTab(CreativeTabs.tabDecorations);
 		vanillaBricks = new MetallurgyBlock(CoreConfig.vanillaBrickID, "/shadow/Overrides.png", 2, 5).setHardness(2F).setResistance(.1F).setBlockName("VanillaBrick");
@@ -132,8 +136,8 @@ public class MetallurgyCore implements ITickHandler
 		
 		GameRegistry.registerWorldGenerator(new CoreWorldGen());
 		
-		OreDictionary.registerOre("itemDustGold", new ItemStack(mod_Gold.GoldDust, 1));
-		OreDictionary.registerOre("itemDustIron", new ItemStack(mod_Iron.IronDust, 1));
+		OreDictionary.registerOre("dustGold", new ItemStack(mod_Gold.GoldDust, 1));
+		OreDictionary.registerOre("dustIron", new ItemStack(mod_Iron.IronDust, 1));
 		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 

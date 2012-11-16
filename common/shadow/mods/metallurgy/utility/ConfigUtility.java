@@ -31,6 +31,8 @@ public class ConfigUtility  {
 	public static int itemTarID;
 	public static int itemPotashID;
 	public static int itemFertilizerID;
+	public static int itemIgniterID;
+	public static int itemMatchID;
 	
 	public static int BitumenVeinCount;
 	public static int BitumenOreCount;
@@ -59,6 +61,7 @@ public class ConfigUtility  {
 	public static String dimensions;
 
 	public static List minersTNTDestoryable;
+
 	
 	
 	
@@ -106,6 +109,8 @@ public class ConfigUtility  {
     	itemTarID = config.get("Item IDs", "Tar Id", 28405).getInt(28405);
 		itemPotashID = config.get("Item IDs", "Potash Id", 28407).getInt(28407);
 		itemFertilizerID = config.get("Item IDs", "Fertilizer Id", 28408).getInt(28408);
+		itemIgniterID = config.get("Item IDs", "Igniter Id", 28409).getInt(28409);
+		itemMatchID = config.get("Item IDs", "Match Id", 28410).getInt(28410);
     	
     	
     	// Bitumen Generation

@@ -1,5 +1,6 @@
 package shadow.mods.metallurgy.utility;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.src.Block;
 import net.minecraft.src.CraftingManager;
 import net.minecraft.src.Item;
@@ -8,6 +9,7 @@ import net.minecraft.src.ModLoader;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreDictionary.OreRegisterEvent;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class FertilizerRecipes 
@@ -34,12 +36,19 @@ public class FertilizerRecipes
 		
 		ModLoader.addSmelting(MetallurgyUtility.bitumen.shiftedIndex, new ItemStack(MetallurgyUtility.tar, 1));
 		
-		ModLoader.addRecipe(new ItemStack(Block.pistonStickyBase, 1), new Object[] {
+		GameRegistry.addRecipe(new ItemStack(Block.pistonStickyBase, 1), new Object[] {
 			"X", "|", Character.valueOf('X'), MetallurgyUtility.tar, Character.valueOf('|'), Block.pistonBase
 		});
-		ModLoader.addRecipe(new ItemStack(Item.magmaCream, 1), new Object[] {
-			"X", "|", Character.valueOf('X'), MetallurgyUtility.tar, Character.valueOf('|'), Item.blazePowder
+		GameRegistry.addShapelessRecipe(new ItemStack(Item.magmaCream, 1), MetallurgyUtility.tar, Item.blazePowder);
+		
+		ShapedOreRecipe matchRecipe = new ShapedOreRecipe(new ItemStack(MetallurgyUtility.match, 4), new Object[] {
+			"X", "|", 'X', "itemPhosphorus", '|', Item.stick
+		});
+		ShapedOreRecipe igniterRecipe = new ShapedOreRecipe(new ItemStack(MetallurgyUtility.igniter, 1), new Object[] {
+			"M ", " F", 'M', "itemMagnesium", 'F', Item.flint
 		});
 		
+		GameRegistry.addRecipe(matchRecipe);
+		GameRegistry.addRecipe(igniterRecipe);
 	}
 }
