@@ -189,6 +189,13 @@ public class MetalSet implements IWorldGenerator {
 					ic2.api.Ic2Recipes.addMaceratorRecipe(new ItemStack(ore, 1, i), new ItemStack(Dust[i], 2, 0));
 				} catch(Exception e) {}
 				
+				
+				// Thermal Expansion Compatibility
+				try {
+					Class a = Class.forName("thermalexpansion.api.crafting.CraftingManagers");
+					thermalexpansion.api.crafting.CraftingManagers.pulverizerManager.addRecipe(80, new ItemStack(ore, 1, i), new ItemStack(dust[i], 2, 0));
+				} catch(Exception e) {}
+				
 				DungeonHooks.addDungeonLoot(new ItemStack(Bar[i], 1), info.dungeonLootChance(i), 1, info.dungeonLootAmount(i));
 			}
 

@@ -15,6 +15,7 @@ import net.minecraft.src.*;
 
 public class MetallurgyItemSword extends ItemSword
 {
+	public String subText;
 	public String texturePath;
     private int weaponDamage;
     private final MetallurgyEnumToolMaterial field_40439_b;
@@ -29,6 +30,22 @@ public class MetallurgyItemSword extends ItemSword
         setMaxDamage(metallurgyenumtoolmaterial.getMaxUses());
         weaponDamage = 4 + metallurgyenumtoolmaterial.getDamageVsEntity();
         texturePath = s;
+        subText = null;
+    }
+    
+    public void setSubText(String text)
+    {
+    	subText = text;
+    }
+
+    @Override
+    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
+    {
+    	if(subText != null)
+    	{
+    		for(String string : subText.split("-"))
+    			par3List.add("\u00A7" + string);
+    	}
     }
 
 	public String getTextureFile()

@@ -17,7 +17,7 @@ import shadow.mods.metallurgy.utility.UtilityWorldGen;
 public class OreSymbolUtility  extends AgeSymbol 
 {	
 	@Override
-	public void registerLogic(IAgeController controller) {
+	public void registerLogic(IAgeController controller, long seed) {
 		controller.registerInterface(this, new Populator());
 	}
 

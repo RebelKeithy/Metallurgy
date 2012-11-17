@@ -9,6 +9,7 @@ import java.util.Random;
 import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.MetallurgyBlock;
 import shadow.mods.metallurgy.MetallurgyCore;
+import shadow.mods.metallurgy.MetallurgyItemSword;
 import shadow.mods.metallurgy.RecipeHelper;
 import shadow.mods.metallurgy.UpdateManager;
 import shadow.mods.metallurgy.base.ConfigBase;
@@ -91,6 +92,10 @@ public class MetallurgyEnder
 		alloys.load();
 		
 		((MetallurgyBlock)(ores.ore)).addDisplayListener(new OreParticleSpawner());
+
+
+		((MetallurgyItemSword)(alloys.Sword[0])).addHitListener(new EnderSwordEffectsListener());
+		((MetallurgyItemSword)(alloys.Sword[0])).setSubText("knothing");
 		
 		new UpdateManager("2.2.3", "Ender", "http://ladadeda.info/EnderVersion.txt");
 	}

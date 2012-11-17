@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import buildcraft.api.core.Orientations;
 import buildcraft.api.inventory.ISpecialInventory;
 
 import shadow.mods.metallurgy.base.ConfigBase;
@@ -532,7 +531,7 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements ISpecialInv
 	}
 
 	@Override
-	public int addItem(ItemStack stack, boolean doAdd, Orientations from) {		
+	public int addItem(ItemStack stack, boolean doAdd, ForgeDirection from) {		
 		int slot = 0;
 		if(this.getItemBurnTime(stack) > 0)
 		{
@@ -566,7 +565,7 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements ISpecialInv
 	}
 
 	@Override
-	public ItemStack[] extractItem(boolean doRemove, Orientations from, int maxItemCount) {
+	public ItemStack[] extractItem(boolean doRemove, ForgeDirection from, int maxItemCount) {
 		return null;
 	}
 }

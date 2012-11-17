@@ -119,6 +119,19 @@ public class MetallurgyNether
 		((MetallurgyItemSword)(alloys.Sword[2])).addHitListener(efl);
 		MinecraftForge.EVENT_BUS.register(efl);
 		
+		((MetallurgyItemSword)(ores.Sword[0])).setSubText("cIgnite I");
+		((MetallurgyItemSword)(ores.Sword[1])).setSubText("cWeakness I");
+		((MetallurgyItemSword)(ores.Sword[2])).setSubText("7Looting I");
+		((MetallurgyItemSword)(ores.Sword[3])).setSubText("cPoison I");
+		((MetallurgyItemSword)(ores.Sword[4])).setSubText("cSlowing I");
+		((MetallurgyItemSword)(ores.Sword[5])).setSubText("7Regen");
+		((MetallurgyItemSword)(ores.Sword[6])).setSubText("cIgnite II");
+		((MetallurgyItemSword)(ores.Sword[7])).setSubText("cWither I");
+
+		((MetallurgyItemSword)(alloys.Sword[0])).setSubText("7Weakness II");
+		((MetallurgyItemSword)(alloys.Sword[1])).setSubText("7Poison, Slowing");
+		((MetallurgyItemSword)(alloys.Sword[2])).setSubText("cHealing");
+		
 		NetherForge.load();
 		
 		GameRegistry.registerFuelHandler(new NetherFuelDust());

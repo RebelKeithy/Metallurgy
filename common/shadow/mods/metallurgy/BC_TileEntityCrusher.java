@@ -4,7 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import buildcraft.api.core.Orientations;
 import buildcraft.api.inventory.ISpecialInventory;
 
 import shadow.mods.metallurgy.base.ConfigBase;
@@ -526,7 +525,7 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 	}
 
 	@Override
-	public int addItem(ItemStack stack, boolean doAdd, Orientations from) {		
+	public int addItem(ItemStack stack, boolean doAdd, ForgeDirection from) {		
 		int slot = 0;
 		if(this.getItemBurnTime(stack) > 0)
 		{
@@ -560,7 +559,7 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 	}
 
 	@Override
-	public ItemStack[] extractItem(boolean doRemove, Orientations from, int maxItemCount) {
+	public ItemStack[] extractItem(boolean doRemove, ForgeDirection from, int maxItemCount) {
 		if(furnaceItemStacks[2] != null)
 		{
 			int amount = (furnaceItemStacks[2].stackSize < maxItemCount) ? furnaceItemStacks[2].stackSize : maxItemCount;
@@ -571,4 +570,5 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 		}
 		return null;
 	}
+
 }

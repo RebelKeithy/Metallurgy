@@ -4,12 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import buildcraft.api.core.Orientations;
 import buildcraft.api.inventory.ISpecialInventory;
-import buildcraft.api.liquids.ILiquidTank;
-import buildcraft.api.liquids.ITankContainer;
-import buildcraft.api.liquids.LiquidStack;
-import buildcraft.api.liquids.LiquidTank;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -18,6 +13,10 @@ import cpw.mods.fml.common.network.PacketDispatcher;
 import net.minecraft.src.*;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.ISidedInventory;
+import net.minecraftforge.liquids.ILiquidTank;
+import net.minecraftforge.liquids.ITankContainer;
+import net.minecraftforge.liquids.LiquidStack;
+import net.minecraftforge.liquids.LiquidTank;
 
 public class NF_TileEntityNetherForge extends TileEntity implements ISidedInventory, ITankContainer, ISpecialInventory
 {
@@ -457,7 +456,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 	}
 
 	@Override
-	public int fill(Orientations from, LiquidStack resource, boolean doFill) {
+	public int fill(ForgeDirection from, LiquidStack resource, boolean doFill) {
 		if(resource.itemID != Block.lavaStill.blockID)
 			return 0;
 		
@@ -490,7 +489,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 	}
 
 	@Override
-	public LiquidStack drain(Orientations from, int maxDrain, boolean doDrain) {
+	public LiquidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -500,15 +499,9 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public ILiquidTank[] getTanks() {
-		// TODO Auto-generated method stub
-		return new LiquidTank[] { new LiquidTank(Block.lavaStill.blockID, fuel, maxFuel) };
-	}	
 	
 	@Override
-	public int addItem(ItemStack stack, boolean doAdd, Orientations from) {		
+	public int addItem(ItemStack stack, boolean doAdd, ForgeDirection from) {		
 		int slot = 0;		
 
 		if(furnaceItemStacks[slot] == null)
@@ -537,7 +530,7 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 	}
 
 	@Override
-	public ItemStack[] extractItem(boolean doRemove, Orientations from, int maxItemCount) {
+	public ItemStack[] extractItem(boolean doRemove, ForgeDirection from, int maxItemCount) {
 		if(furnaceItemStacks[1] != null)
 		{
 			int amount = (furnaceItemStacks[1].stackSize < maxItemCount) ? furnaceItemStacks[1].stackSize : maxItemCount;
@@ -547,5 +540,20 @@ public class NF_TileEntityNetherForge extends TileEntity implements ISidedInvent
 			return returnStack;
 		}
 		return null;
+	}
+
+	@Override
+	public ILiquidTank[] getTanks(ForgeDirection direction) {
+		// TODO Auto-generated method stub
+		return new LiquidTank[] { new LiquidTank(Block.lavaStill.blockID, fuel, maxFuel) };
+	}
+
+	@Override
+	public ILiquidTank getTank(ForgeDirection direction, LiquidStack type) {
+		// TODO Auto-generated method stub
+		if(type.itemID == Block.lavaStill.blockID)
+			return new LiquidTank(Block.lavaStill.blockID, fuel, maxFuel);
+		else
+			return null;
 	}
 }

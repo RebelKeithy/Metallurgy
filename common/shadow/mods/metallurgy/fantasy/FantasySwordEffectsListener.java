@@ -89,18 +89,18 @@ public class FantasySwordEffectsListener implements HitEntityListener {
 		{
 			player.addPotionEffect(new PotionEffect(1, 80, 0));				// Speed
 		}
-		
-		// Celenegil
-		if(itemstack.getItem().shiftedIndex == MetallurgyFantasy.alloys.Sword[2].shiftedIndex)
-		{
-			player.addPotionEffect(new PotionEffect(11, 80, 2));			// Resistance III
-		}
-		
+
 		// Haderoth
-		if(itemstack.getItem().shiftedIndex == MetallurgyFantasy.alloys.Sword[3].shiftedIndex)
+		if(itemstack.getItem().shiftedIndex == MetallurgyFantasy.alloys.Sword[2].shiftedIndex)
 		{
 			player.addPotionEffect(new PotionEffect(3, 80, 0));				// Haste
 			entityliving.setFire(4);								       	// Ignite II
+		}
+		
+		// Celenegil
+		if(itemstack.getItem().shiftedIndex == MetallurgyFantasy.alloys.Sword[3].shiftedIndex)
+		{
+			player.addPotionEffect(new PotionEffect(11, 80, 2));			// Resistance III
 		}
 		
 		// Tartarite

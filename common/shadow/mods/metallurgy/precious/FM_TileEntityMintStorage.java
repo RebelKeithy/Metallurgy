@@ -1,8 +1,8 @@
 package shadow.mods.metallurgy.precious;
 
-import buildcraft.api.core.Orientations;
 import buildcraft.api.inventory.ISpecialInventory;
 import net.minecraft.src.*;
+import net.minecraftforge.common.ForgeDirection;
 
 public class FM_TileEntityMintStorage extends TileEntity implements ISpecialInventory
 {
@@ -236,7 +236,7 @@ public class FM_TileEntityMintStorage extends TileEntity implements ISpecialInve
     }
 
 	@Override
-	public int addItem(ItemStack stack, boolean doAdd, Orientations from) {	
+	public int addItem(ItemStack stack, boolean doAdd, ForgeDirection from) {	
 		
 		if(FM_MintRecipes.minting().getMintingResult(stack) == 0)
 			return 0;
@@ -270,7 +270,7 @@ public class FM_TileEntityMintStorage extends TileEntity implements ISpecialInve
 	}
 
 	@Override
-	public ItemStack[] extractItem(boolean doRemove, Orientations from, int maxItemCount) {
+	public ItemStack[] extractItem(boolean doRemove, ForgeDirection from, int maxItemCount) {
 		
 		for(int i = 0; i < 6; i++)
 		{

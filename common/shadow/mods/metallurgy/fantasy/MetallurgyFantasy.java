@@ -113,6 +113,21 @@ public class MetallurgyFantasy
 		((MetallurgyItemSword)(alloys.Sword[4])).addHitListener(efl);
 		MinecraftForge.EVENT_BUS.register(efl);
 		
+		((MetallurgyItemSword)(ores.Sword[1])).setSubText("cBlindness I");
+		((MetallurgyItemSword)(ores.Sword[3])).setSubText("cResistance I");
+		((MetallurgyItemSword)(ores.Sword[4])).setSubText("7Strength I");
+		((MetallurgyItemSword)(ores.Sword[5])).setSubText("7Looting I");
+		((MetallurgyItemSword)(ores.Sword[6])).setSubText("7Looting II");
+		((MetallurgyItemSword)(ores.Sword[7])).setSubText("7Haste I");
+		((MetallurgyItemSword)(ores.Sword[9])).setSubText("7Resistance II");
+		((MetallurgyItemSword)(ores.Sword[10])).setSubText("7Fire Resistance-cIgnite II");
+		((MetallurgyItemSword)(ores.Sword[11])).setSubText("7Strength II");
+		((MetallurgyItemSword)(alloys.Sword[0])).setSubText("cBlindness II");
+		((MetallurgyItemSword)(alloys.Sword[1])).setSubText("7Speed I");
+		((MetallurgyItemSword)(alloys.Sword[2])).setSubText("7Haste II-cIgnite II");
+		((MetallurgyItemSword)(alloys.Sword[3])).setSubText("7Resistance III");
+		((MetallurgyItemSword)(alloys.Sword[4])).setSubText("7Haste II-cIgnite II");
+		
 		FantasyFurnace.load();
 
 		((MetallurgyBlock)(ores.ore)).addDisplayListener(new OreParticleSpawner());

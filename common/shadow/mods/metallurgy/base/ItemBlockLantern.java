@@ -28,7 +28,7 @@ public class ItemBlockLantern extends ItemBlock
      * @param side The side the player (or machine) right-clicked on.
      */
 	@Override
-    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
+    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int metadata)
     {
        if (!world.setBlockAndMetadataWithNotify(x, y, z, MetallurgyBaseMetals.lantern.blockID, this.getMetadata(stack.getItemDamage())))
        {
@@ -37,7 +37,8 @@ public class ItemBlockLantern extends ItemBlock
 
        if (world.getBlockId(x, y, z) == MetallurgyBaseMetals.lantern.blockID)
        {
-           Block.blocksList[MetallurgyBaseMetals.lantern.blockID].updateBlockMetadata(world, x, y, z, side, hitX, hitY, hitZ);
+    	   //Block.blocksList[MetallurgyBaseMetals.lantern.blockID].func_85104_a(par1World, par2, par3, par4, par5, par6, par7, par8, par9)
+           Block.blocksList[MetallurgyBaseMetals.lantern.blockID].func_85104_a(world, x, y, z, side, hitX, hitY, hitZ, metadata);
            Block.blocksList[MetallurgyBaseMetals.lantern.blockID].onBlockPlacedBy(world, x, y, z, player);
            TileEntity le = new TileEntityLantern(stack.getItemDamage());
            world.setBlockTileEntity(x, y, z, le);

@@ -3,10 +3,6 @@ package shadow.mods.metallurgy.nether;
 import java.util.List;
 import java.util.Random;
 
-import buildcraft.api.liquids.LiquidManager;
-import buildcraft.api.liquids.LiquidStack;
-//import buildcraft.core.utils.Utils;
-
 import shadow.mods.metallurgy.fantasy.MetallurgyFantasy;
 
 import cpw.mods.fml.common.Side;

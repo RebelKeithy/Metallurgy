@@ -1,6 +1,7 @@
 package shadow.mods.metallurgy.precious;
 import java.util.List;
 
+import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.ItemBlock;
 import net.minecraft.src.ItemStack;
 
@@ -16,27 +17,28 @@ public class FC_ChestItemBlock extends ItemBlock
                 return i;
         }
 
-        public void addInformation(ItemStack par1ItemStack, List par2List)
+        @Override
+        public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
         {
         	switch(par1ItemStack.getItemDamage()) {
 		        case 0: {
-		            par2List.add("6x9");
+		            par3List.add("6x9");
 		            break;
 		        }
 		        case 1: {
-		            par2List.add("8x9");
+		            par3List.add("8x9");
 		            break;
 		        }
 		        case 2: {
-		            par2List.add("9x9");
+		            par3List.add("9x9");
 		            break;
 		        }
 		        case 3: {
-		            par2List.add("9x10");
+		            par3List.add("9x10");
 		            break;
 		        }
 		        case 4: {
-		            par2List.add("9x12");
+		            par3List.add("9x12");
 		            break;
 		        }
 		    }
