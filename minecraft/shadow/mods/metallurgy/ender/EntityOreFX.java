@@ -76,7 +76,7 @@ public class EntityOreFX extends EntityFX
 	    float f14 = 1.0F;
 	    //tessellator1.setColorOpaque_F(particleRed * f14, particleGreen * f14, particleBlue * f14);
 	    //tessellator1.setColorOpaque_F(this.particleRed, this.particleGreen, this.particleBlue);
-	    tessellator1.setColorRGBA_F(this.particleRed, this.particleGreen, this.particleBlue, 0.12f);
+	    tessellator1.setColorRGBA_F(this.particleRed, this.particleGreen, this.particleBlue, 0.9f);
         tessellator1.addVertexWithUV(f11 - f1 * f10 - f4 * f10, f12 - f2 * f10, f13 - f3 * f10 - f5 * f10, f7, f9);
 	    tessellator1.addVertexWithUV((f11 - f1 * f10) + f4 * f10, f12 + f2 * f10, (f13 - f3 * f10) + f5 * f10, f7, f8);
 	    tessellator1.addVertexWithUV(f11 + f1 * f10 + f4 * f10, f12 + f2 * f10, f13 + f3 * f10 + f5 * f10, f0, f8);
@@ -100,6 +100,7 @@ public class EntityOreFX extends EntityFX
         {
             var2 = 1.0F;
         }
+        var2 = var2/2;
 
         int var3 = super.getBrightnessForRender(par1);
         int var4 = var3 & 255;
@@ -131,6 +132,7 @@ public class EntityOreFX extends EntityFX
         {
             var2 = 1.0F;
         }
+        var2 = var2/2;
 
         float var3 = super.getBrightness(par1);
         return var3 * var2 + (1.0F - var2);

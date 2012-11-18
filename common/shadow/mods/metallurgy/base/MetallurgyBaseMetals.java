@@ -309,12 +309,11 @@ public class MetallurgyBaseMetals {
 
 	private void addBalkonsWeapons() 
 	{
-		/*
 		ShapedOreRecipe recipe;
 		String[] baseMaterials = {"Copper", "Bronze", "Hepatizon", "Angmallen", "Damascus Steel", "Steel"};
 		for(int n = 0; n < 6; n++)
 		{
-	        spear[n] = (new ItemSpear(29000+n, MetallurgyEnums.base[n], EnumWeapon.SPEAR)).setIconIndex(16*5+((n < 3) ? n : n + 1));
+	        spear[n] = (new weaponmod.item.ItemSpear(29000+n, MetallurgyEnums.base[n], weaponmod.item.EnumWeapon.SPEAR)).setIconIndex(16*5+((n < 3) ? n : n + 1));
 	        spear[n].setTextureFile("/shadow/armory.png");
 	        recipe = new ShapedOreRecipe(new ItemStack(spear[n], 1), "  #", " X ", "X  ", 'X', Item.stick, '#', "ingot" + baseMaterials[n]);
 	        GameRegistry.addRecipe(recipe);
@@ -322,7 +321,7 @@ public class MetallurgyBaseMetals {
 
 		for(int n = 0; n < 6; n++)
 		{
-	        halberd[n] = (new ItemHalberd(29006+n, MetallurgyEnums.base[n], EnumWeapon.HALBERD)).setIconIndex(16*4+((n < 3) ? n : n + 1));
+	        halberd[n] = (new weaponmod.item.ItemHalberd(29006+n, MetallurgyEnums.base[n], weaponmod.item.EnumWeapon.HALBERD)).setIconIndex(16*4+((n < 3) ? n : n + 1));
 	        halberd[n].setTextureFile("/shadow/armory.png");
 	        recipe = new ShapedOreRecipe(new ItemStack(halberd[n], 1), " ##", " X#", "X  ", 'X', Item.stick, '#', "ingot" + baseMaterials[n]);
 	        GameRegistry.addRecipe(recipe);
@@ -330,23 +329,23 @@ public class MetallurgyBaseMetals {
 
 		for(int n = 0; n < 6; n++)
 		{
-	        knife[n] = (new ItemKnife(29012+n, MetallurgyEnums.base[n], EnumWeapon.KNIFE)).setIconIndex(16*1+((n < 3) ? n : n + 1));
+	        knife[n] = (new weaponmod.item.ItemKnife(29012+n, MetallurgyEnums.base[n], weaponmod.item.EnumWeapon.KNIFE)).setIconIndex(16*1+((n < 3) ? n : n + 1));
 	        knife[n].setTextureFile("/shadow/armory.png");
 	        recipe = new ShapedOreRecipe(new ItemStack(knife[n], 1), "#X", 'X', Item.stick, '#', "ingot" + baseMaterials[n]);
 	        GameRegistry.addRecipe(recipe);
 		}
-
+		/*
 		for(int n = 0; n < 6; n++)
 		{
-			battleaxe[n] = (new ItemBattleAxe(29018+n, MetallurgyEnums.base[n], EnumWeapon.BATTLEAXE)).setIconIndex(16*3+((n < 3) ? n : n + 1));
+			battleaxe[n] = (new weaponmod.item.ItemBattleAxe(29018+n, MetallurgyEnums.base[n], weaponmod.item.EnumWeapon.BATTLEAXE)).setIconIndex(16*3+((n < 3) ? n : n + 1));
 			battleaxe[n].setTextureFile("/shadow/armory.png");
 	        recipe = new ShapedOreRecipe(new ItemStack(battleaxe[n], 1), "###", "#X#", " X ", 'X', Item.stick, '#', "ingot" + baseMaterials[n]);
 	        GameRegistry.addRecipe(recipe);
 		}
-
+		*/
 		for(int n = 0; n < 6; n++)
 		{
-			warhammer[n] = (new ItemWarhammer(29024+n, MetallurgyEnums.base[n], EnumWeapon.WARHAMMER)).setIconIndex(16*2+((n < 3) ? n : n + 1));
+			warhammer[n] = (new weaponmod.item.ItemWarhammer(29024+n, MetallurgyEnums.base[n], weaponmod.item.EnumWeapon.WARHAMMER)).setIconIndex(16*2+((n < 3) ? n : n + 1));
 			warhammer[n].setTextureFile("/shadow/armory.png");
 	        recipe = new ShapedOreRecipe(new ItemStack(warhammer[n], 1), "#X#", "#X#", " X ", 'X', Item.stick, '#', "ingot" + baseMaterials[n]);
 	        GameRegistry.addRecipe(recipe);
@@ -354,12 +353,51 @@ public class MetallurgyBaseMetals {
 
 		for(int n = 0; n < 6; n++)
 		{
-			flail[n] = (new ItemFlail(29030+n, MetallurgyEnums.base[n], EnumWeapon.FLAIL, 16*7+n, 16*6+n)).setIconIndex(16*7+n);
+			flail[n] = (new weaponmod.item.ItemFlail(29030+n, MetallurgyEnums.base[n], weaponmod.item.EnumWeapon.FLAIL, 16*7+((n < 3) ? n : n + 1), 16*6+((n < 3) ? n : n + 1))).setIconIndex(16*7+((n < 3) ? n : n + 1));
 			flail[n].setTextureFile("/shadow/armory.png");
 	        recipe = new ShapedOreRecipe(new ItemStack(flail[n], 1), "  O", " XO", "X #", 'X', Item.stick, 'O', Item.silk, '#', "ingot" + baseMaterials[n]);
 	        GameRegistry.addRecipe(recipe);
 		}
-		*/
+
+		class Material implements weaponmod.projectile.ICustomProjectileMaterials
+		{
+			public final int[] ids = new int []{ 100, 101, 102, 103, 104, 105 };
+			
+			@Override
+			public int[] getAllMaterialIDs() {
+				return ids;
+			}
+
+			@Override
+			public int getMaterialID(ItemStack var1) {
+				for(int n = 0; n < 6; n++)
+					if(var1.itemID == knife[n].shiftedIndex || var1.itemID == flail[n].shiftedIndex)
+						return ids[n];
+
+				return 0;
+			}
+
+			@Override
+			public float[] getColorFromMaterialID(int var1) {
+				System.out.println("checking for color");
+				if(var1 == ids[0])
+					return new float[] {1F, 0.4F, 0.1F};
+				if(var1 == ids[1])
+					return new float[] {1F, 0.75F, 0.5F};
+				if(var1 == ids[2])
+					return new float[] {0.45F, 0.35F, 0.45F};
+				if(var1 == ids[3])
+					return new float[] {0.95F, 0.9F, 0.35F};
+				if(var1 == ids[4])
+					return new float[] {0.35F, 0.25F, 0.15F};
+				if(var1 == ids[5])
+					return new float[] {0.65F, 0.65F, 0.65F};
+				 
+				return new float[] {1F, 1F, 1F};
+			}
+		}
+
+		weaponmod.projectile.MaterialRegistry.registerCustomProjectileMaterial(new Material());
 	}
 
 	public void registerWithApi()

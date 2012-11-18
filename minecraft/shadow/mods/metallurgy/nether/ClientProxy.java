@@ -42,9 +42,27 @@ public class ClientProxy extends shadow.mods.metallurgy.nether.CommonProxy{
 	public void spawnParticle(String string, World par1World, double par2, double par4, double par6, double par8, double par10, double par12) {
 		if(string.equals("nether2"))
 		{
-			EntityOreFX entity = new EntityOreFX(par1World, par2, par4, par6, (float)par8, (float)par10, (float)par12);
+			EntityOreFX entity = new EntityOreFX(par1World, par2, par4, par6, (float)1, (float)0.8, (float)0.3);
 			Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)(entity));
-            ((EntityFX)entity).setRBGColorF((float)par8, (float)par10, (float)par12);
+            ((EntityFX)entity).setRBGColorF(1.0F, 0.8F, 0.25F);
+		}
+		if(string.equals("nether4"))
+		{
+			EntityOreFX entity = new EntityOreFX(par1World, par2, par4, par6, (float)1, (float)0.8, (float)0.3);
+			Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)(entity));
+            ((EntityFX)entity).setRBGColorF(0.35F, 0.6F, 0.9F);
+		}
+		if(string.equals("nether5"))
+		{
+			EntityOreFX entity = new EntityOreFX(par1World, par2, par4, par6, (float)1, (float)0.8, (float)0.3);
+			Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)(entity));
+            ((EntityFX)entity).setRBGColorF(0.8F, 0.4F, 0.8F);
+		}
+		if(string.equals("nether7"))
+		{
+			EntityOreFX entity = new EntityOreFX(par1World, par2, par4, par6, (float)1, (float)0.8, (float)0.3);
+			Minecraft.getMinecraft().effectRenderer.addEffect((EntityFX)(entity));
+            ((EntityFX)entity).setRBGColorF(0.85F, 0F, 0F);
 		}
 	}
 	

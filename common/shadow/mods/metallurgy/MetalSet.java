@@ -193,7 +193,9 @@ public class MetalSet implements IWorldGenerator {
 				// Thermal Expansion Compatibility
 				try {
 					Class a = Class.forName("thermalexpansion.api.crafting.CraftingManagers");
-					thermalexpansion.api.crafting.CraftingManagers.pulverizerManager.addRecipe(80, new ItemStack(ore, 1, i), new ItemStack(dust[i], 2, 0));
+					thermalexpansion.api.crafting.CraftingManagers.pulverizerManager.addRecipe(400, new ItemStack(ore, 1, i), new ItemStack(Dust[i], 2, 0));
+					thermalexpansion.api.crafting.CraftingManagers.smelterManager.addRecipe(320, new ItemStack(ore, 1, i), new ItemStack(Block.sand), new ItemStack(Bar[i], 2), thermalexpansion.api.core.ItemRegistry.getItem("slag", 1));
+					thermalexpansion.api.crafting.CraftingManagers.smelterManager.addRecipe(80, new ItemStack(Dust[i], 2), new ItemStack(Block.sand), new ItemStack(Bar[i], 2), thermalexpansion.api.core.ItemRegistry.getItem("slag", 1));
 				} catch(Exception e) {}
 				
 				DungeonHooks.addDungeonLoot(new ItemStack(Bar[i], 1), info.dungeonLootChance(i), 1, info.dungeonLootAmount(i));

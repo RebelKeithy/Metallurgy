@@ -91,8 +91,9 @@ public class MetallurgyEnder
 		ores.load();
 		alloys.load();
 		
+		GameRegistry.addRecipe(new ItemStack(Item.enderPearl, 4), "XXX", "X X", "XXX", 'X', new ItemStack(ores.Bar[1]));
+		
 		((MetallurgyBlock)(ores.ore)).addDisplayListener(new OreParticleSpawner());
-
 
 		((MetallurgyItemSword)(alloys.Sword[0])).addHitListener(new EnderSwordEffectsListener());
 		((MetallurgyItemSword)(alloys.Sword[0])).setSubText("knothing");

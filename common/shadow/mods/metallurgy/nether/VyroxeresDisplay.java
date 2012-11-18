@@ -13,7 +13,7 @@ public class VyroxeresDisplay implements DisplayListener {
 		int meta = par1World.getBlockMetadata(par2, par3, par4);
 		String particle = "";
 		double g = 0;
-		double chance = 1;
+		double chance = 0.3;
 		if(meta == 3) //Vyroxeres
 		{
 			particle = "mobSpell";
@@ -36,10 +36,6 @@ public class VyroxeresDisplay implements DisplayListener {
 		else if(meta == 5)
 		{
 			particle = "nether5";
-		}
-		else if(meta == 6)
-		{
-			particle = "nether6";
 		}
 		else if(meta == 7)
 		{

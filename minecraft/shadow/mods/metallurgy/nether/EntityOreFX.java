@@ -29,9 +29,9 @@ public class EntityOreFX extends EntityFX
         //this.particleRed = ((float)(Math.random() * 0.2D) + 0.8F) * par8 * var12;
         //this.particleGreen = ((float)(Math.random() * 0.2D) + 0.8F) * par10 * var12;
         //this.particleBlue = ((float)(Math.random() * 0.2D) + 0.8F) * par12 * var12;
-        this.particleMaxAge = (int)(8.0D / (Math.random() * 0.8D + 0.2D));
+        this.particleMaxAge = (int)(24.0D / (Math.random() * 0.8D + 0.2D));
         this.noClip = true;
-        this.setParticleTextureIndex(Math.random() > 0.5f ? 1 : 0);
+        this.setParticleTextureIndex(0);
     }
 
 	public void renderParticle(Tessellator tessellator, float f, float f1, float f2, float f3, float f4, float f5)
@@ -55,7 +55,7 @@ public class EntityOreFX extends EntityFX
 	    float var8 = ((float)this.particleAge + f) / (float)this.particleMaxAge;
 	    this.particleScale = this.flameScale * (1.0F - var8 * var8 * 0.5F);
 	    
-	    GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/, ModLoader.getMinecraftInstance().renderEngine.getTexture("/shadow/FantasyMetalsParticle.png"));
+	    GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/, ModLoader.getMinecraftInstance().renderEngine.getTexture("/shadow/NetherMetalsParticle.png"));
 	    float f0 = (float)(getParticleTextureIndex() % 16) / 16F;
 	    float f7 = f0 + 1/16F;
 	    float f8 = (float)(getParticleTextureIndex() / 16) / 16F;
@@ -67,7 +67,7 @@ public class EntityOreFX extends EntityFX
 	    float f14 = 1.0F;
 	    //tessellator1.setColorOpaque_F(particleRed * f14, particleGreen * f14, particleBlue * f14);
 	    //tessellator1.setColorOpaque_F(this.particleRed, this.particleGreen, this.particleBlue);
-	    tessellator1.setColorRGBA_F(this.particleRed, this.particleGreen, this.particleBlue, 0.12f);
+	    tessellator1.setColorRGBA_F(this.particleRed, this.particleGreen, this.particleBlue, 0.5f);
         tessellator1.addVertexWithUV(f11 - f1 * f10 - f4 * f10, f12 - f2 * f10, f13 - f3 * f10 - f5 * f10, f7, f9);
 	    tessellator1.addVertexWithUV((f11 - f1 * f10) + f4 * f10, f12 + f2 * f10, (f13 - f3 * f10) + f5 * f10, f7, f8);
 	    tessellator1.addVertexWithUV(f11 + f1 * f10 + f4 * f10, f12 + f2 * f10, f13 + f3 * f10 + f5 * f10, f0, f8);
@@ -90,6 +90,7 @@ public class EntityOreFX extends EntityFX
         {
             var2 = 1.0F;
         }
+        var2 = 0F;
 
         int var3 = super.getBrightnessForRender(par1);
         int var4 = var3 & 255;
@@ -139,13 +140,13 @@ public class EntityOreFX extends EntityFX
             this.setDead();
         }
 
-        if(particleAge == particleMaxAge/2)
-        {
-        	if(getParticleTextureIndex() == 1)
-        		setParticleTextureIndex(0);
-        	else
+        if(particleAge == particleMaxAge*3/4)
+        		setParticleTextureIndex(3);
+        else if(particleAge == particleMaxAge*2/4)
+        		setParticleTextureIndex(2);
+        else if(particleAge == particleMaxAge*1/4)
         		setParticleTextureIndex(1);
-        }
+        
         //this.setParticleTextureIndex(this.particleAge * 2 / this.particleMaxAge);
         this.moveEntity(this.motionX, this.motionY, this.motionZ);
         if (this.posY == this.prevPosY)
