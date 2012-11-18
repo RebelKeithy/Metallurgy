@@ -56,6 +56,14 @@ public class CoreConfig  {
 	public static boolean enableTextureOverrides;
 	public static int vanillaBrickID;
 	
+	public static int[] customIDs;
+	public static int[] customMetas;
+	public static int[] customVeinCount;
+	public static int[] customOreCount;
+	public static int[] customMaxHeight;
+	public static int[] customMinHeight;
+	public static String[] customDimensions;
+	
 	public static void init()
 	{
 		File file = new File(MetallurgyCore.proxy.getMinecraftDir() + "/config/Metallurgy");
@@ -125,6 +133,47 @@ public class CoreConfig  {
     	bronzeCrusherSpeed = config.get("Crushers", "Bronze Speed", 20000).getInt(20000)/1000f;
     	ironCrusherSpeed = config.get("Crushers", "Iron Speed", 15000).getInt(15000)/1000f;
     	steelCrusherSpeed = config.get("Crushers", "Steel Speed", 10000).getInt(10000)/1000f;
+    	
+    	config.addCustomCategoryComment("Custom Ores", "Add a block ids and metadata, seperate entries with a comma and a space, i.e. \"17, 35, 35:10\"\nafter adding an id, start and quit minecraft to let the information for the ore generate in \nthe Ore Generation category and fill the numbers as you like");
+    	String[] ids = (config.get("Custom Ores", "ID list", "").value).split(", ");
+    	
+    	if(!ids[0].equals(""))
+    	{
+	    	customIDs = new int[ids.length];
+	    	customMetas = new int[ids.length];
+	    	customVeinCount = new int[ids.length];
+	    	customOreCount = new int[ids.length];
+	    	customMaxHeight = new int[ids.length];
+	    	customMinHeight = new int[ids.length];
+	    	customDimensions = new String[ids.length];
+	    	for(int n = 0; n < ids.length; n++)
+	    	{
+	    		String[] idSplit = ids[n].replace("\"", "").split(":");
+	    		customIDs[n] = Integer.parseInt(idSplit[0]);
+	    		if(idSplit.length > 1)
+	    			customMetas[n] = Integer.parseInt(idSplit[1]);
+	    		else
+	    			customMetas[n] = 0;
+	    		
+	    		String title = "" + customIDs[n];
+	    		if(customMetas[n] != 0)
+	    			title += ":" + customMetas[n];
+	    		customVeinCount[n] = config.get("Ore Generation", title + " Vein Count", 0).getInt(0);
+	    		customOreCount[n] = config.get("Ore Generation", title + " Ore Count", 0).getInt(0);
+	    		customMaxHeight[n] = config.get("Ore Generation", title + " Ore Height", 128).getInt(128);
+	    		customMinHeight[n] = config.get("Ore Generation", title + " Ore Min Height", 0).getInt(0);
+	    		customDimensions[n] = config.get("Ore Generation", title + " Ore Dimensions", "0 2-100000").value;
+	    	}
+    	} 
+    	else 
+    	{
+	    	customIDs = new int[0];
+	    	customVeinCount = new int[0];
+	    	customOreCount = new int[0];
+	    	customMaxHeight = new int[0];
+	    	customMinHeight = new int[0];
+    	}
+    	
     	config.save();
 	}
 	

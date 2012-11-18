@@ -217,6 +217,8 @@ public class MetalSet implements IWorldGenerator {
 			if(ore != null)
 				MetallurgyItems.registerItem("ore" + info.name(n), new ItemStack(ore, 1, n));
 			MetallurgyItems.registerItem("brick" + info.name(n), new ItemStack(brick, 1, n));
+			if(block != null)
+				MetallurgyItems.registerItem("block" + info.name(n), new ItemStack(block, 1, n));
 			MetallurgyItems.registerItem("dust" + info.name(n), new ItemStack(Dust[n]));
 			MetallurgyItems.registerItem("ingot" + info.name(n), new ItemStack(Bar[n]));
 			

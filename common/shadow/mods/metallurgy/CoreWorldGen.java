@@ -34,6 +34,16 @@ public class CoreWorldGen implements IWorldGenerator
 		if(CoreConfig.ironEnabled)
 			generateIron(world, rand, chunkX * 16, chunkZ * 16);
 		
+		for(int n = 0; n < CoreConfig.customIDs.length; n++)
+		{
+			System.out.println("Spawning " + CoreConfig.customIDs[n]);
+			for (int i = 0; i < CoreConfig.customVeinCount[n]; i++) {
+				int randPosX = chunkX * 16 + rand.nextInt(16);
+				int randPosY = rand.nextInt(CoreConfig.customMaxHeight[n] - CoreConfig.customMinHeight[n]) + CoreConfig.customMinHeight[n];
+				int randPosZ = chunkZ * 16 + rand.nextInt(16);
+				(new WorldGenMinable(CoreConfig.customIDs[n], CoreConfig.customMetas[n], CoreConfig.customOreCount[n])).generate(world, rand, randPosX, randPosY, randPosZ);
+			}
+		}
 	}
 	
 	private boolean shouldReplace(int blockID)
