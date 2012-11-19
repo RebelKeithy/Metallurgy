@@ -28,16 +28,6 @@ import shadow.mods.metallurgy.precious.ConfigPrecious;
 import shadow.mods.metallurgy.storage.BlockAccessor;
 import shadow.mods.metallurgy.storage.BlockStorage;
 import shadow.mods.metallurgy.MetallurgyEnums;
-import xcompwiz.mystcraft.api.APICallHandler;
-/*
-import weaponmod.EnumWeapon;
-import weaponmod.ItemBattleAxe;
-import weaponmod.ItemFlail;
-import weaponmod.ItemHalberd;
-import weaponmod.ItemKnife;
-import weaponmod.ItemSpear;
-import weaponmod.ItemWarhammer;
-*/
 
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -72,12 +62,13 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingSpecialSpawnEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-@Mod(modid = "MetallurgyBase", name = "Metallurgy Base", dependencies = "after:MetallurgyCore", version = "2.2.3")
+@Mod(modid = "MetallurgyBase", name = "Metallurgy Base", dependencies = "after:MetallurgyCore", version = "2.3")
 @NetworkMod(channels = { "MetallurgyBase" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyBaseMetals {
 	
@@ -133,21 +124,37 @@ public class MetallurgyBaseMetals {
 		
 
 		metalFurnace = new BF_BlockMetalFurnace(ConfigBase.furnaceID, false).setHardness(3.5F).setBlockName("MetalFurnace");
-		lantern = new BlockLantern(3010).setHardness(0.1F).setLightValue(1F).setBlockName("lantern").setCreativeTab(baseTab);
-		ladder = new BlockMetalLadder(2011, 48).setBlockName("MetalLadder").setCreativeTab(baseTab);
-		glassDust = new ItemGlassDust(2012, "/shadow/MetallurgyGlassLanterns.png").setItemName("glassDust").setIconIndex(68).setCreativeTab(baseTab);
-		coloredGlass = new BlockColoredGlass(2013, "/shadow/MetallurgyGlass.png").setHardness(0.3F).setStepSound(Block.soundGlassFootstep).setBlockName("coloredGlass").setCreativeTab(baseTab);
+		lantern = new BlockLantern(ConfigBase.lanternId).setHardness(0.1F).setLightValue(1F).setBlockName("lantern").setCreativeTab(baseTab);
+		ladder = new BlockMetalLadder(ConfigBase.ladderId, 48).setBlockName("MetalLadder").setCreativeTab(baseTab);
+		glassDust = new ItemGlassDust(ConfigBase.glassDustId, "/shadow/MetallurgyGlassLanterns.png").setItemName("glassDust").setIconIndex(68).setCreativeTab(baseTab);
+		coloredGlass = new BlockColoredGlass(ConfigBase.coloredGlassId, "/shadow/MetallurgyGlassLanterns.png").setHardness(0.3F).setStepSound(Block.soundGlassFootstep).setBlockName("coloredGlass").setCreativeTab(baseTab);
 		
 		// Storage Structure Stuff
-		storage = new BlockStorage(2014);
-		accessor = new BlockAccessor(2015);
+		//storage = new BlockStorage(2014);
+		//accessor = new BlockAccessor(2015);
 		
 		proxy.registerRenderInformation();
 		
 		MinecraftForge.EVENT_BUS.register(new FurnaceUpgradeRecipes());
 		registerWithApi();
+		MinecraftForge.EVENT_BUS.register(this);
 		
+	}
+	
+	@ForgeSubscribe
+	public void equip(LivingSpecialSpawnEvent event)
+	{
+		if(Math.random() > 0.01)
+			return;
 		
+		if(event.entity instanceof EntityZombie)
+		{
+			((EntityZombie)(event.entity)).setCurrentItemOrArmor(0, new ItemStack(alloys.Sword[alloys.numMetals-1]));
+			((EntityZombie)(event.entity)).setCurrentItemOrArmor(1, new ItemStack(alloys.Helmet[alloys.numMetals-1]));
+			((EntityZombie)(event.entity)).setCurrentItemOrArmor(2, new ItemStack(alloys.Plate[alloys.numMetals-1]));
+			((EntityZombie)(event.entity)).setCurrentItemOrArmor(3, new ItemStack(alloys.Legs[alloys.numMetals-1]));
+			((EntityZombie)(event.entity)).setCurrentItemOrArmor(4, new ItemStack(alloys.Boots[alloys.numMetals-1]));
+		}
 	}
 
 	@Init
@@ -172,9 +179,9 @@ public class MetallurgyBaseMetals {
 		GameRegistry.registerTileEntity(shadow.mods.metallurgy.base.TileEntityLantern.class, "Lantern");
 		GameRegistry.registerTileEntity(BF_TileEntityMetalFurnace.class, "metalFurnace");
 		
-		GameRegistry.registerBlock(storage);
-		GameRegistry.registerBlock(accessor);
-		GameRegistry.registerTileEntity(shadow.mods.metallurgy.storage.TileEntityStorage.class, "Storage");
+		//GameRegistry.registerBlock(storage);
+		//GameRegistry.registerBlock(accessor);
+		//GameRegistry.registerTileEntity(shadow.mods.metallurgy.storage.TileEntityStorage.class, "Storage");
 		
 		alloys.load();
 		ores.load();
@@ -207,7 +214,10 @@ public class MetallurgyBaseMetals {
 				
 		} catch(Exception e) {}
 		
-		addBalkonsWeapons();
+		try {
+			Class a = Class.forName("weaponmod.BalkonsWeaponMod");
+			addBalkonsWeapons();
+		} catch(Exception e) {}
 		
 
 		IRecipe recipe = new ShapedOreRecipe(new ItemStack(Block.pistonBase, 1),
@@ -261,7 +271,16 @@ public class MetallurgyBaseMetals {
 		recipe = new ShapelessOreRecipe(new ItemStack(glassDust, 1, 8), new ItemStack(glassDust, 1, 0), "dustSteel");
 		GameRegistry.addRecipe(recipe);
 		
-		new UpdateManager("2.2.3", "Base", "http://ladadeda.info/BaseVersion.txt");
+		recipe = new ShapedOreRecipe(new ItemStack(ladder, 4, 0), "I I", "III", "I I", 'I', "ingotCopper");
+		GameRegistry.addRecipe(recipe);
+		recipe = new ShapedOreRecipe(new ItemStack(ladder, 4, 1), "I I", "III", "I I", 'I', "ingotBronze");
+		GameRegistry.addRecipe(recipe);
+		recipe = new ShapedOreRecipe(new ItemStack(ladder, 4, 2), "I I", "III", "I I", 'I', Item.ingotIron);
+		GameRegistry.addRecipe(recipe);
+		recipe = new ShapedOreRecipe(new ItemStack(ladder, 4, 3), "I I", "III", "I I", 'I', "ingotSteel");
+		GameRegistry.addRecipe(recipe);
+		
+		new UpdateManager("2.3", "Base", "http://ladadeda.info/BaseVersion.txt");
 	}
 	
 	@PostInit
@@ -311,9 +330,10 @@ public class MetallurgyBaseMetals {
 	{
 		ShapedOreRecipe recipe;
 		String[] baseMaterials = {"Copper", "Bronze", "Hepatizon", "Angmallen", "Damascus Steel", "Steel"};
+		int balkonsID = ConfigBase.balkonsIDs;
 		for(int n = 0; n < 6; n++)
 		{
-	        spear[n] = (new weaponmod.item.ItemSpear(29000+n, MetallurgyEnums.base[n], weaponmod.item.EnumWeapon.SPEAR)).setIconIndex(16*5+((n < 3) ? n : n + 1));
+	        spear[n] = (new weaponmod.item.ItemSpear(balkonsID+n, MetallurgyEnums.base[n], weaponmod.item.EnumWeapon.SPEAR)).setItemName("Spear" + baseMaterials[n]).setIconIndex(16*5+((n < 3) ? n : n + 1));
 	        spear[n].setTextureFile("/shadow/armory.png");
 	        recipe = new ShapedOreRecipe(new ItemStack(spear[n], 1), "  #", " X ", "X  ", 'X', Item.stick, '#', "ingot" + baseMaterials[n]);
 	        GameRegistry.addRecipe(recipe);
@@ -321,7 +341,7 @@ public class MetallurgyBaseMetals {
 
 		for(int n = 0; n < 6; n++)
 		{
-	        halberd[n] = (new weaponmod.item.ItemHalberd(29006+n, MetallurgyEnums.base[n], weaponmod.item.EnumWeapon.HALBERD)).setIconIndex(16*4+((n < 3) ? n : n + 1));
+	        halberd[n] = (new weaponmod.item.ItemHalberd(balkonsID+6+n, MetallurgyEnums.base[n], weaponmod.item.EnumWeapon.HALBERD)).setItemName("Halberd" + baseMaterials[n]).setIconIndex(16*4+((n < 3) ? n : n + 1));
 	        halberd[n].setTextureFile("/shadow/armory.png");
 	        recipe = new ShapedOreRecipe(new ItemStack(halberd[n], 1), " ##", " X#", "X  ", 'X', Item.stick, '#', "ingot" + baseMaterials[n]);
 	        GameRegistry.addRecipe(recipe);
@@ -329,7 +349,7 @@ public class MetallurgyBaseMetals {
 
 		for(int n = 0; n < 6; n++)
 		{
-	        knife[n] = (new weaponmod.item.ItemKnife(29012+n, MetallurgyEnums.base[n], weaponmod.item.EnumWeapon.KNIFE)).setIconIndex(16*1+((n < 3) ? n : n + 1));
+	        knife[n] = (new weaponmod.item.ItemKnife(balkonsID+12+n, MetallurgyEnums.base[n], weaponmod.item.EnumWeapon.KNIFE)).setItemName("Knife" + baseMaterials[n]).setIconIndex(16*1+((n < 3) ? n : n + 1));
 	        knife[n].setTextureFile("/shadow/armory.png");
 	        recipe = new ShapedOreRecipe(new ItemStack(knife[n], 1), "#X", 'X', Item.stick, '#', "ingot" + baseMaterials[n]);
 	        GameRegistry.addRecipe(recipe);
@@ -345,7 +365,7 @@ public class MetallurgyBaseMetals {
 		*/
 		for(int n = 0; n < 6; n++)
 		{
-			warhammer[n] = (new weaponmod.item.ItemWarhammer(29024+n, MetallurgyEnums.base[n], weaponmod.item.EnumWeapon.WARHAMMER)).setIconIndex(16*2+((n < 3) ? n : n + 1));
+			warhammer[n] = (new weaponmod.item.ItemWarhammer(balkonsID+24+n, MetallurgyEnums.base[n], weaponmod.item.EnumWeapon.WARHAMMER)).setItemName("Warhammer" + baseMaterials[n]).setIconIndex(16*2+((n < 3) ? n : n + 1));
 			warhammer[n].setTextureFile("/shadow/armory.png");
 	        recipe = new ShapedOreRecipe(new ItemStack(warhammer[n], 1), "#X#", "#X#", " X ", 'X', Item.stick, '#', "ingot" + baseMaterials[n]);
 	        GameRegistry.addRecipe(recipe);
@@ -353,7 +373,7 @@ public class MetallurgyBaseMetals {
 
 		for(int n = 0; n < 6; n++)
 		{
-			flail[n] = (new weaponmod.item.ItemFlail(29030+n, MetallurgyEnums.base[n], weaponmod.item.EnumWeapon.FLAIL, 16*7+((n < 3) ? n : n + 1), 16*6+((n < 3) ? n : n + 1))).setIconIndex(16*7+((n < 3) ? n : n + 1));
+			flail[n] = (new weaponmod.item.ItemFlail(balkonsID+30+n, MetallurgyEnums.base[n], weaponmod.item.EnumWeapon.FLAIL, 16*7+((n < 3) ? n : n + 1), 16*6+((n < 3) ? n : n + 1))).setItemName("Flail" + baseMaterials[n]).setIconIndex(16*7+((n < 3) ? n : n + 1));
 			flail[n].setTextureFile("/shadow/armory.png");
 	        recipe = new ShapedOreRecipe(new ItemStack(flail[n], 1), "  O", " XO", "X #", 'X', Item.stick, 'O', Item.silk, '#', "ingot" + baseMaterials[n]);
 	        GameRegistry.addRecipe(recipe);

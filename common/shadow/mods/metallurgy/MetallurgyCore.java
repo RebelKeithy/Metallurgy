@@ -51,7 +51,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyCore", name = "Metallurgy Core", version = "2.2")
+@Mod(modid = "MetallurgyCore", name = "Metallurgy Core", version = "2.3")
 @NetworkMod(channels = { "MetallurgyCore" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyCore implements ITickHandler
 {
@@ -222,7 +222,7 @@ public class MetallurgyCore implements ITickHandler
 
 	@Override
 	public void tickEnd(EnumSet<TickType> type, Object... tickData) {
-		if(type.equals(EnumSet.of(TickType.PLAYER)) && !sentUpdateMessage)
+		if(type.equals(EnumSet.of(TickType.PLAYER)) && !sentUpdateMessage && updateNeeded.size() > 0)
 		{
 			String updateMessage = "";
 			for(String name : updateNeeded)

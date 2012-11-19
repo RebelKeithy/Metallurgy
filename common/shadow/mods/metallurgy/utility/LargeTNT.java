@@ -1,7 +1,9 @@
 package shadow.mods.metallurgy.utility;
 
 import net.minecraft.src.BlockTNT;
+import net.minecraft.src.EntityPlayer;
 import net.minecraft.src.EntityTNTPrimed;
+import net.minecraft.src.Item;
 import net.minecraft.src.World;
 
 public class LargeTNT extends BlockTNT{
@@ -10,6 +12,31 @@ public class LargeTNT extends BlockTNT{
 		super(par1, par2);
 		this.setCreativeTab(MetallurgyUtility.creativeTab);
 	}
+
+    /**
+     * Called upon block activation (right click on the block.)
+     */
+    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
+    {
+        if (par5EntityPlayer.getCurrentEquippedItem() != null && isActivator(par5EntityPlayer.getCurrentEquippedItem().itemID))
+        {
+            this.onBlockDestroyedByPlayer(par1World, par2, par3, par4, 1);
+            par1World.setBlockWithNotify(par2, par3, par4, 0);
+            return true;
+        }
+        else
+        {
+            return super.onBlockActivated(par1World, par2, par3, par4, par5EntityPlayer, par6, par7, par8, par9);
+        }
+    }
+    
+    public boolean isActivator(int id)
+    {
+    	if(id == Item.flintAndSteel.shiftedIndex || id == MetallurgyUtility.match.shiftedIndex || id == MetallurgyUtility.igniter.shiftedIndex)
+    		return true;
+    	else
+    		return false;
+    }
 
     /**
      * Called upon the block being destroyed by an explosion

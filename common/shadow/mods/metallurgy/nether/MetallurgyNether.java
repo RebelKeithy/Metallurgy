@@ -51,7 +51,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyNether", name = "Metallurgy Nether", dependencies = "after:MetallurgyCore", version = "2.2")
+@Mod(modid = "MetallurgyNether", name = "Metallurgy Nether", dependencies = "after:MetallurgyCore", version = "2.3")
 @NetworkMod(channels = { "MetallurgyNether" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyNether
 {
@@ -151,7 +151,7 @@ public class MetallurgyNether
 	    if(MetallurgyCore.hasPrecious)
 	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[2], 1), new ItemStack(MetallurgyPrecious.ores.Dust[2], 1), ores.Dust[5]);
 	    
-		new UpdateManager("2.2.3", "Nether", "http://ladadeda.info/NetherVersion.txt");
+		new UpdateManager("2.3", "Nether", "http://ladadeda.info/NetherVersion.txt");
 	}
 	
 	public static void addMidasiumRecipes()

@@ -60,6 +60,7 @@ public class BlockLantern extends BlockContainer
     /**
      * Returns which pass should this block be rendered on. 0 for solids and 1 for alpha
      */
+	@Override
     public int getRenderBlockPass()
     {
         return 1;
@@ -104,6 +105,7 @@ public class BlockLantern extends BlockContainer
     /**
      * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
      */
+	@Override
     public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
     {
         return par1World.isBlockSolidOnSide(par2 - 1, par3, par4, EAST,  true) ||
@@ -120,11 +122,12 @@ public class BlockLantern extends BlockContainer
 	public void onNeighborBlockChange(World par1World, int x, int y, int z, int par5)
 	{
 		int meta = par1World.getBlockMetadata(x, y, z);
+		System.out.println(meta);
 		
 		boolean dropBlock = false;
 		if(!par1World.isBlockNormalCube(x, y-1, z) && meta == 0)
 			dropBlock = true;
-		if((!par1World.isBlockNormalCube(x, y+1, z) || par1World.getBlockId(x, y+1, z) != Block.fence.blockID) && meta == 5)
+		if((!par1World.isBlockNormalCube(x, y+1, z) && par1World.getBlockId(x, y+1, z) != Block.fence.blockID) && meta == 5)
 			dropBlock = true;
 		else if(!par1World.isBlockNormalCube(x+1, y, z) && meta == 1)
 			dropBlock = true;
@@ -168,6 +171,7 @@ public class BlockLantern extends BlockContainer
     /**
      * Get the block's damage value (for use with pick block).
      */
+	@Override
     public int getDamageValue(World par1World, int par2, int par3, int par4)
     {
     	TileEntityLantern te = (TileEntityLantern) par1World.getBlockTileEntity(par2, par3, par4);
@@ -177,11 +181,13 @@ public class BlockLantern extends BlockContainer
     /**
      * Returns the quantity of items to drop on block destruction.
      */
+	@Override
     public int quantityDropped(Random par1Random)
     {
         return 0;
     }
 
+	@Override
     public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
     {
        	spawnItem(par1World, par2, par3, par4);

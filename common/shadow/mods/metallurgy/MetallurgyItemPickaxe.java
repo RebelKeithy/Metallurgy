@@ -15,6 +15,14 @@ public class MetallurgyItemPickaxe extends ItemPickaxe
     private static Block blocksEffectiveAgainst[];
     private int damageVsEntity;
     protected MetallurgyEnumToolMaterial toolMaterial;
+    private int ingotID;
+    
+    public MetallurgyItemPickaxe(int itemID, String s, MetallurgyEnumToolMaterial material, int ingotID)
+    {
+    	this(itemID, s, material);
+    	this.ingotID = ingotID;
+    }
+    
     
     public MetallurgyItemPickaxe(int itemID, String s, MetallurgyEnumToolMaterial metallurgyenumtoolmaterial)
     {
@@ -95,6 +103,14 @@ public class MetallurgyItemPickaxe extends ItemPickaxe
     public int getDamageVsEntity(Entity entity)
     {
         return damageVsEntity;
+    }
+
+    /**
+     * Return whether this item is repairable in an anvil.
+     */
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    {
+        return ingotID == par2ItemStack.itemID;
     }
 
     static 

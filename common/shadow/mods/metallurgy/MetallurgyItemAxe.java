@@ -14,8 +14,13 @@ public class MetallurgyItemAxe extends ItemAxe
 	public String texturePath;
     private static Block blocksEffectiveAgainst[];
     protected MetallurgyEnumToolMaterial toolMaterial;
+    private int ingotID;
     
-    
+    public MetallurgyItemAxe(int itemID, String s, MetallurgyEnumToolMaterial material, int ingotID)
+    {
+    	this(itemID, s, material);
+    	this.ingotID = ingotID;
+    }
     
     public MetallurgyItemAxe(int itemID, String s, MetallurgyEnumToolMaterial metallurgyenumtoolmaterial)
     {
@@ -24,6 +29,7 @@ public class MetallurgyItemAxe extends ItemAxe
         toolMaterial = metallurgyenumtoolmaterial;
         setMaxDamage(metallurgyenumtoolmaterial.getMaxUses());
         efficiencyOnProperMaterial = metallurgyenumtoolmaterial.getEfficiencyOnProperMaterial();
+        ingotID = 0;
     }
 
     @Override
@@ -62,6 +68,14 @@ public class MetallurgyItemAxe extends ItemAxe
     public int getItemEnchantability()
     {
         return toolMaterial.getEnchantability();
+    }
+
+    /**
+     * Return whether this item is repairable in an anvil.
+     */
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    {
+        return ingotID == par2ItemStack.itemID;
     }
 
     static 

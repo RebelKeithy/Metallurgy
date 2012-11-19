@@ -15,6 +15,13 @@ public class MetallurgyItemSpade extends ItemSpade
     private static Block blocksEffectiveAgainst[];
     private int damageVsEntity;
     protected MetallurgyEnumToolMaterial toolMaterial;
+    private int ingotID;
+    
+    public MetallurgyItemSpade(int itemID, String s, MetallurgyEnumToolMaterial material, int ingotID)
+    {
+    	this(itemID, s, material);
+    	this.ingotID = ingotID;
+    }
     
     public MetallurgyItemSpade(int itemID, String s, MetallurgyEnumToolMaterial metallurgyenumtoolmaterial)
     {
@@ -65,6 +72,14 @@ public class MetallurgyItemSpade extends ItemSpade
         blocksEffectiveAgainst = (new Block[] {
             Block.grass, Block.dirt, Block.sand, Block.gravel, Block.snow, Block.blockSnow, Block.blockClay, Block.tilledField, Block.slowSand, Block.mycelium
         });
+    }
+
+    /**
+     * Return whether this item is repairable in an anvil.
+     */
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    {
+        return ingotID == par2ItemStack.itemID;
     }
     
     @Override

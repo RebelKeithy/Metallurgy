@@ -18,6 +18,13 @@ public class MetallurgyArmor extends ItemArmor implements IArmorTextureProvider
 {
     public String texturePath;
     public String texturePrefix;
+    private int ingotID;
+    
+    public MetallurgyArmor(int i, String s, String s2, EnumArmorMaterial enumarmormaterial, int j, int k, int ingotID)
+    {
+    	this(i, s, s2, enumarmormaterial, j, k);
+    	this.ingotID = ingotID;
+    }
     
     public MetallurgyArmor(int i, String s, String s2, EnumArmorMaterial enumarmormaterial, int j, int k)
     {
@@ -41,5 +48,13 @@ public class MetallurgyArmor extends ItemArmor implements IArmorTextureProvider
 	public String getTextureFile()
     {		
 		return texturePath;
+    }
+
+    /**
+     * Return whether this item is repairable in an anvil.
+     */
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    {
+        return ingotID == par2ItemStack.itemID;
     }
 }

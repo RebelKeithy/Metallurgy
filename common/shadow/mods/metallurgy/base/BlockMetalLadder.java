@@ -34,6 +34,7 @@ public class BlockMetalLadder extends Block
      * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
      * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
+	@Override
     public boolean isOpaqueCube()
     {
         return false;
@@ -42,6 +43,7 @@ public class BlockMetalLadder extends Block
     /**
      * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
+	@Override
     public boolean renderAsNormalBlock()
     {
         return false;
@@ -50,6 +52,7 @@ public class BlockMetalLadder extends Block
     /**
      * The type of render function that is called for this block
      */
+	@Override
     public int getRenderType()
     {
         return renderType;
@@ -58,6 +61,7 @@ public class BlockMetalLadder extends Block
     /**
      * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
      */
+    @Override
     public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4)
     {
         return par1World.isBlockSolidOnSide(par2 - 1, par3, par4, EAST ) ||
@@ -70,6 +74,7 @@ public class BlockMetalLadder extends Block
      * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
      * cleared to be reused)
      */
+    @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
     {
         int var5 = par1World.getBlockMetadata(par2, par3, par4);
@@ -103,6 +108,7 @@ public class BlockMetalLadder extends Block
     /**
      * Returns the bounding box of the wired rectangular prism to render.
      */
+    @Override
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
     {
         int var5 = par1World.getBlockMetadata(par2, par3, par4) % 4;
@@ -134,66 +140,73 @@ public class BlockMetalLadder extends Block
     /**
      * called before onBlockPlacedBy by ItemBlock and ItemReed
      */
-    public void updateBlockMetadata(World par1World, int par2, int par3, int par4, int par5, float par6, float par7, float par8)
+    @Override
+    public int func_85104_a(World par1World, int par2, int par3, int par4, int par5, float par6, float par7, float par8, int par9)
     {
-        int var9 = par1World.getBlockMetadata(par2, par3, par4) % 4;
-        int type = par1World.getBlockMetadata(par2, par3, par4) / 4;
+    	System.out.println("Adding meta " + par9);
+        int direction = par9 % 4;
+        int type = par9 / 4;
 
-        if ((var9 == 0 || par5 == 0) && par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH))
+        if ((direction == 0 || par5 == 0) && par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH))
         {
-            var9 = 0;
+            direction = 0;
         }
 
-        else if ((var9 == 0 || par5 == 1) && par1World.isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH))
+        else if ((direction == 0 || par5 == 1) && par1World.isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH))
         {
-            var9 = 1;
+            direction = 1;
         }
 
-        else if ((var9 == 0 || par5 == 2) && par1World.isBlockSolidOnSide(par2 + 1, par3, par4, WEST))
+        else if ((direction == 0 || par5 == 2) && par1World.isBlockSolidOnSide(par2 + 1, par3, par4, WEST))
         {
-            var9 = 2;
+            direction = 2;
         }
 
-        else if ((var9 == 0 || par5 == 3) && par1World.isBlockSolidOnSide(par2 - 1, par3, par4, EAST))
+        else if ((direction == 0 || par5 == 3) && par1World.isBlockSolidOnSide(par2 - 1, par3, par4, EAST))
         {
-            var9 = 3;
+            direction = 3;
         }
 
-        par1World.setBlockMetadataWithNotify(par2, par3, par4, type * 4 + var9);
+        System.out.println("returning " + (type * 4 + direction));
+        par1World.setBlockMetadataWithNotify(par2, par3, par4, type * 4 + direction);
+        return type * 4 + direction;
     }
 
     /**
      * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
      * their own) Args: x, y, z, neighbor blockID
      */
+    @Override
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5)
     {
+        System.out.println("changed " + par1World.getBlockMetadata(par2, par3, par4) );
+        int type = par1World.getBlockMetadata(par2, par3, par4) / 4;
         int var6 = par1World.getBlockMetadata(par2, par3, par4) % 4;
-        boolean var7 = false;
+        boolean canStay = false;
 
         if (var6 == 0 && par1World.isBlockSolidOnSide(par2, par3, par4 + 1, NORTH))
         {
-            var7 = true;
+            canStay = true;
         }
 
         if (var6 == 1 && par1World.isBlockSolidOnSide(par2, par3, par4 - 1, SOUTH))
         {
-            var7 = true;
+            canStay = true;
         }
 
         if (var6 == 2 && par1World.isBlockSolidOnSide(par2 + 1, par3, par4, WEST))
         {
-            var7 = true;
+            canStay = true;
         }
 
         if (var6 == 3 && par1World.isBlockSolidOnSide(par2 - 1, par3, par4, EAST))
         {
-            var7 = true;
+            canStay = true;
         }
 
-        if (!var7)
+        if (!canStay)
         {
-            this.dropBlockAsItem(par1World, par2, par3, par4, var6, 0);
+            this.dropBlockAsItem(par1World, par2, par3, par4, type*4 + var6, 0);
             par1World.setBlockWithNotify(par2, par3, par4, 0);
         }
 
@@ -225,12 +238,14 @@ public class BlockMetalLadder extends Block
     @Override
 	public int damageDropped(int metadata)
     {
-    	return 0;
+    	System.out.println(metadata);
+    	return metadata/4;
     }
 
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
+    @Override
     public int getBlockTextureFromSideAndMetadata(int side, int metadata)
     {
         return blockIndexInTexture + metadata / 4;
@@ -239,6 +254,7 @@ public class BlockMetalLadder extends Block
     /**
      * Triggered whenever an entity collides with this block (enters into the block). Args: world, x, y, z, entity
      */
+    @Override
     public void onEntityCollidedWithBlock(World par1World, int par2, int par3, int par4, Entity par5Entity)
     {
     	int meta = par1World.getBlockMetadata(par2, par3, par4) / 4;

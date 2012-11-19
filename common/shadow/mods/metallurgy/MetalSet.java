@@ -97,16 +97,16 @@ public class MetalSet implements IWorldGenerator {
 			
 			if(info.isCatalyst(i))
 				continue;
-			Pickaxe[i] = new MetallurgyItemPickaxe(startID+2, info.image(), info.toolEnum(i)).setIconCoord(i,7).setItemName(info.name(i) + "Pickaxe").setCreativeTab(info.getCreativeTab());
-			Shovel[i] = new MetallurgyItemSpade(startID+3, info.image(), info.toolEnum(i)).setIconCoord(i,8).setItemName(info.name(i) + "Shovel").setCreativeTab(info.getCreativeTab());
-			Axe[i] = new MetallurgyItemAxe(startID+4, info.image(), info.toolEnum(i)).setIconCoord(i,5).setItemName(info.name(i) + "Axe").setCreativeTab(info.getCreativeTab());
-			Hoe[i] = new MetallurgyItemHoe(startID+5, info.image(), info.toolEnum(i)).setIconCoord(i,6).setItemName(info.name(i) + "Hoe").setCreativeTab(info.getCreativeTab());
-			Sword[i] = new MetallurgyItemSword(startID+6, info.image(), info.toolEnum(i)).setIconCoord(i,9).setItemName(info.name(i) + "Sword").setCreativeTab(info.getCreativeTab());
+			Pickaxe[i] = new MetallurgyItemPickaxe(startID+2, info.image(), info.toolEnum(i), Bar[i].shiftedIndex).setIconCoord(i,7).setItemName(info.name(i) + "Pickaxe").setCreativeTab(info.getCreativeTab());
+			Shovel[i] = new MetallurgyItemSpade(startID+3, info.image(), info.toolEnum(i), Bar[i].shiftedIndex).setIconCoord(i,8).setItemName(info.name(i) + "Shovel").setCreativeTab(info.getCreativeTab());
+			Axe[i] = new MetallurgyItemAxe(startID+4, info.image(), info.toolEnum(i), Bar[i].shiftedIndex).setIconCoord(i,5).setItemName(info.name(i) + "Axe").setCreativeTab(info.getCreativeTab());
+			Hoe[i] = new MetallurgyItemHoe(startID+5, info.image(), info.toolEnum(i), Bar[i].shiftedIndex).setIconCoord(i,6).setItemName(info.name(i) + "Hoe").setCreativeTab(info.getCreativeTab());
+			Sword[i] = new MetallurgyItemSword(startID+6, info.image(), info.toolEnum(i), Bar[i].shiftedIndex).setIconCoord(i,9).setItemName(info.name(i) + "Sword").setCreativeTab(info.getCreativeTab());
 			
-			Helmet[i] = (new MetallurgyArmor(startID+7, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_1", info.armorEnum(i), 0, 0)).setIconCoord(i,12).setItemName(info.name(i) + "Helmet").setCreativeTab(info.getCreativeTab());
-			Plate[i] = (new MetallurgyArmor(startID+8, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_1", info.armorEnum(i), 0, 1)).setIconCoord(i,13).setItemName(info.name(i) + "Plate").setCreativeTab(info.getCreativeTab());
-			Legs[i] = (new MetallurgyArmor(startID+9, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_2", info.armorEnum(i), 0, 2)).setIconCoord(i,14).setItemName(info.name(i) + "Legs").setCreativeTab(info.getCreativeTab());
-			Boots[i] = (new MetallurgyArmor(startID+10, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_1", info.armorEnum(i), 0, 3)).setIconCoord(i,15).setItemName(info.name(i) + "Boots").setCreativeTab(info.getCreativeTab());
+			Helmet[i] = (new MetallurgyArmor(startID+7, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_1", info.armorEnum(i), 0, 0, Bar[i].shiftedIndex)).setIconCoord(i,12).setItemName(info.name(i) + "Helmet").setCreativeTab(info.getCreativeTab());
+			Plate[i] = (new MetallurgyArmor(startID+8, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_1", info.armorEnum(i), 0, 1, Bar[i].shiftedIndex)).setIconCoord(i,13).setItemName(info.name(i) + "Plate").setCreativeTab(info.getCreativeTab());
+			Legs[i] = (new MetallurgyArmor(startID+9, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_2", info.armorEnum(i), 0, 2, Bar[i].shiftedIndex)).setIconCoord(i,14).setItemName(info.name(i) + "Legs").setCreativeTab(info.getCreativeTab());
+			Boots[i] = (new MetallurgyArmor(startID+10, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_1", info.armorEnum(i), 0, 3, Bar[i].shiftedIndex)).setIconCoord(i,15).setItemName(info.name(i) + "Boots").setCreativeTab(info.getCreativeTab());
 		
 			if(info.numRails(i) > 0)
 				RecipeHelper.addRailsRecipe(Bar[i], info.numRails(i));

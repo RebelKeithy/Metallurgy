@@ -56,7 +56,7 @@ public class TileEntityLantern extends TileEntity
     @Override
     public void updateEntity()
     {
-    	if(worldObj != null && canUpdate)
+    	//if(worldObj != null && canUpdate)
 	    {
 			int id = worldObj.getBlockId(xCoord, yCoord, zCoord);
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 1, color);

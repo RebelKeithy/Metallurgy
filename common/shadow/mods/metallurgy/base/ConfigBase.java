@@ -40,6 +40,11 @@ public class ConfigBase  {
 	public static int[] OreHeight = new int[8];
 	public static int[] OreMinHeight = new int[8];
 	public static String dimensions;
+	public static int balkonsIDs;
+	public static int lanternId;
+	public static int ladderId;
+	public static int glassDustId;
+	public static int coloredGlassId;
 	
 	
 	
@@ -93,6 +98,12 @@ public class ConfigBase  {
     		metalEnabled[i] = config.get("Ores", OreBaseEnum.names[i] + " Enabled", true).getBoolean(true);
         
     	ItemStartID = config.get("Item Ids Uses next 250", "Item Start IDs", 26250).getInt(26250);
+    	balkonsIDs = config.get("Balkons Ids Uses next 36", "Balkons Start IDs", 29000).getInt(29000);
+    	
+    	lanternId = config.getBlock("Lantern", 2016).getInt(2016);
+    	ladderId = config.getBlock("Ladder", 2011).getInt(2011);
+    	glassDustId = config.getItem("Glass Dust", 2012).getInt(2012);
+    	coloredGlassId = config.getBlock("Colored Glass", 2013).getInt(2013);
     	
     	for(int i = 0; i < 3; i++)
     	{

@@ -21,6 +21,13 @@ public class MetallurgyItemSword extends ItemSword
     private final MetallurgyEnumToolMaterial field_40439_b;
     
     private List<HitEntityListener> hlList = new ArrayList<HitEntityListener>();
+    private int ingotID;
+    
+    public MetallurgyItemSword(int itemID, String s, MetallurgyEnumToolMaterial material, int ingotID)
+    {
+    	this(itemID, s, material);
+    	this.ingotID = ingotID;
+    }
 
     public MetallurgyItemSword(int i, String s, MetallurgyEnumToolMaterial metallurgyenumtoolmaterial)
     {
@@ -112,5 +119,13 @@ public class MetallurgyItemSword extends ItemSword
     public int getItemEnchantability()
     {
         return field_40439_b.getEnchantability();
+    }
+
+    /**
+     * Return whether this item is repairable in an anvil.
+     */
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    {
+        return ingotID == par2ItemStack.itemID;
     }
 }

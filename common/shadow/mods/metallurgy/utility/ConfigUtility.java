@@ -62,6 +62,9 @@ public class ConfigUtility  {
 
 	public static List minersTNTDestoryable;
 
+	public static int minersTntId;
+	public static int largeTntId;
+
 	
 	
 	
@@ -142,6 +145,9 @@ public class ConfigUtility  {
     	SulfurVeinCount = config.get("Ore Generation", "Sulfur Vein Count", 4).getInt(4);
     	SulfurOreCount = config.get("Ore Generation", "Sulfur Ore Count", 4).getInt(4);
     	SulfurOreHeight = config.get("Ore Generation", "Sulfur Ore Height", 128).getInt(128);
+    	
+    	minersTntId = config.getBlock("LE TNT ID", 3000).getInt(3000);
+    	largeTntId = config.getBlock("HE TNT ID", 3001).getInt(3001);
     	
     	String destroyable = config.get("Miner TNT Blocks", "Blocks", "1, 2, 3, 4, 5, 12, 13, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 37, 38, 39, 40, 43, 44, 45, 47, 48, 50, 53, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 72, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 117, 121, 123, 124, 125, 126, 127, 128, 131, 132, 134, 135, 136, 139, 140, 141, 142, 143").value;//("1, 2, 3, 4, 5, 12, 13, 17, 18, 19, 20, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 37, 38, 39, 40, 43, 44, 45, 47, 48, 50, 53, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 72, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 117, 121, 123, 124, 125, 126, 127, 128, 131, 132, 134, 135, 136, 139, 140, 141, 142, 143");
     	

@@ -21,6 +21,13 @@ import net.minecraftforge.event.entity.player.UseHoeEvent;
 public class MetallurgyItemHoe extends Item
 {
 	public String texturePath;
+    private int ingotID;
+    
+    public MetallurgyItemHoe(int itemID, String s, MetallurgyEnumToolMaterial material, int ingotID)
+    {
+    	this(itemID, s, material);
+    	this.ingotID = ingotID;
+    }
 	
     public MetallurgyItemHoe(int i, String s, MetallurgyEnumToolMaterial metallurgyenumtoolmaterial)
     {
@@ -82,6 +89,14 @@ public class MetallurgyItemHoe extends Item
                 }
             }
         }
+    }
+
+    /**
+     * Return whether this item is repairable in an anvil.
+     */
+    public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
+    {
+        return ingotID == par2ItemStack.itemID;
     }
 
     public boolean isFull3D()

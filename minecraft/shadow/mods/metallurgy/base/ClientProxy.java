@@ -67,6 +67,20 @@ public class ClientProxy extends CommonProxy{
 		LanguageRegistry.instance().addStringLocalization("tile.coloredGlass.purple.name", "Purple Glass");
 		LanguageRegistry.instance().addStringLocalization("tile.coloredGlass.grey.name", "Grey Glass");
 		LanguageRegistry.instance().addStringLocalization("tile.coloredGlass.white.name", "White Glass");
+
+		
+		if(MetallurgyBaseMetals.spear[0] != null)
+		{
+			String[] baseMaterials = {"Copper", "Bronze", "Hepatizon", "Angmallen", "Damascus Steel", "Steel"};
+			for(int n = 0; n < 6; n++)
+			{
+				ModLoader.addName(MetallurgyBaseMetals.spear[n], baseMaterials[n] + " Spear");
+				ModLoader.addName(MetallurgyBaseMetals.halberd[n], baseMaterials[n] + " Halberd");
+				ModLoader.addName(MetallurgyBaseMetals.knife[n], baseMaterials[n] + " Knife");
+				ModLoader.addName(MetallurgyBaseMetals.warhammer[n], baseMaterials[n] + " Warhammer");
+				ModLoader.addName(MetallurgyBaseMetals.flail[n], baseMaterials[n] + " Flail");
+			}
+		}
 	}
 	
 	@Override
