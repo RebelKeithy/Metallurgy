@@ -35,6 +35,6 @@ public class PacketHandler implements IPacketHandler
 			icte.furnaceCookTime = cookTime;
 		}
 
-		world.markBlockNeedsUpdate(x, y, z);
+		world.markBlockForUpdate(x, y, z);
 	}
 }

@@ -60,7 +60,7 @@ public class ItemIgniter extends Item
             ++par4;
         }
 
-        if (!par2EntityPlayer.func_82247_a(par4, par5, par6, par7, par1ItemStack))
+        if (!par2EntityPlayer.canPlayerEdit(par4, par5, par6, par7, par1ItemStack))
         {
             return false;
         }

@@ -44,12 +44,12 @@ public class NF_ContainerNetherForge extends Container
 
             if (this.lastCookTime != this.furnace.furnaceCookTime)
             {
-                var2.updateCraftingInventoryInfo(this, 0, this.furnace.furnaceCookTime);
+                var2.sendProgressBarUpdate(this, 0, this.furnace.furnaceCookTime);
             }
 
             if (this.lastItemBurnTime != this.furnace.currentItemBurnTime)
             {
-                var2.updateCraftingInventoryInfo(this, 1, this.furnace.currentItemBurnTime);
+                var2.sendProgressBarUpdate(this, 1, this.furnace.currentItemBurnTime);
             }
         }
 

@@ -45,7 +45,7 @@ public class PacketHandler implements IPacketHandler
 				icte.furnaceBurnTime = burnTime;
 			}
 	
-			world.markBlockNeedsUpdate(x, y, z);
+			world.markBlockForUpdate(x, y, z);
 		}
 	}
 }

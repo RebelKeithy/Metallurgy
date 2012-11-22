@@ -45,17 +45,17 @@ public class FF_ContainerMetalFurnace extends Container
 
             if (this.lastCookTime != this.furnace.furnaceCookTime)
             {
-                var2.updateCraftingInventoryInfo(this, 0, this.furnace.furnaceCookTime);
+                var2.sendProgressBarUpdate(this, 0, this.furnace.furnaceCookTime);
             }
 
             if (this.lastBurnTime != this.furnace.furnaceBurnTime)
             {
-                var2.updateCraftingInventoryInfo(this, 1, this.furnace.furnaceBurnTime);
+                var2.sendProgressBarUpdate(this, 1, this.furnace.furnaceBurnTime);
             }
 
             if (this.lastItemBurnTime != this.furnace.currentItemBurnTime)
             {
-                var2.updateCraftingInventoryInfo(this, 2, this.furnace.currentItemBurnTime);
+                var2.sendProgressBarUpdate(this, 2, this.furnace.currentItemBurnTime);
             }
         }
 

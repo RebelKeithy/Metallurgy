@@ -323,7 +323,7 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements ISpecialInv
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 1, direction);
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 2, furnaceTimeBase);
 			worldObj.addBlockEvent(xCoord, yCoord, zCoord, id, 3, furnaceBurnTime);
-            worldObj.markBlockAsNeedsUpdate(xCoord, yCoord, zCoord);
+            worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             
         }
     }
@@ -459,7 +459,7 @@ public class FF_TileEntityMetalFurnace extends TileEntity implements ISpecialInv
 		} else if (i == 4) {
 			furnaceCookTime = j;
 		}
-        worldObj.markBlockAsNeedsUpdate(xCoord, yCoord, zCoord);
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
     
     /**

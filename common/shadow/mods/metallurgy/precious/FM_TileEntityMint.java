@@ -207,7 +207,7 @@ public class FM_TileEntityMint extends TileEntity
 		{
 			amount = j;
 		}
-        worldObj.markBlockAsNeedsUpdate(xCoord, yCoord, zCoord);
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 
     /**

@@ -460,7 +460,7 @@ public class BC_TileEntityCrusher extends TileEntity implements IInventory, ISid
 		if (i == 4)
 			furnaceCookTime = j;
 
-		worldObj.markBlockAsNeedsUpdate(xCoord, yCoord, zCoord);
+		worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
 	}
 
     public void openChest() {}
