@@ -143,7 +143,6 @@ public class BlockMetalLadder extends Block
     @Override
     public int func_85104_a(World par1World, int par2, int par3, int par4, int par5, float par6, float par7, float par8, int par9)
     {
-    	System.out.println("Adding meta " + par9);
         int direction = par9 % 4;
         int type = par9 / 4;
 
@@ -167,7 +166,6 @@ public class BlockMetalLadder extends Block
             direction = 3;
         }
 
-        System.out.println("returning " + (type * 4 + direction));
         par1World.setBlockMetadataWithNotify(par2, par3, par4, type * 4 + direction);
         return type * 4 + direction;
     }
@@ -179,7 +177,6 @@ public class BlockMetalLadder extends Block
     @Override
     public void onNeighborBlockChange(World par1World, int par2, int par3, int par4, int par5)
     {
-        System.out.println("changed " + par1World.getBlockMetadata(par2, par3, par4) );
         int type = par1World.getBlockMetadata(par2, par3, par4) / 4;
         int var6 = par1World.getBlockMetadata(par2, par3, par4) % 4;
         boolean canStay = false;
@@ -238,7 +235,6 @@ public class BlockMetalLadder extends Block
     @Override
 	public int damageDropped(int metadata)
     {
-    	System.out.println(metadata);
     	return metadata/4;
     }
 

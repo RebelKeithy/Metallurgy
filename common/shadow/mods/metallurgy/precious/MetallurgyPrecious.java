@@ -90,14 +90,22 @@ public class MetallurgyPrecious
 		alloys = new MetalSet(new AlloyPreciousEnum());
 		ores = new MetalSet(new OrePreciousEnum());
 		
-		PreciousChest = new FC_BlockChest(ConfigPrecious.PreciousChestID).setHardness(0.5F).setResistance(.1F).setBlockName("PreciousChest");
-		Mint = new FM_BlockMint(ConfigPrecious.PreciousMintID).setHardness(0.5F).setResistance(.1F).setBlockName("Mint");
-		MintStorage = new FM_BlockMintStorage(ConfigPrecious.PreciousMintLoaderID).setHardness(0.5F).setResistance(.1F).setBlockName("MintStorage");
-		Coin = new ItemCoins(ConfigPrecious.ItemStartID + 248).setItemName("Coin").setCreativeTab(MetallurgyPrecious.creativeTab).setIconIndex(8);
-		Stack = new ItemCoins(ConfigPrecious.ItemStartID + 247).setItemName("Stack").setCreativeTab(MetallurgyPrecious.creativeTab).setIconIndex(24);
-		Bag = new ItemCoins(ConfigPrecious.ItemStartID + 246).setItemName("Bag").setCreativeTab(MetallurgyPrecious.creativeTab).setIconIndex(40);
-		Bullion = new ItemCoins(ConfigPrecious.ItemStartID + 245).setItemName("Bullion").setCreativeTab(MetallurgyPrecious.creativeTab).setIconIndex(56);
-		GoldCog = new MetallurgyItem(ConfigPrecious.ItemStartID + 249, "/shadow/MetallurgyCoins.png").setIconIndex(2).setItemName("GoldCog").setCreativeTab(MetallurgyPrecious.creativeTab);
+		try
+		{
+			PreciousChest = new FC_BlockChest(ConfigPrecious.PreciousChestID).setHardness(0.5F).setResistance(.1F).setBlockName("PreciousChest");
+			Mint = new FM_BlockMint(ConfigPrecious.PreciousMintID).setHardness(0.5F).setResistance(.1F).setBlockName("Mint");
+			MintStorage = new FM_BlockMintStorage(ConfigPrecious.PreciousMintLoaderID).setHardness(0.5F).setResistance(.1F).setBlockName("MintStorage");
+			Coin = new ItemCoins(ConfigPrecious.ItemStartID + 248).setItemName("Coin").setCreativeTab(MetallurgyPrecious.creativeTab).setIconIndex(8);
+			Stack = new ItemCoins(ConfigPrecious.ItemStartID + 247).setItemName("Stack").setCreativeTab(MetallurgyPrecious.creativeTab).setIconIndex(24);
+			Bag = new ItemCoins(ConfigPrecious.ItemStartID + 246).setItemName("Bag").setCreativeTab(MetallurgyPrecious.creativeTab).setIconIndex(40);
+			Bullion = new ItemCoins(ConfigPrecious.ItemStartID + 245).setItemName("Bullion").setCreativeTab(MetallurgyPrecious.creativeTab).setIconIndex(56);
+			GoldCog = new MetallurgyItem(ConfigPrecious.ItemStartID + 249, "/shadow/MetallurgyCoins.png").setIconIndex(2).setItemName("GoldCog").setCreativeTab(MetallurgyPrecious.creativeTab);
+		}
+		catch(IllegalArgumentException e)
+		{
+			MetallurgyCore.blockError(e);
+		    throw e;
+		}
 		
 		MinecraftForge.EVENT_BUS.register(new AlloyRecipes());
 	}

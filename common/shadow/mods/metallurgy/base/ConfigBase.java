@@ -3,6 +3,10 @@ package shadow.mods.metallurgy.base;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
+import cpw.mods.fml.relauncher.FMLRelaunchLog;
+
 import shadow.mods.metallurgy.precious.AlloyPreciousEnum;
 import shadow.mods.metallurgy.precious.OrePreciousEnum;
 
@@ -78,6 +82,7 @@ public class ConfigBase  {
     	baseMetalsBlockID = config.getBlock("Metal Block", 929).getInt(929);
     	baseAlloysBlockID = config.getBlock("Alloy Block", 930).getInt(930);
     	doorID = config.getBlock("Copper Door", 935).getInt(935);
+    	
     	furnaceID = config.getBlock("Furnace", 904).getInt(904);
     	itemDoorID = config.getItem("Copper Door", 926).getInt(9350);
     	

@@ -50,5 +50,19 @@ public class FertilizerRecipes
 		
 		GameRegistry.addRecipe(matchRecipe);
 		GameRegistry.addRecipe(igniterRecipe);
+		
+
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MetallurgyUtility.minersTNT, 4), new Object[] {
+			"XMX", "MTM", "XMX", 'X', "itemPhosphorus", 'M', "itemMagnesium", 'T', Block.tnt
+		}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MetallurgyUtility.minersTNT, 4), new Object[] {
+			"MXM", "XTX", "MXM", 'X', "itemPhosphorus", 'M', "itemMagnesium", 'T', Block.tnt
+		}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MetallurgyUtility.largeTNT, 4), new Object[] {
+			"XMX", "MTM", "XMX", 'X', "itemSaltpeter", 'M', "itemSulfur", 'T', Block.tnt
+		}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(MetallurgyUtility.largeTNT, 4), new Object[] {
+			"MXM", "XTX", "MXM", 'X', "itemSaltpeter", 'M', "itemSulfur", 'T', Block.tnt
+		}));
 	}
 }

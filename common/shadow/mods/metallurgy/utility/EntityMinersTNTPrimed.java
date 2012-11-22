@@ -73,7 +73,6 @@ public class EntityMinersTNTPrimed extends Entity {
      */
     public void onUpdate()
     {
-    	//System.out.println(posX + " " + posY + " " + posZ);
         this.prevPosX = this.posX;
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;

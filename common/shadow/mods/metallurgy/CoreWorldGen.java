@@ -36,7 +36,6 @@ public class CoreWorldGen implements IWorldGenerator
 		
 		for(int n = 0; n < CoreConfig.customIDs.length; n++)
 		{
-			System.out.println("Spawning " + CoreConfig.customIDs[n]);
 			for (int i = 0; i < CoreConfig.customVeinCount[n]; i++) {
 				int randPosX = chunkX * 16 + rand.nextInt(16);
 				int randPosY = rand.nextInt(CoreConfig.customMaxHeight[n] - CoreConfig.customMinHeight[n]) + CoreConfig.customMinHeight[n];

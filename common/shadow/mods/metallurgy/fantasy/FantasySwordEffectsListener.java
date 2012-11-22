@@ -19,7 +19,6 @@ public class FantasySwordEffectsListener implements HitEntityListener {
 	public boolean hitEntity(ItemStack itemstack, EntityLiving entityliving, EntityLiving player) 
 	{
 
-		System.out.println("applying effect");
 		if(Math.random() < 0.7)
 			return false;
 		
@@ -118,6 +117,9 @@ public class FantasySwordEffectsListener implements HitEntityListener {
 		if(event.source.getEntity() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) event.source.getEntity();
+			if(player.getCurrentEquippedItem() == null)
+				return;
+			
 			if(player.getCurrentEquippedItem().itemID == MetallurgyFantasy.ores.Sword[5].shiftedIndex ||
 			   player.getCurrentEquippedItem().itemID == MetallurgyFantasy.ores.Sword[6].shiftedIndex)
 			{

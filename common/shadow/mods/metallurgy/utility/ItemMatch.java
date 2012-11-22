@@ -24,7 +24,6 @@ public class ItemMatch extends Item
     {
     	if(par3World.getBlockId((int)par4, (int)par5, (int)par6) == Block.tnt.blockID)
     	{
-    		System.out.println("igniting");
     		Block.tnt.onBlockDestroyedByPlayer(par3World, par4, par5, par6, 1);
     		par3World.setBlock(par4, par5, par6, 0);
     		return true;

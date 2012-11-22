@@ -73,6 +73,16 @@ public class MetallurgyFantasy
 		
 		alloys = new MetalSet(new AlloyFantasyEnum());
 		ores = new MetalSet(new OreFantasyEnum());
+	
+		try
+		{
+			FantasyFurnace.metalFurnace = new FF_BlockMetalFurnace(ConfigFantasy.furnaceID, false).setHardness(3.5F).setBlockName("MetalFantasyFurnace");
+		}
+		catch(IllegalArgumentException e)
+		{
+			MetallurgyCore.blockError(e);
+		    throw e;
+		}
 		
 		proxy.registerRenderInformation();
 		registerWithApi();

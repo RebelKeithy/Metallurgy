@@ -9,17 +9,15 @@ import net.minecraft.src.EnumToolMaterial;
 public enum MetallurgyEnumToolMaterial
 {
 	//Name, ID?, HarvestLevel, Durability, Strength, Damage, Enchantability
+	
 	//Base
-    //Wood("Wood", 0, 0, 60, 2F, 0, 15),
-    //Stone("Stone", 0, 1, 132, 4F, 1, 5),
 	Copper("Copper", 0, 1, 180, 5F, 1, 5),
 	Bronze("Bronze", 0, 2, 250, 6F, 1, 9),
 	Hepatizon("Hepatizon", 0, 2, 300, 8F, 1, 22),
-    //Iron("Iron", 0, 2, 251, 6F, 2, 14),
     DamascusSteel("DamascusSteel", 0, 3, 500, 6F, 2, 18),
     Angmallen("Angmallen", 0, 2, 300, 8F, 2, 30),
     Steel("Steel", 0, 3, 750, 8F, 3, 14),
-    //Diamond("Diamond", 0, 3, 1562, 8F, 3, 10),
+
     //Nether
     Ignatius("Ignatius", 0, 1, 200, 4F, 2, 15),
     ShadowIron("ShadowIron", 0, 1, 300, 5F, 2, 2),
@@ -32,6 +30,7 @@ public enum MetallurgyEnumToolMaterial
     Amordrine("Amordrine", 0, 4, 500, 14F, 2, 50),
     Vulcanite("Vulcanite", 0, 5, 1500, 10F, 3, 20),
     Sanguinite("Sanguinite", 0, 6, 1750, 12F, 4, 25),
+    
     //Fantasy
     Prometheum("Prometheum", 0, 1, 200, 4F, 1, 16),
     DeepIron("DeepIron", 0, 2, 250, 6F, 2, 14),
@@ -48,10 +47,10 @@ public enum MetallurgyEnumToolMaterial
     Adamantine("Adamantine", 0, 6, 1550, 10F, 4, 22),
     Atlarus("Atlarus", 0, 6, 1750, 10F, 4, 22),
     Tartarite("Tartarite", 0, 7, 3000, 14F, 5, 25),
+    
     //Precious
     Brass("Brass", 0, 0, 15, 18F, 1, 18),
     Silver("Silver", 0, 0, 25, 12F, 1, 20),
-    //Gold("Gold", 0, 0, 75, 50F, 1, 22),
     Electrum("Electrum", 0, 1, 50, 14F, 1, 30),
     Platinum("Platinum", 0, 2, 100, 16F, 1, 50);
 
@@ -61,30 +60,15 @@ public enum MetallurgyEnumToolMaterial
             Copper, Bronze, Hepatizon, DamascusSteel, Angmallen, Steel, Ignatius, ShadowIron, ShadowSteel, Midasium, Vyroxeres, Ceruclase, Inolashite, Kalendrite, Amordrine, Vulcanite, Sanguinite, Mithril, Orichalcum, Adamantine, Brass, Silver, Platinum
         });
     }
-  /*
-    public static final EnumToolMaterial WOOD;
-    public static final EnumToolMaterial STONE;
-    public static final EnumToolMaterial IRON;
-    public static final EnumToolMaterial EMERALD;
-    public static final EnumToolMaterial GOLD;
-*/
+
     private final int harvestLevel;
     private final int maxUses;
     private final float efficiencyOnProperMaterial;
     private final int damageVsEntity;
     private final int enchantability;
     private static final MetallurgyEnumToolMaterial allToolMaterials[]; /* synthetic field */
-/*
-    public static final EnumToolMaterial[] values()
-    {
-        return (EnumToolMaterial[])allToolMaterials.clone();
-    }
 
-    public static EnumToolMaterial valueOf(String s)
-    {
-        return (EnumToolMaterial)Enum.valueOf(net.minecraft.src.EnumToolMaterial.class, s);
-    }
-*/
+    
     private MetallurgyEnumToolMaterial(String s, int i, int j, int k, float f, int l, int i1)
     {
         harvestLevel = j;

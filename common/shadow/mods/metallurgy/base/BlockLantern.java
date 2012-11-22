@@ -122,7 +122,6 @@ public class BlockLantern extends BlockContainer
 	public void onNeighborBlockChange(World par1World, int x, int y, int z, int par5)
 	{
 		int meta = par1World.getBlockMetadata(x, y, z);
-		System.out.println(meta);
 		
 		boolean dropBlock = false;
 		if(!par1World.isBlockNormalCube(x, y-1, z) && meta == 0)

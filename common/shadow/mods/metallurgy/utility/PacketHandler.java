@@ -24,7 +24,6 @@ public class PacketHandler implements IPacketHandler
 	@Override
 	public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player)
 	{
-		System.out.println("Utility PackeT");
 		ByteArrayDataInput dat = ByteStreams.newDataInput(packet.data);
 		int id = dat.readInt();
 		if(id == 2)

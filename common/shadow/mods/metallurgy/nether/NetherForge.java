@@ -1,5 +1,6 @@
 package shadow.mods.metallurgy.nether;
 
+import shadow.mods.metallurgy.MetallurgyCore;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.src.*;
 
@@ -10,7 +11,15 @@ public class NetherForge {
 	
 	public static void init()
 	{
-		metalFurnace = new NF_BlockNetherForge(ConfigNether.furnaceID, false).setHardness(3.5F).setBlockName("NetherForge");
+		try
+		{
+			metalFurnace = new NF_BlockNetherForge(ConfigNether.furnaceID, false).setHardness(3.5F).setBlockName("NetherForge");
+		}
+		catch(IllegalArgumentException e)
+		{
+			MetallurgyCore.blockError(e);
+		    throw e;
+		}
 	}
 	
 	public static void load()

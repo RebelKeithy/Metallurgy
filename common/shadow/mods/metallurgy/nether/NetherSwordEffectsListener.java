@@ -16,7 +16,6 @@ public class NetherSwordEffectsListener implements HitEntityListener {
 	@Override
 	public boolean hitEntity(ItemStack itemstack, EntityLiving entityliving, EntityLiving player) {
 
-		System.out.println("applying effect");
 		if(Math.random() < 0.7)
 			return false;
 		
@@ -89,6 +88,9 @@ public class NetherSwordEffectsListener implements HitEntityListener {
 		if(event.source.getEntity() instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) event.source.getEntity();
+			if(player.getCurrentEquippedItem() == null)
+				return;
+			
 			if(player.getCurrentEquippedItem().itemID == MetallurgyNether.ores.Sword[2].shiftedIndex)
 			{
 				try {

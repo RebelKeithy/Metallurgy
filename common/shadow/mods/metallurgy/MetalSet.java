@@ -3,6 +3,8 @@ package shadow.mods.metallurgy;
 import java.util.HashMap;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 //import ic2.api.Ic2Recipes;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -112,15 +114,23 @@ public class MetalSet implements IWorldGenerator {
 				RecipeHelper.addRailsRecipe(Bar[i], info.numRails(i));
 		}
 		
-		if(!info.isAlloy())			
-			ore = new MetallurgyBlock(info.oreID(), info.image(), numMetals, 0).setHardness(2F).setResistance(.1F).setBlockName(setName + "Ore").setCreativeTab(info.getCreativeTab());
-		
-		brick = new MetallurgyBlock(info.brickID(), info.image(), numMetals, 1).setHardness(5F).setResistance(10F).setBlockName(setName + "Brick").setCreativeTab(info.getCreativeTab());
-		
-		if(info.hasMetalBlock())
+		try
 		{
-			block = new MetallurgyBlock(info.blockID(), info.image(), numMetals, 0).setHardness(5F).setResistance(.1F).setBlockName(setName + "Block").setCreativeTab(info.getCreativeTab());
-			((MetallurgyBlock)block).isMetalBlock = true;
+			if(!info.isAlloy())			
+				ore = new MetallurgyBlock(info.oreID(), info.image(), numMetals, 0).setHardness(2F).setResistance(.1F).setBlockName(setName + "Ore").setCreativeTab(info.getCreativeTab());
+			
+			brick = new MetallurgyBlock(info.brickID(), info.image(), numMetals, 1).setHardness(5F).setResistance(10F).setBlockName(setName + "Brick").setCreativeTab(info.getCreativeTab());
+			
+			if(info.hasMetalBlock())
+			{
+				block = new MetallurgyBlock(info.blockID(), info.image(), numMetals, 0).setHardness(5F).setResistance(.1F).setBlockName(setName + "Block").setCreativeTab(info.getCreativeTab());
+				((MetallurgyBlock)block).isMetalBlock = true;
+			}
+		} 
+		catch(IllegalArgumentException e)
+		{
+			MetallurgyCore.blockError(e);
+	        throw e;
 		}
 		
 		for(int i = 0; i < numMetals; i++)
@@ -330,7 +340,6 @@ public class MetalSet implements IWorldGenerator {
 			}
 		}
 		
-		//System.out.println("Spawned " + oreSpawnCount + " " + info.name(meta));
 	}
 
 }

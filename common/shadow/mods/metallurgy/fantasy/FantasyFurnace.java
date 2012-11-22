@@ -8,7 +8,7 @@ public class FantasyFurnace {
 
 	public static int furnaceID = 922;
 	
-	public static Block metalFurnace = new FF_BlockMetalFurnace(ConfigFantasy.furnaceID, false).setHardness(3.5F).setBlockName("MetalFantasyFurnace");
+	public static Block metalFurnace;
 	
 	public static void load()
 	{

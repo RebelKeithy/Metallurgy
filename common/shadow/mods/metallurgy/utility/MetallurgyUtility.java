@@ -43,7 +43,7 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreDictionary.OreRegisterEvent;
 
-@Mod(modid = "MetallurgyUtility", name = "Metallurgy Utility", dependencies = "after:MetallurgyCore", version = "2.3")
+@Mod(modid = "MetallurgyUtility", name = "Metallurgy Utility", dependencies = "after:MetallurgyCore", version = "2.3.1")
 @NetworkMod(channels = { "MetallurgyUtilit" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyUtility
 {
@@ -79,9 +79,17 @@ public class MetallurgyUtility
 
 		creativeTab = MetallurgyCore.getNewCreativeTab("Utility Ores", ConfigUtility.itemMagnesiumID + 256);
 		
-		vein = new BlockVein(ConfigUtility.veinID, "/shadow/MetallurgyUtilityOres.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("UtilityVein").setCreativeTab(creativeTab);
-		minersTNT = new MinersTNT(ConfigUtility.minersTntId, 64).setBlockName("MinersTNT").setCreativeTab(creativeTab);
-		largeTNT = new LargeTNT(ConfigUtility.largeTntId, 48).setBlockName("largeTNT").setCreativeTab(creativeTab);
+		try
+		{
+			vein = new BlockVein(ConfigUtility.veinID, "/shadow/MetallurgyUtilityOres.png", Material.iron).setHardness(2F).setResistance(.1F).setBlockName("UtilityVein").setCreativeTab(creativeTab);
+			minersTNT = new MinersTNT(ConfigUtility.minersTntId, 64).setBlockName("MinersTNT").setCreativeTab(creativeTab);
+			largeTNT = new LargeTNT(ConfigUtility.largeTntId, 48).setBlockName("largeTNT").setCreativeTab(creativeTab);
+		}
+		catch(IllegalArgumentException e)
+		{
+			MetallurgyCore.blockError(e);
+		    throw e;
+		}
 		
 		minersTNT.setTextureFile("/shadow/MetallurgyUtilityOres.png").setStepSound(Block.soundGrassFootstep);
 		largeTNT.setTextureFile("/shadow/MetallurgyUtilityOres.png").setStepSound(Block.soundGrassFootstep);
@@ -129,7 +137,7 @@ public class MetallurgyUtility
 		
 		setBlockLevels();
 		
-		new UpdateManager("2.3", "Utility", "http://ladadeda.info/UtilityVersion.txt");
+		new UpdateManager("2.3.1", "Utility", "http://ladadeda.info/UtilityVersion.txt");
 	}
 	
 	@PostInit

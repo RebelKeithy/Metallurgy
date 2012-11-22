@@ -38,6 +38,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.Block;
 import net.minecraft.src.CreativeTabs;
@@ -51,7 +53,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyCore", name = "Metallurgy Core", version = "2.3")
+@Mod(modid = "MetallurgyCore", name = "Metallurgy Core", version = "2.3.2")
 @NetworkMod(channels = { "MetallurgyCore" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyCore implements ITickHandler
 {
@@ -193,7 +195,7 @@ public class MetallurgyCore implements ITickHandler
 			railcraft.common.api.crafting.RailcraftCraftingManager.rockCrusher.addRecipe(new ItemStack(Block.oreGold, 1), rockCrusherRecipe);
 		} catch(Exception e) {}
 		
-		new UpdateManager("2.3", "Core", "http://ladadeda.info/CoreVersion.txt");
+		new UpdateManager("2.3.2", "Core", "http://ladadeda.info/CoreVersion.txt");
 		TickRegistry.registerTickHandler(this, Side.CLIENT);
 	}
 	
@@ -244,5 +246,16 @@ public class MetallurgyCore implements ITickHandler
 	public String getLabel() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public static void blockError(IllegalArgumentException e) 
+	{
+		final String s = e.getMessage();
+		Thread t = new Thread(new Runnable(){
+	        public void run(){
+	            JOptionPane.showMessageDialog(null, "Metallurgy Error: There was a block ID conflict, you can fix this by changing the IDs in your config files!\n\n" + s);
+	        }
+	    });
+	    t.start();
 	}
 }

@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
 import org.lwjgl.opengl.GL11;
 
 import shadow.mods.metallurgy.BC_CrusherRecipes;
@@ -114,20 +117,27 @@ public class MetallurgyBaseMetals {
 		
 		alloys = new MetalSet(new AlloyBaseEnum());
 		ores = new MetalSet(new OreBaseEnum());
-		
-		System.out.println("Door ids " + ConfigBase.doorID + " " + ConfigBase.itemDoorID);
-		copperItemDoor = new ItemDoorMetal(ConfigBase.itemDoorID, Material.wood, ConfigBase.doorID);
-		copperDoor = new BlockDoorMetal(ConfigBase.doorID, Material.wood, ConfigBase.itemDoorID);
-		copperDoor.setTextureFile("/shadow/deco.png");
-		copperDoor.blockIndexInTexture = 32;
-		copperItemDoor.setIconIndex(43);
-		
 
-		metalFurnace = new BF_BlockMetalFurnace(ConfigBase.furnaceID, false).setHardness(3.5F).setBlockName("MetalFurnace");
-		lantern = new BlockLantern(ConfigBase.lanternId).setHardness(0.1F).setLightValue(1F).setBlockName("lantern").setCreativeTab(baseTab);
-		ladder = new BlockMetalLadder(ConfigBase.ladderId, 48).setBlockName("MetalLadder").setCreativeTab(baseTab);
-		glassDust = new ItemGlassDust(ConfigBase.glassDustId, "/shadow/MetallurgyGlassLanterns.png").setItemName("glassDust").setIconIndex(68).setCreativeTab(baseTab);
-		coloredGlass = new BlockColoredGlass(ConfigBase.coloredGlassId, "/shadow/MetallurgyGlassLanterns.png").setHardness(0.3F).setStepSound(Block.soundGlassFootstep).setBlockName("coloredGlass").setCreativeTab(baseTab);
+		try
+		{
+			copperItemDoor = new ItemDoorMetal(ConfigBase.itemDoorID, Material.wood, ConfigBase.doorID);
+			copperDoor = new BlockDoorMetal(ConfigBase.doorID, Material.wood, ConfigBase.itemDoorID);
+			copperDoor.setTextureFile("/shadow/deco.png");
+			copperDoor.blockIndexInTexture = 32;
+			copperItemDoor.setIconIndex(43);
+			
+			metalFurnace = new BF_BlockMetalFurnace(ConfigBase.furnaceID, false).setHardness(3.5F).setBlockName("MetalFurnace");
+			lantern = new BlockLantern(ConfigBase.lanternId).setHardness(0.1F).setLightValue(1F).setBlockName("lantern").setCreativeTab(baseTab);
+			ladder = new BlockMetalLadder(ConfigBase.ladderId, 48).setBlockName("MetalLadder").setCreativeTab(baseTab);
+			glassDust = new ItemGlassDust(ConfigBase.glassDustId, "/shadow/MetallurgyGlassLanterns.png").setItemName("glassDust").setIconIndex(68).setCreativeTab(baseTab);
+			coloredGlass = new BlockColoredGlass(ConfigBase.coloredGlassId, "/shadow/MetallurgyGlassLanterns.png").setHardness(0.3F).setStepSound(Block.soundGlassFootstep).setBlockName("coloredGlass").setCreativeTab(baseTab);
+		}
+		catch(IllegalArgumentException e)
+		{
+			MetallurgyCore.blockError(e);
+            throw e;
+		}
+		
 		
 		// Storage Structure Stuff
 		//storage = new BlockStorage(2014);
@@ -399,7 +409,6 @@ public class MetallurgyBaseMetals {
 
 			@Override
 			public float[] getColorFromMaterialID(int var1) {
-				System.out.println("checking for color");
 				if(var1 == ids[0])
 					return new float[] {1F, 0.4F, 0.1F};
 				if(var1 == ids[1])
