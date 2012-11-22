@@ -44,21 +44,4 @@ public class OreSymbol  extends AgeSymbol
 			return (count - 2)*50;
 		return 0;
 	}
-
-	private class Populator implements IPopulate {
-		MetalSet ores;
-		
-		public Populator(MetalSet ores) 
-		{
-			this.ores = ores;
-		}
-
-		public boolean populate(World worldObj, Random rand, int i, int j, boolean flag) {
-			if(flag)
-				return false;
-			ores.generateAllOres(rand, i/16, j/16, worldObj);
-			
-			return false;
-		}
-	}
 }
