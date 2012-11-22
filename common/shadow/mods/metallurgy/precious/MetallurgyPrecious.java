@@ -51,7 +51,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-@Mod(modid = "MetallurgyPrecious", name = "Metallurgy Precious", dependencies = "after:MetallurgyCore", version = "2.3")
+@Mod(modid = "MetallurgyPrecious", name = "Metallurgy Precious", dependencies = "after:MetallurgyCore", version = "2.3.1")
 @NetworkMod(channels = { "MetallurgyPrecio" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyPrecious
 {
@@ -202,7 +202,7 @@ public class MetallurgyPrecious
 			FM_MintRecipes.minting().addMinting(MetallurgyFantasy.alloys.Bar[3].shiftedIndex, 0, 32);
 		}
 		
-		new UpdateManager("2.3", "Precious", "http://ladadeda.info/PreciousVersion.txt");
+		new UpdateManager("2.3.1", "Precious", "http://ladadeda.info/PreciousVersion.txt");
 
 		ArrayList<Integer> swordIds = new ArrayList<Integer>();
 		

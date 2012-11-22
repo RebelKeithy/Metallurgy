@@ -53,7 +53,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyCore", name = "Metallurgy Core", version = "2.3.2")
+@Mod(modid = "MetallurgyCore", name = "Metallurgy Core", version = "2.3.3")
 @NetworkMod(channels = { "MetallurgyCore" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyCore implements ITickHandler
 {
@@ -195,7 +195,7 @@ public class MetallurgyCore implements ITickHandler
 			railcraft.common.api.crafting.RailcraftCraftingManager.rockCrusher.addRecipe(new ItemStack(Block.oreGold, 1), rockCrusherRecipe);
 		} catch(Exception e) {}
 		
-		new UpdateManager("2.3.2", "Core", "http://ladadeda.info/CoreVersion.txt");
+		new UpdateManager("2.3.3", "Core", "http://ladadeda.info/CoreVersion.txt");
 		TickRegistry.registerTickHandler(this, Side.CLIENT);
 	}
 	

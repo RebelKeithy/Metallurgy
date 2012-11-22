@@ -71,7 +71,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-@Mod(modid = "MetallurgyBase", name = "Metallurgy Base", dependencies = "after:MetallurgyCore", version = "2.3")
+@Mod(modid = "MetallurgyBase", name = "Metallurgy Base", dependencies = "after:MetallurgyCore", version = "2.3.1")
 @NetworkMod(channels = { "MetallurgyBase" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyBaseMetals {
 	
@@ -290,7 +290,7 @@ public class MetallurgyBaseMetals {
 		recipe = new ShapedOreRecipe(new ItemStack(ladder, 4, 3), "I I", "III", "I I", 'I', "ingotSteel");
 		GameRegistry.addRecipe(recipe);
 		
-		new UpdateManager("2.3", "Base", "http://ladadeda.info/BaseVersion.txt");
+		new UpdateManager("2.3.1", "Base", "http://ladadeda.info/BaseVersion.txt");
 	}
 	
 	@PostInit

@@ -47,7 +47,7 @@ import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyFantasy", name = "Metallurgy Fantasy", dependencies = "after:MetallurgyCore", version = "2.3")
+@Mod(modid = "MetallurgyFantasy", name = "Metallurgy Fantasy", dependencies = "after:MetallurgyCore", version = "2.3.1")
 @NetworkMod(channels = { "MetallurgyFantas" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyFantasy
 {
@@ -151,7 +151,7 @@ public class MetallurgyFantasy
 			ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[3], 1), new Object[] {ores.Dust[9], new ItemStack(MetallurgyPrecious.ores.Dust[2], 1)});
 		ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[4], 1), new Object[] {ores.Dust[10], ores.Dust[11]});
 		
-		new UpdateManager("2.3", "Fantasy", "http://ladadeda.info/FantasyVersion.txt");
+		new UpdateManager("2.3.1", "Fantasy", "http://ladadeda.info/FantasyVersion.txt");
 	}
 
 	@PostInit

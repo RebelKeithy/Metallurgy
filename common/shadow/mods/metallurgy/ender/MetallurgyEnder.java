@@ -42,7 +42,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyEnder", name = "Metallurgy Ender", dependencies = "after:MetallurgyCore", version = "2.3")
+@Mod(modid = "MetallurgyEnder", name = "Metallurgy Ender", dependencies = "after:MetallurgyCore", version = "2.3.1")
 @NetworkMod(channels = { "MetallurgyNether" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyEnder
 {
@@ -98,7 +98,7 @@ public class MetallurgyEnder
 		((MetallurgyItemSword)(alloys.Sword[0])).addHitListener(new EnderSwordEffectsListener());
 		((MetallurgyItemSword)(alloys.Sword[0])).setSubText("knothing");
 		
-		new UpdateManager("2.3", "Ender", "http://ladadeda.info/EnderVersion.txt");
+		new UpdateManager("2.3.1", "Ender", "http://ladadeda.info/EnderVersion.txt");
 	}
 
 	@PostInit

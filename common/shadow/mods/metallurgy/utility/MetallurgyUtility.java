@@ -43,7 +43,7 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreDictionary.OreRegisterEvent;
 
-@Mod(modid = "MetallurgyUtility", name = "Metallurgy Utility", dependencies = "after:MetallurgyCore", version = "2.3.1")
+@Mod(modid = "MetallurgyUtility", name = "Metallurgy Utility", dependencies = "after:MetallurgyCore", version = "2.3.2")
 @NetworkMod(channels = { "MetallurgyUtilit" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyUtility
 {
@@ -137,7 +137,7 @@ public class MetallurgyUtility
 		
 		setBlockLevels();
 		
-		new UpdateManager("2.3.1", "Utility", "http://ladadeda.info/UtilityVersion.txt");
+		new UpdateManager("2.3.2", "Utility", "http://ladadeda.info/UtilityVersion.txt");
 	}
 	
 	@PostInit
