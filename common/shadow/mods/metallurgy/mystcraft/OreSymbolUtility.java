@@ -17,7 +17,7 @@ import shadow.mods.metallurgy.utility.UtilityWorldGen;
 public class OreSymbolUtility  extends AgeSymbol 
 {	
 	@Override
-	public void registerLogic(IAgeController controller, long seed) {
+	public void registerLogic(IAgeController controller) {
 		controller.registerInterface(this, new Populator());
 	}
 
@@ -38,7 +38,8 @@ public class OreSymbolUtility  extends AgeSymbol
 	}
 
 	private class Populator implements IPopulate {
-
+		public Populator(){}
+		
 		public boolean populate(World worldObj, Random rand, int i, int j, boolean flag) {
 			if(flag)
 				return false;

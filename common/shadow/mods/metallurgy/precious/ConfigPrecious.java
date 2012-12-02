@@ -66,11 +66,11 @@ public class ConfigPrecious  {
         PreciousMetalsVeinID = config.getBlock("Precious Metal Ore", 910).getInt(910);
         PreciousMetalsBrickID = config.getBlock("Precious Metal Brick", 911).getInt(911);
         PreciousAlloysBrickID = config.getBlock("Precious Alloy Brick", 912).getInt(912);
-    	oresBlockID = config.getBlock("Metal Block", 935).getInt(935);
+    	oresBlockID = config.getBlock("-_-", 935).getInt(935);
     	alloysBlockID = config.getBlock("Alloy Block", 936).getInt(936);
         PreciousChestID = config.getBlock("Chest", 913).getInt(913);
         PreciousMintID = config.getBlock("Mint", 914).getInt(914);
-        PreciousMintLoaderID = config.getBlock("Mint Loader", 925).getInt(925);
+        PreciousMintLoaderID = config.getBlock("Mint auto ", 925).getInt(925);
         
     	chestsEnabled = config.get("Options", "Enable Chests", true).getBoolean(true);
     	tradesEnabled = config.get("Options", "Enable Trades", true).getBoolean(true);

@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Random;
 
+import shadow.mods.metallurgy.CreativeTabMetallurgy;
 import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.MetallurgyBlock;
 import shadow.mods.metallurgy.MetallurgyItems;
@@ -51,7 +52,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyNether", name = "Metallurgy Nether", dependencies = "after:MetallurgyCore", version = "2.3.1")
+@Mod(modid = "MetallurgyNether", name = "Metallurgy Nether", dependencies = "after:MetallurgyCore", version = "2.3.2")
 @NetworkMod(channels = { "MetallurgyNether" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyNether
 {
@@ -73,7 +74,7 @@ public class MetallurgyNether
 		ConfigNether.init();
 
 		//creativeTab = MetallurgyCore.getNewCreativeTab("Nether Metals", ConfigNether.ItemStartID);
-		creativeTab = MetallurgyCore.getNewCreativeTab("Nether Metals", ConfigNether.ItemStartID + 256 + 7 + 50 * 7);
+		creativeTab = MetallurgyCore.getNewCreativeTab("Nether Metals", 0);
 		
 		alloys = new MetalSet(new AlloyNetherEnum());
 		ores = new MetalSet(new OreNetherEnum());
@@ -100,10 +101,11 @@ public class MetallurgyNether
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		proxy.registerRenderInformation();
 		proxy.addNames();
-		
-		ores.load();
-		alloys.load();
 
+		((CreativeTabMetallurgy)creativeTab).setTabIconItemIndex(ores.Helmet[7].shiftedIndex);
+		alloys.load();
+		ores.load();
+		
 		((MetallurgyBlock)(ores.ore)).addCollisionListener(new VyroxeresListener());
 		((MetallurgyBlock)(ores.ore)).addDisplayListener(new VyroxeresDisplay());
 		NetherSwordEffectsListener efl = new NetherSwordEffectsListener();
@@ -151,7 +153,7 @@ public class MetallurgyNether
 	    if(MetallurgyCore.hasPrecious)
 	    	ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[2], 1), new ItemStack(MetallurgyPrecious.ores.Dust[2], 1), ores.Dust[5]);
 	    
-		new UpdateManager("2.3.1", "Nether", "http://ladadeda.info/NetherVersion.txt");
+		new UpdateManager("2.3.2", "Nether", "http://ladadeda.info/NetherVersion.txt");
 	}
 	
 	public static void addMidasiumRecipes()
@@ -227,25 +229,7 @@ public class MetallurgyNether
 		try {
 			Class c = Class.forName("me.Golui.SwordPedestal.common.SwordPedestalMain");
 			c.getDeclaredMethod("addItems", int[].class).invoke(this, list);
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (Exception e) {}
 	}
 	
 	public void registerWithApi()

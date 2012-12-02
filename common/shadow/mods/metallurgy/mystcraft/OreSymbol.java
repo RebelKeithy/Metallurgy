@@ -25,7 +25,7 @@ public class OreSymbol  extends AgeSymbol
 	}
 	
 	@Override
-	public void registerLogic(IAgeController controller, long seed) {
+	public void registerLogic(IAgeController controller) {
 		controller.registerInterface(this, populator);
 	}
 

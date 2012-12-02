@@ -74,11 +74,16 @@ public class ClientProxy extends CommonProxy{
 			String[] baseMaterials = {"Copper", "Bronze", "Hepatizon", "Angmallen", "Damascus Steel", "Steel"};
 			for(int n = 0; n < 6; n++)
 			{
+				if(MetallurgyBaseMetals.spear[n] != null)
 				ModLoader.addName(MetallurgyBaseMetals.spear[n], baseMaterials[n] + " Spear");
-				ModLoader.addName(MetallurgyBaseMetals.halberd[n], baseMaterials[n] + " Halberd");
-				ModLoader.addName(MetallurgyBaseMetals.knife[n], baseMaterials[n] + " Knife");
-				ModLoader.addName(MetallurgyBaseMetals.warhammer[n], baseMaterials[n] + " Warhammer");
-				ModLoader.addName(MetallurgyBaseMetals.flail[n], baseMaterials[n] + " Flail");
+				if(MetallurgyBaseMetals.halberd[n] != null)
+					ModLoader.addName(MetallurgyBaseMetals.halberd[n], baseMaterials[n] + " Halberd");
+				if(MetallurgyBaseMetals.knife[n] != null)
+					ModLoader.addName(MetallurgyBaseMetals.knife[n], baseMaterials[n] + " Knife");
+				if(MetallurgyBaseMetals.warhammer[n] != null)
+					ModLoader.addName(MetallurgyBaseMetals.warhammer[n], baseMaterials[n] + " Warhammer");
+				if(MetallurgyBaseMetals.flail[n] != null)
+					ModLoader.addName(MetallurgyBaseMetals.flail[n], baseMaterials[n] + " Flail");
 			}
 		}
 	}

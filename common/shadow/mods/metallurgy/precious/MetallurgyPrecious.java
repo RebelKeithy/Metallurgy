@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Random;
 
+import shadow.mods.metallurgy.CreativeTabMetallurgy;
 import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.MetallurgyItem;
 import shadow.mods.metallurgy.MetallurgyItems;
@@ -51,7 +52,8 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
-@Mod(modid = "MetallurgyPrecious", name = "Metallurgy Precious", dependencies = "after:MetallurgyCore", version = "2.3.1")
+
+@Mod(modid = "MetallurgyPrecious", name = "Metallurgy Precious", dependencies = "after:MetallurgyCore", version = MetallurgyPrecious.version)
 @NetworkMod(channels = { "MetallurgyPrecio" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyPrecious
 {
@@ -60,6 +62,8 @@ public class MetallurgyPrecious
 	
 	@Instance( value = "MetallurgyPrecious" )
 	public static MetallurgyPrecious instance;
+
+	public static final String version = "2.3.2";
 	
 	public static MetalSet alloys;
 	public static MetalSet ores;
@@ -84,8 +88,7 @@ public class MetallurgyPrecious
 	{
 		ConfigPrecious.init();
 		
-		//creativeTab = MetallurgyCore.getNewCreativeTab("Precious Metals", ConfigPrecious.ItemStartID);
-		creativeTab = MetallurgyCore.getNewCreativeTab("Precious Metals", ConfigPrecious.ItemStartID + 256 + 7 + 50 * 2);
+		creativeTab = MetallurgyCore.getNewCreativeTab("Precious Metals", 0);
 		
 		alloys = new MetalSet(new AlloyPreciousEnum());
 		ores = new MetalSet(new OrePreciousEnum());
@@ -135,6 +138,8 @@ public class MetallurgyPrecious
 		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 		
+
+		((CreativeTabMetallurgy)creativeTab).setTabIconItemIndex(ores.Helmet[2].shiftedIndex);
 		alloys.load();
 		ores.load();
 		
@@ -202,7 +207,7 @@ public class MetallurgyPrecious
 			FM_MintRecipes.minting().addMinting(MetallurgyFantasy.alloys.Bar[3].shiftedIndex, 0, 32);
 		}
 		
-		new UpdateManager("2.3.1", "Precious", "http://ladadeda.info/PreciousVersion.txt");
+		new UpdateManager(this.version, "Precious", "http://ladadeda.info/PreciousVersion.txt");
 
 		ArrayList<Integer> swordIds = new ArrayList<Integer>();
 		
@@ -223,25 +228,7 @@ public class MetallurgyPrecious
 		try {
 			Class c = Class.forName("me.Golui.SwordPedestal.common.SwordPedestalMain");
 			c.getDeclaredMethod("addItems", int[].class).invoke(this, list);
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (Exception e) {}
 	}
 	
 	public void addChestRecipes()

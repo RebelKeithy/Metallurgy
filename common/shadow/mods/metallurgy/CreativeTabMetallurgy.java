@@ -25,4 +25,9 @@ public class CreativeTabMetallurgy extends CreativeTabs{
     {
         return iconItemID;
     }
+    
+    public void setTabIconItemIndex(int id)
+    {
+    	iconItemID = id;
+    }
 }

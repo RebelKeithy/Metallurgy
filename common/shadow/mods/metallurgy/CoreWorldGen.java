@@ -36,13 +36,40 @@ public class CoreWorldGen implements IWorldGenerator
 		
 		for(int n = 0; n < CoreConfig.customIDs.length; n++)
 		{
+			if(Block.blocksList[n] == null)
+				continue;
+			if(!spawnsInDimension(CoreConfig.customDimensions[n], world.provider.dimensionId))
+				continue;
 			for (int i = 0; i < CoreConfig.customVeinCount[n]; i++) {
 				int randPosX = chunkX * 16 + rand.nextInt(16);
 				int randPosY = rand.nextInt(CoreConfig.customMaxHeight[n] - CoreConfig.customMinHeight[n]) + CoreConfig.customMinHeight[n];
 				int randPosZ = chunkZ * 16 + rand.nextInt(16);
-				(new WorldGenMinable(CoreConfig.customIDs[n], CoreConfig.customMetas[n], CoreConfig.customOreCount[n])).generate(world, rand, randPosX, randPosY, randPosZ);
+				if(world.provider.dimensionId == -1)
+					(new MetallurgyWorldGenNetherMinable(CoreConfig.customIDs[n], CoreConfig.customMetas[n], CoreConfig.customOreCount[n])).generate(world, rand, randPosX, randPosY, randPosZ);
+				else if(world.provider.dimensionId == 1)
+					(new MetallurgyWorldGenEnderMinable(CoreConfig.customIDs[n], CoreConfig.customMetas[n], CoreConfig.customOreCount[n])).generate(world, rand, randPosX, randPosY, randPosZ);
+				else
+					(new MetallurgyWorldGenMinable(CoreConfig.customIDs[n], CoreConfig.customMetas[n], CoreConfig.customOreCount[n])).generate(world, rand, randPosX, randPosY, randPosZ);
 			}
 		}
+	}
+
+	public boolean spawnsInDimension(String dimConfig, int i)
+	{
+		for(String str : dimConfig.split(" ")) {
+			if(str.matches("[0-9]+-[0-9]+"))
+			{
+				int start = Integer.parseInt(str.split("-")[0]);
+				int end = Integer.parseInt(str.split("-")[1]);
+				if(i >= start && i <= end)
+					return true;
+			} else {
+				if(i == Integer.parseInt(str))
+					return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	private boolean shouldReplace(int blockID)

@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Random;
 
+import shadow.mods.metallurgy.CreativeTabMetallurgy;
 import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.MetallurgyBlock;
 import shadow.mods.metallurgy.MetallurgyCore;
@@ -42,7 +43,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyEnder", name = "Metallurgy Ender", dependencies = "after:MetallurgyCore", version = "2.3.1")
+@Mod(modid = "MetallurgyEnder", name = "Metallurgy Ender", dependencies = "after:MetallurgyCore", version = "2.3.2")
 @NetworkMod(channels = { "MetallurgyNether" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyEnder
 {
@@ -62,8 +63,8 @@ public class MetallurgyEnder
 	{
 		ConfigEnder.init();
 
-		//creativeTab = MetallurgyCore.getNewCreativeTab("Ender Metals", ConfigEnder.alloyItemIds[0]);
-		creativeTab = MetallurgyCore.getNewCreativeTab("Ender Metals", ConfigEnder.alloyItemIds[0] + 256 + 7);
+		creativeTab = MetallurgyCore.getNewCreativeTab("Ender Metals", ConfigEnder.alloyItemIds[0]);
+		//creativeTab = MetallurgyCore.getNewCreativeTab("Ender Metals", alloys.Helmet[0].shiftedIndex);
 		
 		alloys = new MetalSet(new AlloyEnderEnum());
 		ores = new MetalSet(new OreEnderEnum());
@@ -88,8 +89,9 @@ public class MetallurgyEnder
 		proxy.registerRenderInformation();
 		proxy.addNames();
 
-		ores.load();
+		((CreativeTabMetallurgy)creativeTab).setTabIconItemIndex(alloys.Helmet[0].shiftedIndex);
 		alloys.load();
+		ores.load();
 		
 		GameRegistry.addRecipe(new ItemStack(Item.enderPearl, 4), "XXX", "X X", "XXX", 'X', new ItemStack(ores.Bar[1]));
 		
@@ -98,7 +100,7 @@ public class MetallurgyEnder
 		((MetallurgyItemSword)(alloys.Sword[0])).addHitListener(new EnderSwordEffectsListener());
 		((MetallurgyItemSword)(alloys.Sword[0])).setSubText("knothing");
 		
-		new UpdateManager("2.3.1", "Ender", "http://ladadeda.info/EnderVersion.txt");
+		new UpdateManager("2.3.2", "Ender", "http://ladadeda.info/EnderVersion.txt");
 	}
 
 	@PostInit
@@ -129,24 +131,6 @@ public class MetallurgyEnder
 		try {
 			Class c = Class.forName("me.Golui.SwordPedestal.common.SwordPedestalMain");
 			c.getDeclaredMethod("addItems", int[].class).invoke(this, list);
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (Exception e) {}
 	}
 }

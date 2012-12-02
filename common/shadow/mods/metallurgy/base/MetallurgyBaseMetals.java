@@ -15,6 +15,7 @@ import org.lwjgl.opengl.GL11;
 
 import shadow.mods.metallurgy.BC_CrusherRecipes;
 import shadow.mods.metallurgy.BlockDoorMetal;
+import shadow.mods.metallurgy.CreativeTabMetallurgy;
 import shadow.mods.metallurgy.ItemDoorMetal;
 import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.MetallurgyCore;
@@ -71,7 +72,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-@Mod(modid = "MetallurgyBase", name = "Metallurgy Base", dependencies = "after:MetallurgyCore", version = "2.3.1")
+@Mod(modid = "MetallurgyBase", name = "Metallurgy Base", dependencies = "after:MetallurgyCore", version = "2.3.2")
 @NetworkMod(channels = { "MetallurgyBase" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyBaseMetals {
 	
@@ -112,8 +113,7 @@ public class MetallurgyBaseMetals {
 	{
 		ConfigBase.init();
 		
-		//baseTab = MetallurgyCore.getNewCreativeTab("Base Metals", ConfigBase.ItemStartID);
-		baseTab = MetallurgyCore.getNewCreativeTab("Base Metals", ConfigBase.ItemStartID + 256 + 150 + 7 + 50 * 4);
+		baseTab = MetallurgyCore.getNewCreativeTab("Base Metals", ConfigBase.ItemStartID);
 		
 		alloys = new MetalSet(new AlloyBaseEnum());
 		ores = new MetalSet(new OreBaseEnum());
@@ -127,10 +127,10 @@ public class MetallurgyBaseMetals {
 			copperItemDoor.setIconIndex(43);
 			
 			metalFurnace = new BF_BlockMetalFurnace(ConfigBase.furnaceID, false).setHardness(3.5F).setBlockName("MetalFurnace");
-			lantern = new BlockLantern(ConfigBase.lanternId).setHardness(0.1F).setLightValue(1F).setBlockName("lantern").setCreativeTab(baseTab);
-			ladder = new BlockMetalLadder(ConfigBase.ladderId, 48).setBlockName("MetalLadder").setCreativeTab(baseTab);
-			glassDust = new ItemGlassDust(ConfigBase.glassDustId, "/shadow/MetallurgyGlassLanterns.png").setItemName("glassDust").setIconIndex(68).setCreativeTab(baseTab);
-			coloredGlass = new BlockColoredGlass(ConfigBase.coloredGlassId, "/shadow/MetallurgyGlassLanterns.png").setHardness(0.3F).setStepSound(Block.soundGlassFootstep).setBlockName("coloredGlass").setCreativeTab(baseTab);
+			lantern = new BlockLantern(ConfigBase.lanternId).setHardness(0.1F).setLightValue(1F).setBlockName("lantern");
+			ladder = new BlockMetalLadder(ConfigBase.ladderId, 48).setBlockName("MetalLadder");
+			glassDust = new ItemGlassDust(ConfigBase.glassDustId, "/shadow/MetallurgyGlassLanterns.png").setItemName("glassDust").setIconIndex(68);
+			coloredGlass = new BlockColoredGlass(ConfigBase.coloredGlassId, "/shadow/MetallurgyGlassLanterns.png").setHardness(0.3F).setStepSound(Block.soundGlassFootstep).setBlockName("coloredGlass");
 		}
 		catch(IllegalArgumentException e)
 		{
@@ -192,9 +192,15 @@ public class MetallurgyBaseMetals {
 		//GameRegistry.registerBlock(storage);
 		//GameRegistry.registerBlock(accessor);
 		//GameRegistry.registerTileEntity(shadow.mods.metallurgy.storage.TileEntityStorage.class, "Storage");
-		
+
+		((CreativeTabMetallurgy)baseTab).setTabIconItemIndex(alloys.Helmet[4].shiftedIndex);
 		alloys.load();
 		ores.load();
+	
+		lantern.setCreativeTab(baseTab);
+		ladder.setCreativeTab(baseTab);
+		glassDust.setCreativeTab(baseTab);
+		coloredGlass.setCreativeTab(baseTab);
 		
 		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 
@@ -290,7 +296,7 @@ public class MetallurgyBaseMetals {
 		recipe = new ShapedOreRecipe(new ItemStack(ladder, 4, 3), "I I", "III", "I I", 'I', "ingotSteel");
 		GameRegistry.addRecipe(recipe);
 		
-		new UpdateManager("2.3.1", "Base", "http://ladadeda.info/BaseVersion.txt");
+		new UpdateManager("2.3.2", "Base", "http://ladadeda.info/BaseVersion.txt");
 	}
 	
 	@PostInit
@@ -315,25 +321,7 @@ public class MetallurgyBaseMetals {
 		try {
 			Class c = Class.forName("me.Golui.SwordPedestal.common.SwordPedestalMain");
 			c.getDeclaredMethod("addItems", int[].class).invoke(this, list);
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (Exception e) {}
 	}
 
 	private void addBalkonsWeapons() 

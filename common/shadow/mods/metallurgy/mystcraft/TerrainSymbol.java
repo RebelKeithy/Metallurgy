@@ -12,7 +12,7 @@ public class TerrainSymbol extends AgeSymbol implements ITerrainGenerator{
 	}
 	
 	@Override
-	public void registerLogic(IAgeController controller, long seed) {
+	public void registerLogic(IAgeController controller) {
 		controller.registerInterface(this, this);
 	}
 

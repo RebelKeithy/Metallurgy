@@ -7,6 +7,7 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Random;
 
+import shadow.mods.metallurgy.CreativeTabMetallurgy;
 import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.MetallurgyBlock;
 import shadow.mods.metallurgy.MetallurgyItemSword;
@@ -47,7 +48,7 @@ import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyFantasy", name = "Metallurgy Fantasy", dependencies = "after:MetallurgyCore", version = "2.3.1")
+@Mod(modid = "MetallurgyFantasy", name = "Metallurgy Fantasy", dependencies = "after:MetallurgyCore", version = "2.3.2")
 @NetworkMod(channels = { "MetallurgyFantas" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyFantasy
 {
@@ -68,8 +69,7 @@ public class MetallurgyFantasy
 	{
 		ConfigFantasy.init();
 
-		//creativeTab = MetallurgyCore.getNewCreativeTab("Fantasy Metals", ConfigFantasy.ItemStartID);
-		creativeTab = MetallurgyCore.getNewCreativeTab("Fantasy Metals", ConfigFantasy.ItemStartID + 256 + 600 + 7 + 50 * 4);
+		creativeTab = MetallurgyCore.getNewCreativeTab("Fantasy Metals", ConfigFantasy.ItemStartID);
 		
 		alloys = new MetalSet(new AlloyFantasyEnum());
 		ores = new MetalSet(new OreFantasyEnum());
@@ -104,7 +104,8 @@ public class MetallurgyFantasy
 		
 		proxy.registerRenderInformation();
 		proxy.addNames();
-		
+
+		((CreativeTabMetallurgy)creativeTab).setTabIconItemIndex(alloys.Helmet[4].shiftedIndex);
 		alloys.load();
 		ores.load();
 
@@ -151,7 +152,7 @@ public class MetallurgyFantasy
 			ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[3], 1), new Object[] {ores.Dust[9], new ItemStack(MetallurgyPrecious.ores.Dust[2], 1)});
 		ModLoader.addShapelessRecipe(new ItemStack(alloys.Dust[4], 1), new Object[] {ores.Dust[10], ores.Dust[11]});
 		
-		new UpdateManager("2.3.1", "Fantasy", "http://ladadeda.info/FantasyVersion.txt");
+		new UpdateManager("2.3.2", "Fantasy", "http://ladadeda.info/FantasyVersion.txt");
 	}
 
 	@PostInit
@@ -178,32 +179,14 @@ public class MetallurgyFantasy
 			if(alloys.Sword[n] != null)
 				swordIds.add(alloys.Sword[n].shiftedIndex);
 		}
+		
 		int[] list = new int[swordIds.size()];
 		for(int n = 0; n < list.length; n++)
 			list[n] = swordIds.get(n);
-
 		try {
 			Class c = Class.forName("me.Golui.SwordPedestal.common.SwordPedestalMain");
 			c.getDeclaredMethod("addItems", int[].class).invoke(this, list);
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (Exception e) {}
 	}
 	public void registerWithApi()
 	{

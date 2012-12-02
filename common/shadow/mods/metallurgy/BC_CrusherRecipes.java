@@ -86,6 +86,7 @@ public class BC_CrusherRecipes
 		{
 			return ret;
 		}
+		
 
 		for(String name : OreDictionary.getOreNames())
 		{
@@ -100,6 +101,15 @@ public class BC_CrusherRecipes
 					if(name.contains("dust"))
 						return null;
 					name = name.replace(replacement, "dust");
+
+					ret = MetallurgyItems.getItem(name);
+					if(ret != null)
+					{
+						if(replacement.equals("ore"))
+							ret.stackSize = 2;
+						return ret;
+					}
+					
 					List<ItemStack> retList = OreDictionary.getOres(name);
 					if(retList.size() > 0)
 					{

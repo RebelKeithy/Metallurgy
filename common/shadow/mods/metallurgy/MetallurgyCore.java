@@ -53,7 +53,7 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 
-@Mod(modid = "MetallurgyCore", name = "Metallurgy Core", version = "2.3.3")
+@Mod(modid = "MetallurgyCore", name = "Metallurgy Core", version = "2.3.4")
 @NetworkMod(channels = { "MetallurgyCore" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyCore implements ITickHandler
 {
@@ -195,18 +195,18 @@ public class MetallurgyCore implements ITickHandler
 			railcraft.common.api.crafting.RailcraftCraftingManager.rockCrusher.addRecipe(new ItemStack(Block.oreGold, 1), rockCrusherRecipe);
 		} catch(Exception e) {}
 		
-		new UpdateManager("2.3.3", "Core", "http://ladadeda.info/CoreVersion.txt");
+		new UpdateManager("2.3.4", "Core", "http://ladadeda.info/CoreVersion.txt");
 		TickRegistry.registerTickHandler(this, Side.CLIENT);
 	}
 	
 	public static CreativeTabs getNewCreativeTab(String name, int iconID)
 	{
 		int tabID = CreativeTabs.getNextID();
-		CreativeTabs[] temp = new CreativeTabs[tabID + 1];
-		System.arraycopy(CreativeTabs.creativeTabArray, 0, temp, 0, tabID);
+		//CreativeTabs[] temp = new CreativeTabs[tabID + 1];
+		//System.arraycopy(CreativeTabs.creativeTabArray, 0, temp, 0, tabID);
 		CreativeTabs metallurgyTab = new CreativeTabMetallurgy(tabID, name, iconID);
-		temp[tabID] = metallurgyTab;
-		CreativeTabs.creativeTabArray = temp;
+		//temp[tabID] = metallurgyTab;
+		//CreativeTabs.creativeTabArray = temp;
 		
 		proxy.addCreativeTabName(name);
 		

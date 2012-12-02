@@ -96,7 +96,7 @@ public class MetalSet implements IWorldGenerator {
 			int startID = info.startID(i);
 			Dust[i] = (new MetallurgyItem(startID, info.image())).setIconCoord(i,3).setItemName(info.name(i) + "Dust").setCreativeTab(info.getCreativeTab());
 			Bar[i] = (new MetallurgyItem(startID+1, info.image())).setIconCoord(i,4).setItemName(info.name(i) + "Bar").setCreativeTab(info.getCreativeTab());
-			
+
 			if(info.isCatalyst(i))
 				continue;
 			Pickaxe[i] = new MetallurgyItemPickaxe(startID+2, info.image(), info.toolEnum(i), Bar[i].shiftedIndex).setIconCoord(i,7).setItemName(info.name(i) + "Pickaxe").setCreativeTab(info.getCreativeTab());
@@ -104,12 +104,12 @@ public class MetalSet implements IWorldGenerator {
 			Axe[i] = new MetallurgyItemAxe(startID+4, info.image(), info.toolEnum(i), Bar[i].shiftedIndex).setIconCoord(i,5).setItemName(info.name(i) + "Axe").setCreativeTab(info.getCreativeTab());
 			Hoe[i] = new MetallurgyItemHoe(startID+5, info.image(), info.toolEnum(i), Bar[i].shiftedIndex).setIconCoord(i,6).setItemName(info.name(i) + "Hoe").setCreativeTab(info.getCreativeTab());
 			Sword[i] = new MetallurgyItemSword(startID+6, info.image(), info.toolEnum(i), Bar[i].shiftedIndex).setIconCoord(i,9).setItemName(info.name(i) + "Sword").setCreativeTab(info.getCreativeTab());
-			
+
 			Helmet[i] = (new MetallurgyArmor(startID+7, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_1", info.armorEnum(i), 0, 0, Bar[i].shiftedIndex)).setIconCoord(i,12).setItemName(info.name(i) + "Helmet").setCreativeTab(info.getCreativeTab());
 			Plate[i] = (new MetallurgyArmor(startID+8, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_1", info.armorEnum(i), 0, 1, Bar[i].shiftedIndex)).setIconCoord(i,13).setItemName(info.name(i) + "Plate").setCreativeTab(info.getCreativeTab());
 			Legs[i] = (new MetallurgyArmor(startID+9, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_2", info.armorEnum(i), 0, 2, Bar[i].shiftedIndex)).setIconCoord(i,14).setItemName(info.name(i) + "Legs").setCreativeTab(info.getCreativeTab());
 			Boots[i] = (new MetallurgyArmor(startID+10, info.image(), info.name(i).toLowerCase().replaceAll("\\W", "") + "_1", info.armorEnum(i), 0, 3, Bar[i].shiftedIndex)).setIconCoord(i,15).setItemName(info.name(i) + "Boots").setCreativeTab(info.getCreativeTab());
-		
+
 			if(info.numRails(i) > 0)
 				RecipeHelper.addRailsRecipe(Bar[i], info.numRails(i));
 		}
@@ -218,6 +218,27 @@ public class MetalSet implements IWorldGenerator {
 			
 			
 		}
+		
+		
+    	for(int i = 0; i < info.numMetals(); i++)
+    	{
+	        if(!info.isCatalyst(i))
+	        {
+				RecipeHelper.addAxeRecipe(Axe[i], "ingot" + info.name(i));
+				RecipeHelper.addPickaxeRecipe(Pickaxe[i], "ingot" + info.name(i));
+				RecipeHelper.addShovelRecipe(Shovel[i], "ingot" + info.name(i));
+				RecipeHelper.addHoeRecipe(Hoe[i], "ingot" + info.name(i));
+				RecipeHelper.addSwordRecipe(Sword[i], "ingot" + info.name(i));
+				RecipeHelper.addHelmetRecipe(Helmet[i], "ingot" + info.name(i));
+				RecipeHelper.addPlateRecipe(Plate[i], "ingot" + info.name(i));
+				RecipeHelper.addLegsRecipe(Legs[i], "ingot" + info.name(i));
+				RecipeHelper.addBootsRecipe(Boots[i], "ingot" + info.name(i));
+			    
+			    //Buckets/Shears
+				RecipeHelper.addBucketRecipe("ingot" + info.name(i));
+				RecipeHelper.addShearsRecipe("ingot" + info.name(i));
+	        }
+    	}
 	}
 	
 	public void registerWithApi()
@@ -268,23 +289,6 @@ public class MetalSet implements IWorldGenerator {
     			
     			//Bricks!
     			RecipeHelper.addBrickRecipes(brick.blockID, i, event.Ore.getItem(), event.Ore.getItemDamage());
-    			
-    	        if(!info.isCatalyst(i))
-    	        {
-    				RecipeHelper.addAxeRecipe(Axe[i], event.Ore.getItem());
-    				RecipeHelper.addPickaxeRecipe(Pickaxe[i], event.Ore.getItem());
-    				RecipeHelper.addShovelRecipe(Shovel[i], event.Ore.getItem());
-    				RecipeHelper.addHoeRecipe(Hoe[i], event.Ore.getItem());
-    				RecipeHelper.addSwordRecipe(Sword[i], event.Ore.getItem());
-    				RecipeHelper.addHelmetRecipe(Helmet[i], event.Ore.getItem());
-    				RecipeHelper.addPlateRecipe(Plate[i], event.Ore.getItem());
-    				RecipeHelper.addLegsRecipe(Legs[i], event.Ore.getItem());
-    				RecipeHelper.addBootsRecipe(Boots[i], event.Ore.getItem());
-    			    
-    			    //Buckets/Shears
-    				RecipeHelper.addBucketRecipe(event.Ore.getItem());
-    				RecipeHelper.addShearsRecipe(event.Ore.getItem());
-    	        }
     		}
     	}
     }

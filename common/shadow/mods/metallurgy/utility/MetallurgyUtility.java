@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import shadow.mods.metallurgy.CreativeTabMetallurgy;
 import shadow.mods.metallurgy.MetalSet;
 import shadow.mods.metallurgy.MetallurgyCore;
 import shadow.mods.metallurgy.MetallurgyItems;
@@ -43,7 +44,7 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreDictionary.OreRegisterEvent;
 
-@Mod(modid = "MetallurgyUtility", name = "Metallurgy Utility", dependencies = "after:MetallurgyCore", version = "2.3.2")
+@Mod(modid = "MetallurgyUtility", name = "Metallurgy Utility", dependencies = "after:MetallurgyCore", version = MetallurgyUtility.version)
 @NetworkMod(channels = { "MetallurgyUtilit" }, clientSideRequired = true, serverSideRequired = false, packetHandler = PacketHandler.class )
 public class MetallurgyUtility
 {
@@ -53,6 +54,8 @@ public class MetallurgyUtility
 	@Instance( value = "MetallurgyUtility")
 	public static MetallurgyUtility instance;
 
+	public static final String version = "2.3.3";
+	
 	public static Block vein;
 	public static Block minersTNT;
 	public static Block largeTNT;
@@ -104,7 +107,8 @@ public class MetallurgyUtility
 		fertilizer = (new UtilityItemFertilizer(ConfigUtility.itemFertilizerID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(1,2).setItemName("Fertilizer").setCreativeTab(creativeTab);
 		igniter = (new ItemIgniter(ConfigUtility.itemIgniterID, "/shadow/MetallurgyUtilityOres.png")).setIconCoord(4, 3).setItemName("Igniter").setCreativeTab(creativeTab);
 		match = (new ItemMatch(ConfigUtility.itemMatchID,  "/shadow/MetallurgyUtilityOres.png")).setIconCoord(3, 3).setItemName("Match").setCreativeTab(creativeTab);
-	
+		
+		((CreativeTabMetallurgy)creativeTab).setTabIconItemIndex(magnesium.shiftedIndex);
 	}
 
 	@Init
@@ -137,7 +141,7 @@ public class MetallurgyUtility
 		
 		setBlockLevels();
 		
-		new UpdateManager("2.3.2", "Utility", "http://ladadeda.info/UtilityVersion.txt");
+		new UpdateManager(MetallurgyUtility.version, "Utility", "http://ladadeda.info/UtilityVersion.txt");
 	}
 	
 	@PostInit
